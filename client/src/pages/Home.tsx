@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { Link, useLocation, useSearch } from "wouter";
-import { Search, Gamepad2, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, Star, ArrowUpDown } from "lucide-react";
+import { Search, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, Star, ArrowUpDown } from "lucide-react";
 import { GAMES, CATEGORIES, ALL_TAGS } from "@/data/games";
 import { useRecentlyPlayed } from "@/hooks/useRecentlyPlayed";
 import { useFavourites } from "@/hooks/useFavourites";
@@ -216,184 +216,133 @@ export default function Home() {
       )}
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-8">
-        {/* Hero Section */}
+        {/* Hero Section — centered single-column design */}
         <div
-          className="hero-bg relative overflow-hidden rounded-3xl p-5 md:p-12 mb-10"
+          className="hero-playground relative overflow-hidden rounded-3xl mb-10"
           role="banner"
           aria-label={t('home.heroAriaLabel' as any)}
         >
-          {/* Real <img> for the hero background — discoverable from prerendered HTML
-              without waiting for CSS to download. Uses srcSet for responsive loading. */}
-          <img
-            src="/hero-bg.webp"
-            srcSet="/hero-bg-480.webp 480w, /hero-bg-960.webp 960w, /hero-bg.webp 1498w"
-            sizes="(max-width: 640px) 480px, (max-width: 1024px) 960px, 1498px"
-            alt=""
-            aria-hidden="true"
-            fetchPriority="high"
-            decoding="async"
-            className="hero-bg-img"
-          />
-          {/* Animated gradient overlay — breathes in/out */}
-          <div className="hero-overlay-breathe absolute inset-0 bg-gradient-to-r from-violet-950/88 via-violet-900/72 to-violet-900/20 rounded-3xl" />
+          {/* Animated mesh gradient background */}
+          <div className="absolute inset-0 hero-mesh-bg" aria-hidden="true" />
 
-          {/* Scanline sweep */}
-          <div className="hero-scanline" aria-hidden="true" />
+          {/* Geometric floating shapes */}
+          <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div className="hero-shape hero-shape-1" />
+            <div className="hero-shape hero-shape-2" />
+            <div className="hero-shape hero-shape-3" />
+            <div className="hero-shape hero-shape-4" />
+            <div className="hero-shape hero-shape-5" />
+            <div className="hero-shape hero-shape-6" />
+          </div>
 
-          {/* Floating emoji particles — right half of hero */}
-          {[
-            { emoji: "🎮", style: { top: "12%",  right: "22%", "--duration": "4.2s", "--delay": "0s"    } },
-            { emoji: "⭐", style: { top: "55%",  right: "38%", "--duration": "5.1s", "--delay": "0.8s"  } },
-            { emoji: "🕹️", style: { top: "25%",  right: "8%",  "--duration": "3.8s", "--delay": "1.4s"  } },
-            { emoji: "🏆", style: { top: "68%",  right: "18%", "--duration": "4.7s", "--delay": "0.3s"  } },
-            { emoji: "🎯", style: { top: "8%",   right: "45%", "--duration": "5.5s", "--delay": "2.1s"  } },
-            { emoji: "🎲", style: { top: "78%",  right: "42%", "--duration": "4.0s", "--delay": "1.7s"  } },
-            { emoji: "✨", style: { top: "40%",  right: "3%",  "--duration": "3.3s", "--delay": "0.5s"  } },
-            { emoji: "🌟", style: { top: "85%",  right: "28%", "--duration": "6.0s", "--delay": "2.8s"  } },
-          ].map(({ emoji, style }) => (
-            <span
-              key={emoji + JSON.stringify(style)}
-              className="hero-particle hidden md:block"
-              style={style as React.CSSProperties}
-              aria-hidden="true"
-            >
-              {emoji}
-            </span>
-          ))}
+          {/* Dot grid overlay */}
+          <div className="absolute inset-0 hero-dot-grid opacity-[0.07]" aria-hidden="true" />
 
-          <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-            <div className="flex-1">
-              {/* Badge */}
-              <div className="hero-text-enter inline-flex items-center gap-2 mb-2 md:mb-4 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-3 py-1.5">
-                <div className="w-5 h-5 rounded-md bg-violet-400/60 flex items-center justify-center" aria-hidden="true">
-                  <Gamepad2 className="w-3 h-3 text-white" />
+          {/* Content — centered single column */}
+          <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-10 lg:py-16 lg:px-14">
+            {/* Badge */}
+            <div className="hero-text-enter inline-flex items-center gap-2 mb-4 md:mb-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 shadow-lg shadow-black/5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+              <span className="text-white/90 text-[11px] font-bold tracking-[0.2em] uppercase">
+                Doodle Playground
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="hero-text-enter-delay-1 text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-3 md:mb-4 max-w-3xl">
+              {t('home.heroTitleLine1')}<br />
+              <span className="hero-gradient-text">{t('home.heroTitle')}</span>
+            </h1>
+
+            {/* Subtext */}
+            <p className="hero-text-enter-delay-2 text-white/60 text-sm md:text-lg max-w-xl leading-relaxed mx-auto">
+              {t('home.heroSubtitle')}
+            </p>
+
+            {/* Inline stats strip */}
+            <div className="hero-text-enter-delay-2 flex items-center gap-3 md:gap-6 mt-5 md:mt-8 flex-wrap justify-center">
+              {[
+                { value: String(GAMES.length), label: t('home.heroStats.games'), icon: "🎮" },
+                { value: String(new Set(GAMES.map(g => g.category)).size), label: t('home.heroStats.categories'), icon: "📂" },
+                { value: t('common.free'), label: t('home.heroStats.free'), icon: "✨" },
+              ].map(({ value, label, icon }, i) => (
+                <div key={label} className="hero-stat-card flex items-center gap-2">
+                  <span className="text-lg md:text-xl">{icon}</span>
+                  <span className="text-white font-extrabold text-lg md:text-xl leading-none">{value}</span>
+                  <span className="text-white/40 text-xs font-medium uppercase tracking-wider">{label}</span>
+                  {i < 2 && <span className="text-white/20 ml-1 md:ml-3 hidden sm:inline">|</span>}
                 </div>
-                <span className="text-white/90 text-[11px] font-semibold tracking-widest uppercase">
-                  Doodle Games Hub
+              ))}
+            </div>
+
+            {/* CTA buttons */}
+            <div className="hero-text-enter-delay-3 flex flex-wrap items-center justify-center gap-3 mt-6 md:mt-8">
+              <Link href="/daily/">
+                <span className="hero-cta-primary inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-7 md:py-3.5 rounded-2xl text-sm md:text-base font-bold bg-white text-slate-900 hover:bg-slate-100 shadow-xl shadow-white/20 transition-all cursor-pointer active:scale-95">
+                  <span className="text-lg">🎯</span> {t('home.cta.todayChallenge')}
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
-              </div>
-
-              {/* Headline */}
-              <h1 className="hero-text-enter-delay-1 text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-1.5 md:mb-3">
-                {t('home.heroTitleLine1')}<br />
-                <span className="hero-shimmer-text">{t('home.heroTitle')}</span>
-              </h1>
-
-              {/* Subtext */}
-              <p className="hero-text-enter-delay-2 text-white/70 text-xs md:text-base max-w-md leading-relaxed">
-                {t('home.heroSubtitle')}
-              </p>
-
-              {/* Stats row */}
-              <div className="hero-text-enter-delay-2 flex items-center gap-3 md:gap-4 mt-3 md:mt-4 mb-1">
-                {[
-                  { value: String(GAMES.length), label: t('home.heroStats.games') },
-                  { value: String(new Set(GAMES.map(g => g.category)).size), label: t('home.heroStats.categories') },
-                  { value: t('common.free'), label: t('home.heroStats.free') },
-                ].map(({ value, label }) => (
-                  <div key={label} className="flex items-center gap-1.5">
-                    <span className="text-white font-bold text-base">{value}</span>
-                    <span className="text-white/50 text-xs">{label}</span>
-                    <span className="w-px h-3 bg-white/20 last:hidden" />
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA buttons */}
-              <div className="hero-text-enter-delay-3 flex flex-wrap items-center gap-2 md:gap-3 mt-3 md:mt-5">
-                <Link href="/daily/">
-                  <span className="hero-cta-glow inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold bg-yellow-400 text-yellow-900 hover:bg-yellow-300 shadow-lg shadow-yellow-400/30 transition-all cursor-pointer active:scale-95">
-                    🎯 {t('home.cta.todayChallenge')}
-                  </span>
-                </Link>
-                <button
-                  onClick={toggleKidsMode}
-                  aria-pressed={kidsMode}
-                  aria-label={kidsMode ? t('nav.kidsModeTooltipOn' as any) : t('nav.kidsModeTooltipOff' as any)}
-                  className={`inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 active:scale-95 ${
-                    kidsMode
-                      ? "bg-green-400 text-green-900 shadow-lg shadow-green-400/30"
-                      : "bg-white/15 text-white hover:bg-white/25 border border-white/20"
-                  }`}
-                >
-                  <Baby className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" aria-hidden="true" />
-                  {kidsMode ? t('home.kidsModeOn') : t('nav.kidsMode')}
-                </button>
-              </div>
+              </Link>
+              <button
+                onClick={toggleKidsMode}
+                aria-pressed={kidsMode}
+                aria-label={kidsMode ? t('nav.kidsModeTooltipOn' as any) : t('nav.kidsModeTooltipOff' as any)}
+                className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-7 md:py-3.5 rounded-2xl text-sm md:text-base font-bold transition-all duration-200 active:scale-95 ${
+                  kidsMode
+                    ? "bg-emerald-400 text-emerald-950 shadow-lg shadow-emerald-400/30"
+                    : "bg-white/10 text-white hover:bg-white/20 border border-white/20 backdrop-blur-sm"
+                }`}
+              >
+                <Baby className="w-4 h-4 shrink-0" aria-hidden="true" />
+                {kidsMode ? t('home.kidsModeOn') : t('nav.kidsMode')}
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Recently Played Section */}
+        {/* Recently Played — horizontal scroll carousel */}
         {recentGames.length > 0 && (
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-lg bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center">
-                <Clock className="w-4 h-4 text-violet-600" />
+              <div className="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
+                <Clock className="w-4 h-4 text-indigo-600" />
               </div>
               <h2 className="text-base font-bold text-slate-800 dark:text-slate-100 tracking-tight">{t('home.recentlyPlayed')}</h2>
               <span className="text-xs text-slate-400 dark:text-slate-500 font-medium ml-1">— {t('home.recentlyPlayedHint')}</span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-none -mx-4 px-4 snap-x snap-mandatory">
               {recentGames.map((game) => (
-                <div key={game.slug} className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                <div key={game.slug} className="group relative snap-start shrink-0 w-[260px] sm:w-[280px]" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                   <Link href={`/play/${game.slug}/`} className="block h-full">
-                    <div className="h-full">
-                      <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-violet-100 dark:border-violet-900/40 shadow-sm
-                        transition-all duration-300 ease-out
-                        hover:scale-[1.03] hover:-translate-y-1.5
-                        hover:shadow-2xl hover:shadow-violet-400/25 dark:hover:shadow-violet-600/30
-                        hover:border-violet-300 dark:hover:border-violet-600
-                        h-full flex flex-col">
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                          style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(236,72,153,0.06) 50%, rgba(6,182,212,0.06) 100%)' }}
+                    <div className="h-full flex gap-3 items-center p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm
+                      transition-all duration-300 ease-out
+                      hover:shadow-lg hover:shadow-indigo-400/15 dark:hover:shadow-indigo-600/20
+                      hover:border-indigo-300 dark:hover:border-indigo-600">
+                      {/* Thumbnail */}
+                      <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
+                        <BlurImage
+                          src={game.thumbnail}
+                          alt={gt(game).title}
+                          className="group-hover:scale-110 transition-transform duration-500 object-cover w-full h-full"
                         />
-                        <div className="absolute top-2 left-2 z-10 flex items-center gap-1 bg-violet-600/90 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                          <Clock className="w-2.5 h-2.5" />
-                          {t('home.recent')}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                          <Play className="w-5 h-5 text-white fill-white" />
                         </div>
-                        <div className="aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                          <BlurImage
-                            src={game.thumbnail}
-                            alt={gt(game).title}
-                            className="group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div className="w-12 h-12 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                              <Play className="w-5 h-5 text-violet-600 fill-violet-600 ml-0.5" />
-                            </div>
+                      </div>
+                      {/* Info */}
+                      <div className="flex-1 min-w-0 flex flex-col justify-center">
+                        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-tight truncate mb-1">
+                          {gt(game).title}
+                        </h3>
+                        <span className={`inline-block w-fit text-[10px] font-medium px-2 py-0.5 rounded-full capitalize mb-1.5 ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
+                          {t(`category.${game.category}` as any)}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-0.5">
+                            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                            <span className="text-[11px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
                           </div>
-                        </div>
-                        <div className="p-3 flex-1 flex flex-col">
-                          <h3 className="text-[13px] font-semibold text-slate-800 dark:text-slate-100 leading-tight line-clamp-2 mb-1.5">
-                            {gt(game).title}
-                          </h3>
-                          <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
-                            <span
-                              className={`inline-block text-[11px] font-medium px-2 py-0.5 rounded-full capitalize ${
-                                CATEGORY_COLORS[game.category] || "text-violet-600 bg-violet-50"
-                              }`}
-                            >
-                              {t(`category.${game.category}` as any)}
-                            </span>
-                            {game.difficulty && (
-                              <span className={`inline-block text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${
-                                game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
-                                game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
-                                'bg-red-50 text-red-600'
-                              }`}>
-                                {t(`difficulty.${game.difficulty}` as any)}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center justify-between mt-auto">
-                            <div className="flex items-center gap-0.5">
-                              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                              <span className="text-[11px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
-                            </div>
-                            <span className="text-[10px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
-                          </div>
+                          <span className="text-[10px] text-slate-400">•</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                         </div>
                       </div>
                     </div>
@@ -404,128 +353,127 @@ export default function Home() {
                       e.stopPropagation();
                       handleToggleFavourite(game.slug);
                     }}
-                    className={`absolute top-2 right-2 z-20 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm ${
+                    className={`absolute top-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm ${
                       isFavourite(game.slug)
                         ? "bg-rose-500 text-white"
-                        : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400 hover:bg-white dark:hover:bg-slate-700"
+                        : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400"
                     }`}
                     aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
                   >
-                    <Heart className={`w-3.5 h-3.5 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                    <Heart className={`w-3 h-3 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
                   </button>
                 </div>
               ))}
             </div>
-            <div className="mt-8 border-t border-slate-200 dark:border-slate-800" />
+            <div className="mt-6 border-t border-slate-200 dark:border-slate-800" />
           </div>
         )}
 
-        {/* Category Filter + Search */}
-        <div ref={categoryFilterRef} className="flex items-center gap-2 mb-3 overflow-x-auto pb-2 scrollbar-none scroll-mt-20">
-          {/* "All" tab */}
-          <button
-            onClick={() => setActiveCategory("all")}
-            data-category-active={activeCategory === "all" ? "true" : undefined}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 shrink-0 ${
-              activeCategory === "all"
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-200 dark:shadow-violet-900"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
-            }`}
-          >
-            <span className="text-base">🎮</span>
-            {t('category.all' as any)}
-          </button>
+        {/* Category Filter — wrapped grid layout */}
+        <div ref={categoryFilterRef} className="scroll-mt-20 mb-4">
+          {/* Search + Utility bar */}
+          <div className="flex items-center gap-3 mb-3">
+            <form onSubmit={handleSearchSubmit} className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input
+                type="text"
+                placeholder={t('home.searchPlaceholder')}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 transition-all"
+              />
+            </form>
 
-          {/* Favourites tab — placed early so users can always find it */}
-          <button
-            onClick={() => setActiveCategory("favourites")}
-            data-category-active={activeCategory === "favourites" ? "true" : undefined}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 shrink-0 ${
-              activeCategory === "favourites"
-                ? "bg-rose-500 text-white shadow-lg shadow-rose-200 dark:shadow-rose-900"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
-            }`}
-          >
-            <Heart className={`w-4 h-4 ${activeCategory === "favourites" ? "fill-white" : ""} ${favPulse ? "text-rose-500" : ""}`} />
-            {t('home.favourites')}
-            {favourites.length > 0 && (
-              <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center transition-all duration-200 ${
-                activeCategory === "favourites" ? "bg-white/20" : "bg-rose-100 text-rose-600"
-              } ${favPulse ? "scale-125 bg-rose-500 text-white" : ""}`}>
-                {favourites.length}
-              </span>
-            )}
-          </button>
+            <div className="flex items-center gap-2 ml-auto">
+              {/* Favourites */}
+              <button
+                onClick={() => setActiveCategory("favourites")}
+                data-category-active={activeCategory === "favourites" ? "true" : undefined}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                  activeCategory === "favourites"
+                    ? "bg-rose-500 text-white shadow-md shadow-rose-200 dark:shadow-rose-900"
+                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                }`}
+              >
+                <Heart className={`w-4 h-4 ${activeCategory === "favourites" ? "fill-white" : ""} ${favPulse ? "text-rose-500" : ""}`} />
+                <span className="hidden sm:inline">{t('home.favourites')}</span>
+                {favourites.length > 0 && (
+                  <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center ${
+                    activeCategory === "favourites" ? "bg-white/20" : "bg-rose-100 text-rose-600"
+                  } ${favPulse ? "scale-125 bg-rose-500 text-white" : ""}`}>
+                    {favourites.length}
+                  </span>
+                )}
+              </button>
 
-          {/* Top Rated tab */}
-          <button
-            onClick={() => setActiveCategory("top-rated")}
-            data-category-active={activeCategory === "top-rated" ? "true" : undefined}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 shrink-0 ${
-              activeCategory === "top-rated"
-                ? "bg-amber-500 text-white shadow-lg shadow-amber-200 dark:shadow-amber-900"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
-            }`}
-          >
-            <ThumbsUp className={`w-4 h-4 ${activeCategory === "top-rated" ? "fill-white" : ""}`} />
-            {t('home.topRated')}
-          </button>
+              {/* Top Rated */}
+              <button
+                onClick={() => setActiveCategory("top-rated")}
+                data-category-active={activeCategory === "top-rated" ? "true" : undefined}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                  activeCategory === "top-rated"
+                    ? "bg-amber-500 text-white shadow-md shadow-amber-200 dark:shadow-amber-900"
+                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                }`}
+              >
+                <ThumbsUp className={`w-4 h-4 ${activeCategory === "top-rated" ? "fill-white" : ""}`} />
+                <span className="hidden sm:inline">{t('home.topRated')}</span>
+              </button>
 
-          <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 shrink-0 mx-1" />
+              {/* Tags toggle */}
+              <button
+                onClick={() => setShowTagPanel((v) => !v)}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                  showTagPanel || activeTags.length > 0
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                }`}
+              >
+                <Tag className="w-4 h-4" />
+                <span className="hidden sm:inline">{t('home.tags')}</span>
+                {activeTags.length > 0 && (
+                  <span className="text-[11px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center bg-white/20">
+                    {activeTags.length}
+                  </span>
+                )}
+                {showTagPanel ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+          </div>
 
-          {/* Category tabs (skip "all" since it's rendered above) */}
-          {CATEGORIES.filter(cat => cat.id !== 'all').map((cat) => (
+          {/* Category grid (wrapped, not scrolling) */}
+          <div className="flex flex-wrap gap-2">
+            {/* "All" tab */}
             <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              data-category-active={activeCategory === cat.id ? "true" : undefined}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 shrink-0 ${
-                activeCategory === cat.id
-                  ? "bg-violet-600 text-white shadow-lg shadow-violet-200 dark:shadow-violet-900"
+              onClick={() => setActiveCategory("all")}
+              data-category-active={activeCategory === "all" ? "true" : undefined}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                activeCategory === "all"
+                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
                   : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
               }`}
             >
-              <span className="text-base">{cat.emoji}</span>
-              {t(cat.labelKey as any)}
+              <span className="text-base">🎮</span>
+              {t('category.all' as any)}
             </button>
-          ))}
 
-          <div className="w-px h-6 bg-slate-200 shrink-0 mx-1" />
-
-          {/* Tags toggle button */}
-          <button
-            onClick={() => setShowTagPanel((v) => !v)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 shrink-0 ${
-              showTagPanel || activeTags.length > 0
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-200 dark:shadow-violet-900"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
-            }`}
-          >
-            <Tag className="w-4 h-4" />
-            {t('home.tags')}
-            {activeTags.length > 0 && (
-              <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center ${
-                showTagPanel || activeTags.length > 0 ? "bg-white/20" : "bg-violet-100 text-violet-600"
-              }`}>
-                {activeTags.length}
-              </span>
-            )}
-            {showTagPanel ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-          </button>
-
-          <div className="w-px h-6 bg-slate-200 shrink-0 mx-1" />
-
-          {/* Search */}
-          <form onSubmit={handleSearchSubmit} className="relative shrink-0">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              placeholder={t('home.searchPlaceholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-violet-300 focus:ring-2 focus:ring-violet-100 w-44 transition-all"
-            />
-          </form>
+            {/* Category tabs */}
+            {CATEGORIES.filter(cat => cat.id !== 'all').map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                data-category-active={activeCategory === cat.id ? "true" : undefined}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                  activeCategory === cat.id
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
+                }`}
+              >
+                <span className="text-base">{cat.emoji}</span>
+                {t(cat.labelKey as any)}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Tag Panel */}
@@ -533,7 +481,7 @@ export default function Home() {
           <div className="mb-4 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <Tag className="w-4 h-4 text-violet-600" />
+                <Tag className="w-4 h-4 text-indigo-600" />
                 <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{t('home.filterByTags')}</span>
                 <span className="text-xs text-slate-400">— {t('home.tagHint')}</span>
               </div>
@@ -564,8 +512,8 @@ export default function Home() {
                     onClick={() => toggleTag(tag.id)}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-violet-600 text-white shadow-md shadow-violet-200"
-                        : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 border border-slate-200 dark:border-slate-700 hover:border-violet-200"
+                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+                        : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 border border-slate-200 dark:border-slate-700 hover:border-indigo-200"
                     }`}
                   >
                     <span>{tag.emoji}</span>
@@ -593,7 +541,7 @@ export default function Home() {
                 <button
                   key={tagId}
                   onClick={() => toggleTag(tagId)}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-violet-600 text-white hover:bg-violet-700 transition-colors"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
                 >
                   {tag.emoji} {t(tag.labelKey as any)}
                   <X className="w-3 h-3 ml-0.5" />
@@ -616,7 +564,7 @@ export default function Home() {
             <div className="relative ml-auto" ref={sortMenuRef}>
               <button
                 onClick={() => setShowSortMenu((v) => !v)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-300 hover:border-violet-300 hover:text-violet-600 transition-all shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-300 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm"
               >
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 <span className="font-medium">
@@ -641,13 +589,13 @@ export default function Home() {
                       onClick={() => { setSortBy(opt.id); localStorage.setItem('doodle-sort-by', opt.id); setShowSortMenu(false); }}
                       className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
                         sortBy === opt.id
-                          ? 'bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400 font-semibold'
+                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 font-semibold'
                           : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}
                     >
                       <span>{opt.icon}</span>
                       <span>{opt.label}</span>
-                      {sortBy === opt.id && <span className="ml-auto text-violet-500">✓</span>}
+                      {sortBy === opt.id && <span className="ml-auto text-indigo-500">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -677,143 +625,213 @@ export default function Home() {
           {/* Link to full leaderboard */}
           {activeCategory === "top-rated" && (
             <Link href="/top-rated/">
-              <span className="text-[11px] bg-violet-50 text-violet-600 border border-violet-100 px-2 py-0.5 rounded-full font-medium hover:bg-violet-100 transition-colors cursor-pointer">
+              <span className="text-[11px] bg-indigo-50 text-indigo-600 border border-indigo-100 px-2 py-0.5 rounded-full font-medium hover:bg-indigo-100 transition-colors cursor-pointer">
                 {t('home.viewLeaderboard')} →
               </span>
             </Link>
           )}
         </div>
 
-        {/* Game Grid */}
+        {/* Game Grid — featured first two + smaller rest */}
         {filteredGames.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-            {filteredGames.map((game, index) => {
-              const likeCount = getLikeCount(game.slug);
-              /* First 6 images are above-fold LCP candidates — load eagerly */
-              const isAboveFold = index < 6;
-              return (
-                <AnimatedCard key={game.slug} index={index % 8} className="h-full">
-                <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
-                  <Link href={`/play/${game.slug}/`} className="block h-full">
-                    <div className="h-full">
-                      <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-violet-100 dark:border-violet-900/40 shadow-sm
-                        transition-all duration-300 ease-out
-                        hover:scale-[1.03] hover:-translate-y-1.5
-                        hover:shadow-2xl hover:shadow-violet-400/25 dark:hover:shadow-violet-600/30
-                        hover:border-violet-300 dark:hover:border-violet-600
-                        h-full flex flex-col">
-                        {/* Shimmer border on hover */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                          style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(236,72,153,0.06) 50%, rgba(6,182,212,0.06) 100%)' }}
-                        />
-                        {/* New ribbon */}
-                        {game.isNew && activeCategory !== "top-rated" && (
-                          <div className="absolute top-0 left-0 z-10">
-                            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
-                              {t('common.new').toUpperCase()}
+          <div className="space-y-4">
+            {/* Featured row: first 2 games large */}
+            {filteredGames.length >= 2 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {filteredGames.slice(0, 2).map((game, index) => {
+                  const likeCount = getLikeCount(game.slug);
+                  return (
+                    <AnimatedCard key={game.slug} index={index} className="h-full">
+                    <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                      <Link href={`/play/${game.slug}/`} className="block h-full">
+                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm
+                          transition-all duration-300 ease-out
+                          hover:shadow-xl hover:shadow-indigo-400/20 dark:hover:shadow-indigo-600/25
+                          hover:border-indigo-300 dark:hover:border-indigo-600
+                          h-full flex flex-col sm:flex-row">
+                          {/* New ribbon */}
+                          {game.isNew && activeCategory !== "top-rated" && (
+                            <div className="absolute top-0 left-0 z-10">
+                              <div className="bg-gradient-to-r from-emerald-500 to-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
+                                {t('common.new').toUpperCase()}
+                              </div>
+                            </div>
+                          )}
+                          <div className="sm:w-1/2 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 dark:bg-slate-800 relative shrink-0">
+                            <BlurImage
+                              src={game.thumbnail}
+                              alt={gt(game).title}
+                              priority={true}
+                              className="group-hover:scale-105 transition-transform duration-500 object-cover w-full h-full"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <div className="w-14 h-14 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <Play className="w-6 h-6 text-indigo-600 fill-indigo-600 ml-0.5" />
+                              </div>
                             </div>
                           </div>
-                        )}
-                        <div className="aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                          <BlurImage
-                            src={game.thumbnail}
-                            alt={gt(game).title}
-                            priority={isAboveFold}
-                            className="group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div className="w-12 h-12 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                              <Play className="w-5 h-5 text-violet-600 fill-violet-600 ml-0.5" />
+                          <div className="p-4 sm:p-5 flex-1 flex flex-col justify-center">
+                            <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 leading-tight mb-2">
+                              {gt(game).title}
+                            </h3>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+                              {gt(game).description}
+                            </p>
+                            <div className="flex items-center gap-2 flex-wrap mb-3">
+                              <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg capitalize ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
+                                {t(`category.${game.category}` as any)}
+                              </span>
+                              {game.difficulty && (
+                                <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-lg ${
+                                  game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
+                                  game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
+                                  'bg-red-50 text-red-600'
+                                }`}>
+                                  {t(`difficulty.${game.difficulty}` as any)}
+                                </span>
+                              )}
+                              {activeCategory === "top-rated" && likeCount > 0 && (
+                                <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-lg bg-amber-50 text-amber-700">
+                                  <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-3 mt-auto">
+                              <div className="flex items-center gap-1">
+                                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                                <span className="text-sm font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
+                              </div>
+                              <span className="text-xs text-slate-400">•</span>
+                              <span className="text-xs text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                             </div>
                           </div>
                         </div>
-                        <div className="p-3 flex-1 flex flex-col">
-                          <h3 className="text-[13px] font-semibold text-slate-800 dark:text-slate-100 leading-tight line-clamp-2 mb-1.5">
-                            {gt(game).title}
-                          </h3>
-                          <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
-                            <span
-                              className={`inline-block text-[11px] font-medium px-2 py-0.5 rounded-full capitalize ${
-                                CATEGORY_COLORS[game.category] || "text-violet-600 bg-violet-50"
-                              }`}
-                            >
-                              {t(`category.${game.category}` as any)}
-                            </span>
-                            {game.difficulty && (
-                              <span className={`inline-block text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${
-                                game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
-                                game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
-                                'bg-red-50 text-red-600'
-                              }`}>
-                                {t(`difficulty.${game.difficulty}` as any)}
-                              </span>
-                            )}
-                            {/* Like count badge for Top Rated view */}
-                            {activeCategory === "top-rated" && likeCount > 0 && (
-                              <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-700">
-                                <ThumbsUp className="w-2.5 h-2.5" />
-                                {likeCount}
-                              </span>
-                            )}
-                          </div>
-                          {/* Show active tags on card */}
-                          {activeTags.length > 0 && (
-                            <div className="flex flex-wrap gap-1 mt-1.5">
-                              {game.tags.filter((tag) => activeTags.includes(tag)).map((tag) => {
-                                const tagInfo = ALL_TAGS.find((at) => at.id === tag);
-                                return (
-                                  <span key={tag} className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-violet-50 text-violet-600">
-                                    {tagInfo?.emoji} {tagInfo ? t(tagInfo.labelKey as any) : tag}
-                                  </span>
-                                );
-                              })}
+                      </Link>
+                      <button
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
+                        className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm ${
+                          isFavourite(game.slug) ? "bg-rose-500 text-white" : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400 opacity-0 group-hover:opacity-100"
+                        }`}
+                        aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
+                      >
+                        <Heart className={`w-4 h-4 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                      </button>
+                      {activeCategory === "top-rated" && index < 3 && (
+                        <div className="absolute top-3 left-3 z-20 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-md"
+                          style={{ background: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : "#CD7F32", color: index === 0 ? "#7a5c00" : index === 1 ? "#4a4a4a" : "#5a3000" }}>
+                          {index + 1}
+                        </div>
+                      )}
+                    </TiltCard>
+                  </AnimatedCard>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Rest of games: smaller uniform grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+              {filteredGames.slice(filteredGames.length >= 2 ? 2 : 0).map((game, i) => {
+                const index = i + 2;
+                const likeCount = getLikeCount(game.slug);
+                const isAboveFold = index < 8;
+                return (
+                  <AnimatedCard key={game.slug} index={index % 8} className="h-full">
+                  <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                    <Link href={`/play/${game.slug}/`} className="block h-full">
+                      <div className="h-full">
+                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm
+                          transition-all duration-300 ease-out
+                          hover:scale-[1.02] hover:-translate-y-1
+                          hover:shadow-lg hover:shadow-indigo-400/15 dark:hover:shadow-indigo-600/20
+                          hover:border-indigo-300 dark:hover:border-indigo-600
+                          h-full flex flex-col">
+                          {game.isNew && activeCategory !== "top-rated" && (
+                            <div className="absolute top-0 left-0 z-10">
+                              <div className="bg-gradient-to-r from-emerald-500 to-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
+                                {t('common.new').toUpperCase()}
+                              </div>
                             </div>
                           )}
-                          {/* Rating + play count row */}
-                          <div className="flex items-center justify-between mt-auto">
-                            <div className="flex items-center gap-0.5">
-                              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                              <span className="text-[11px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
+                          <div className="aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+                            <BlurImage
+                              src={game.thumbnail}
+                              alt={gt(game).title}
+                              priority={isAboveFold}
+                              className="group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <div className="w-10 h-10 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <Play className="w-4 h-4 text-indigo-600 fill-indigo-600 ml-0.5" />
+                              </div>
                             </div>
-                            <span className="text-[10px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
+                          </div>
+                          <div className="p-2.5 flex-1 flex flex-col">
+                            <h3 className="text-xs font-semibold text-slate-800 dark:text-slate-100 leading-tight line-clamp-2 mb-1">
+                              {gt(game).title}
+                            </h3>
+                            <div className="flex items-center gap-1 flex-wrap mb-1">
+                              <span className={`inline-block text-[10px] font-medium px-1.5 py-0.5 rounded-md capitalize ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
+                                {t(`category.${game.category}` as any)}
+                              </span>
+                              {game.difficulty && (
+                                <span className={`inline-block text-[9px] font-semibold px-1.5 py-0.5 rounded-md ${
+                                  game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
+                                  game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
+                                  'bg-red-50 text-red-600'
+                                }`}>
+                                  {t(`difficulty.${game.difficulty}` as any)}
+                                </span>
+                              )}
+                              {activeCategory === "top-rated" && likeCount > 0 && (
+                                <span className="inline-flex items-center gap-0.5 text-[9px] font-semibold px-1 py-0.5 rounded-md bg-amber-50 text-amber-700">
+                                  <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
+                                </span>
+                              )}
+                            </div>
+                            {activeTags.length > 0 && (
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {game.tags.filter((tag) => activeTags.includes(tag)).map((tag) => {
+                                  const tagInfo = ALL_TAGS.find((at) => at.id === tag);
+                                  return (
+                                    <span key={tag} className="text-[8px] font-medium px-1 py-0.5 rounded bg-indigo-50 text-indigo-600">
+                                      {tagInfo?.emoji} {tagInfo ? t(tagInfo.labelKey as any) : tag}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            )}
+                            <div className="flex items-center justify-between mt-auto pt-1">
+                              <div className="flex items-center gap-0.5">
+                                <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                                <span className="text-[10px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
+                              </div>
+                              <span className="text-[9px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-
-                  {/* Heart button — rendered after Link for correct z-order */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handleToggleFavourite(game.slug);
-                    }}
-                    className={`absolute top-2 right-2 z-20 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm opacity-0 group-hover:opacity-100 ${
-                      isFavourite(game.slug)
-                        ? "bg-rose-500 text-white opacity-100"
-                        : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400 hover:bg-white dark:hover:bg-slate-700"
-                    }`}
-                    aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
-                  >
-                    <Heart className={`w-3.5 h-3.5 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
-                  </button>
-
-                  {/* Top Rated rank badge */}
-                  {activeCategory === "top-rated" && index < 3 && (
-                    <div className="absolute top-2 left-2 z-20 w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold shadow-md"
-                      style={{
-                        background: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : "#CD7F32",
-                        color: index === 0 ? "#7a5c00" : index === 1 ? "#4a4a4a" : "#5a3000"
-                      }}
+                    </Link>
+                    <button
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
+                      className={`absolute top-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm opacity-0 group-hover:opacity-100 ${
+                        isFavourite(game.slug) ? "bg-rose-500 text-white !opacity-100" : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400"
+                      }`}
+                      aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
                     >
-                      {index + 1}
-                    </div>
-                  )}
-                </TiltCard>
-              </AnimatedCard>
-              );
-            })}
+                      <Heart className={`w-3 h-3 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                    </button>
+                    {activeCategory === "top-rated" && index < 3 && (
+                      <div className="absolute top-2 left-2 z-20 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"
+                        style={{ background: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : "#CD7F32", color: index === 0 ? "#7a5c00" : index === 1 ? "#4a4a4a" : "#5a3000" }}>
+                        {index + 1}
+                      </div>
+                    )}
+                  </TiltCard>
+                </AnimatedCard>
+                );
+              })}
+            </div>
           </div>
         ) : activeCategory === "favourites" ? (
           <div className="text-center py-16">
@@ -840,7 +858,7 @@ export default function Home() {
             </p>
             <button
               onClick={clearTags}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-violet-600 text-white rounded-full text-sm font-medium hover:bg-violet-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors"
             >
               <X className="w-4 h-4" />
               {t('home.clearTagFilters')}

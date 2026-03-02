@@ -1,5 +1,5 @@
 /**
- * LanguageContext — i18n infrastructure for Doodle Games Hub
+ * LanguageContext — i18n infrastructure for Doodle Playground
  *
  * URL scheme:
  *   English (default): /,  /daily,  /play/pacman
@@ -419,7 +419,7 @@ const EN: TranslationMap = {
   'search.allCategories': 'All Categories',
   'search.allDifficulties': 'All Difficulties',
   'search.results': 'results',
-  'about.title': 'About Doodle Games Hub',
+  'about.title': 'About Doodle Playground',
   'about.subtitle': 'Your home for every Google Doodle game ever made.',
   'about.stats.games': 'Games',
   'about.stats.categories': 'Categories',
@@ -461,7 +461,7 @@ const EN: TranslationMap = {
   'footer.categories': 'Categories',
   'footer.legal': 'Legal',
   'footer.disclaimer': 'Disclaimer',
-  'footer.copyright': '© {year} Doodle Games Hub. Not affiliated with Google LLC.',
+  'footer.copyright': '© {year} Doodle Playground. Not affiliated with Google LLC.',
   'spin.title': 'Spin the Wheel',
   'spin.subtitle': "Can't decide? Let fate choose your next game!",
   'spin.spin': 'Spin the Wheel',
@@ -584,13 +584,13 @@ const EN: TranslationMap = {
   'about.heroTitle': 'Every Google Doodle Game, in One Place',
   'about.heroDesc': 'A curated archive of every playable Google Doodle \u2014 from Pac-Man to Cricket. Discover, play, and revisit the mini-games that made Google\u2019s homepage unforgettable.',
   'about.aboutBadge': 'About Us',
-  'about.whatIs': 'What is Doodle Games Hub?',
-  'about.whatIsP1': 'Doodle Games Hub is a free, community-driven archive of every interactive Google Doodle game ever released.',
+  'about.whatIs': 'What is Doodle Playground?',
+  'about.whatIsP1': 'Doodle Playground is a free, community-driven archive of every interactive Google Doodle game ever released.',
   'about.whatIsP2': 'Our mission is to preserve these delightful mini-games and make them easy to discover, play, and share.',
   'about.whatIsP3': 'Every game is manually tested and organized by category, difficulty, and tags so you can find exactly what you are looking for.',
   'about.whatsBuiltIn': "What's Built In",
   'about.featuresSubtitle': 'Features designed to make rediscovering Google Doodle games a joy.',
-  'about.disclaimerText': 'Doodle Games Hub is a fan-made project and is not affiliated with, endorsed by, or connected to Google LLC. All Google Doodle games remain the property of Google. We simply provide links to these publicly available games for preservation and easy access.',
+  'about.disclaimerText': 'Doodle Playground is a fan-made project and is not affiliated with, endorsed by, or connected to Google LLC. All Google Doodle games remain the property of Google. We simply provide links to these publicly available games for preservation and easy access.',
   // Contact extras
   'contact.getInTouch': 'Get in Touch',
   'contact.whatHelp': 'What can we help with?',
@@ -669,7 +669,7 @@ const EN: TranslationMap = {
   'privacy.section.childrensPrivacy': 'Children\'s Privacy',
   'privacy.section.changes': 'Changes to This Policy',
   'privacy.section.contact': 'Contact',
-  'privacy.overview.p1': 'Doodle Games Hub ("we", "us", or "our") is an independent fan site that aggregates and presents interactive Google Doodle games. We are not affiliated with, endorsed by, or connected to Google LLC in any way.',
+  'privacy.overview.p1': 'Doodle Playground ("we", "us", or "our") is an independent fan site that aggregates and presents interactive Google Doodle games. We are not affiliated with, endorsed by, or connected to Google LLC in any way.',
   'privacy.overview.p2': 'This Privacy Policy explains what information we collect (very little), how we use it, and your rights regarding that information. By using this site, you agree to the practices described here.',
   'privacy.dataCollected.intro': 'We collect minimal information to operate the site:',
   'privacy.dataCollected.localStorageTitle': 'Local Storage Data',
@@ -712,7 +712,7 @@ const EN: TranslationMap = {
   'privacy.changes.p1': 'We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.',
   'privacy.contact.p1': 'If you have any questions about this Privacy Policy or how we handle your data, please use our',
   'privacy.contact.p2': 'For formal data protection enquiries (GDPR, CCPA, etc.), please include "Data Protection" in your message subject.',
-  'privacy.disclaimerText': 'All Google Doodle games featured on this site are the intellectual property of Google LLC. Doodle Games Hub is an independent fan site created for educational and entertainment purposes. We do not claim ownership of any game content. If you are a rights holder and have concerns about content on this site, please',
+  'privacy.disclaimerText': 'All Google Doodle games featured on this site are the intellectual property of Google LLC. Doodle Playground is an independent fan site created for educational and entertainment purposes. We do not claim ownership of any game content. If you are a rights holder and have concerns about content on this site, please',
   'privacy.disclaimerContact': 'contact us',
   'privacy.disclaimerEnd': 'and we will respond promptly.',
   // About extras 2
@@ -794,7 +794,7 @@ const EN: TranslationMap = {
   // Home extras 3
   'home.removeFromFavourites': 'Remove from favourites',
   'home.addToFavourites': 'Add to favourites',
-  'home.heroAriaLabel': 'Doodle Games Hub hero section',
+  'home.heroAriaLabel': 'Doodle Playground hero section',
   'home.gamesCount': 'games',
   // Navbar extras 3
   'nav.langTooltip': 'Language',
@@ -818,7 +818,7 @@ const EN: TranslationMap = {
   // Daily extras 2
   'daily.challengeLabel': 'Daily Challenge',
   'daily.shareText': "Today's Daily Doodle Challenge",
-  'daily.shareDesc': 'Can you beat it? Play free at Doodle Games Hub!',
+  'daily.shareDesc': 'Can you beat it? Play free at Doodle Playground!',
   'daily.shareTitle': 'Daily Doodle Challenge',
   // TopRated extras 3
   'topRated.all': 'All',
@@ -845,12 +845,12 @@ const EN: TranslationMap = {
   'about.faq.q3': "Why can't I find a specific Google Doodle game?",
   'about.faq.a3': 'We curate only the interactive, playable Doodles — not every commemorative illustration Google has published. If a game is missing, it may not have an embeddable play URL. We add new games as they become available.',
   'about.faq.q4': 'Is this site affiliated with Google?',
-  'about.faq.a4': 'No. Doodle Games Hub is an independent fan-made directory. All Google Doodle games are the intellectual property of Google LLC. We are not affiliated with, endorsed by, or sponsored by Google.',
+  'about.faq.a4': 'No. Doodle Playground is an independent fan-made directory. All Google Doodle games are the intellectual property of Google LLC. We are not affiliated with, endorsed by, or sponsored by Google.',
   'about.faq.q5': 'How does Kids Mode work?',
   'about.faq.a5': "Toggling Kids Mode on filters the game grid to show only games rated 'Easy'. This is a convenience filter — it does not block content at the network level.",
   'about.faq.q6': 'Can I suggest a game to add?',
   'about.faq.a6': "We're always looking to expand the collection. If you know of a playable Google Doodle that isn't listed, the best way to let us know is via the share/feedback options in the site.",
-  'about.disclaimer.p1': 'Doodle Games Hub is an independent, fan-made website. It is not affiliated with, endorsed by, sponsored by, or in any way officially connected to Google LLC or any of its subsidiaries.',
+  'about.disclaimer.p1': 'Doodle Playground is an independent, fan-made website. It is not affiliated with, endorsed by, sponsored by, or in any way officially connected to Google LLC or any of its subsidiaries.',
   'about.disclaimer.p2': "All Google Doodle games, artwork, and associated intellectual property are the exclusive property of Google LLC. The games are embedded here via iframes pointing directly to Google's own servers at google.com/doodles. We do not host, store, or redistribute any game assets.",
   'about.disclaimer.p3': '"Google", "Google Doodle", and related marks are trademarks of Google LLC. Use of these names on this site is purely descriptive and does not imply any official relationship or endorsement.',
   'about.disclaimer.p4': 'If you are a rights holder and have concerns about any content on this site, please contact us and we will respond promptly.',
@@ -863,25 +863,25 @@ const EN: TranslationMap = {
   'contact.missingGameAnswer': 'We cover all embeddable Google Doodles — some are blocked by Google.',
   'contact.affiliatedGoogleAnswer': 'No. This is an independent fan site.',
   // SEO meta
-  'seo.siteName': 'Doodle Games Hub',
-  'seo.defaultTitle': 'Doodle Games Hub — Play Free Google Doodle Games',
+  'seo.siteName': 'Doodle Playground',
+  'seo.defaultTitle': 'Doodle Playground — Play Free Google Doodle Games',
   'seo.defaultDescription': 'Play the best Google Doodle games free online — arcade, puzzle, sports, and seasonal games all in one place.',
-  'seo.home.title': 'Play the Best Google Doodle Games Free | Doodle Games Hub',
+  'seo.home.title': 'Play the Best Google Doodle Games Free | Doodle Playground',
   'seo.home.description': 'Discover and play every legendary Google Doodle game for free. Arcade, puzzle, sports, adventure, and seasonal games — no sign-up needed.',
-  'seo.play.title': 'Play {title} — Doodle Games Hub',
+  'seo.play.title': 'Play {title} — Doodle Playground',
   'seo.play.description': 'Play {title} free online — {description}',
-  'seo.allGames.title': 'All Google Doodle Games A–Z — Doodle Games Hub',
+  'seo.allGames.title': 'All Google Doodle Games A–Z — Doodle Playground',
   'seo.allGames.description': 'Browse all Google Doodle games sorted alphabetically. Play free online — arcade, puzzle, sports, and more.',
-  'seo.search.title': 'Search Games — Doodle Games Hub',
-  'seo.search.titleWithQuery': 'Search: "{query}" — Doodle Games Hub',
-  'seo.daily.title': 'Daily Challenge — {title} | Doodle Games Hub',
+  'seo.search.title': 'Search Games — Doodle Playground',
+  'seo.search.titleWithQuery': 'Search: "{query}" — Doodle Playground',
+  'seo.daily.title': 'Daily Challenge — {title} | Doodle Playground',
   'seo.daily.description': "Play today's daily Google Doodle challenge: {title}. A new game every day!",
-  'seo.topRated.title': 'Top Rated Games — Doodle Games Hub',
+  'seo.topRated.title': 'Top Rated Games — Doodle Playground',
   'seo.topRated.description': 'The most-loved Google Doodle games, ranked by the community. Play free online.',
-  'seo.about.title': 'About — Doodle Games Hub',
-  'seo.contact.title': 'Contact Us — Doodle Games Hub',
-  'seo.privacy.title': 'Privacy Policy — Doodle Games Hub',
-  'seo.notFound.title': 'Page Not Found — Doodle Games Hub',
+  'seo.about.title': 'About — Doodle Playground',
+  'seo.contact.title': 'Contact Us — Doodle Playground',
+  'seo.privacy.title': 'Privacy Policy — Doodle Playground',
+  'seo.notFound.title': 'Page Not Found — Doodle Playground',
 };
 
 // ---------------------------------------------------------------------------

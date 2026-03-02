@@ -284,9 +284,9 @@ export default function PlayGame() {
           description: `${t('game.playTime')} ${formatDuration(seconds)} — ${t('game.longestSession')}`,
           duration: 6000,
           classNames: {
-            toast: "!bg-gradient-to-br !from-[#1e1b4b] !to-[#2e1065] !border-violet-600",
-            title: "!text-violet-100",
-            description: "!text-violet-300",
+            toast: "!bg-gradient-to-br !from-[#1e1b4b] !to-[#2e1065] !border-indigo-600",
+            title: "!text-indigo-100",
+            description: "!text-indigo-300",
           },
         }
       );
@@ -472,7 +472,7 @@ export default function PlayGame() {
         },
         provider: {
           '@type': 'Organization',
-          name: 'Doodle Games Hub',
+          name: 'Doodle Playground',
           url: window.location.origin,
         },
       });
@@ -557,7 +557,7 @@ export default function PlayGame() {
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">{t('game.notFound')}</h2>
           <p className="text-slate-500 dark:text-slate-400 mb-6">{t('game.notFoundDesc')}</p>
           <Link href="/">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-violet-600 text-white rounded-full text-sm font-medium hover:bg-violet-700 transition-colors">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors">
               <ChevronLeft className="w-4 h-4" />
               {t('game.backToGames')}
             </span>
@@ -569,7 +569,7 @@ export default function PlayGame() {
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-6">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-4">
         {/* Challenge banner */}
         {isChallenge && !challengeBannerDismissed && (
           <div className="mb-4 flex items-center gap-3 bg-gradient-to-r from-amber-400 to-orange-400 text-white rounded-xl px-4 py-3 shadow-sm">
@@ -588,10 +588,10 @@ export default function PlayGame() {
           </div>
         )}
 
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 mb-4 text-sm">
+        {/* Compact breadcrumb */}
+        <div className="flex items-center gap-2 mb-3 text-sm">
           <Link href="/">
-            <span className="flex items-center gap-1 text-violet-600 hover:text-violet-700 transition-colors font-medium">
+            <span className="flex items-center gap-1 text-indigo-600 hover:text-indigo-700 transition-colors font-medium">
               <ChevronLeft className="w-4 h-4" />
               {t('nav.allGames')}
             </span>
@@ -600,461 +600,444 @@ export default function PlayGame() {
           <span className="text-slate-600 dark:text-slate-300 truncate max-w-[200px]">{gt(game).title}</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2 tracking-tight">
-          {gt(game).title}
-        </h1>
-        {/* Difficulty badge + play count — no fake star ratings */}
-        <div className="flex items-center gap-3 mb-5">
-          <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold border ${
-            game.difficulty === 'easy'
-              ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
-              : game.difficulty === 'hard'
-              ? 'bg-red-50 text-red-700 border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800'
-              : 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800'
+        {/* Game iframe — full width, no sidebar */}
+        <div className="w-full">
+          <div id="game-player-container" className={`game-iframe-container relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm ${
+            isFakeFullscreen
+              ? 'fullscreen-container'
+              : 'overflow-hidden rounded-2xl'
           }`}>
-            {game.difficulty === 'easy' ? '😊' : game.difficulty === 'hard' ? '🔥' : '⚡'} {game.difficulty.charAt(0).toUpperCase() + game.difficulty.slice(1)}
-          </span>
-          <span className="text-slate-300 dark:text-slate-400">·</span>
-          <span className="text-sm text-slate-500 dark:text-slate-300">
-            {game.playCount >= 1_000_000
-              ? `${(game.playCount / 1_000_000).toFixed(1)}M ${t('common.plays')}`
-              : game.playCount >= 1_000
-              ? `${(game.playCount / 1_000).toFixed(0)}K ${t('common.plays')}`
-              : `${game.playCount} ${t('common.plays')}`}
-          </span>
+            {/* Fullscreen / Exit fullscreen button */}
+            {gameStarted && (
+              <button
+                onClick={isFakeFullscreen ? exitFullscreen : enterFullscreen}
+                className="absolute top-3 right-3 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-colors backdrop-blur-sm"
+                title={t('game.fullscreen' as any)}
+                aria-label={t('game.fullscreen' as any)}
+              >
+                {isFakeFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+              </button>
+            )}
+
+            {/* Play Next button (visible while playing) */}
+            {gameStarted && (
+              <button
+                onClick={() => {
+                  if (isFakeFullscreen) exitFullscreen();
+                  setNextGame(getNextSuggestion(game));
+                  setShowPlayNext(true);
+                }}
+                className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600/80 hover:bg-indigo-600 text-white text-xs font-semibold rounded-lg transition-colors backdrop-blur-sm"
+                title={t('game.suggestNext' as any)}
+                aria-label={t('game.suggestNext' as any)}
+              >
+                <SkipForward className="w-3.5 h-3.5" />
+                {t('game.moreGames')}
+              </button>
+            )}
+
+            {/* Click-to-play overlay */}
+            {!gameStarted && (
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label={`${t('game.play')} ${gt(game).title}`}
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group"
+                style={{ background: "rgba(0,0,0,0.55)" }}
+                onClick={() => { setGameStarted(true); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setGameStarted(true); } }}
+              >
+                <img
+                  src={game.thumbnail}
+                  alt={gt(game).title}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ filter: "brightness(0.45)" }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+                <div className="relative z-10 flex flex-col items-center gap-4">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/60 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/30 transition-all duration-200 shadow-2xl">
+                    <Play className="w-9 h-9 text-white fill-white ml-1" />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-white font-bold text-xl drop-shadow-lg">{gt(game).title}</p>
+                    <p className="text-white/70 text-sm mt-1">{iframeLoaded ? t('game.play') : (t('game.loading' as any) || 'Loading...')}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Loading overlay */}
+            {gameStarted && !iframeLoaded && !iframeError && (
+              <div className="absolute inset-0 z-[5] flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-sm">
+                <div className="relative w-16 h-16 mb-4">
+                  <div className="absolute inset-0 rounded-full border-4 border-indigo-500/30" />
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-indigo-500 animate-spin" />
+                </div>
+                <p className="text-white/90 text-sm font-medium">{t('game.loading' as any) || 'Loading game...'}</p>
+              </div>
+            )}
+
+            {/* Error overlay */}
+            {iframeError && (
+              <div className="absolute inset-0 z-[15] flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm">
+                <div className="w-16 h-16 mb-4 rounded-full bg-red-500/20 flex items-center justify-center">
+                  <X className="w-8 h-8 text-red-400" />
+                </div>
+                <p className="text-white font-bold text-lg mb-1">{t('game.loadError' as any)}</p>
+                <p className="text-white/60 text-sm text-center max-w-xs mb-6">{t('game.loadErrorDesc' as any)}</p>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setIframeError(false);
+                      setIframeLoaded(false);
+                      const iframe = iframeRef.current;
+                      if (iframe && game) {
+                        const url = game.iframeUrl;
+                        iframe.src = '';
+                        requestAnimationFrame(() => { iframe.src = url; });
+                      }
+                    }}
+                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-lg transition-colors"
+                  >
+                    {t('game.tryAgain' as any)}
+                  </button>
+                  <button
+                    onClick={() => {
+                      const suggestion = getNextSuggestion(game!);
+                      navigate(`/play/${suggestion.slug}/`);
+                    }}
+                    className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                  >
+                    <Shuffle className="w-4 h-4" />
+                    {t('game.moreGames')}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Game iframe */}
+            <iframe
+              ref={iframeRef}
+              id="game-iframe"
+              src={game.iframeUrl}
+              title={gt(game).title}
+              className={isFakeFullscreen
+                ? 'w-full h-full'
+                : 'w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-auto md:h-[560px]'
+              }
+              style={{
+                border: "none",
+                display: "block",
+                pointerEvents: gameStarted ? "auto" : "none",
+              }}
+              allowFullScreen
+              allow="fullscreen; autoplay"
+              // @ts-expect-error -- fetchpriority is valid HTML but not yet in React's types
+              fetchpriority="high"
+              onLoad={() => setIframeLoaded(true)}
+            />
+          </div>
         </div>
 
-        {/* Main layout: Game + Sidebar */}
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          {/* Game column */}
-          <div className="flex-1 min-w-0 overflow-hidden w-full">
-
-            {/* Game iframe with click-to-play overlay */}
-            <div id="game-player-container" className={`game-iframe-container relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm ${
-              isFakeFullscreen
-                ? 'fullscreen-container'
-                : 'overflow-hidden rounded-2xl'
-            }`}>
-              {/* Fullscreen / Exit fullscreen button */}
-              {gameStarted && (
-                <button
-                  onClick={isFakeFullscreen ? exitFullscreen : enterFullscreen}
-                  className="absolute top-3 right-3 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-colors backdrop-blur-sm"
-                  title={t('game.fullscreen' as any)}
-                  aria-label={t('game.fullscreen' as any)}
-                >
-                  {isFakeFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-                </button>
-              )}
-
-              {/* Play Next button (visible while playing) */}
-              {gameStarted && (
-                <button
-                  onClick={() => {
-                    if (isFakeFullscreen) exitFullscreen();
-                    setNextGame(getNextSuggestion(game));
-                    setShowPlayNext(true);
-                  }}
-                  className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-violet-600/80 hover:bg-violet-600 text-white text-xs font-semibold rounded-lg transition-colors backdrop-blur-sm"
-                  title={t('game.suggestNext' as any)}
-                  aria-label={t('game.suggestNext' as any)}
-                >
-                  <SkipForward className="w-3.5 h-3.5" />
-                  {t('game.moreGames')}
-                </button>
-              )}
-
-              {/* Click-to-play overlay */}
-              {!gameStarted && (
-                <div
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`${t('game.play')} ${gt(game).title}`}
-                  className="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group"
-                  style={{ background: "rgba(0,0,0,0.55)" }}
-                  onClick={() => { setGameStarted(true); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setGameStarted(true); } }}
-                >
-                  <img
-                    src={game.thumbnail}
-                    alt={gt(game).title}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ filter: "brightness(0.45)" }}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                  <div className="relative z-10 flex flex-col items-center gap-4">
-                    <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/60 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/30 transition-all duration-200 shadow-2xl">
-                      <Play className="w-9 h-9 text-white fill-white ml-1" />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-white font-bold text-xl drop-shadow-lg">{gt(game).title}</p>
-                      <p className="text-white/70 text-sm mt-1">{iframeLoaded ? t('game.play') : (t('game.loading' as any) || 'Loading...')}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Loading overlay — shown after play clicked but iframe hasn't finished yet */}
-              {gameStarted && !iframeLoaded && !iframeError && (
-                <div className="absolute inset-0 z-[5] flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-sm">
-                  <div className="relative w-16 h-16 mb-4">
-                    <div className="absolute inset-0 rounded-full border-4 border-violet-500/30" />
-                    <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 animate-spin" />
-                  </div>
-                  <p className="text-white/90 text-sm font-medium">{t('game.loading' as any) || 'Loading game...'}</p>
-                </div>
-              )}
-
-              {/* Error overlay — shown when iframe fails to load (timeout or error) */}
-              {iframeError && (
-                <div className="absolute inset-0 z-[15] flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm">
-                  <div className="w-16 h-16 mb-4 rounded-full bg-red-500/20 flex items-center justify-center">
-                    <X className="w-8 h-8 text-red-400" />
-                  </div>
-                  <p className="text-white font-bold text-lg mb-1">{t('game.loadError' as any)}</p>
-                  <p className="text-white/60 text-sm text-center max-w-xs mb-6">{t('game.loadErrorDesc' as any)}</p>
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => {
-                        setIframeError(false);
-                        setIframeLoaded(false);
-                        // Force iframe reload by briefly clearing src
-                        const iframe = iframeRef.current;
-                        if (iframe && game) {
-                          const url = game.iframeUrl;
-                          iframe.src = '';
-                          requestAnimationFrame(() => { iframe.src = url; });
-                        }
-                      }}
-                      className="px-5 py-2.5 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold rounded-lg transition-colors"
-                    >
-                      {t('game.tryAgain' as any)}
-                    </button>
-                    <button
-                      onClick={() => {
-                        const suggestion = getNextSuggestion(game!);
-                        navigate(`/play/${suggestion.slug}/`);
-                      }}
-                      className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-1.5"
-                    >
-                      <Shuffle className="w-4 h-4" />
-                      {t('game.moreGames')}
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Game iframe — loads eagerly so it's ready when the user clicks Play.
-                  pointer-events disabled while overlay is showing to prevent accidental
-                  interaction and to stop the iframe from stealing scroll/touch events. */}
-              <iframe
-                ref={iframeRef}
-                id="game-iframe"
-                src={game.iframeUrl}
-                title={gt(game).title}
-                className={isFakeFullscreen
-                  ? 'w-full h-full'
-                  : 'w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-auto md:h-[520px]'
-                }
-                style={{
-                  border: "none",
-                  display: "block",
-                  pointerEvents: gameStarted ? "auto" : "none",
-                }}
-                allowFullScreen
-                allow="fullscreen; autoplay"
-                // @ts-expect-error -- fetchpriority is valid HTML but not yet in React's types
-                fetchpriority="high"
-                onLoad={() => setIframeLoaded(true)}
-              />
+        {/* Info bar: Title + Meta + Actions — all in one strip */}
+        <div className="mt-3 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+          {/* Top row: Title + badges */}
+          <div className="px-4 sm:px-5 pt-4 pb-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              <h1 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-tight flex-1 min-w-0">
+                {gt(game).title}
+              </h1>
+              <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border ${
+                  game.difficulty === 'easy'
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
+                    : game.difficulty === 'hard'
+                    ? 'bg-red-50 text-red-700 border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800'
+                    : 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800'
+                }`}>
+                  {game.difficulty === 'easy' ? '😊' : game.difficulty === 'hard' ? '🔥' : '⚡'} {game.difficulty.charAt(0).toUpperCase() + game.difficulty.slice(1)}
+                </span>
+                <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg capitalize ${
+                  CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"
+                }`}>
+                  {t(`category.${game.category}` as any)}
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-300">
+                  {game.playCount >= 1_000_000
+                    ? `${(game.playCount / 1_000_000).toFixed(1)}M ${t('common.plays')}`
+                    : game.playCount >= 1_000
+                    ? `${(game.playCount / 1_000).toFixed(0)}K ${t('common.plays')}`
+                    : `${game.playCount} ${t('common.plays')}`}
+                </span>
+              </div>
             </div>
+          </div>
 
-            {/* Action bar: Like, Dislike, Controls */}
-            <div className="mt-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm px-3 sm:px-4 py-3 flex items-center gap-2 sm:gap-3 flex-wrap">
-              {/* Like button */}
-              <button
-                onClick={() => vote("like")}
-                aria-label={`${t('game.vote.helpful' as any)} (${votes.likes})`}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 ${
-                  userVote === "like"
-                    ? "bg-emerald-500 text-white shadow-sm"
-                    : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600"
-                }`}
-              >
-                <ThumbsUp className="w-4 h-4" />
-                <span>{votes.likes}</span>
-              </button>
+          {/* Bottom row: Action buttons */}
+          <div className="px-4 sm:px-5 pb-3 flex items-center gap-2 flex-wrap border-t border-slate-50 dark:border-slate-800 pt-3">
+            {/* Like */}
+            <button
+              onClick={() => vote("like")}
+              aria-label={`${t('game.vote.helpful' as any)} (${votes.likes})`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                userVote === "like"
+                  ? "bg-emerald-500 text-white shadow-sm"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600"
+              }`}
+            >
+              <ThumbsUp className="w-3.5 h-3.5" />
+              <span>{votes.likes}</span>
+            </button>
 
-              {/* Dislike button */}
-              <button
-                onClick={() => vote("dislike")}
-                aria-label={`${t('game.vote.notHelpful' as any)} (${votes.dislikes})`}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 ${
-                  userVote === "dislike"
-                    ? "bg-red-500 text-white shadow-sm"
-                    : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500"
-                }`}
-              >
-                <ThumbsDown className="w-4 h-4" />
-                <span>{votes.dislikes}</span>
-              </button>
+            {/* Dislike */}
+            <button
+              onClick={() => vote("dislike")}
+              aria-label={`${t('game.vote.notHelpful' as any)} (${votes.dislikes})`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                userVote === "dislike"
+                  ? "bg-red-500 text-white shadow-sm"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500"
+              }`}
+            >
+              <ThumbsDown className="w-3.5 h-3.5" />
+              <span>{votes.dislikes}</span>
+            </button>
 
-              <div className="flex-1" />
+            <div className="w-px h-5 bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block" />
 
-              {/* Challenge a Friend button */}
-              <button
-                onClick={handleCopyChallenge}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 ${
-                  challengeCopied
-                    ? "bg-amber-500 text-white"
-                    : "bg-amber-50 text-amber-600 hover:bg-amber-100"
-                }`}
-                title={t('game.challengeFriend')}
-                aria-label={t('game.challengeFriend')}
-              >
-                {challengeCopied ? <Check className="w-4 h-4" /> : <Trophy className="w-4 h-4" />}
-                <span className="hidden sm:inline">{challengeCopied ? t('common.copied') : t('game.challengeFriend')}</span>
-              </button>
+            {/* How to Play */}
+            <button
+              onClick={() => setShowControls(true)}
+              aria-label={t('game.howToPlay')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+            >
+              <Gamepad2 className="w-3.5 h-3.5" />
+              <span>{t('game.howToPlay')}</span>
+            </button>
 
-              {/* Share button */}
-              <button
-                onClick={handleShare}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 ${
-                  copied
-                    ? "bg-emerald-500 text-white"
-                    : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                }`}
-                title={t('game.shareGame' as any)}
-                aria-label={t('game.share')}
-              >
-                {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-                <span className="hidden sm:inline">{copied ? t('common.copied') : t('game.share')}</span>
-              </button>
+            <div className="flex-1" />
 
-              {/* Controls button */}
-              <button
-                onClick={() => setShowControls(true)}
-                aria-label={t('game.howToPlay')}
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors"
-              >
-                <Gamepad2 className="w-4 h-4" />
-                <span>{t('game.howToPlay')}</span>
-              </button>
-            </div>
+            {/* Challenge */}
+            <button
+              onClick={handleCopyChallenge}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                challengeCopied
+                  ? "bg-amber-500 text-white"
+                  : "bg-amber-50 text-amber-600 hover:bg-amber-100"
+              }`}
+              title={t('game.challengeFriend')}
+              aria-label={t('game.challengeFriend')}
+            >
+              {challengeCopied ? <Check className="w-3.5 h-3.5" /> : <Trophy className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{challengeCopied ? t('common.copied') : t('game.challengeFriend')}</span>
+            </button>
 
-            {/* About section */}
-            <div className="mt-3 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-5">
+            {/* Share */}
+            <button
+              onClick={handleShare}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                copied
+                  ? "bg-emerald-500 text-white"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+              }`}
+              title={t('game.shareGame' as any)}
+              aria-label={t('game.share')}
+            >
+              {copied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{copied ? t('common.copied') : t('game.share')}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Two-column content: Description + Sessions left, Game details + Trivia right */}
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-5 gap-4">
+          {/* Left column — 3/5 */}
+          <div className="lg:col-span-3 space-y-4">
+            {/* About */}
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-5">
               <h2 className="text-base font-semibold text-slate-800 dark:text-slate-100 mb-2">{t('game.details')}</h2>
-              <div className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3 space-y-2">
+              <div className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-2">
                 {gt(game).description.split('\n\n').map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
               </div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span
-                  className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-full capitalize ${
-                    CATEGORY_COLORS[game.category] || "text-violet-600 bg-violet-50"
-                  }`}
-                >
-                  {t(`category.${game.category}` as any)}
-                </span>
-                <span className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full ${
-                  game.difficulty === 'easy' ? 'bg-green-50 text-green-600' :
-                  game.difficulty === 'medium' ? 'bg-amber-50 text-amber-600' :
-                  'bg-red-50 text-red-600'
-                }`}>
-                  {t(`difficulty.${game.difficulty}` as any)}
-                </span>
-                {game.tags
-                  .filter((tag) => tag !== game.category && tag !== game.difficulty)
-                  .slice(0, 4)
-                  .map((tag) => {
-                    const label = (t(`tag.${tag.replace(/-/g, '')}` as any) || tag.replace(/-/g, ' ')).replace(/^tag[.:]\s*/i, '');
-                    return (
-                      <span key={tag} className="inline-block text-[11px] font-medium px-2.5 py-1 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 capitalize">
-                        {label}
-                      </span>
-                    );
-                  })}
-              </div>
             </div>
 
-            {/* Did You Know trivia card */}
-            {GAME_TRIVIA[game.slug] && (
-              <TriviaCard slug={game.slug} title={gt(game).title} />
-            )}
-
-            {/* Personal best sessions */}
+            {/* Session history */}
             <SessionHistory
               slug={game.slug}
               currentElapsed={elapsed}
               isPlaying={isPlaying}
             />
-
-            {/* More Like This section */}
-            {(() => {
-              const sameCategory = moreGames.filter((g) => g.category === game.category);
-              const otherGames = moreGames.filter((g) => g.category !== game.category).slice(0, Math.max(0, 8 - sameCategory.length));
-              const allRelated = [...sameCategory, ...otherGames].slice(0, 8);
-              return (
-                <div className="mt-8">
-                  {/* Same-category section */}
-                  {sameCategory.length > 0 && (
-                    <div className="mb-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-6 rounded-full ${CATEGORY_ACCENT[game.category] || 'bg-violet-500'}`} />
-                          <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 capitalize">
-                            {t('game.moreGames')} — {t(`category.${game.category}` as any)}
-                          </h2>
-                        </div>
-                        <Link href={`/?category=${game.category}`}>
-                          <span className="text-xs text-violet-500 hover:text-violet-700 font-medium flex items-center gap-1 cursor-pointer transition-colors">
-                            {t('common.seeAll')} <ArrowRight className="w-3 h-3" />
-                          </span>
-                        </Link>
-                      </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                        {sameCategory.slice(0, 4).map((g) => (
-                          <Link key={g.slug} href={`/play/${g.slug}/`} className="block h-full">
-                            <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer h-full flex flex-col"
-                              onMouseEnter={() => prefetchGameUrl(g.iframeUrl)}>
-                              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                <img
-                                  src={g.thumbnail}
-                                  alt={gt(g).title}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                  loading="lazy"
-                                  onError={(e) => {
-                                    const el = e.target as HTMLImageElement;
-                                    el.style.display = 'none';
-                                    el.parentElement!.insertAdjacentHTML('afterbegin', '<div class="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-700 text-3xl">🎮</div>');
-                                  }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-3">
-                                  <div className="flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 rounded-full px-3 py-1">
-                                    <Play className="w-3 h-3 text-violet-600 fill-violet-600" />
-                                    <span className="text-[11px] font-bold text-violet-600">{t('common.play')}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="p-2.5 flex-1 flex flex-col">
-                                <p className="text-[12px] font-semibold text-slate-800 dark:text-slate-200 leading-tight line-clamp-2 group-hover:text-violet-600 transition-colors mb-1">
-                                  {gt(g).title}
-                                </p>
-                                <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full mt-auto self-start ${
-                                  g.difficulty === 'easy' ? 'bg-green-50 text-green-600' :
-                                  g.difficulty === 'medium' ? 'bg-amber-50 text-amber-600' :
-                                  'bg-red-50 text-red-600'
-                                }`}>
-                                  {t(`difficulty.${g.difficulty}` as any)}
-                                </span>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* You might also like */}
-                  {otherGames.length > 0 && (
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-2 h-6 rounded-full bg-slate-300" />
-                        <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">{t('game.youMightLike')}</h2>
-                      </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                        {allRelated.filter((g) => g.category !== game.category).slice(0, 4).map((g) => (
-                          <Link key={g.slug} href={`/play/${g.slug}/`} className="block h-full">
-                            <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer h-full flex flex-col"
-                              onMouseEnter={() => prefetchGameUrl(g.iframeUrl)}>
-                              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                <img
-                                  src={g.thumbnail}
-                                  alt={gt(g).title}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                  loading="lazy"
-                                  onError={(e) => {
-                                    const el = e.target as HTMLImageElement;
-                                    el.style.display = 'none';
-                                    el.parentElement!.insertAdjacentHTML('afterbegin', '<div class="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-700 text-3xl">🎮</div>');
-                                  }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-3">
-                                  <div className="flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 rounded-full px-3 py-1">
-                                    <Play className="w-3 h-3 text-violet-600 fill-violet-600" />
-                                    <span className="text-[11px] font-bold text-violet-600">{t('common.play')}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="p-2.5 flex-1 flex flex-col">
-                                <p className="text-[12px] font-semibold text-slate-800 dark:text-slate-200 leading-tight line-clamp-2 group-hover:text-violet-600 transition-colors mb-1">
-                                  {gt(g).title}
-                                </p>
-                                <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 capitalize mt-auto self-start">
-                                  {t(`category.${g.category}` as any)}
-                                </span>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
           </div>
 
-          {/* Sidebar: compact game list — hidden on mobile, visible on lg+ */}
-          <div className="hidden lg:block lg:w-[220px] lg:shrink-0">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden sticky top-4">
-              <div className="px-4 py-3 border-b border-slate-50 dark:border-slate-800">
-                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">{t('game.moreGames')}</h3>
-                <p className="text-[10px] text-slate-400 mt-0.5">{t('game.youMightLike')}</p>
-              </div>
-              <div className="divide-y divide-slate-50 dark:divide-slate-800 max-h-[520px] overflow-y-auto">
-                {GAMES.filter((g) => g.slug !== game.slug)
-                  .slice(0, 8)
-                  .map((related) => (
-                    <Link key={related.slug} href={`/play/${related.slug}/`}>
-                      <div className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
-                        onMouseEnter={() => prefetchGameUrl(related.iframeUrl)}>
-                        <div className="w-12 h-9 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
-                          <img
-                            src={related.thumbnail}
-                            alt={gt(related).title}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            onError={(e) => {
-                              const el = e.target as HTMLImageElement;
-                              el.style.display = 'none';
-                              el.parentElement!.insertAdjacentHTML('afterbegin', '<div class="w-full h-full flex items-center justify-center bg-slate-200 rounded-lg text-lg">🎮</div>');
-                            }}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-[12px] font-medium text-slate-700 dark:text-slate-300 leading-tight line-clamp-2 group-hover:text-violet-600 transition-colors">
-                            {gt(related).title}
-                          </p>
-                          <p className="text-[10px] text-slate-400 capitalize mt-0.5">
-                            {t(`category.${related.category}` as any)}
-                          </p>
-                        </div>
-                        <Play className="w-3 h-3 text-slate-300 group-hover:text-violet-400 transition-colors shrink-0" />
-                      </div>
-                    </Link>
-                  ))}
+          {/* Right column — 2/5 */}
+          <div className="lg:col-span-2 space-y-4">
+            {/* Game details card */}
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-5">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-3">{t('game.details')}</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-500">{t(`difficulty.easy` as any).replace(/easy/i, '') || 'Difficulty'}</span>
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-lg ${
+                    game.difficulty === 'easy' ? 'bg-green-50 text-green-600' :
+                    game.difficulty === 'medium' ? 'bg-amber-50 text-amber-600' :
+                    'bg-red-50 text-red-600'
+                  }`}>
+                    {t(`difficulty.${game.difficulty}` as any)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-500">{t('footer.categories')}</span>
+                  <span className={`text-xs font-medium px-2 py-0.5 rounded-lg capitalize ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
+                    {t(`category.${game.category}` as any)}
+                  </span>
+                </div>
+                {game.tags.length > 0 && (
+                  <div>
+                    <span className="text-xs text-slate-500 mb-2 block">{t('home.tags')}</span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {game.tags
+                        .filter((tag) => tag !== game.category && tag !== game.difficulty)
+                        .slice(0, 6)
+                        .map((tag) => {
+                          const label = (t(`tag.${tag.replace(/-/g, '')}` as any) || tag.replace(/-/g, ' ')).replace(/^tag[.:]\s*/i, '');
+                          return (
+                            <span key={tag} className="text-[10px] font-medium px-2 py-0.5 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 capitalize">
+                              {label}
+                            </span>
+                          );
+                        })}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
+
+            {/* Trivia */}
+            {GAME_TRIVIA[game.slug] && (
+              <TriviaCard slug={game.slug} title={gt(game).title} />
+            )}
           </div>
         </div>
+
+        {/* Related games — horizontal scroll */}
+        {(() => {
+          const sameCategory = moreGames.filter((g) => g.category === game.category);
+          const otherGames = moreGames.filter((g) => g.category !== game.category);
+          return (
+            <div className="mt-8 space-y-6">
+              {/* Same category */}
+              {sameCategory.length > 0 && (
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-1.5 h-5 rounded-full ${CATEGORY_ACCENT[game.category] || 'bg-indigo-500'}`} />
+                      <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 capitalize">
+                        {t('game.moreGames')} — {t(`category.${game.category}` as any)}
+                      </h2>
+                    </div>
+                    <Link href={`/?category=${game.category}`}>
+                      <span className="text-xs text-indigo-500 hover:text-indigo-700 font-medium flex items-center gap-1 cursor-pointer transition-colors">
+                        {t('common.seeAll')} <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-none -mx-4 px-4 snap-x snap-mandatory">
+                    {sameCategory.slice(0, 8).map((g) => (
+                      <Link key={g.slug} href={`/play/${g.slug}/`} className="block snap-start shrink-0 w-[180px] sm:w-[200px]">
+                        <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer h-full flex flex-col"
+                          onMouseEnter={() => prefetchGameUrl(g.iframeUrl)}>
+                          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            <img
+                              src={g.thumbnail}
+                              alt={gt(g).title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                              onError={(e) => {
+                                const el = e.target as HTMLImageElement;
+                                el.style.display = 'none';
+                                el.parentElement!.insertAdjacentHTML('afterbegin', '<div class="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-700 text-3xl">🎮</div>');
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-3">
+                              <div className="flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 rounded-lg px-3 py-1">
+                                <Play className="w-3 h-3 text-indigo-600 fill-indigo-600" />
+                                <span className="text-[11px] font-bold text-indigo-600">{t('common.play')}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="p-2.5 flex-1 flex flex-col">
+                            <p className="text-[12px] font-semibold text-slate-800 dark:text-slate-200 leading-tight line-clamp-2 group-hover:text-indigo-600 transition-colors mb-1">
+                              {gt(g).title}
+                            </p>
+                            <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-md mt-auto self-start ${
+                              g.difficulty === 'easy' ? 'bg-green-50 text-green-600' :
+                              g.difficulty === 'medium' ? 'bg-amber-50 text-amber-600' :
+                              'bg-red-50 text-red-600'
+                            }`}>
+                              {t(`difficulty.${g.difficulty}` as any)}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* You might also like */}
+              {otherGames.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-1.5 h-5 rounded-full bg-slate-300" />
+                    <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">{t('game.youMightLike')}</h2>
+                  </div>
+                  <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-none -mx-4 px-4 snap-x snap-mandatory">
+                    {otherGames.slice(0, 8).map((g) => (
+                      <Link key={g.slug} href={`/play/${g.slug}/`} className="block snap-start shrink-0 w-[180px] sm:w-[200px]">
+                        <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer h-full flex flex-col"
+                          onMouseEnter={() => prefetchGameUrl(g.iframeUrl)}>
+                          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            <img
+                              src={g.thumbnail}
+                              alt={gt(g).title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                              onError={(e) => {
+                                const el = e.target as HTMLImageElement;
+                                el.style.display = 'none';
+                                el.parentElement!.insertAdjacentHTML('afterbegin', '<div class="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-700 text-3xl">🎮</div>');
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-3">
+                              <div className="flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 rounded-lg px-3 py-1">
+                                <Play className="w-3 h-3 text-indigo-600 fill-indigo-600" />
+                                <span className="text-[11px] font-bold text-indigo-600">{t('common.play')}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="p-2.5 flex-1 flex flex-col">
+                            <p className="text-[12px] font-semibold text-slate-800 dark:text-slate-200 leading-tight line-clamp-2 group-hover:text-indigo-600 transition-colors mb-1">
+                              {gt(g).title}
+                            </p>
+                            <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-md bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 capitalize mt-auto self-start">
+                              {t(`category.${g.category}` as any)}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
 
       {/* Controls Modal */}
@@ -1073,8 +1056,8 @@ export default function PlayGame() {
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-violet-50 flex items-center justify-center">
-                  <Gamepad2 className="w-5 h-5 text-violet-600" />
+                <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center">
+                  <Gamepad2 className="w-5 h-5 text-indigo-600" />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">{t('game.howToPlay')}</h3>
@@ -1101,7 +1084,7 @@ export default function PlayGame() {
                     setShowControls(false);
                     setGameStarted(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-sm font-semibold transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition-colors"
                 >
                   <Play className="w-4 h-4 fill-white" />
                   {t('game.startPlaying')}
@@ -1130,7 +1113,7 @@ export default function PlayGame() {
         >
           <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
             {/* Header */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 to-violet-600 px-6 pt-6 pb-4">
+            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 to-indigo-600 px-6 pt-6 pb-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <SkipForward className="w-5 h-5 text-white" />
@@ -1214,7 +1197,7 @@ export default function PlayGame() {
               <div className="flex gap-2">
                 <button
                   onClick={() => goToNextGame(nextGame.slug)}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-sm font-semibold transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition-colors"
                 >
                   <Play className="w-4 h-4 fill-white" />
                   {t('game.startPlaying')}
@@ -1280,7 +1263,7 @@ export default function PlayGame() {
             {/* Progress bar auto-dismiss */}
             <div className="h-1 bg-slate-700">
               <div
-                className="h-1 bg-violet-500"
+                className="h-1 bg-indigo-500"
                 style={{ animation: 'shrinkWidth 8s linear forwards' }}
               />
             </div>

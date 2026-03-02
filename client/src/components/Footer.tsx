@@ -30,14 +30,14 @@ const QUICK_LINKS = [
 ];
 
 const POPULAR_GAME_SLUGS = [
-  "pacman",
-  "snake",
-  "doodle-cricket-game",
-  "champion-island-games",
-  "magic-cat-academy",
-  "doodle-jump",
-  "solitaire",
-  "minesweeper",
+  "google-pac-man",
+  "google-solitaire",
+  "atari-breakout",
+  "great-ghoul-duel",
+  "google-interland",
+  "google-tetris",
+  "google-2048",
+  "zerg-rush",
 ];
 
 export default function Footer() {
@@ -46,40 +46,42 @@ export default function Footer() {
   const popularGames = POPULAR_GAME_SLUGS.map(slug => GAMES.find(g => g.slug === slug)).filter(Boolean) as typeof GAMES;
   return (
     <footer className="bg-slate-900 text-slate-400 mt-8 md:mt-16">
-      {/* Main footer content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <Link href="/">
-              <div className="flex items-center gap-2 mb-4 group">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg">
-                  <Joystick className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <span className="font-bold text-white text-sm">DoodleGames</span>
-                  <span className="text-violet-400 font-bold text-sm">HUB</span>
-                </div>
+      {/* Top brand strip — centered */}
+      <div className="border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center text-center">
+          <Link href="/">
+            <div className="flex items-center gap-2 mb-3 group">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg">
+                <Joystick className="w-5 h-5 text-white" />
               </div>
-            </Link>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              {t('footer.taglineDesc')}
-            </p>
-            <div className="flex items-center gap-1.5 text-xs text-slate-400">
-              <span>{t('footer.madeWith')}</span>
-              <Heart className="w-3 h-3 text-rose-400 fill-rose-400" />
-              <span>{t('footer.forGameLovers')}</span>
+              <div>
+                <span className="font-bold text-white text-lg">Doodle</span>
+                <span className="text-indigo-400 font-bold text-lg">Playground</span>
+              </div>
             </div>
+          </Link>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-md mb-3">
+            {t('footer.taglineDesc')}
+          </p>
+          <div className="flex items-center gap-1.5 text-xs text-slate-500">
+            <span>{t('footer.madeWith')}</span>
+            <Heart className="w-3 h-3 text-rose-400 fill-rose-400" />
+            <span>{t('footer.forGameLovers')}</span>
           </div>
+        </div>
+      </div>
 
+      {/* Link columns — 3-col centered */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-center sm:text-left">
           {/* Categories */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('footer.categories')}</h3>
+            <h3 className="text-white font-semibold text-xs mb-4 uppercase tracking-widest">{t('footer.categories')}</h3>
             <ul className="space-y-2">
               {CATEGORY_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className="text-slate-400 hover:text-violet-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
                       {t(link.labelKey as any)}
                     </span>
                   </Link>
@@ -88,14 +90,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links + Popular Games merged */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('footer.quickLinks')}</h3>
+            <h3 className="text-white font-semibold text-xs mb-4 uppercase tracking-widest">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               {QUICK_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className="text-slate-400 hover:text-violet-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
                       {t(link.labelKey as any)}
                     </span>
                   </Link>
@@ -105,13 +107,13 @@ export default function Footer() {
           </div>
 
           {/* Popular Games */}
-          <div>
-            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('footer.popularGames')}</h3>
-            <ul className="space-y-2">
+          <div className="col-span-2 sm:col-span-1">
+            <h3 className="text-white font-semibold text-xs mb-4 uppercase tracking-widest">{t('footer.popularGames')}</h3>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2">
               {popularGames.map((game) => (
                 <li key={game.slug}>
                   <Link href={`/play/${game.slug}/`}>
-                    <span className="text-slate-400 hover:text-violet-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
                       {gt(game).title}
                     </span>
                   </Link>
@@ -122,7 +124,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom bar — compact */}
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-slate-500 text-xs">

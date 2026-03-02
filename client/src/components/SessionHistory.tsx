@@ -110,7 +110,7 @@ export function SessionHistory({
     (!bestSession || currentElapsed > bestSession.duration);
 
   return (
-    <div className="mt-6 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-slate-900 via-violet-950/30 to-slate-900 shadow-xl">
+    <div className="mt-6 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 shadow-xl">
       {/* Header */}
       <div className="flex items-start justify-between gap-2 px-5 py-4 border-b border-white/10 flex-wrap">
         <div className="flex items-center gap-2.5">
@@ -119,7 +119,7 @@ export function SessionHistory({
             {t('session.title')}
           </h3>
           {sessions.length > 0 && (
-            <span className="text-xs bg-violet-600/40 text-violet-300 px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs bg-indigo-600/40 text-indigo-300 px-2 py-0.5 rounded-full font-medium">
               {sessions.length} {t('session.sessions')}
             </span>
           )}
@@ -131,7 +131,7 @@ export function SessionHistory({
               className={`flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-full transition-all ${
                 isNewBest
                   ? "bg-yellow-400/20 text-yellow-300 border border-yellow-400/30"
-                  : "bg-violet-600/20 text-violet-300 border border-violet-500/30"
+                  : "bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
               }`}
             >
               <Timer className="w-3.5 h-3.5 animate-pulse" />
@@ -164,7 +164,7 @@ export function SessionHistory({
           <Clock className="w-8 h-8 opacity-30" />
           <p className="text-sm">{t('session.noSessions')}</p>
           {isPlaying && currentElapsed >= 5 && (
-            <p className="text-xs text-violet-400 animate-pulse">
+            <p className="text-xs text-indigo-400 animate-pulse">
               ⏱ {t('session.inProgress')} — {formatDuration(currentElapsed)}
             </p>
           )}

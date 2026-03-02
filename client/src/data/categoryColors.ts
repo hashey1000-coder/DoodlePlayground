@@ -10,7 +10,7 @@ export const CATEGORY_COLORS: Record<string, string> = {
   adventure: "text-orange-600 bg-orange-50",
   educational: "text-cyan-600 bg-cyan-50",
   seasonal: "text-pink-600 bg-pink-50",
-  creative: "text-indigo-600 bg-indigo-50",
+  creative: "text-sky-600 bg-sky-50",
 };
 
 /** Same palette but with border classes — useful for badges that need outlines. */
@@ -22,7 +22,7 @@ export const CATEGORY_COLORS_BORDERED: Record<string, string> = {
   adventure: "text-orange-600 bg-orange-50 border border-orange-100",
   educational: "text-cyan-600 bg-cyan-50 border border-cyan-100",
   seasonal: "text-pink-600 bg-pink-50 border border-pink-100",
-  creative: "text-indigo-600 bg-indigo-50 border border-indigo-100",
+  creative: "text-sky-600 bg-sky-50 border border-sky-100",
 };
 
 /** Map category id to the accent colour for colour bars / indicators. */
@@ -34,7 +34,7 @@ export const CATEGORY_ACCENT: Record<string, string> = {
   adventure: "bg-orange-500",
   educational: "bg-cyan-500",
   seasonal: "bg-pink-500",
-  creative: "bg-indigo-500",
+  creative: "bg-sky-500",
 };
 
 export const CATEGORY_FALLBACK = "text-violet-600 bg-violet-50";

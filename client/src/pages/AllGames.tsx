@@ -96,7 +96,7 @@ export default function AllGames() {
         <div className="mb-8">
           <div className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-3">
             <Link href="/">
-              <span className="hover:text-violet-600 transition-colors cursor-pointer">{t('nav.allGames')}</span>
+              <span className="hover:text-indigo-600 transition-colors cursor-pointer">{t('nav.allGames')}</span>
             </Link>
             <span>/</span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">{t('allGames.sortAZ')}</span>
@@ -111,7 +111,7 @@ export default function AllGames() {
               <div className="relative" ref={sortMenuRef}>
                 <button
                   onClick={() => setShowSortMenu((v) => !v)}
-                  className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-violet-300 hover:text-violet-600 transition-all shadow-sm whitespace-nowrap"
+                  className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm whitespace-nowrap"
                 >
                   <ArrowUpDown className="w-3.5 h-3.5" />
                   {sortBy === 'a-z' ? t('allGames.sortAZ') : sortBy === 'most-played' ? t('allGames.sortMostPlayed') : sortBy === 'highest-rated' ? t('allGames.sortHighestRated') : t('allGames.sortNewest')}
@@ -126,12 +126,12 @@ export default function AllGames() {
                           key={opt}
                           onClick={() => { setSortBy(opt); localStorage.setItem('doodle-sort-by', opt); setShowSortMenu(false); }}
                           className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
-                            sortBy === opt ? 'bg-violet-50 dark:bg-violet-950 text-violet-700 dark:text-violet-300 font-semibold' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
+                            sortBy === opt ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-semibold' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                           }`}
                         >
                           <span>{icons[opt]}</span>
                           <span className="flex-1 text-left">{labels[opt]}</span>
-                          {sortBy === opt && <Check className="w-3.5 h-3.5 text-violet-600" />}
+                          {sortBy === opt && <Check className="w-3.5 h-3.5 text-indigo-600" />}
                         </button>
                       );
                     })}
@@ -146,7 +146,7 @@ export default function AllGames() {
                 placeholder={t('home.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-400 transition-all"
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition-all"
                 />
               </div>
             </div>
@@ -166,7 +166,7 @@ export default function AllGames() {
                     disabled={!hasGames}
                     className={`w-8 h-8 rounded-lg text-sm font-bold transition-all duration-150 ${
                       hasGames
-                        ? "bg-white dark:bg-slate-800 text-violet-600 border border-violet-200 dark:border-violet-500 hover:bg-violet-600 hover:text-white hover:border-violet-600 shadow-sm cursor-pointer"
+                        ? "bg-white dark:bg-slate-800 text-indigo-600 border border-indigo-200 dark:border-indigo-500 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm cursor-pointer"
                         : "bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed"
                     }`}
                   >
@@ -196,7 +196,7 @@ export default function AllGames() {
               >
                 {/* Letter heading */}
                 <div className="flex items-center gap-4 mb-4">
-                  <h2 className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md shadow-violet-200/50 shrink-0">
+                  <h2 className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-200/50 shrink-0">
                     <span className="text-white font-bold text-lg leading-none">{letter}</span>
                   </h2>
                   <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
@@ -209,7 +209,7 @@ export default function AllGames() {
                     <AnimatedCard key={game.slug} index={idx}>
                     <div className="group relative" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                       <Link href={`/play/${game.slug}/`}>
-                        <div className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-violet-200 dark:hover:border-violet-500 hover:shadow-lg hover:shadow-violet-100/50 dark:hover:shadow-violet-900/30 transition-all duration-300 cursor-pointer flex gap-3 p-3 items-center">
+                        <div className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-indigo-200 dark:hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-100/50 dark:hover:shadow-indigo-900/30 transition-all duration-300 cursor-pointer flex gap-3 p-3 items-center">
                           {/* Thumbnail */}
                           <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0">
                             <img
@@ -233,11 +233,11 @@ export default function AllGames() {
                           {/* Info */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5 mb-0.5">
-                              <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-sm leading-tight truncate group-hover:text-violet-600 transition-colors">
+                              <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-sm leading-tight truncate group-hover:text-indigo-600 transition-colors">
                                 {gt(game).title}
                               </h3>
                               {game.isNew && (
-                                <span className="shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                                <span className="shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 to-indigo-500 text-white">
                                   {t('common.new').toUpperCase()}
                                 </span>
                               )}

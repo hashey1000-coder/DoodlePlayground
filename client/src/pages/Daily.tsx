@@ -11,6 +11,7 @@ import { useHead } from '@/hooks/useHead';
 
 // Seed a deterministic game from today's date, with seasonal awareness
 function getDailyGame() {
+  if (GAMES.length === 0) return undefined;
   const now = new Date();
   const month = now.getMonth() + 1; // 1-12
   const day = now.getDate();
@@ -18,12 +19,12 @@ function getDailyGame() {
 
   // Seasonal slug preferences by month/date range
   const seasonalPicks: { month: number; dayRange?: [number, number]; slugs: string[] }[] = [
-    { month: 2, dayRange: [10, 15], slugs: ['doodle-valentines-day', 'doodle-valentines-day-2022'] },
-    { month: 5, dayRange: [8, 14], slugs: ['mothers-day-2013-doodle', 'mothers-day-2020-doodle'] },
-    { month: 4, dayRange: [18, 24], slugs: ['doodle-earth-day-2020'] },
-    { month: 10, dayRange: [25, 31], slugs: ['magic-cat-academy', 'halloween', 'magic-cat-academy-2', 'magic-cat-academy-3'] },
-    { month: 12, dayRange: [15, 28], slugs: ['google-santa-tracker', 'global-candy-cup-2015'] },
-    { month: 1, dayRange: [20, 31], slugs: ['chinese-new-year-snake-game'] },
+    { month: 2, dayRange: [10, 15], slugs: ['valentines-day-chemistry'] },
+    { month: 3, dayRange: [10, 20], slugs: ['holi-2019'] },
+    { month: 6, dayRange: [1, 10], slugs: ['dragon-boat-festival-2024'] },
+    { month: 10, dayRange: [25, 31], slugs: ['great-ghoul-duel', 'halloween-pac-man-2025'] },
+    { month: 12, dayRange: [15, 28], slugs: ['festivus-pole'] },
+    { month: 1, dayRange: [20, 31], slugs: ['lunar-new-year-snake-2025'] },
   ];
 
   // Check for seasonal match
@@ -75,6 +76,26 @@ export default function Daily() {
   const game = getDailyGame();
   const t = useT();
   const { locale } = useLanguage();
+
+  // If no games are available yet, show a placeholder
+  if (!game) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="text-center space-y-4">
+          <CalendarDays className="w-12 h-12 mx-auto text-slate-300" />
+          <h1 className="text-2xl font-bold text-slate-700 dark:text-slate-200">{t('daily.title')}</h1>
+          <p className="text-slate-500 dark:text-slate-400">{t('daily.subtitle')}</p>
+          <Link href="/">
+            <span className="inline-flex items-center gap-1.5 text-sm text-indigo-600 hover:text-indigo-700 cursor-pointer">
+              <ChevronLeft className="w-4 h-4" />
+              {t('game.backToGames')}
+            </span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const { title: gameTitle, description: gameDesc, controls: gameControls } = useGameT(game);
   const { isFavourite, toggleFavourite } = useFavourites();
   const [countdown, setCountdown] = useState(getCountdownToMidnight());
@@ -121,7 +142,7 @@ export default function Daily() {
   };
 
   // Get past 5 days' games for the history strip
-  const history = Array.from({ length: 5 }, (_, i) => {
+  const history = GAMES.length === 0 ? [] : Array.from({ length: 5 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() - (i + 1));
     const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();

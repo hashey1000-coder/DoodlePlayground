@@ -1,11 +1,11 @@
 {
-  "name": "Doodle Games Hub",
-  "short_name": "DoodleGames",
+  "name": "Doodle Playground",
+  "short_name": "DoodlePlay",
   "description": "Play the best Google Doodle games free — Pac-Man, Cricket, Champion Island, Snake and more.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4f46e5",
+  "theme_color": "#6366f1",
   "icons": [
     {
       "src": "/favicon-16x16.png",
