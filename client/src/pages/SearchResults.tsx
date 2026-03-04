@@ -157,7 +157,7 @@ export default function SearchResults() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-8">
         {/* Back link */}
         <Link href="/">
-            <span className="inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition-colors mb-6 group">
+            <span className="inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors mb-6 group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
             {t('game.backToGames')}
           </span>
@@ -169,7 +169,7 @@ export default function SearchResults() {
             {query ? (
               <>
                 {t('search.resultsFor')}{" "}
-                <span className="text-indigo-600">"{query}"</span>
+                <span className="text-teal-600">"{query}"</span>
               </>
             ) : (
               t('search.title')
@@ -185,7 +185,7 @@ export default function SearchResults() {
                 <div className="inline-flex items-center gap-2 ml-3 relative" ref={sortBtnRef}>
                   <button
                     onClick={() => setShowSortMenu((v) => !v)}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400 hover:border-teal-300 hover:text-teal-600 transition-all shadow-sm"
                   >
                     <ArrowUpDown className="w-3 h-3" />
                     {sortBy === 'default' ? t('search.sort') : sortBy === 'most-played' ? t('search.sortMostPlayed') : sortBy === 'highest-rated' ? t('search.sortHighestRated') : sortBy === 'a-z' ? t('search.sortAZ') : t('search.sortNewest')}
@@ -200,12 +200,12 @@ export default function SearchResults() {
                             key={opt}
                             onClick={() => { setSortBy(opt); localStorage.setItem('doodle-sort-by', opt); setShowSortMenu(false); }}
                             className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
-                              sortBy === opt ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                              sortBy === opt ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             <span>{icons[opt]}</span>
                             <span className="flex-1 text-left">{labels[opt]}</span>
-                            {sortBy === opt && <Check className="w-3.5 h-3.5 text-indigo-600" />}
+                            {sortBy === opt && <Check className="w-3.5 h-3.5 text-teal-600" />}
                           </button>
                         );
                       })}
@@ -250,7 +250,7 @@ export default function SearchResults() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder={t('search.searchPlaceholder')}
                 autoFocus
-                className="w-full pl-11 pr-10 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900/40 shadow-sm transition-all"
+                className="w-full pl-11 pr-10 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 placeholder-slate-400 text-sm focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-100 dark:focus:ring-teal-900/40 shadow-sm transition-all"
               />
               {inputValue && (
                 <button
@@ -264,7 +264,7 @@ export default function SearchResults() {
             </div>
             <button
               type="submit"
-              className="px-6 py-3 rounded-2xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-sm hover:shadow-md hover:shadow-indigo-200/50 active:scale-95"
+              className="px-6 py-3 rounded-2xl bg-teal-600 text-white text-sm font-semibold hover:bg-teal-700 transition-colors shadow-sm hover:shadow-md hover:shadow-teal-200/50 active:scale-95"
             >
               {t('search.searchButton')}
             </button>
@@ -288,7 +288,7 @@ export default function SearchResults() {
                     navigate(`/search/?q=${encodeURIComponent(term)}`);
                     setQuery(term);
                   }}
-                  className="px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all"
+                  className="px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:border-teal-300 hover:text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-all"
                 >
                   {term}
                 </button>
@@ -308,10 +308,10 @@ export default function SearchResults() {
                   <div className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                     <Link href={`/play/${game.slug}/`} className="block h-full">
                       <div className="h-full">
-                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-indigo-100/50 dark:hover:shadow-black/30 transition-all duration-500 hover:-translate-y-1.5 h-full flex flex-col">
+                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-teal-100/50 dark:hover:shadow-black/30 transition-all duration-500 hover:-translate-y-1.5 h-full flex flex-col">
                           {game.isNew && (
                             <div className="absolute top-0 left-0 z-10">
-                              <div className="bg-gradient-to-r from-emerald-500 to-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
+                              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
                                 {t('common.new').toUpperCase()}
                               </div>
                             </div>
@@ -330,7 +330,7 @@ export default function SearchResults() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                               <div className="w-12 h-12 rounded-full bg-white/95 shadow-lg flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                                <Play className="w-5 h-5 text-indigo-600 fill-indigo-600 ml-0.5" />
+                                <Play className="w-5 h-5 text-teal-600 fill-teal-600 ml-0.5" />
                               </div>
                             </div>
                           </div>
@@ -344,7 +344,7 @@ export default function SearchResults() {
                             <div className="flex items-center gap-1.5 flex-wrap mt-auto">
                               <span
                                 className={`inline-block text-[11px] font-medium px-2 py-0.5 rounded-full capitalize ${
-                                  CATEGORY_COLORS[game.category] || "text-indigo-500 bg-indigo-50"
+                                  CATEGORY_COLORS[game.category] || "text-teal-500 bg-teal-50"
                                 }`}
                               >
                                 {t(`category.${game.category}` as any)}
@@ -403,10 +403,10 @@ export default function SearchResults() {
                           setQuery(newQ);
                           setInputValue(newQ);
                         }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition-colors group"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm text-slate-600 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-600 transition-colors group"
                       >
                         <span className="capitalize font-medium">{t(`category.${cat}` as any)}</span>
-                        <span className="text-xs bg-slate-100 dark:bg-slate-800 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/40 px-2 py-0.5 rounded-full font-semibold transition-colors">
+                        <span className="text-xs bg-slate-100 dark:bg-slate-800 group-hover:bg-teal-100 dark:group-hover:bg-teal-900/40 px-2 py-0.5 rounded-full font-semibold transition-colors">
                           {count}
                         </span>
                       </button>
@@ -435,14 +435,14 @@ export default function SearchResults() {
                     navigate(`/search/?q=${encodeURIComponent(term)}`);
                     setQuery(term);
                   }}
-                  className="px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all"
+                  className="px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:border-teal-300 hover:text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-all"
                 >
                   {term}
                 </button>
               ))}
             </div>
             <Link href="/">
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-sm">
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-teal-600 text-white text-sm font-semibold hover:bg-teal-700 transition-colors shadow-sm">
                 {t('search.browseAll')}
               </span>
             </Link>

@@ -1,13 +1,13 @@
 /**
  * SessionHistory
- * Design: Gaming leaderboard aesthetic — dark card with violet accent,
+ * Design: Gaming leaderboard aesthetic — dark card with teal accent,
  * rank medals, live timer badge, and animated row reveals.
  * Shows up to 10 personal best sessions per game, sorted by duration.
  */
 
 import { useEffect, useState, useCallback } from "react";
 import { Clock, Trophy, Trash2, Timer } from "lucide-react";
-import { useT } from "@/contexts/LanguageContext";
+import { useT, useLanguage } from "@/contexts/LanguageContext";
 import {
   formatDuration,
   getSessionsForGame,
@@ -20,7 +20,7 @@ interface SessionHistoryProps {
   isPlaying: boolean;     // true once the game has been open > 5s
 }
 
-function formatDate(iso: string, t: (key: any) => string): string {
+function formatDate(iso: string, t: (key: any) => string, locale?: string): string {
   const d = new Date(iso);
   const now = new Date();
   const diffDays = Math.floor(
@@ -29,7 +29,7 @@ function formatDate(iso: string, t: (key: any) => string): string {
   if (diffDays === 0) return t('session.today');
   if (diffDays === 1) return t('session.yesterday');
   if (diffDays < 7) return `${diffDays} ${t('session.daysAgo')}`;
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return d.toLocaleDateString(locale || undefined, { month: "short", day: "numeric" });
 }
 
 function RankBadge({ rank }: { rank: number }) {
@@ -64,6 +64,7 @@ export function SessionHistory({
   isPlaying,
 }: SessionHistoryProps) {
   const t = useT();
+  const { locale } = useLanguage();
   const [sessions, setSessions] = useState<PlaySession[]>([]);
   const [cleared, setCleared] = useState(false);
 
@@ -110,7 +111,7 @@ export function SessionHistory({
     (!bestSession || currentElapsed > bestSession.duration);
 
   return (
-    <div className="mt-6 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 shadow-xl">
+    <div className="mt-6 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-slate-900 via-teal-950/30 to-slate-900 shadow-xl">
       {/* Header */}
       <div className="flex items-start justify-between gap-2 px-5 py-4 border-b border-white/10 flex-wrap">
         <div className="flex items-center gap-2.5">
@@ -119,7 +120,7 @@ export function SessionHistory({
             {t('session.title')}
           </h3>
           {sessions.length > 0 && (
-            <span className="text-xs bg-indigo-600/40 text-indigo-300 px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs bg-teal-600/40 text-teal-300 px-2 py-0.5 rounded-full font-medium">
               {sessions.length} {t('session.sessions')}
             </span>
           )}
@@ -131,7 +132,7 @@ export function SessionHistory({
               className={`flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-full transition-all ${
                 isNewBest
                   ? "bg-yellow-400/20 text-yellow-300 border border-yellow-400/30"
-                  : "bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
+                  : "bg-teal-600/20 text-teal-300 border border-teal-500/30"
               }`}
             >
               <Timer className="w-3.5 h-3.5 animate-pulse" />
@@ -164,7 +165,7 @@ export function SessionHistory({
           <Clock className="w-8 h-8 opacity-30" />
           <p className="text-sm">{t('session.noSessions')}</p>
           {isPlaying && currentElapsed >= 5 && (
-            <p className="text-xs text-indigo-400 animate-pulse">
+            <p className="text-xs text-teal-400 animate-pulse">
               ⏱ {t('session.inProgress')} — {formatDuration(currentElapsed)}
             </p>
           )}
@@ -191,7 +192,7 @@ export function SessionHistory({
                 </div>
               </div>
               <span className="text-white/40 text-xs shrink-0">
-                {formatDate(session.date, t)}
+                {formatDate(session.date, t, locale)}
               </span>
             </div>
           ))}

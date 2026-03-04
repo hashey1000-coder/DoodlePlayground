@@ -41,6 +41,21 @@
   aspect-ratio: unset !important;
   border: none !important;
 }
+
+/* Native fullscreen (via requestFullscreen API) — override Tailwind classes */
+#game-player-container:fullscreen,
+#game-player-container:-webkit-full-screen {
+  background: #000 !important;
+  border-radius: 0 !important;
+}
+
+#game-player-container:fullscreen iframe,
+#game-player-container:-webkit-full-screen iframe {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: unset !important;
+  max-height: none !important;
+}
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -87,79 +102,79 @@
 
 :root {
   --radius: 0.875rem;
-  /* Primary: vivid indigo — bold modern palette */
-  --primary: oklch(0.52 0.22 265);
+  /* Primary: vivid teal — bold modern palette */
+  --primary: oklch(0.52 0.15 175);
   --primary-foreground: oklch(1 0 0);
-  --background: oklch(0.99 0.002 270);
-  --foreground: oklch(0.13 0.02 265);
+  --background: oklch(0.99 0.002 180);
+  --foreground: oklch(0.13 0.02 175);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.02 265);
+  --card-foreground: oklch(0.13 0.02 175);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.02 265);
-  --secondary: oklch(0.96 0.012 265);
-  --secondary-foreground: oklch(0.35 0.02 265);
-  --muted: oklch(0.96 0.008 265);
-  --muted-foreground: oklch(0.50 0.02 265);
-  --accent: oklch(0.95 0.014 265);
-  --accent-foreground: oklch(0.13 0.02 265);
+  --popover-foreground: oklch(0.13 0.02 175);
+  --secondary: oklch(0.96 0.012 175);
+  --secondary-foreground: oklch(0.35 0.02 175);
+  --muted: oklch(0.96 0.008 175);
+  --muted-foreground: oklch(0.50 0.02 175);
+  --accent: oklch(0.95 0.014 175);
+  --accent-foreground: oklch(0.13 0.02 175);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.91 0.010 265);
-  --input: oklch(0.91 0.010 265);
-  --ring: oklch(0.52 0.22 265);
+  --border: oklch(0.91 0.010 175);
+  --input: oklch(0.91 0.010 175);
+  --ring: oklch(0.52 0.15 175);
   /* Gaming accent colours */
   --game-cyan: oklch(0.70 0.16 230);
   --game-pink: oklch(0.68 0.25 340);
   --game-yellow: oklch(0.87 0.18 90);
   --game-green: oklch(0.72 0.20 155);
-  --chart-1: oklch(0.52 0.22 265);
+  --chart-1: oklch(0.52 0.15 175);
   --chart-2: oklch(0.68 0.25 340);
   --chart-3: oklch(0.70 0.16 230);
   --chart-4: oklch(0.72 0.20 155);
   --chart-5: oklch(0.87 0.18 90);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.13 0.02 265);
-  --sidebar-primary: oklch(0.52 0.22 265);
+  --sidebar-foreground: oklch(0.13 0.02 175);
+  --sidebar-primary: oklch(0.52 0.15 175);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.96 0.012 265);
-  --sidebar-accent-foreground: oklch(0.13 0.02 265);
-  --sidebar-border: oklch(0.91 0.010 265);
-  --sidebar-ring: oklch(0.52 0.22 265);
+  --sidebar-accent: oklch(0.96 0.012 175);
+  --sidebar-accent-foreground: oklch(0.13 0.02 175);
+  --sidebar-border: oklch(0.91 0.010 175);
+  --sidebar-ring: oklch(0.52 0.15 175);
 }
 
 .dark {
-  --background: oklch(0.12 0.020 270);
-  --foreground: oklch(0.96 0.005 265);
-  --card: oklch(0.17 0.025 270);
-  --card-foreground: oklch(0.96 0.005 265);
-  --popover: oklch(0.17 0.025 270);
-  --popover-foreground: oklch(0.96 0.005 265);
-  --primary: oklch(0.68 0.22 265);
+  --background: oklch(0.12 0.020 180);
+  --foreground: oklch(0.96 0.005 175);
+  --card: oklch(0.17 0.025 180);
+  --card-foreground: oklch(0.96 0.005 175);
+  --popover: oklch(0.17 0.025 180);
+  --popover-foreground: oklch(0.96 0.005 175);
+  --primary: oklch(0.68 0.15 175);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.26 0.035 270);
-  --secondary-foreground: oklch(0.92 0.012 265);
-  --muted: oklch(0.26 0.035 270);
-  --muted-foreground: oklch(0.78 0.022 265);
-  --accent: oklch(0.30 0.040 270);
-  --accent-foreground: oklch(0.96 0.005 265);
+  --secondary: oklch(0.26 0.035 180);
+  --secondary-foreground: oklch(0.92 0.012 175);
+  --muted: oklch(0.26 0.035 180);
+  --muted-foreground: oklch(0.78 0.022 175);
+  --accent: oklch(0.30 0.040 180);
+  --accent-foreground: oklch(0.96 0.005 175);
   --destructive: oklch(0.68 0.25 27);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.33 0.035 270);
-  --input: oklch(0.33 0.035 270);
-  --ring: oklch(0.70 0.22 265);
+  --border: oklch(0.33 0.035 180);
+  --input: oklch(0.33 0.035 180);
+  --ring: oklch(0.70 0.15 175);
   /* Gaming accent colours (same in dark) */
   --game-cyan: oklch(0.73 0.18 230);
   --game-pink: oklch(0.72 0.28 340);
   --game-yellow: oklch(0.89 0.20 90);
   --game-green: oklch(0.75 0.22 155);
-  --sidebar: oklch(0.15 0.025 270);
-  --sidebar-foreground: oklch(0.94 0.005 265);
-  --sidebar-primary: oklch(0.68 0.22 265);
+  --sidebar: oklch(0.15 0.025 180);
+  --sidebar-foreground: oklch(0.94 0.005 175);
+  --sidebar-primary: oklch(0.68 0.15 175);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.24 0.030 270);
-  --sidebar-accent-foreground: oklch(0.94 0.005 265);
-  --sidebar-border: oklch(0.28 0.030 270);
-  --sidebar-ring: oklch(0.68 0.22 265);
+  --sidebar-accent: oklch(0.24 0.030 180);
+  --sidebar-accent-foreground: oklch(0.94 0.005 175);
+  --sidebar-border: oklch(0.28 0.030 180);
+  --sidebar-ring: oklch(0.68 0.15 175);
 }
 
 @layer base {
@@ -301,21 +316,21 @@
 /* Main hero container */
 .hero-playground {
   position: relative;
-  min-height: 280px;
+  min-height: 220px;
 }
 
 /* Animated mesh gradient background */
 .hero-mesh-bg {
   background: linear-gradient(
     -45deg,
-    #1e1b4b,
-    #312e81,
-    #3730a3,
-    #4338ca,
-    #6366f1,
-    #7c3aed,
-    #5b21b6,
-    #4c1d95
+    #042f2e,
+    #134e4a,
+    #115e59,
+    #0f766e,
+    #14b8a6,
+    #06b6d4,
+    #0e7490,
+    #155e75
   );
   background-size: 400% 400%;
   animation: heroMeshShift 16s ease infinite;
@@ -337,13 +352,13 @@
 .hero-shape-1 {
   width: 300px; height: 300px;
   top: -60px; right: -40px;
-  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  background: linear-gradient(135deg, #2dd4bf, #22d3ee);
   animation: heroShapeFloat1 20s ease-in-out infinite;
 }
 .hero-shape-2 {
   width: 200px; height: 200px;
   bottom: -50px; left: 10%;
-  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  background: linear-gradient(135deg, #22d3ee, #2dd4bf);
   animation: heroShapeFloat2 18s ease-in-out infinite;
   border-radius: 50%;
 }
@@ -390,11 +405,11 @@
 .hero-gradient-text {
   background: linear-gradient(
     90deg,
-    #c4b5fd 0%,
+    #5eead4 0%,
     #e879f9 25%,
     #fde68a 50%,
     #e879f9 75%,
-    #c4b5fd 100%
+    #5eead4 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -440,7 +455,7 @@
     animation: none !important;
   }
   .hero-gradient-text {
-    -webkit-text-fill-color: #c4b5fd;
+    -webkit-text-fill-color: #5eead4;
     background: none;
   }
 
@@ -458,13 +473,13 @@
 
 /* ── Focus ring improvements for keyboard accessibility ──────── */
 :focus-visible {
-  outline: 2px solid oklch(0.52 0.22 265);
+  outline: 2px solid oklch(0.52 0.15 175);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid oklch(0.52 0.22 265);
+  outline: 2px solid oklch(0.52 0.15 175);
   outline-offset: 3px;
 }

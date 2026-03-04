@@ -31,8 +31,8 @@ export default function Sitemap() {
   const { locale } = useLanguage();
 
   useHead({
-    title: t('seo.sitemap.title' as any),
-    description: t('seo.sitemap.description' as any),
+    title: t('seo.sitemap.title'),
+    description: t('seo.sitemap.description'),
     routePath: '/sitemap/',
   });
 
@@ -60,39 +60,39 @@ export default function Sitemap() {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-6">
           <Link href="/">
-            <span className="hover:text-indigo-600 transition-colors cursor-pointer">{t('nav.allGames')}</span>
+            <span className="hover:text-teal-600 transition-colors cursor-pointer">{t('nav.allGames')}</span>
           </Link>
           <span>/</span>
-          <span className="text-slate-600 dark:text-slate-300">{t('sitemap.title' as any)}</span>
+          <span className="text-slate-600 dark:text-slate-300">{t('sitemap.title')}</span>
         </div>
 
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
-              <Map className="w-5 h-5 text-indigo-600" />
+            <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center">
+              <Map className="w-5 h-5 text-teal-600" />
             </div>
             <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              {t('sitemap.title' as any)}
+              {t('sitemap.title')}
             </h1>
           </div>
           <p className="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
-            {t('sitemap.subtitle' as any)}
+            {t('sitemap.subtitle')}
           </p>
         </div>
 
         {/* Main Pages Section */}
         <section className="mb-10">
           <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
-            <Gamepad2 className="w-5 h-5 text-indigo-500" />
-            {t('sitemap.mainPages' as any)}
+            <Gamepad2 className="w-5 h-5 text-teal-500" />
+            {t('sitemap.mainPages')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {MAIN_PAGES.map(({ href, icon: Icon, labelKey }) => (
               <Link key={href} href={href}>
-                <div className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md transition-all cursor-pointer group">
-                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors" />
-                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                <div className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md transition-all cursor-pointer group">
+                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-teal-500 transition-colors" />
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                     {t(labelKey as any)}
                   </span>
                 </div>
@@ -104,8 +104,8 @@ export default function Sitemap() {
         {/* Games by Category */}
         <section>
           <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
-            <LayoutList className="w-5 h-5 text-indigo-500" />
-            {t('sitemap.allGames' as any)}
+            <LayoutList className="w-5 h-5 text-teal-500" />
+            {t('sitemap.allGames')}
             <span className="text-sm font-normal text-slate-400 ml-1">({GAMES.length})</span>
           </h2>
 
@@ -122,15 +122,15 @@ export default function Sitemap() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                   {games.map((game) => (
                     <Link key={game.slug} href={`/play/${game.slug}/`}>
-                      <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/30 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-950/30 transition-colors cursor-pointer group">
                         <span
                           className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 ${
                             CATEGORY_COLORS[game.category]?.includes('bg-')
-                              ? CATEGORY_COLORS[game.category].split(' ').find((c: string) => c.startsWith('bg-')) || 'bg-indigo-400'
-                              : 'bg-indigo-400'
+                              ? CATEGORY_COLORS[game.category].split(' ').find((c: string) => c.startsWith('bg-')) || 'bg-teal-400'
+                              : 'bg-teal-400'
                           }`}
                         />
-                        <span className="text-sm text-slate-600 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
+                        <span className="text-sm text-slate-600 dark:text-slate-300 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors truncate">
                           {gt(game).title}
                         </span>
                       </div>
@@ -145,9 +145,9 @@ export default function Sitemap() {
         {/* Back link */}
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
           <Link href="/">
-            <span className="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-700 font-medium transition-colors cursor-pointer">
+            <span className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
-              {t('common.backToHome' as any)}
+              {t('common.backToHome')}
             </span>
           </Link>
         </div>

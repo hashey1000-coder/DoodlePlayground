@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="480" height="270">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0984e3"/>
+      <stop offset="100%" style="stop-color:#74b9ff"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+    <!-- Subtle pattern overlay -->
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="white" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="480" height="270" fill="url(#bg)" rx="12"/>
+
+  <!-- Dot pattern overlay -->
+  <rect width="480" height="270" fill="url(#dots)" rx="12"/>
+
+  <!-- Decorative circles -->
+  <circle cx="400" cy="50" r="80" fill="white" opacity="0.05"/>
+  <circle cx="80" cy="220" r="60" fill="white" opacity="0.05"/>
+
+  <!-- Emoji -->
+  <text x="240" y="125" text-anchor="middle" font-size="72" filter="url(#shadow)">📝</text>
+
+  <!-- Title -->
+  <text x="240" y="185" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="white" filter="url(#shadow)">Word Coach</text>
+
+  <!-- Play badge -->
+  <rect x="190" y="205" width="100" height="32" rx="16" fill="white" opacity="0.2"/>
+  <text x="240" y="227" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="white">▶ Play</text>
+
+  <!-- Google colors bar at bottom -->
+  <rect x="0" y="262" width="120" height="8" fill="#4285F4" rx="0"/>
+  <rect x="120" y="262" width="120" height="8" fill="#DB4437"/>
+  <rect x="240" y="262" width="120" height="8" fill="#F4B400"/>
+  <rect x="360" y="262" width="120" height="8" fill="#0F9D58"/>
+</svg>

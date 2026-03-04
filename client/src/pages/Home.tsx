@@ -28,10 +28,12 @@ function getLikeCount(slug: string): number {
       const parsed = JSON.parse(stored);
       return parsed.likes || 0;
     }
-    // Seed from game data when no user votes exist
+    // Seed from game data when no user votes exist (matches PlayGame formula)
     const game = GAMES.find((g) => g.slug === slug);
     if (game) {
-      return Math.max(Math.round(game.rating * (game.playCount || 50) / 100), 1);
+      let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
+      const jitter = (Math.abs(h) % 30) - 15;
+      return Math.max(Math.round(40 + (game.rating / 5) * Math.sqrt(game.playCount / 100) + jitter), 5);
     }
     return 0;
   } catch {
@@ -239,7 +241,7 @@ export default function Home() {
           <div className="absolute inset-0 hero-dot-grid opacity-[0.07]" aria-hidden="true" />
 
           {/* Content — centered single column */}
-          <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-10 lg:py-16 lg:px-14">
+          <div className="relative z-10 flex flex-col items-center text-center p-5 md:p-8 lg:py-10 lg:px-14">
             {/* Badge */}
             <div className="hero-text-enter inline-flex items-center gap-2 mb-4 md:mb-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 shadow-lg shadow-black/5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
@@ -303,8 +305,8 @@ export default function Home() {
         {recentGames.length > 0 && (
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
-                <Clock className="w-4 h-4 text-indigo-600" />
+              <div className="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center">
+                <Clock className="w-4 h-4 text-teal-600" />
               </div>
               <h2 className="text-base font-bold text-slate-800 dark:text-slate-100 tracking-tight">{t('home.recentlyPlayed')}</h2>
               <span className="text-xs text-slate-400 dark:text-slate-500 font-medium ml-1">— {t('home.recentlyPlayedHint')}</span>
@@ -315,8 +317,8 @@ export default function Home() {
                   <Link href={`/play/${game.slug}/`} className="block h-full">
                     <div className="h-full flex gap-3 items-center p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm
                       transition-all duration-300 ease-out
-                      hover:shadow-lg hover:shadow-indigo-400/15 dark:hover:shadow-indigo-600/20
-                      hover:border-indigo-300 dark:hover:border-indigo-600">
+                      hover:shadow-lg hover:shadow-teal-400/15 dark:hover:shadow-teal-600/20
+                      hover:border-teal-300 dark:hover:border-teal-600">
                       {/* Thumbnail */}
                       <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
                         <BlurImage
@@ -333,7 +335,7 @@ export default function Home() {
                         <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-tight truncate mb-1">
                           {gt(game).title}
                         </h3>
-                        <span className={`inline-block w-fit text-[10px] font-medium px-2 py-0.5 rounded-full capitalize mb-1.5 ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
+                        <span className={`inline-block w-fit text-[10px] font-medium px-2 py-0.5 rounded-full capitalize mb-1.5 ${CATEGORY_COLORS[game.category] || "text-teal-600 bg-teal-50"}`}>
                           {t(`category.${game.category}` as any)}
                         </span>
                         <div className="flex items-center gap-2">
@@ -380,7 +382,7 @@ export default function Home() {
                 placeholder={t('home.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 transition-all"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-teal-300 focus:ring-2 focus:ring-teal-100 transition-all"
               />
             </form>
 
@@ -425,7 +427,7 @@ export default function Home() {
                 onClick={() => setShowTagPanel((v) => !v)}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                   showTagPanel || activeTags.length > 0
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                    ? "bg-teal-600 text-white shadow-md shadow-teal-200 dark:shadow-teal-900"
                     : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
                 }`}
               >
@@ -449,7 +451,7 @@ export default function Home() {
               data-category-active={activeCategory === "all" ? "true" : undefined}
               className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                 activeCategory === "all"
-                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                  ? "bg-teal-600 text-white shadow-md shadow-teal-200 dark:shadow-teal-900"
                   : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
               }`}
             >
@@ -465,7 +467,7 @@ export default function Home() {
                 data-category-active={activeCategory === cat.id ? "true" : undefined}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                    ? "bg-teal-600 text-white shadow-md shadow-teal-200 dark:shadow-teal-900"
                     : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
                 }`}
               >
@@ -481,7 +483,7 @@ export default function Home() {
           <div className="mb-4 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <Tag className="w-4 h-4 text-indigo-600" />
+                <Tag className="w-4 h-4 text-teal-600" />
                 <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{t('home.filterByTags')}</span>
                 <span className="text-xs text-slate-400">— {t('home.tagHint')}</span>
               </div>
@@ -512,8 +514,8 @@ export default function Home() {
                     onClick={() => toggleTag(tag.id)}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
-                        : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 border border-slate-200 dark:border-slate-700 hover:border-indigo-200"
+                        ? "bg-teal-600 text-white shadow-md shadow-teal-200"
+                        : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-600 border border-slate-200 dark:border-slate-700 hover:border-teal-200"
                     }`}
                   >
                     <span>{tag.emoji}</span>
@@ -541,7 +543,7 @@ export default function Home() {
                 <button
                   key={tagId}
                   onClick={() => toggleTag(tagId)}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-teal-600 text-white hover:bg-teal-700 transition-colors"
                 >
                   {tag.emoji} {t(tag.labelKey as any)}
                   <X className="w-3 h-3 ml-0.5" />
@@ -564,7 +566,7 @@ export default function Home() {
             <div className="relative ml-auto" ref={sortMenuRef}>
               <button
                 onClick={() => setShowSortMenu((v) => !v)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-300 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600 transition-all shadow-sm"
               >
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 <span className="font-medium">
@@ -589,13 +591,13 @@ export default function Home() {
                       onClick={() => { setSortBy(opt.id); localStorage.setItem('doodle-sort-by', opt.id); setShowSortMenu(false); }}
                       className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
                         sortBy === opt.id
-                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 font-semibold'
+                          ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 font-semibold'
                           : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}
                     >
                       <span>{opt.icon}</span>
                       <span>{opt.label}</span>
-                      {sortBy === opt.id && <span className="ml-auto text-indigo-500">✓</span>}
+                      {sortBy === opt.id && <span className="ml-auto text-teal-500">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -625,213 +627,286 @@ export default function Home() {
           {/* Link to full leaderboard */}
           {activeCategory === "top-rated" && (
             <Link href="/top-rated/">
-              <span className="text-[11px] bg-indigo-50 text-indigo-600 border border-indigo-100 px-2 py-0.5 rounded-full font-medium hover:bg-indigo-100 transition-colors cursor-pointer">
+              <span className="text-[11px] bg-teal-50 text-teal-600 border border-teal-100 px-2 py-0.5 rounded-full font-medium hover:bg-teal-100 transition-colors cursor-pointer">
                 {t('home.viewLeaderboard')} →
               </span>
             </Link>
           )}
         </div>
 
-        {/* Game Grid — featured first two + smaller rest */}
+        {/* Game Grid — Bento magazine layout */}
         {filteredGames.length > 0 ? (
-          <div className="space-y-4">
-            {/* Featured row: first 2 games large */}
-            {filteredGames.length >= 2 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {filteredGames.slice(0, 2).map((game, index) => {
-                  const likeCount = getLikeCount(game.slug);
-                  return (
-                    <AnimatedCard key={game.slug} index={index} className="h-full">
-                    <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
-                      <Link href={`/play/${game.slug}/`} className="block h-full">
-                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm
-                          transition-all duration-300 ease-out
-                          hover:shadow-xl hover:shadow-indigo-400/20 dark:hover:shadow-indigo-600/25
-                          hover:border-indigo-300 dark:hover:border-indigo-600
-                          h-full flex flex-col sm:flex-row">
-                          {/* New ribbon */}
-                          {game.isNew && activeCategory !== "top-rated" && (
-                            <div className="absolute top-0 left-0 z-10">
-                              <div className="bg-gradient-to-r from-emerald-500 to-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
-                                {t('common.new').toUpperCase()}
-                              </div>
-                            </div>
-                          )}
-                          <div className="sm:w-1/2 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 dark:bg-slate-800 relative shrink-0">
-                            <BlurImage
-                              src={game.thumbnail}
-                              alt={gt(game).title}
-                              priority={true}
-                              className="group-hover:scale-105 transition-transform duration-500 object-cover w-full h-full"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <div className="w-14 h-14 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                                <Play className="w-6 h-6 text-indigo-600 fill-indigo-600 ml-0.5" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="p-4 sm:p-5 flex-1 flex flex-col justify-center">
-                            <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 leading-tight mb-2">
-                              {gt(game).title}
-                            </h3>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 leading-relaxed">
-                              {gt(game).description}
-                            </p>
-                            <div className="flex items-center gap-2 flex-wrap mb-3">
-                              <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg capitalize ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
-                                {t(`category.${game.category}` as any)}
-                              </span>
-                              {game.difficulty && (
-                                <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-lg ${
-                                  game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
-                                  game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
-                                  'bg-red-50 text-red-600'
-                                }`}>
-                                  {t(`difficulty.${game.difficulty}` as any)}
-                                </span>
-                              )}
-                              {activeCategory === "top-rated" && likeCount > 0 && (
-                                <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-lg bg-amber-50 text-amber-700">
-                                  <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-3 mt-auto">
-                              <div className="flex items-center gap-1">
-                                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                                <span className="text-sm font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
-                              </div>
-                              <span className="text-xs text-slate-400">•</span>
-                              <span className="text-xs text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
-                            </div>
+          <div className="space-y-5">
+            {/* ── Hero spotlight: first game ── */}
+            {(() => {
+              const game = filteredGames[0];
+              const likeCount = getLikeCount(game.slug);
+              return (
+                <AnimatedCard key={`hero-${game.slug}`} index={0}>
+                  <TiltCard className="group relative" maxTilt={4} scale={1.01} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                    <Link href={`/play/${game.slug}/`} className="block">
+                      <div className="relative overflow-hidden rounded-3xl h-[260px] sm:h-[320px] lg:h-[380px] bg-slate-900 ring-1 ring-white/10">
+                        <BlurImage
+                          src={game.thumbnail}
+                          alt={gt(game).title}
+                          priority={true}
+                          aspectClass=""
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+                        {/* Play button on hover */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <div className="w-18 h-18 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/25 shadow-2xl shadow-black/40 scale-90 group-hover:scale-100 transition-transform duration-300">
+                            <Play className="w-8 h-8 text-white fill-white ml-1" />
                           </div>
                         </div>
-                      </Link>
-                      <button
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
-                        className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm ${
-                          isFavourite(game.slug) ? "bg-rose-500 text-white" : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400 opacity-0 group-hover:opacity-100"
-                        }`}
-                        aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
-                      >
-                        <Heart className={`w-4 h-4 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
-                      </button>
-                      {activeCategory === "top-rated" && index < 3 && (
-                        <div className="absolute top-3 left-3 z-20 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-md"
-                          style={{ background: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : "#CD7F32", color: index === 0 ? "#7a5c00" : index === 1 ? "#4a4a4a" : "#5a3000" }}>
-                          {index + 1}
-                        </div>
-                      )}
-                    </TiltCard>
-                  </AnimatedCard>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Rest of games: smaller uniform grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
-              {filteredGames.slice(filteredGames.length >= 2 ? 2 : 0).map((game, i) => {
-                const index = i + 2;
-                const likeCount = getLikeCount(game.slug);
-                const isAboveFold = index < 8;
-                return (
-                  <AnimatedCard key={game.slug} index={index % 8} className="h-full">
-                  <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
-                    <Link href={`/play/${game.slug}/`} className="block h-full">
-                      <div className="h-full">
-                        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm
-                          transition-all duration-300 ease-out
-                          hover:scale-[1.02] hover:-translate-y-1
-                          hover:shadow-lg hover:shadow-indigo-400/15 dark:hover:shadow-indigo-600/20
-                          hover:border-indigo-300 dark:hover:border-indigo-600
-                          h-full flex flex-col">
-                          {game.isNew && activeCategory !== "top-rated" && (
-                            <div className="absolute top-0 left-0 z-10">
-                              <div className="bg-gradient-to-r from-emerald-500 to-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-2xl shadow-sm">
-                                {t('common.new').toUpperCase()}
-                              </div>
-                            </div>
-                          )}
-                          <div className="aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                            <BlurImage
-                              src={game.thumbnail}
-                              alt={gt(game).title}
-                              priority={isAboveFold}
-                              className="group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <div className="w-10 h-10 rounded-full bg-white/95 shadow-xl flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                                <Play className="w-4 h-4 text-indigo-600 fill-indigo-600 ml-0.5" />
-                              </div>
-                            </div>
+                        {/* New ribbon */}
+                        {game.isNew && activeCategory !== "top-rated" && (
+                          <div className="absolute top-4 left-4 z-10">
+                            <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/30">
+                              {t('common.new').toUpperCase()}
+                            </span>
                           </div>
-                          <div className="p-2.5 flex-1 flex flex-col">
-                            <h3 className="text-xs font-semibold text-slate-800 dark:text-slate-100 leading-tight line-clamp-2 mb-1">
-                              {gt(game).title}
-                            </h3>
-                            <div className="flex items-center gap-1 flex-wrap mb-1">
-                              <span className={`inline-block text-[10px] font-medium px-1.5 py-0.5 rounded-md capitalize ${CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50"}`}>
-                                {t(`category.${game.category}` as any)}
+                        )}
+                        {/* Content overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 lg:p-9">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/50">⭐ {t('home.featured')}</span>
+                          </div>
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-2 leading-tight drop-shadow-lg">
+                            {gt(game).title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-white/55 line-clamp-2 max-w-lg mb-4 leading-relaxed">
+                            {gt(game).description}
+                          </p>
+                          <div className="flex items-center gap-2.5 flex-wrap">
+                            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/15 backdrop-blur-sm text-white/90 capitalize border border-white/10">
+                              {t(`category.${game.category}` as any)}
+                            </span>
+                            {game.difficulty && (
+                              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-lg backdrop-blur-sm border border-white/10 ${
+                                game.difficulty === 'easy' ? 'bg-green-500/20 text-green-300' :
+                                game.difficulty === 'medium' ? 'bg-amber-500/20 text-amber-300' :
+                                'bg-red-500/20 text-red-300'
+                              }`}>
+                                {t(`difficulty.${game.difficulty}` as any)}
                               </span>
-                              {game.difficulty && (
-                                <span className={`inline-block text-[9px] font-semibold px-1.5 py-0.5 rounded-md ${
-                                  game.difficulty === 'easy' ? 'bg-green-50 text-green-700' :
-                                  game.difficulty === 'medium' ? 'bg-amber-50 text-amber-700' :
-                                  'bg-red-50 text-red-600'
-                                }`}>
-                                  {t(`difficulty.${game.difficulty}` as any)}
-                                </span>
-                              )}
-                              {activeCategory === "top-rated" && likeCount > 0 && (
-                                <span className="inline-flex items-center gap-0.5 text-[9px] font-semibold px-1 py-0.5 rounded-md bg-amber-50 text-amber-700">
-                                  <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
-                                </span>
-                              )}
-                            </div>
-                            {activeTags.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {game.tags.filter((tag) => activeTags.includes(tag)).map((tag) => {
-                                  const tagInfo = ALL_TAGS.find((at) => at.id === tag);
-                                  return (
-                                    <span key={tag} className="text-[8px] font-medium px-1 py-0.5 rounded bg-indigo-50 text-indigo-600">
-                                      {tagInfo?.emoji} {tagInfo ? t(tagInfo.labelKey as any) : tag}
-                                    </span>
-                                  );
-                                })}
-                              </div>
                             )}
-                            <div className="flex items-center justify-between mt-auto pt-1">
-                              <div className="flex items-center gap-0.5">
-                                <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                                <span className="text-[10px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
-                              </div>
-                              <span className="text-[9px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)}</span>
+                            <span className="text-white/30">|</span>
+                            <div className="flex items-center gap-1">
+                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                              <span className="text-sm font-bold text-white">{game.rating.toFixed(1)}</span>
                             </div>
+                            <span className="text-xs text-white/40">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
+                            {activeCategory === "top-rated" && likeCount > 0 && (
+                              <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 border border-white/10">
+                                <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                     </Link>
                     <button
                       onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
-                      className={`absolute top-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm opacity-0 group-hover:opacity-100 ${
-                        isFavourite(game.slug) ? "bg-rose-500 text-white !opacity-100" : "bg-white/90 dark:bg-slate-800/90 text-slate-400 hover:text-rose-400"
+                      className={`absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg ${
+                        isFavourite(game.slug) ? "bg-rose-500 text-white" : "bg-black/30 backdrop-blur-md text-white/70 hover:text-rose-400 border border-white/15 opacity-0 group-hover:opacity-100"
                       }`}
                       aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
                     >
-                      <Heart className={`w-3 h-3 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                      <Heart className={`w-4 h-4 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
                     </button>
-                    {activeCategory === "top-rated" && index < 3 && (
-                      <div className="absolute top-2 left-2 z-20 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"
-                        style={{ background: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : "#CD7F32", color: index === 0 ? "#7a5c00" : index === 1 ? "#4a4a4a" : "#5a3000" }}>
-                        {index + 1}
+                    {activeCategory === "top-rated" && (
+                      <div className="absolute top-4 left-4 z-20 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shadow-lg"
+                        style={{ background: "#FFD700", color: "#7a5c00" }}>
+                        1
                       </div>
                     )}
                   </TiltCard>
                 </AnimatedCard>
-                );
-              })}
-            </div>
+              );
+            })()}
+
+            {/* ── Bento section: games 2–6, asymmetric grid ── */}
+            {filteredGames.length > 1 && (
+              <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[200px]">
+                {filteredGames.slice(1, 6).map((game, i) => {
+                  const globalIndex = i + 1;
+                  const likeCount = getLikeCount(game.slug);
+                  const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
+                  return (
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'col-span-2 row-span-2' : ''}`}>
+                      <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                        <Link href={`/play/${game.slug}/`} className="block h-full">
+                          <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">
+                            <BlurImage
+                              src={game.thumbnail}
+                              alt={gt(game).title}
+                              priority={true}
+                              aspectClass=""
+                              className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-600"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                            {/* Play overlay */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className={`rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-xl scale-75 group-hover:scale-100 transition-transform duration-300 ${isLarge ? 'w-14 h-14' : 'w-10 h-10'}`}>
+                                <Play className={`text-white fill-white ml-0.5 ${isLarge ? 'w-6 h-6' : 'w-4 h-4'}`} />
+                              </div>
+                            </div>
+                            {/* New ribbon */}
+                            {game.isNew && activeCategory !== "top-rated" && (
+                              <div className="absolute top-2.5 left-2.5 z-10">
+                                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white shadow-md">
+                                  {t('common.new').toUpperCase()}
+                                </span>
+                              </div>
+                            )}
+                            {/* Content overlay */}
+                            <div className={`absolute bottom-0 left-0 right-0 ${isLarge ? 'p-4 sm:p-5' : 'p-3'}`}>
+                              <h3 className={`font-bold text-white leading-tight mb-1.5 drop-shadow-md ${isLarge ? 'text-base sm:text-lg' : 'text-sm line-clamp-1'}`}>
+                                {gt(game).title}
+                              </h3>
+                              {isLarge && (
+                                <p className="text-xs text-white/50 line-clamp-2 mb-2.5 leading-relaxed">
+                                  {gt(game).description}
+                                </p>
+                              )}
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className={`font-medium rounded-md capitalize bg-white/15 backdrop-blur-sm text-white/80 border border-white/10 ${isLarge ? 'text-[11px] px-2 py-0.5' : 'text-[9px] px-1.5 py-0.5'}`}>
+                                  {t(`category.${game.category}` as any)}
+                                </span>
+                                <div className="flex items-center gap-0.5">
+                                  <Star className={`fill-amber-400 text-amber-400 ${isLarge ? 'w-3 h-3' : 'w-2.5 h-2.5'}`} />
+                                  <span className={`font-bold text-white ${isLarge ? 'text-xs' : 'text-[10px]'}`}>{game.rating.toFixed(1)}</span>
+                                </div>
+                                {activeCategory === "top-rated" && likeCount > 0 && (
+                                  <span className="inline-flex items-center gap-0.5 text-[9px] font-semibold px-1 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-white/10">
+                                    <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                        <button
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
+                          className={`absolute top-2.5 right-2.5 z-20 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 shadow-md ${
+                            isFavourite(game.slug) ? "bg-rose-500 text-white" : "bg-black/30 backdrop-blur-sm text-white/70 hover:text-rose-400 border border-white/15 opacity-0 group-hover:opacity-100"
+                          }`}
+                          aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
+                        >
+                          <Heart className={`w-3.5 h-3.5 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                        </button>
+                        {activeCategory === "top-rated" && globalIndex < 3 && (
+                          <div className="absolute top-2.5 left-2.5 z-20 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"
+                            style={{ background: globalIndex === 1 ? "#C0C0C0" : "#CD7F32", color: globalIndex === 1 ? "#4a4a4a" : "#5a3000" }}>
+                            {globalIndex + 1}
+                          </div>
+                        )}
+                      </TiltCard>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* ── Main grid: games 7+ — uniform overlay cards ── */}
+            {filteredGames.length > 6 && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+                {filteredGames.slice(6).map((game, i) => {
+                  const globalIndex = i + 6;
+                  const likeCount = getLikeCount(game.slug);
+                  const isAboveFold = globalIndex < 14;
+                  return (
+                    <AnimatedCard key={game.slug} index={globalIndex % 10}>
+                      <TiltCard className="group relative h-full" onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
+                        <Link href={`/play/${game.slug}/`} className="block h-full">
+                          <div className={`relative overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-slate-200 dark:ring-white/10
+                            transition-all duration-300 ease-out
+                            hover:ring-teal-400/50 dark:hover:ring-teal-500/40
+                            hover:shadow-lg hover:shadow-teal-500/10 dark:hover:shadow-teal-500/20
+                            h-full aspect-[3/4]`}>
+                            <BlurImage
+                              src={game.thumbnail}
+                              alt={gt(game).title}
+                              priority={isAboveFold}
+                              aspectClass=""
+                              className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                            {/* Play overlay */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-xl scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <Play className="w-4.5 h-4.5 text-white fill-white ml-0.5" />
+                              </div>
+                            </div>
+                            {/* New ribbon */}
+                            {game.isNew && activeCategory !== "top-rated" && (
+                              <div className="absolute top-2 left-2 z-10">
+                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-500 text-white shadow-sm">
+                                  {t('common.new').toUpperCase()}
+                                </span>
+                              </div>
+                            )}
+                            {/* Content overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 p-3">
+                              <h3 className="font-bold text-white leading-tight mb-1 drop-shadow-md text-xs line-clamp-2">
+                                {gt(game).title}
+                              </h3>
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-md capitalize bg-white/15 text-white/75 border border-white/10">
+                                  {t(`category.${game.category}` as any)}
+                                </span>
+                                {game.difficulty && (
+                                  <span className={`text-[8px] font-semibold px-1 py-0.5 rounded-md border border-white/10 ${
+                                    game.difficulty === 'easy' ? 'bg-green-500/20 text-green-300' :
+                                    game.difficulty === 'medium' ? 'bg-amber-500/20 text-amber-300' :
+                                    'bg-red-500/20 text-red-300'
+                                  }`}>
+                                    {t(`difficulty.${game.difficulty}` as any)}
+                                  </span>
+                                )}
+                                <div className="flex items-center gap-0.5 ml-auto">
+                                  <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                                  <span className="text-[10px] font-bold text-white">{game.rating.toFixed(1)}</span>
+                                </div>
+                              </div>
+                              {activeTags.length > 0 && (
+                                <div className="flex flex-wrap gap-1 mt-1.5">
+                                  {game.tags.filter((tag) => activeTags.includes(tag)).map((tag) => {
+                                    const tagInfo = ALL_TAGS.find((at) => at.id === tag);
+                                    return (
+                                      <span key={tag} className="text-[8px] font-medium px-1 py-0.5 rounded bg-white/10 text-white/60 border border-white/10">
+                                        {tagInfo?.emoji} {tagInfo ? t(tagInfo.labelKey as any) : tag}
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </Link>
+                        <button
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavourite(game.slug); }}
+                          className={`absolute top-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm ${
+                            isFavourite(game.slug) ? "bg-rose-500 text-white !opacity-100" : "bg-black/30 backdrop-blur-sm text-white/70 hover:text-rose-400 border border-white/15 opacity-0 group-hover:opacity-100"
+                          }`}
+                          aria-label={isFavourite(game.slug) ? t('home.removeFromFavourites' as any) : t('home.addToFavourites' as any)}
+                        >
+                          <Heart className={`w-3 h-3 ${isFavourite(game.slug) ? "fill-white" : ""}`} />
+                        </button>
+                        {activeCategory === "top-rated" && globalIndex < 3 && (
+                          <div className="absolute top-2 left-2 z-20 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"
+                            style={{ background: globalIndex === 0 ? "#FFD700" : globalIndex === 1 ? "#C0C0C0" : "#CD7F32", color: globalIndex === 0 ? "#7a5c00" : globalIndex === 1 ? "#4a4a4a" : "#5a3000" }}>
+                            {globalIndex + 1}
+                          </div>
+                        )}
+                      </TiltCard>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
+            )}
           </div>
         ) : activeCategory === "favourites" ? (
           <div className="text-center py-16">
@@ -858,7 +933,7 @@ export default function Home() {
             </p>
             <button
               onClick={clearTags}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full text-sm font-medium hover:bg-teal-700 transition-colors"
             >
               <X className="w-4 h-4" />
               {t('home.clearTagFilters')}

@@ -17,7 +17,7 @@ const SEGMENT_COLORS = [
   "#EC4899", // Pink
   "#10B981", // Emerald
   "#F59E0B", // Amber
-  "#6366F1", // Indigo
+  "#14B8A6", // Teal
   "#EF4444", // Rose
 ];
 
@@ -206,7 +206,7 @@ export default function SpinWheel({ onClose }: SpinWheelProps) {
     >
       <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-600 px-6 py-4 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold text-white">🎰 {t('spin.title')}</h2>
             <p className="text-white/70 text-xs mt-0.5">{t('spin.subtitle')}</p>
@@ -252,11 +252,11 @@ export default function SpinWheel({ onClose }: SpinWheelProps) {
 
           {/* Winner display */}
           {winner ? (
-            <div className="bg-gradient-to-r from-indigo-50 to-indigo-50 border border-indigo-100 rounded-2xl p-4 mb-4 text-center">
-              <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-1">🎉 {t('spin.youGot')}</p>
+            <div className="bg-gradient-to-r from-teal-50 to-teal-50 border border-teal-100 rounded-2xl p-4 mb-4 text-center">
+              <p className="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-1">🎉 {t('spin.youGot')}</p>
               <p className="text-lg font-bold text-slate-900 mb-1">{gt(winner).title}</p>
               <div className="flex items-center justify-center gap-2">
-                <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-medium capitalize">{t(`category.${winner.category}` as any)}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-700 font-medium capitalize">{t(`category.${winner.category}` as any)}</span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">{t(`difficulty.${winner.difficulty}` as any)}</span>
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function SpinWheel({ onClose }: SpinWheelProps) {
                 </button>
                 <button
                   onClick={handlePlay}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-bold text-sm hover:from-indigo-600 hover:to-indigo-700 transition-all shadow-lg shadow-indigo-200 active:scale-95"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold text-sm hover:from-teal-600 hover:to-teal-700 transition-all shadow-lg shadow-teal-200 active:scale-95"
                 >
                   <Play className="w-4 h-4 fill-white" />
                   {t('spin.playNow')}
@@ -291,7 +291,7 @@ export default function SpinWheel({ onClose }: SpinWheelProps) {
               <button
                 onClick={spin}
                 disabled={spinning}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-bold text-base hover:from-indigo-600 hover:to-indigo-700 transition-all shadow-lg shadow-indigo-200 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold text-base hover:from-teal-600 hover:to-teal-700 transition-all shadow-lg shadow-teal-200 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {spinning ? t('spin.spinning') : `🎰 ${t('spin.spin')}`}
               </button>

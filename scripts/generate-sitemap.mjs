@@ -28,7 +28,7 @@ const slugs = slugMatches.map((m) => m[1]);
 // ---------------------------------------------------------------------------
 
 /** Site base URL — update when deploying */
-const BASE_URL = 'https://doodlegameshub.com';
+const BASE_URL = 'https://doodleplayground.com';
 
 /**
  * All supported locales.  Must stay in sync with SUPPORTED_LOCALES in

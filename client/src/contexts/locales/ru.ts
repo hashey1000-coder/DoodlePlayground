@@ -237,6 +237,7 @@ export const RU: TranslationMap = {
   'allGames.sortHighestRated': 'Лучшие Оценки',
   'allGames.sortNewest': 'Новые',
   'allGames.gamesCount': 'игр',
+  'allGames.gameCount': 'игра',
   'search.sort': 'Сортировка',
   'search.sortRelevance': 'Релевантность',
   'search.sortMostPlayed': 'Популярные',
@@ -540,6 +541,17 @@ export const RU: TranslationMap = {
   'seo.contact.title': 'Контакты — Doodle Playground',
   'seo.privacy.title': 'Политика Конфиденциальности — Doodle Playground',
   'seo.notFound.title': 'Страница Не Найдена — Doodle Playground',
+  // Sitemap & game extras
+  'sitemap.title': 'Карта сайта',
+  'sitemap.subtitle': 'Полный указатель всех страниц Doodle Playground.',
+  'sitemap.mainPages': 'Главные страницы',
+  'sitemap.allGames': 'Все игры',
+  'game.externalOnlyDesc': 'Эта игра размещена на Google и должна быть запущена на их сайте.',
+  'game.openOnGoogle': 'Играть на Google',
+  'game.seconds': 'с',
+  'common.backToHome': 'Вернуться на главную',
+  'seo.sitemap.title': 'Карта сайта — Doodle Playground',
+  'seo.sitemap.description': 'Просмотрите все страницы Doodle Playground — игры, категории и многое другое.',
 };
 
 // Arabic

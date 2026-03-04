@@ -237,6 +237,7 @@ export const ES: TranslationMap = {
   'allGames.sortHighestRated': 'Mejor Valorados',
   'allGames.sortNewest': 'Más Nuevos',
   'allGames.gamesCount': 'juegos',
+  'allGames.gameCount': 'juego',
   'search.sort': 'Ordenar',
   'search.sortRelevance': 'Relevancia',
   'search.sortMostPlayed': 'Más Jugados',
@@ -540,6 +541,17 @@ export const ES: TranslationMap = {
   'seo.contact.title': 'Contacto — Doodle Playground',
   'seo.privacy.title': 'Política de Privacidad — Doodle Playground',
   'seo.notFound.title': 'Página No Encontrada — Doodle Playground',
+  // Sitemap & game extras
+  'sitemap.title': 'Mapa del Sitio',
+  'sitemap.subtitle': 'Un índice completo de todas las páginas de Doodle Playground.',
+  'sitemap.mainPages': 'Páginas Principales',
+  'sitemap.allGames': 'Todos los Juegos',
+  'game.externalOnlyDesc': 'Este juego está alojado en Google y debe jugarse en su sitio web.',
+  'game.openOnGoogle': 'Jugar en Google',
+  'game.seconds': 's',
+  'common.backToHome': 'Volver al Inicio',
+  'seo.sitemap.title': 'Mapa del Sitio — Doodle Playground',
+  'seo.sitemap.description': 'Explora todas las páginas de Doodle Playground — juegos, categorías y más.',
 };
 
 // French

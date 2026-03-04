@@ -7,7 +7,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link, useLocation } from "wouter";
 import {
-  Joystick, Shuffle, LayoutList, Search, Baby, X, Trophy,
+  Gamepad2, Shuffle, LayoutList, Search, Baby, X, Trophy,
   CalendarDays, Sun, Moon, Menu, Home, Info, Heart, Globe, Check, Mail, Shield,
 } from "lucide-react";
 const SpinWheel = lazy(() => import("@/components/SpinWheel"));
@@ -67,15 +67,15 @@ function LanguageSelector() {
               <button
                 key={loc.code}
                 onClick={() => { setLocale(loc.code); setOpen(false); }}
-                className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-950/50 ${
+                className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors hover:bg-teal-50 dark:hover:bg-teal-950/50 ${
                   locale === loc.code
-                    ? "text-indigo-600 dark:text-indigo-400 font-medium"
+                    ? "text-teal-600 dark:text-teal-400 font-medium"
                     : "text-slate-700 dark:text-slate-300"
                 }`}
               >
                 <span className="text-base leading-none w-5 shrink-0">{loc.flag}</span>
                 <span className="flex-1 text-left">{loc.name}</span>
-                {locale === loc.code && <Check className="w-3.5 h-3.5 shrink-0 text-indigo-500" />}
+                {locale === loc.code && <Check className="w-3.5 h-3.5 shrink-0 text-teal-500" />}
               </button>
             ))}
           </div>
@@ -170,36 +170,73 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800">
-        {/* Top tier: Logo + Search + Utility */}
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="h-12 flex items-center justify-between gap-4">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6">
+          <div className="h-16 flex items-center gap-3 md:gap-5">
             {/* Logo */}
             <Link href="/">
               <div className="flex items-center gap-2 group shrink-0">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-200/50 group-hover:shadow-indigo-300/60 transition-shadow">
-                  <Joystick className="w-4 h-4 text-white" />
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-md shadow-teal-200/50 group-hover:shadow-teal-300/60 transition-shadow">
+                  <Gamepad2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-slate-900 dark:text-white text-[15px] tracking-tight">
-                  <span className="text-indigo-600">Doodle</span>
+                <span className="font-bold text-slate-900 dark:text-white text-base tracking-tight">
+                  <span className="text-teal-600">Doodle</span>
                   <span>Playground</span>
                 </span>
               </div>
             </Link>
 
-            {/* Center: Search bar (desktop) */}
-            <form onSubmit={handleSearch} className="flex-1 max-w-md hidden md:flex relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            {/* Divider */}
+            <div className="hidden md:block w-px h-5 bg-slate-200 dark:bg-slate-700 mx-1.5" />
+
+            {/* Nav links (desktop) */}
+            <nav className="hidden md:flex items-center gap-1 shrink-0">
+              <Link href="/" onClick={markAllSeen} aria-label={t('nav.allGames')}>
+                <span className={`relative text-sm font-medium transition-colors px-3 py-1.5 rounded-lg inline-flex items-center gap-1.5 whitespace-nowrap ${isActive('/') ? 'text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  {t('nav.allGames')}
+                  {unseenCount > 0 && (
+                    <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold leading-none animate-pulse">
+                      {unseenCount}
+                    </span>
+                  )}
+                </span>
+              </Link>
+              <Link href="/games/" aria-label={t('nav.aToZ')}>
+                <span className={`flex items-center gap-1.5 text-sm font-medium transition-colors px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive('/games/') ? 'text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-teal-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  <LayoutList className="w-3.5 h-3.5 shrink-0" />
+                  {t('nav.aToZ')}
+                </span>
+              </Link>
+              <Link href="/daily/" aria-label={t('nav.daily')}>
+                <span className={`flex items-center gap-1.5 text-sm font-medium transition-colors px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive('/daily/') ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  <CalendarDays className="w-3.5 h-3.5 shrink-0" />
+                  {t('nav.daily')}
+                </span>
+              </Link>
+              <Link href="/top-rated/" aria-label={t('nav.leaderboard')}>
+                <span className={`flex items-center gap-1.5 text-sm font-medium transition-colors px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive('/top-rated/') ? 'text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-yellow-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  <Trophy className="w-3.5 h-3.5 shrink-0" />
+                  {t('nav.leaderboard')}
+                </span>
+              </Link>
+            </nav>
+
+            {/* Flexible spacer */}
+            <div className="flex-1 min-w-0" />
+
+            {/* Search bar (desktop) */}
+            <form onSubmit={handleSearch} className="hidden md:flex relative w-full max-w-[220px] lg:max-w-[280px] shrink">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('nav.searchPlaceholder')}
-                className="w-full pl-9 pr-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 focus:bg-white dark:focus:bg-slate-700 transition-all"
+                className="w-full pl-8 pr-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-2 focus:ring-teal-100 focus:bg-white dark:focus:bg-slate-700 transition-all"
               />
             </form>
 
             {/* Utility icons */}
-            <div className="flex items-center gap-1 shrink-0">
+            <div className="flex items-center gap-1.5 shrink-0">
               {/* Mobile search */}
               <Link href="/search/" aria-label="Search games">
                 <span className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
@@ -212,13 +249,24 @@ export default function Navbar() {
                 <Link href="/top-rated/">
                   <span
                     title={`${streak} ${t('nav.streakTooltip' as any)}`}
-                    className="flex items-center gap-1 px-2 py-1 rounded-lg bg-orange-50 border border-orange-200 text-orange-600 text-sm font-bold hover:bg-orange-100 transition-colors cursor-pointer hidden md:flex"
+                    className="items-center gap-1 px-2 py-1 rounded-lg bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold hover:bg-orange-100 transition-colors cursor-pointer hidden md:flex"
                   >
-                    <span className="text-sm leading-none">🔥</span>
+                    <span className="text-xs leading-none">🔥</span>
                     <span>{streak}</span>
                   </span>
                 </Link>
               )}
+
+              {/* Random button (desktop) */}
+              <button
+                onClick={handleRandomGame}
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 text-white text-sm font-medium hover:from-teal-600 hover:to-teal-700 transition-all shadow-sm hover:shadow-md hover:shadow-teal-200/50 active:scale-95"
+                title={t('nav.randomTooltip' as any)}
+                aria-label={t('nav.randomTooltip' as any)}
+              >
+                <Shuffle className="w-3.5 h-3.5" />
+                <span className="hidden lg:inline">{t('nav.surpriseMe')}</span>
+              </button>
 
               {/* Language selector (desktop) */}
               <div className="hidden md:block">
@@ -240,7 +288,7 @@ export default function Navbar() {
                 onClick={toggleKidsMode}
                 title={kidsMode ? t('nav.kidsModeTooltipOn' as any) : t('nav.kidsModeTooltipOff' as any)}
                 aria-label={kidsMode ? t('nav.kidsModeTooltipOn' as any) : t('nav.kidsModeTooltipOff' as any)}
-                className={`items-center gap-1 px-2.5 py-1 rounded-lg text-sm font-medium transition-all duration-200 hidden md:flex ${
+                className={`items-center gap-1 px-2 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 hidden md:flex ${
                   kidsMode
                     ? "bg-green-100 text-green-700 border border-green-200"
                     : "text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -258,54 +306,6 @@ export default function Navbar() {
                 <Menu className="w-5 h-5" />
               </button>
             </div>
-          </div>
-
-          {/* Bottom tier: Nav links (desktop only) */}
-          <div className="hidden md:flex items-center gap-1 pb-2 -mt-0.5 overflow-x-auto scrollbar-none">
-            <Link href="/" onClick={markAllSeen} aria-label={t('nav.allGames')}>
-              <span className={`relative text-[13px] font-medium transition-colors px-3 py-1.5 rounded-lg inline-flex items-center gap-1.5 ${isActive('/') ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
-                {t('nav.allGames')}
-                {unseenCount > 0 && (
-                  <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold leading-none animate-pulse">
-                    {unseenCount}
-                  </span>
-                )}
-              </span>
-            </Link>
-
-            <Link href="/games/" aria-label={t('nav.aToZ')}>
-              <span className={`flex items-center gap-1.5 text-[13px] font-medium transition-colors px-3 py-1.5 rounded-lg ${isActive('/games/') ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
-                <LayoutList className="w-3.5 h-3.5" />
-                {t('nav.aToZ')}
-              </span>
-            </Link>
-
-            <Link href="/daily/" aria-label={t('nav.daily')}>
-              <span className={`flex items-center gap-1.5 text-[13px] font-medium transition-colors px-3 py-1.5 rounded-lg ${isActive('/daily/') ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
-                <CalendarDays className="w-3.5 h-3.5" />
-                {t('nav.daily')}
-              </span>
-            </Link>
-
-            <Link href="/top-rated/" aria-label={t('nav.leaderboard')}>
-              <span className={`flex items-center gap-1.5 text-[13px] font-medium transition-colors px-3 py-1.5 rounded-lg ${isActive('/top-rated/') ? 'text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-yellow-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
-                <Trophy className="w-3.5 h-3.5" />
-                {t('nav.leaderboard')}
-              </span>
-            </Link>
-
-            <div className="flex-1" />
-
-            {/* Random button */}
-            <button
-              onClick={handleRandomGame}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-[13px] font-medium hover:from-indigo-600 hover:to-indigo-700 transition-all shadow-sm hover:shadow-md hover:shadow-indigo-200/50 active:scale-95"
-              title={t('nav.randomTooltip' as any)}
-              aria-label={t('nav.randomTooltip' as any)}
-            >
-              <Shuffle className="w-3.5 h-3.5" />
-              {t('nav.surpriseMe')}
-            </button>
           </div>
         </div>
       </nav>
@@ -326,11 +326,11 @@ export default function Navbar() {
             {/* Drawer header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center">
-                  <Joystick className="w-3.5 h-3.5 text-white" />
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                  <Gamepad2 className="w-3.5 h-3.5 text-white" />
                 </div>
                 <span className="font-bold text-slate-900 dark:text-white text-sm">
-                  <span className="text-indigo-600">Doodle</span>Playground
+                  <span className="text-teal-600">Doodle</span>Playground
                 </span>
               </div>
               <button
@@ -347,7 +347,7 @@ export default function Navbar() {
               <div className="flex flex-col flex-1 overflow-hidden">
                 <button
                   onClick={() => setShowLangPanel(false)}
-                  className="flex items-center gap-2 px-5 py-3 text-sm font-medium text-indigo-600 hover:bg-indigo-50 transition-colors border-b border-slate-100 dark:border-slate-800"
+                  className="flex items-center gap-2 px-5 py-3 text-sm font-medium text-teal-600 hover:bg-teal-50 transition-colors border-b border-slate-100 dark:border-slate-800"
                 >
                   <span className="text-base">←</span> {t('common.back')}
                 </button>
@@ -357,15 +357,15 @@ export default function Navbar() {
                     <button
                       key={loc.code}
                       onClick={() => { setLocale(loc.code); setShowLangPanel(false); }}
-                      className={`w-full flex items-center gap-3 px-5 py-2.5 text-sm transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-950/50 ${
+                      className={`w-full flex items-center gap-3 px-5 py-2.5 text-sm transition-colors hover:bg-teal-50 dark:hover:bg-teal-950/50 ${
                         locale === loc.code
-                          ? "text-indigo-600 dark:text-indigo-400 font-medium"
+                          ? "text-teal-600 dark:text-teal-400 font-medium"
                           : "text-slate-700 dark:text-slate-300"
                       }`}
                     >
                       <span className="text-base leading-none w-5 shrink-0">{loc.flag}</span>
                       <span className="flex-1 text-left">{loc.name}</span>
-                      {locale === loc.code && <Check className="w-3.5 h-3.5 shrink-0 text-indigo-500" />}
+                      {locale === loc.code && <Check className="w-3.5 h-3.5 shrink-0 text-teal-500" />}
                     </button>
                   ))}
                 </div>
@@ -381,7 +381,7 @@ export default function Navbar() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={t('nav.searchPlaceholder')}
-                      className="w-full pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 focus:bg-white dark:focus:bg-slate-700 transition-all"
+                      className="w-full pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-2 focus:ring-teal-100 focus:bg-white dark:focus:bg-slate-700 transition-all"
                     />
                   </div>
                 </form>
@@ -391,7 +391,7 @@ export default function Navbar() {
                   <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">{t('nav.navigate')}</p>
 
                   <Link href="/" onClick={markAllSeen}>
-                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/') ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 hover:text-indigo-600'}`}>
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/') ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400' : 'text-slate-700 dark:text-slate-200 hover:bg-teal-50 dark:hover:bg-teal-950/50 hover:text-teal-600'}`}>
                       <Home className="w-4 h-4 shrink-0" />
                       <span className="text-sm font-medium">{t('nav.allGames')}</span>
                       {unseenCount > 0 && (
@@ -403,7 +403,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link href="/games/">
-                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/games/') ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 hover:text-indigo-600'}`}>
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/games/') ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400' : 'text-slate-700 dark:text-slate-200 hover:bg-teal-50 dark:hover:bg-teal-950/50 hover:text-teal-600'}`}>
                       <LayoutList className="w-4 h-4 shrink-0" />
                       <span className="text-sm font-medium">{t('nav.aToZ')}</span>
                     </div>
@@ -429,21 +429,21 @@ export default function Navbar() {
                   </Link>
 
                   <Link href="/about/">
-                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/about/') ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/about/') ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
                       <Info className="w-4 h-4 shrink-0" />
                       <span className="text-sm font-medium">{t('nav.about')}</span>
                     </div>
                   </Link>
 
                   <Link href="/contact/">
-                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/contact/') ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/contact/') ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
                       <Mail className="w-4 h-4 shrink-0" />
                       <span className="text-sm font-medium">{t('nav.contact')}</span>
                     </div>
                   </Link>
 
                   <Link href="/privacy/">
-                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/privacy/') ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/privacy/') ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900'}`}>
                       <Shield className="w-4 h-4 shrink-0" />
                       <span className="text-sm font-medium">{t('nav.privacy')}</span>
                     </div>
@@ -496,7 +496,7 @@ export default function Navbar() {
                 <div className="px-5 py-4 border-t border-slate-100 dark:border-slate-800">
                   <button
                     onClick={handleRandomGame}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-sm font-semibold hover:from-indigo-600 hover:to-indigo-700 transition-all shadow-md shadow-indigo-200/40 active:scale-95"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white text-sm font-semibold hover:from-teal-600 hover:to-teal-700 transition-all shadow-md shadow-teal-200/40 active:scale-95"
                   >
                     <Shuffle className="w-4 h-4" />
                     {t('nav.surpriseMe')}
@@ -534,7 +534,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={handleDismissMilestone}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white rounded-xl text-sm font-semibold hover:from-indigo-600 hover:to-indigo-700 transition-all"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl text-sm font-semibold hover:from-teal-600 hover:to-teal-700 transition-all"
               >
                 {t('nav.keepPlaying')}
               </button>
@@ -552,7 +552,7 @@ export default function Navbar() {
 
       {/* Spin Wheel overlay — lazy loaded on demand */}
       {showSpinWheel && (
-        <Suspense fallback={<div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center"><div className="w-12 h-12 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin" /></div>}>
+        <Suspense fallback={<div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center"><div className="w-12 h-12 border-4 border-teal-400 border-t-transparent rounded-full animate-spin" /></div>}>
           <SpinWheel onClose={() => setShowSpinWheel(false)} />
         </Suspense>
       )}

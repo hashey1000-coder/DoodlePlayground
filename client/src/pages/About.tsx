@@ -80,7 +80,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-600 text-white">
+      <section className="bg-gradient-to-br from-teal-600 via-teal-600 to-cyan-600 text-white">
         <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
             <Info className="w-3.5 h-3.5" />
@@ -94,7 +94,7 @@ export default function About() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link href="/">
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-indigo-700 font-semibold text-sm hover:bg-indigo-50 transition-colors shadow-lg shadow-indigo-900/20 cursor-pointer">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-teal-700 font-semibold text-sm hover:bg-teal-50 transition-colors shadow-lg shadow-teal-900/20 cursor-pointer">
                 <Gamepad2 className="w-4 h-4" />
                 {t('about.browseGames')}
               </span>
@@ -143,8 +143,8 @@ export default function About() {
           <div className="grid grid-cols-2 gap-3">
             {Object.entries(CATEGORY_COUNTS).map(([cat, count]) => (
               <Link key={cat} href={`/?category=${cat}`}>
-                <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 p-4 hover:border-indigo-200 dark:hover:border-indigo-600 hover:shadow-md transition-all cursor-pointer group">
-                  <div className="text-2xl font-extrabold text-indigo-600 group-hover:scale-110 transition-transform inline-block">{count}</div>
+                <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 p-4 hover:border-teal-200 dark:hover:border-teal-600 hover:shadow-md transition-all cursor-pointer group">
+                  <div className="text-2xl font-extrabold text-teal-600 group-hover:scale-110 transition-transform inline-block">{count}</div>
                   <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 capitalize mt-0.5">{t(`category.${cat}` as any)}</div>
                   <div className="text-xs text-slate-400 mt-0.5">{t('about.gamesLabel')}</div>
                 </div>
@@ -167,7 +167,7 @@ export default function About() {
                 key={f.titleKey}
                 className="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700"
               >
-                <div className="shrink-0 w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                <div className="shrink-0 w-9 h-9 rounded-lg bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center">
                   {f.icon}
                 </div>
                 <div>
@@ -194,7 +194,7 @@ export default function About() {
       <section className="bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
         <div className="max-w-4xl mx-auto px-6 py-14">
           <div className="flex items-center gap-2 mb-8">
-            <BookOpen className="w-5 h-5 text-indigo-500" />
+            <BookOpen className="w-5 h-5 text-teal-500" />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{t('about.faqTitle')}</h2>
           </div>
           <div className="space-y-5">
@@ -235,7 +235,7 @@ export default function About() {
         </div>
         <div className="mt-4">
           <Link href="/">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200/40 cursor-pointer">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-600 text-white font-semibold text-sm hover:bg-teal-700 transition-colors shadow-md shadow-teal-200/40 cursor-pointer">
               <Gamepad2 className="w-4 h-4" />
               {t('about.startPlaying')}
             </span>

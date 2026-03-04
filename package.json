@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "node scripts/generate-sitemap.mjs && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
-    "build:static": "node scripts/generate-sitemap.mjs && node scripts/prerender.mjs",
+    "build:static": "node scripts/generate-sitemap.mjs && node scripts/prerender.mjs && node scripts/fetch-elgoog-pages.mjs && node scripts/fetch-google-doodle-pages.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@builder.io/vite-plugin-jsx-loc": "^0.1.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.1.3",
     "@types/canvas-confetti": "^1.9.0",
@@ -77,9 +78,11 @@
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.20",
     "esbuild": "^0.25.0",
+    "google-translate-api-x": "^10.7.2",
     "pnpm": "^10.15.1",
     "postcss": "^8.4.47",
     "prettier": "^3.6.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.19.1",
     "tw-animate-css": "^1.4.0",

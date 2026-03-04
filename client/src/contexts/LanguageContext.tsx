@@ -187,7 +187,7 @@ export type TranslationKey =
   | 'topRated.noVotes' | 'topRated.noVotesDesc' | 'topRated.browseGames'
   // AllGames extras
   | 'allGames.sortAZ' | 'allGames.sortMostPlayed'
-  | 'allGames.sortHighestRated' | 'allGames.sortNewest' | 'allGames.gamesCount'
+  | 'allGames.sortHighestRated' | 'allGames.sortNewest' | 'allGames.gamesCount' | 'allGames.gameCount'
   // Search extras
   | 'search.sort' | 'search.sortRelevance' | 'search.sortMostPlayed'
   | 'search.sortHighestRated' | 'search.sortAZ' | 'search.sortNewest'
@@ -317,7 +317,15 @@ export type TranslationKey =
   | 'seo.search.title' | 'seo.search.titleWithQuery'
   | 'seo.daily.title' | 'seo.daily.description'
   | 'seo.topRated.title' | 'seo.topRated.description'
-  | 'seo.about.title' | 'seo.contact.title' | 'seo.privacy.title' | 'seo.notFound.title';
+  | 'seo.about.title' | 'seo.contact.title' | 'seo.privacy.title' | 'seo.notFound.title'
+  // Sitemap page
+  | 'sitemap.title' | 'sitemap.subtitle' | 'sitemap.mainPages' | 'sitemap.allGames'
+  // Game extras 4
+  | 'game.externalOnlyDesc' | 'game.openOnGoogle' | 'game.seconds'
+  // Common extras
+  | 'common.backToHome'
+  // SEO – sitemap
+  | 'seo.sitemap.title' | 'seo.sitemap.description';
 
 export type TranslationMap = Record<TranslationKey, string>;
 
@@ -882,6 +890,20 @@ const EN: TranslationMap = {
   'seo.contact.title': 'Contact Us — Doodle Playground',
   'seo.privacy.title': 'Privacy Policy — Doodle Playground',
   'seo.notFound.title': 'Page Not Found — Doodle Playground',
+  // Sitemap page
+  'sitemap.title': 'Sitemap',
+  'sitemap.subtitle': 'A complete index of every page on Doodle Playground.',
+  'sitemap.mainPages': 'Main Pages',
+  'sitemap.allGames': 'All Games',
+  // Game extras 4
+  'game.externalOnlyDesc': 'This game is hosted on Google and must be played on their website.',
+  'game.openOnGoogle': 'Play on Google',
+  'game.seconds': 's',
+  // Common extras
+  'common.backToHome': 'Back to Home',
+  // SEO – sitemap
+  'seo.sitemap.title': 'Sitemap — Doodle Playground',
+  'seo.sitemap.description': 'Browse every page on Doodle Playground — games, categories, and more.',
 };
 
 // ---------------------------------------------------------------------------

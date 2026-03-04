@@ -23,7 +23,7 @@ export default function Redirect({ to }: { to: string }) {
       <meta httpEquiv="refresh" content={`0;url=${fullTarget}`} />
       <p className="text-slate-500">
         Redirecting to{" "}
-        <a href={fullTarget} className="text-indigo-600 underline">
+        <a href={fullTarget} className="text-teal-600 underline">
           {fullTarget}
         </a>
         …

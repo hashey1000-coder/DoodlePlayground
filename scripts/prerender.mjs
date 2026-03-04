@@ -137,7 +137,7 @@ const { render, GAMES, getGameT, getTranslation } = ssrModule;
 // Build a slug → game lookup
 const gameBySlug = Object.fromEntries(GAMES.map((g) => [g.slug, g]));
 
-const SITE_ORIGIN = 'https://doodlegameshub.com';
+const SITE_ORIGIN = 'https://doodleplayground.com';
 
 /** Map locale code to BCP-47 lang attribute */
 function bcp47(locale) {

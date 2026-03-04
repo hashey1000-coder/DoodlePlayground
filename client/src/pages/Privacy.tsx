@@ -5,11 +5,11 @@
  */
 
 import { Link } from 'wouter';
-import { useT } from '@/contexts/LanguageContext';
+import { useT, useLanguage } from '@/contexts/LanguageContext';
 import { useHead } from '@/hooks/useHead';
 import { ArrowLeft, Shield, Eye, Cookie, Share2, Lock, Mail, RefreshCw } from 'lucide-react';
 
-const LAST_UPDATED = 'February 21, 2026';
+const LAST_UPDATED_DATE = new Date('2026-02-21');
 
 interface Section {
   id: string;
@@ -20,6 +20,7 @@ interface Section {
 
 export default function Privacy() {
   const t = useT();
+  const { locale } = useLanguage();
 
   // SEO — localised page title + meta description
   useHead({
@@ -98,7 +99,7 @@ export default function Privacy() {
                 <tr>
                   <td className="py-3 pr-4 text-slate-900 dark:text-white font-medium">Google LLC</td>
                   <td className="py-3 pr-4">{t('privacy.thirdParties.googlePurpose')}</td>
-                  <td className="py-3"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-yellow-400 hover:underline">policies.google.com</a></td>
+                  <td className="py-3"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-teal-600 dark:text-yellow-400 hover:underline">policies.google.com</a></td>
                 </tr>
                 <tr>
                   <td className="py-3 pr-4 text-slate-900 dark:text-white font-medium">glov3.me</td>
@@ -108,7 +109,7 @@ export default function Privacy() {
                 <tr>
                   <td className="py-3 pr-4 text-slate-900 dark:text-white font-medium">Google Fonts</td>
                   <td className="py-3 pr-4">{t('privacy.thirdParties.fontsPurpose')}</td>
-                  <td className="py-3"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-yellow-400 hover:underline">policies.google.com</a></td>
+                  <td className="py-3"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-teal-600 dark:text-yellow-400 hover:underline">policies.google.com</a></td>
                 </tr>
               </tbody>
             </table>
@@ -144,14 +145,14 @@ export default function Privacy() {
               [t('privacy.yourRights.portability'), t('privacy.yourRights.portabilityDesc')],
             ] as [string, string][]).map(([right, desc]) => (
               <li key={right} className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-yellow-400 mt-2 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-yellow-400 mt-2 shrink-0" />
                 <span><strong className="text-slate-900 dark:text-white">{right}:</strong> {desc}</span>
               </li>
             ))}
           </ul>
           <p>
             {t('privacy.yourRights.exerciseRights')}{' '}
-            <Link href="/contact/" className="text-indigo-600 dark:text-yellow-400 hover:underline">{t('privacy.yourRights.contactPage')}</Link>.
+            <Link href="/contact/" className="text-teal-600 dark:text-yellow-400 hover:underline">{t('privacy.yourRights.contactPage')}</Link>.
           </p>
         </div>
       ),
@@ -185,7 +186,7 @@ export default function Privacy() {
         <div className="space-y-3 text-slate-600 dark:text-white/70 leading-relaxed">
           <p>
             {t('privacy.contact.p1')}{' '}
-            <Link href="/contact/" className="text-indigo-600 dark:text-yellow-400 hover:underline">{t('privacy.yourRights.contactPage')}</Link>.
+            <Link href="/contact/" className="text-teal-600 dark:text-yellow-400 hover:underline">{t('privacy.yourRights.contactPage')}</Link>.
           </p>
           <p>{t('privacy.contact.p2')}</p>
         </div>
@@ -199,7 +200,7 @@ export default function Privacy() {
       {/* ── Hero ───────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 pt-16 pb-12">
         <div className="mb-2">
-          <span className="inline-block bg-indigo-100 text-indigo-600 dark:bg-yellow-400/20 dark:text-yellow-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-indigo-200 dark:border-yellow-400/30">
+          <span className="inline-block bg-teal-100 text-teal-600 dark:bg-yellow-400/20 dark:text-yellow-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-teal-200 dark:border-yellow-400/30">
             {t('privacy.legal')}
           </span>
         </div>
@@ -210,7 +211,7 @@ export default function Privacy() {
           {t('privacy.subtitle')}
         </p>
         <p className="text-slate-400 dark:text-white/40 text-sm">
-          {t('privacy.lastUpdated')}: <span className="text-slate-600 dark:text-white/60">{LAST_UPDATED}</span>
+          {t('privacy.lastUpdated')}: <span className="text-slate-600 dark:text-white/60">{LAST_UPDATED_DATE.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </p>
       </div>
 
@@ -226,7 +227,7 @@ export default function Privacy() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="block text-sm text-slate-500 dark:text-white/50 hover:text-indigo-600 dark:hover:text-yellow-400 py-1.5 transition-colors"
+                  className="block text-sm text-slate-500 dark:text-white/50 hover:text-teal-600 dark:hover:text-yellow-400 py-1.5 transition-colors"
                 >
                   {s.title}
                 </a>
@@ -240,8 +241,8 @@ export default function Privacy() {
           {sections.map(s => (
             <section key={s.id} id={s.id} className="scroll-mt-24">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-yellow-400/15 border border-indigo-200 dark:border-yellow-400/30 flex items-center justify-center shrink-0">
-                  <s.icon className="w-4 h-4 text-indigo-600 dark:text-yellow-400" />
+                <div className="w-8 h-8 rounded-lg bg-teal-100 dark:bg-yellow-400/15 border border-teal-200 dark:border-yellow-400/30 flex items-center justify-center shrink-0">
+                  <s.icon className="w-4 h-4 text-teal-600 dark:text-yellow-400" />
                 </div>
                 <h2 className="text-xl font-black">{s.title}</h2>
               </div>
@@ -252,10 +253,10 @@ export default function Privacy() {
           ))}
 
           {/* ── Disclaimer box ── */}
-          <div className="bg-indigo-50 dark:bg-yellow-400/10 border border-indigo-200 dark:border-yellow-400/30 rounded-2xl p-6">
-            <h3 className="text-indigo-700 dark:text-yellow-400 font-black text-lg mb-3">{t('privacy.disclaimer')}</h3>
+          <div className="bg-teal-50 dark:bg-yellow-400/10 border border-teal-200 dark:border-yellow-400/30 rounded-2xl p-6">
+            <h3 className="text-teal-700 dark:text-yellow-400 font-black text-lg mb-3">{t('privacy.disclaimer')}</h3>
             <p className="text-slate-600 dark:text-white/70 text-sm leading-relaxed">
-              {t('privacy.disclaimerText')} <Link href="/contact/" className="text-indigo-600 dark:text-yellow-400 hover:underline">{t('privacy.disclaimerContact')}</Link> {t('privacy.disclaimerEnd')}
+              {t('privacy.disclaimerText')} <Link href="/contact/" className="text-teal-600 dark:text-yellow-400 hover:underline">{t('privacy.disclaimerContact')}</Link> {t('privacy.disclaimerEnd')}
             </p>
           </div>
         </div>

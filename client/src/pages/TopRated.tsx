@@ -85,7 +85,7 @@ export default function TopRated() {
       <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-8">
         {/* Back link */}
         <Link href="/">
-          <span className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-indigo-600 font-medium mb-6 transition-colors cursor-pointer">
+          <span className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-teal-600 font-medium mb-6 transition-colors cursor-pointer">
             <ArrowLeft className="w-4 h-4" />
             {t('topRated.backToAll')}
           </span>
@@ -204,7 +204,7 @@ export default function TopRated() {
 
         {/* Full Leaderboard Table */}
         <div className="mb-6 flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-indigo-500" />
+          <TrendingUp className="w-5 h-5 text-teal-500" />
           <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">{t('topRated.fullRankings')}</h2>
           <span className="text-sm text-slate-400 dark:text-slate-500 font-medium">— {GAMES.length} {t('about.gamesLabel')}</span>
         </div>
@@ -233,7 +233,7 @@ export default function TopRated() {
               <Link href={`/play/${game.slug}/`}>
                 <div
                   onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}
-                  className={`grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_100px_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 items-center border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 transition-colors cursor-pointer group ${
+                  className={`grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_100px_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 items-center border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-teal-50/50 dark:hover:bg-teal-950/30 transition-colors cursor-pointer group ${
                     index < 3 ? "bg-amber-50/30 dark:bg-amber-950/20" : ""
                   }`}
                 >
@@ -263,12 +263,12 @@ export default function TopRated() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate group-hover:text-indigo-600 transition-colors">
+                      <div className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate group-hover:text-teal-600 transition-colors">
                         {gt(game).title}
                       </div>
                       <div className="hidden sm:flex items-center gap-1.5 mt-0.5">
                         <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full capitalize border ${
-                          CATEGORY_COLORS[game.category] || "text-indigo-600 bg-indigo-50 border-indigo-100"
+                          CATEGORY_COLORS[game.category] || "text-teal-600 bg-teal-50 border-teal-100"
                         }`}>
                           {t(`category.${game.category}` as any)}
                         </span>
@@ -338,7 +338,7 @@ export default function TopRated() {
               {t('topRated.voteHint')}
             </p>
             <Link href="/">
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-full text-sm font-semibold hover:bg-indigo-700 transition-colors cursor-pointer">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-full text-sm font-semibold hover:bg-teal-700 transition-colors cursor-pointer">
                 <Star className="w-4 h-4" />
                 {t('topRated.browseGames')}
               </span>

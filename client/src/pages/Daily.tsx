@@ -44,8 +44,8 @@ function getDailyGame() {
   return GAMES[idx];
 }
 
-function getDayLabel() {
-  return new Date().toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+function getDayLabel(locale?: string) {
+  return new Date().toLocaleDateString(locale || undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 }
 
 function getTodayKey() {
@@ -86,7 +86,7 @@ export default function Daily() {
           <h1 className="text-2xl font-bold text-slate-700 dark:text-slate-200">{t('daily.title')}</h1>
           <p className="text-slate-500 dark:text-slate-400">{t('daily.subtitle')}</p>
           <Link href="/">
-            <span className="inline-flex items-center gap-1.5 text-sm text-indigo-600 hover:text-indigo-700 cursor-pointer">
+            <span className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 cursor-pointer">
               <ChevronLeft className="w-4 h-4" />
               {t('game.backToGames')}
             </span>
@@ -170,7 +170,7 @@ export default function Daily() {
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header strip */}
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2 px-4 text-center text-sm font-medium">
-        <span className="opacity-90">🎯 {t('daily.challengeLabel' as any)} #{dayNumber} — {getDayLabel()}</span>
+        <span className="opacity-90">🎯 {t('daily.challengeLabel' as any)} #{dayNumber} — {getDayLabel(locale)}</span>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -339,7 +339,7 @@ export default function Daily() {
                   <div className="p-2.5 flex-1 flex flex-col">
                     <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 line-clamp-1">{getGameT(locale, g).title}</p>
                     <p className="text-[10px] text-slate-400 mt-auto">
-                      {date.toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                      {date.toLocaleDateString(locale, { month: "short", day: "numeric" })}
                     </p>
                   </div>
                 </div>

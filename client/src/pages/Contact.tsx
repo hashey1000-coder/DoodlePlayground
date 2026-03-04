@@ -84,7 +84,7 @@ export default function Contact() {
       {/* ── Hero ───────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 pt-16 pb-12">
         <div className="mb-2">
-          <span className="inline-block bg-indigo-100 text-indigo-600 dark:bg-yellow-400/20 dark:text-yellow-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-indigo-200 dark:border-yellow-400/30">
+          <span className="inline-block bg-teal-100 text-teal-600 dark:bg-yellow-400/20 dark:text-yellow-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-teal-200 dark:border-yellow-400/30">
             {t('contact.getInTouch')}
           </span>
         </div>
@@ -110,12 +110,12 @@ export default function Contact() {
               onClick={() => handleChange('subject', opt.value)}
               className={`w-full text-left p-4 rounded-xl border transition-all duration-200 group ${
                 form.subject === opt.value
-                  ? 'bg-indigo-50 border-indigo-300 text-indigo-700 dark:bg-yellow-400/10 dark:border-yellow-400/60 dark:text-yellow-300'
+                  ? 'bg-teal-50 border-teal-300 text-teal-700 dark:bg-yellow-400/10 dark:border-yellow-400/60 dark:text-yellow-300'
                   : 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200 hover:border-slate-300 dark:bg-white/5 dark:border-white/10 dark:text-white/70 dark:hover:bg-white/10 dark:hover:border-white/20'
               }`}
             >
               <div className="flex items-center gap-3">
-                <opt.icon className={`w-5 h-5 shrink-0 ${form.subject === opt.value ? 'text-indigo-500 dark:text-yellow-400' : 'text-slate-400 group-hover:text-slate-500 dark:text-white/40 dark:group-hover:text-white/60'}`} />
+                <opt.icon className={`w-5 h-5 shrink-0 ${form.subject === opt.value ? 'text-teal-500 dark:text-yellow-400' : 'text-slate-400 group-hover:text-slate-500 dark:text-white/40 dark:group-hover:text-white/60'}`} />
                 <span className="font-medium text-sm">{t(opt.labelKey as any)}</span>
               </div>
             </button>
@@ -160,7 +160,7 @@ export default function Contact() {
                 </button>
                 <Link
                   href="/"
-                  className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-yellow-400 dark:hover:bg-yellow-300 text-white dark:text-black rounded-xl font-bold text-sm transition-colors text-center"
+                  className="px-6 py-3 bg-teal-600 hover:bg-teal-700 dark:bg-yellow-400 dark:hover:bg-yellow-300 text-white dark:text-black rounded-xl font-bold text-sm transition-colors text-center"
                 >
                   {t('contact.backToGames')}
                 </Link>
@@ -173,7 +173,7 @@ export default function Contact() {
                 {/* Name */}
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-white/80 mb-2">
-                    {t('contact.name')} <span className="text-indigo-500 dark:text-yellow-400">*</span>
+                    {t('contact.name')} <span className="text-teal-500 dark:text-yellow-400">*</span>
                   </label>
                   <input
                     type="text"
@@ -181,7 +181,7 @@ export default function Contact() {
                     onChange={e => handleChange('name', e.target.value)}
                     placeholder={t('contact.namePlaceholder')}
                     className={`w-full bg-slate-50 dark:bg-white/5 border rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 text-sm focus:outline-none focus:ring-2 transition-all ${
-                      errors.name ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-indigo-400/40 dark:focus:ring-yellow-400/40 focus:border-indigo-400/60 dark:focus:border-yellow-400/60'
+                      errors.name ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-teal-400/40 dark:focus:ring-yellow-400/40 focus:border-teal-400/60 dark:focus:border-yellow-400/60'
                     }`}
                   />
                   {errors.name && <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
@@ -190,7 +190,7 @@ export default function Contact() {
                 {/* Email */}
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-white/80 mb-2">
-                    {t('contact.email')} <span className="text-indigo-500 dark:text-yellow-400">*</span>
+                    {t('contact.email')} <span className="text-teal-500 dark:text-yellow-400">*</span>
                   </label>
                   <input
                     type="email"
@@ -198,7 +198,7 @@ export default function Contact() {
                     onChange={e => handleChange('email', e.target.value)}
                     placeholder={t('contact.emailPlaceholder')}
                     className={`w-full bg-slate-50 dark:bg-white/5 border rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 text-sm focus:outline-none focus:ring-2 transition-all ${
-                      errors.email ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-indigo-400/40 dark:focus:ring-yellow-400/40 focus:border-indigo-400/60 dark:focus:border-yellow-400/60'
+                      errors.email ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-teal-400/40 dark:focus:ring-yellow-400/40 focus:border-teal-400/60 dark:focus:border-yellow-400/60'
                     }`}
                   />
                   {errors.email && <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>}
@@ -208,13 +208,13 @@ export default function Contact() {
               {/* Subject (hidden — selected via cards on left, but also shown as text) */}
               <div>
                 <label className="block text-sm font-semibold text-slate-700 dark:text-white/80 mb-2">
-                  {t('contact.subject')} <span className="text-indigo-500 dark:text-yellow-400">*</span>
+                  {t('contact.subject')} <span className="text-teal-500 dark:text-yellow-400">*</span>
                 </label>
                 <select
                   value={form.subject}
                   onChange={e => handleChange('subject', e.target.value)}
                   className={`w-full bg-slate-50 dark:bg-[#1a1a35] border rounded-xl px-4 py-3 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 transition-all appearance-none cursor-pointer ${
-                    errors.subject ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-indigo-400/40 dark:focus:ring-yellow-400/40 focus:border-indigo-400/60 dark:focus:border-yellow-400/60'
+                    errors.subject ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-teal-400/40 dark:focus:ring-yellow-400/40 focus:border-teal-400/60 dark:focus:border-yellow-400/60'
                   } ${!form.subject ? 'text-slate-400 dark:text-white/30' : ''}`}
                 >
                   <option value="" disabled className="text-slate-400 dark:text-white/30">{t('contact.subjectPlaceholder')}</option>
@@ -228,7 +228,7 @@ export default function Contact() {
               {/* Message */}
               <div>
                 <label className="block text-sm font-semibold text-slate-700 dark:text-white/80 mb-2">
-                  {t('contact.message')} <span className="text-indigo-500 dark:text-yellow-400">*</span>
+                  {t('contact.message')} <span className="text-teal-500 dark:text-yellow-400">*</span>
                 </label>
                 <textarea
                   value={form.message}
@@ -237,7 +237,7 @@ export default function Contact() {
                   rows={6}
                   maxLength={500}
                   className={`w-full bg-slate-50 dark:bg-white/5 border rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 text-sm focus:outline-none focus:ring-2 transition-all resize-none ${
-                    errors.message ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-indigo-400/40 dark:focus:ring-yellow-400/40 focus:border-indigo-400/60 dark:focus:border-yellow-400/60'
+                    errors.message ? 'border-red-500/60 focus:ring-red-500/30' : 'border-slate-300 dark:border-white/15 focus:ring-teal-400/40 dark:focus:ring-yellow-400/40 focus:border-teal-400/60 dark:focus:border-yellow-400/60'
                   }`}
                 />
                 <div className="flex justify-between mt-1.5">
@@ -256,7 +256,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-yellow-400 dark:hover:bg-yellow-300 disabled:opacity-60 disabled:cursor-not-allowed text-white dark:text-black font-bold text-sm rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-indigo-200/20 dark:shadow-yellow-400/20"
+                className="w-full py-4 bg-teal-600 hover:bg-teal-700 dark:bg-yellow-400 dark:hover:bg-yellow-300 disabled:opacity-60 disabled:cursor-not-allowed text-white dark:text-black font-bold text-sm rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-teal-200/20 dark:shadow-yellow-400/20"
               >
                 {submitting ? (
                   <>

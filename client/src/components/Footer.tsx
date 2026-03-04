@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Joystick, Heart } from "lucide-react";
+import { Gamepad2, Heart } from "lucide-react";
 import { useT } from "@/contexts/LanguageContext";
 import { GAMES } from "@/data/games";
 import { useGameTranslate } from "@/data/gameTranslations";
@@ -51,12 +51,12 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center text-center">
           <Link href="/">
             <div className="flex items-center gap-2 mb-3 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg">
-                <Joystick className="w-5 h-5 text-white" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                <Gamepad2 className="w-5 h-5 text-white" />
               </div>
               <div>
                 <span className="font-bold text-white text-lg">Doodle</span>
-                <span className="text-indigo-400 font-bold text-lg">Playground</span>
+                <span className="text-teal-400 font-bold text-lg">Playground</span>
               </div>
             </div>
           </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
               {CATEGORY_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-teal-400 transition-colors text-sm cursor-pointer">
                       {t(link.labelKey as any)}
                     </span>
                   </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
               {QUICK_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-teal-400 transition-colors text-sm cursor-pointer">
                       {t(link.labelKey as any)}
                     </span>
                   </Link>
@@ -113,7 +113,7 @@ export default function Footer() {
               {popularGames.map((game) => (
                 <li key={game.slug}>
                   <Link href={`/play/${game.slug}/`}>
-                    <span className="text-slate-400 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
+                    <span className="text-slate-400 hover:text-teal-400 transition-colors text-sm cursor-pointer">
                       {gt(game).title}
                     </span>
                   </Link>

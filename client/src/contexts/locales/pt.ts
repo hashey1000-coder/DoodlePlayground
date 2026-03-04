@@ -236,6 +236,7 @@ export const PT: TranslationMap = {
   'allGames.sortHighestRated': 'Melhor Avaliados',
   'allGames.sortNewest': 'Mais Recentes',
   'allGames.gamesCount': 'jogos',
+  'allGames.gameCount': 'jogo',
   'search.sort': 'Ordenar',
   'search.sortRelevance': 'Relevância',
   'search.sortMostPlayed': 'Mais Jogados',
@@ -540,6 +541,17 @@ export const PT: TranslationMap = {
   'seo.contact.title': 'Contato — Doodle Playground',
   'seo.privacy.title': 'Política de Privacidade — Doodle Playground',
   'seo.notFound.title': 'Página Não Encontrada — Doodle Playground',
+  // Sitemap & game extras
+  'sitemap.title': 'Mapa do Site',
+  'sitemap.subtitle': 'Um índice completo de todas as páginas do Doodle Playground.',
+  'sitemap.mainPages': 'Páginas Principais',
+  'sitemap.allGames': 'Todos os Jogos',
+  'game.externalOnlyDesc': 'Este jogo é hospedado pelo Google e deve ser jogado no site deles.',
+  'game.openOnGoogle': 'Jogar no Google',
+  'game.seconds': 's',
+  'common.backToHome': 'Voltar ao Início',
+  'seo.sitemap.title': 'Mapa do Site — Doodle Playground',
+  'seo.sitemap.description': 'Navegue por todas as páginas do Doodle Playground — jogos, categorias e mais.',
 };
 
 // Russian

@@ -236,6 +236,7 @@ export const DE: TranslationMap = {
   'allGames.sortHighestRated': 'Bestbewertet',
   'allGames.sortNewest': 'Neueste Zuerst',
   'allGames.gamesCount': 'Spiele',
+  'allGames.gameCount': 'Spiel',
   'search.sort': 'Sortieren',
   'search.sortRelevance': 'Relevanz',
   'search.sortMostPlayed': 'Meistgespielt',
@@ -540,6 +541,17 @@ export const DE: TranslationMap = {
   'contact.subject.general': '💬 Allgemeine Frage',
   'contact.subject.other': '📧 Sonstiges',
   'contact.subject.suggestion': '💡 Spielvorschlag',
+  // Sitemap & game extras
+  'sitemap.title': 'Seitenübersicht',
+  'sitemap.subtitle': 'Ein vollständiges Verzeichnis aller Seiten auf Doodle Playground.',
+  'sitemap.mainPages': 'Hauptseiten',
+  'sitemap.allGames': 'Alle Spiele',
+  'game.externalOnlyDesc': 'Dieses Spiel wird von Google gehostet und muss auf deren Website gespielt werden.',
+  'game.openOnGoogle': 'Auf Google spielen',
+  'game.seconds': 's',
+  'common.backToHome': 'Zurück zur Startseite',
+  'seo.sitemap.title': 'Seitenübersicht — Doodle Playground',
+  'seo.sitemap.description': 'Durchsuche alle Seiten auf Doodle Playground — Spiele, Kategorien und mehr.',
 };
 
 // Italian
