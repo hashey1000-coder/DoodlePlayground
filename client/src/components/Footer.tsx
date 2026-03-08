@@ -30,10 +30,10 @@ const QUICK_LINKS = [
 ];
 
 const POPULAR_GAME_SLUGS = [
-  "google-pac-man",
+  "pacman",
   "google-solitaire",
   "atari-breakout",
-  "great-ghoul-duel",
+  "halloween",
   "google-interland",
   "google-tetris",
   "google-2048",

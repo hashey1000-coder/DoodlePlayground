@@ -112,16 +112,29 @@ async function proxyGoogleDoodlePage(gamePath: string): Promise<string | null> {
     // Inject CSS + JS to make the game fill the entire iframe.
     // Older doodles (pre-2017) only have #fpdoodle styles for full-page mode,
     // but when embedded in an iframe they set id="sdoodles" on <html>.
-    // We force id="fpdoodle" and add universal fullscreen overrides.
-    const fullscreenStyle = `<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000}#hplogo{width:100%!important;height:100%!important;max-width:100vw!important;max-height:100vh!important}#hplogo canvas,#hpcanvas{width:100%!important;height:100%!important}#ctaRoot{opacity:1!important;pointer-events:auto!important}</style>`;
-    const fullscreenScript = `<script>document.documentElement.id='fpdoodle';</script>`;
+    // For those older doodles, we force id="fpdoodle".
+    // Newer doodles (2018+) use their own IDs like "sadoodle" with matching CSS —
+    // overwriting those IDs breaks their styling, so we only set fpdoodle when
+    // there is no existing doodle ID on the <html> element.
+    const fullscreenStyle = `<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}center{display:flex;align-items:center;justify-content:center;width:100%;height:100%}#hplogo canvas,#hpcanvas{width:100%!important;height:100%!important}#ctaRoot{opacity:1!important;pointer-events:auto!important}#hplogocta{opacity:1!important;visibility:visible!important;width:100%!important;height:100%!important;background-size:contain!important;background-position:center!important}</style>`;
+    // Scale #hplogo to fit the viewport while preserving the game's internal pixel layout.
+    // Games with fixed-size containers (e.g. 437×209 for Mother's Day 2013) break if we
+    // force width/height:100%. Instead, we use CSS transform:scale to fill the viewport.
+    const scaleScript = `<script>(function(){function s(){var h=document.getElementById('hplogo');if(!h)return;var w=h.offsetWidth,t=h.offsetHeight;if(!w||!t||w<10||t<10)return;var vw=window.innerWidth,vh=window.innerHeight;var sc=Math.min(vw/w,vh/t);if(sc>0.95&&sc<1.05)return;h.style.transformOrigin='center center';h.style.transform='scale('+sc+')';document.body.style.overflow='hidden';}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(s,200);});}else{setTimeout(s,200);}window.addEventListener('resize',function(){var h=document.getElementById('hplogo');if(h)h.style.transform='';setTimeout(s,100);});})();<\/script>`;
+    // Only force fpdoodle if the HTML doesn't already have a doodle-specific ID on <html>
+    const hasDoodleId = /<html[^>]+id=["'][^"']+["']/.test(html);
+    const fullscreenScript = hasDoodleId
+      ? '' // Preserve the existing doodle ID (e.g. sadoodle, hpdoodle)
+      : `<script>document.documentElement.id='fpdoodle';</script>`;
     // Auto-click the CTA play button after the game loads.
-    const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));}else{var b=document.querySelector('#ctaRoot, .cta');if(b){b.click();}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(c,800);});}else{setTimeout(c,800);}})();</script>`;
+    const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));return;}var b=document.querySelector('#ctaRoot, .cta, #hplogocta');if(b){b.click();return;}var h=document.getElementById('hplogo');if(h){h.click();}}function r(){c();setTimeout(c,1500);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(r,800);});}else{setTimeout(r,800);}})();</script>`;
     if (html.includes('</head>')) {
       html = html.replace('</head>', fullscreenStyle + fullscreenScript + '</head>');
     } else {
       html = html.replace('</body>', fullscreenStyle + fullscreenScript + '</body>');
     }
+    // Append scale script at the end (after game JS has created #hplogo content)
+    html += scaleScript;
     // Append auto-click at the very end — many Google doodles lack </body>
     html += autoClickCta;
 

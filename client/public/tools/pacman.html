@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="https://elgoog.im/">
+  <title>PAC-MAN</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    #lga {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #hplogo {
+      background: #000 url(/assets/p/pacman/img/pacman10-hp.2.png) 0 0 no-repeat;
+      height: 208px;
+      width: 484px;
+      position: relative;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+      transform-origin: top left;
+    }
+    #hplogo-l {
+      background: #990;
+      display: none;
+      height: 2px;
+      left: 177px;
+      overflow: hidden;
+      position: absolute;
+      top: 157px;
+      width: 200px;
+    }
+    #hplogo-b {
+      background: #ff0;
+      height: 8px;
+      left: 0;
+      position: absolute;
+      width: 0;
+    }
+    canvas {
+      touch-action: none;
+      outline-width: 0;
+      outline-style: none;
+    }
+    #sound {
+      box-sizing: content-box;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="lga">
+    <div id="hplogo" title="PAC-MAN">
+      <div id="hplogo-l"><div id="hplogo-b"></div></div>
+    </div>
+  </div>
+  <!-- Ad slots expected by game JS (hidden, no ads) -->
+  <div id="tr_slot1x1" style="display:none"></div>
+  <div id="tr_slot468" style="display:none"></div>
+
+  <script>
+    // ── Google Doodle namespace (expected by the game JS) ──
+    window.google = window.google || {};
+    google.doodle = google.doodle || {};
+    google.doodle.pacManSound = true;
+    google.doodle.pmlLoaded = true;
+    google.doodle.pmlInstalled = false;
+    google.doodle.pacManQuery = function() {};
+    google.doodle.pvc = {};
+    google.kEI = '';
+    google.log = function() {};
+    // google.dstr is the cleanup stack — stub it
+    google.dstr = [];
+
+    // ── Scale the game to fill the iframe ──
+    var W = 484, H = 208;
+    function scaleGame() {
+      var logo = document.getElementById('hplogo');
+      if (!logo) return;
+      var sx = window.innerWidth / W;
+      var sy = window.innerHeight / H;
+      var s = Math.min(sx, sy);
+      logo.style.transform = 'scale(' + s + ')';
+      logo.style.transformOrigin = 'top left';
+      logo.style.position = 'absolute';
+      logo.style.left = ((window.innerWidth - W * s) / 2) + 'px';
+      logo.style.top = ((window.innerHeight - H * s) / 2) + 'px';
+      // Position the sound button
+      var snd = document.getElementById('sound');
+      if (snd) {
+        snd.style.transform = 'scale(' + Math.max(s * 0.8, 1) + ')';
+      }
+    }
+
+    // ── Preload assets ──
+    (new Image()).src = 'https://elgoog.im/assets/p/pacman/img/pacman10-hp.2.png';
+    (new Image()).src = 'https://elgoog.im/assets/p/pacman/img/pacman10-hp-sprite-3.png';
+
+    // ── Load the game ──
+    function loadPacMan() {
+      // Mimic the original loader: set bg to black, show loading bar
+      var logo = document.getElementById('hplogo');
+      if (logo) logo.style.background = 'black';
+      setTimeout(function() {
+        var l = document.getElementById('hplogo-l');
+        if (l) l.style.display = 'block';
+      }, 400);
+
+      google.doodle.pmlInstalled = true;
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://elgoog.im/assets/p/pacman/js/pacman10-hp.11.min.js?v=1025';
+      script.onload = function() {
+        scaleGame();
+        window.addEventListener('resize', scaleGame);
+      };
+      script.onerror = function() {
+        // Fallback: try loading from a different path
+        var s2 = document.createElement('script');
+        s2.src = 'https://elgoog.im/assets/p/pacman/js/pacman10-hp.11.min.js';
+        document.body.appendChild(s2);
+      };
+      document.body.appendChild(script);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadPacMan);
+    } else {
+      loadPacMan();
+    }
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { Link, useLocation, useSearch } from "wouter";
-import { Search, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, Star, ArrowUpDown } from "lucide-react";
+import { Search, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, ArrowUpDown } from "lucide-react";
 import { GAMES, CATEGORIES, ALL_TAGS } from "@/data/games";
 import { useRecentlyPlayed } from "@/hooks/useRecentlyPlayed";
 import { useFavourites } from "@/hooks/useFavourites";
@@ -33,7 +33,7 @@ function getLikeCount(slug: string): number {
     if (game) {
       let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
       const jitter = (Math.abs(h) % 30) - 15;
-      return Math.max(Math.round(40 + (game.rating / 5) * Math.sqrt(game.playCount / 100) + jitter), 5);
+      return Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
     }
     return 0;
   } catch {
@@ -184,7 +184,7 @@ export default function Home() {
       if (sortBy === 'most-played') {
         games = [...games].sort((a, b) => (b.playCount || 0) - (a.playCount || 0));
       } else if (sortBy === 'highest-rated') {
-        games = [...games].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        games = [...games].sort((a, b) => getLikeCount(b.slug) - getLikeCount(a.slug));
       } else if (sortBy === 'a-z') {
         games = [...games].sort((a, b) => a.title.localeCompare(b.title));
       } else if (sortBy === 'newest') {
@@ -339,11 +339,6 @@ export default function Home() {
                           {t(`category.${game.category}` as any)}
                         </span>
                         <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-0.5">
-                            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                            <span className="text-[11px] font-bold text-amber-700 dark:text-amber-500">{game.rating.toFixed(1)}</span>
-                          </div>
-                          <span className="text-[10px] text-slate-400">•</span>
                           <span className="text-[10px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                         </div>
                       </div>
@@ -693,11 +688,7 @@ export default function Home() {
                               </span>
                             )}
                             <span className="text-white/30">|</span>
-                            <div className="flex items-center gap-1">
-                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                              <span className="text-sm font-bold text-white">{game.rating.toFixed(1)}</span>
-                            </div>
-                            <span className="text-xs text-white/40">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
+                            <span className="text-xs text-white/60">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                             {activeCategory === "top-rated" && likeCount > 0 && (
                               <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 border border-white/10">
                                 <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
@@ -775,10 +766,6 @@ export default function Home() {
                                 <span className={`font-medium rounded-md capitalize bg-white/15 backdrop-blur-sm text-white/80 border border-white/10 ${isLarge ? 'text-[11px] px-2 py-0.5' : 'text-[9px] px-1.5 py-0.5'}`}>
                                   {t(`category.${game.category}` as any)}
                                 </span>
-                                <div className="flex items-center gap-0.5">
-                                  <Star className={`fill-amber-400 text-amber-400 ${isLarge ? 'w-3 h-3' : 'w-2.5 h-2.5'}`} />
-                                  <span className={`font-bold text-white ${isLarge ? 'text-xs' : 'text-[10px]'}`}>{game.rating.toFixed(1)}</span>
-                                </div>
                                 {activeCategory === "top-rated" && likeCount > 0 && (
                                   <span className="inline-flex items-center gap-0.5 text-[9px] font-semibold px-1 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-white/10">
                                     <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
@@ -866,10 +853,7 @@ export default function Home() {
                                     {t(`difficulty.${game.difficulty}` as any)}
                                   </span>
                                 )}
-                                <div className="flex items-center gap-0.5 ml-auto">
-                                  <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                                  <span className="text-[10px] font-bold text-white">{game.rating.toFixed(1)}</span>
-                                </div>
+                                <span className="text-[9px] text-white/40 ml-auto">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                               </div>
                               {activeTags.length > 0 && (
                                 <div className="flex flex-wrap gap-1 mt-1.5">

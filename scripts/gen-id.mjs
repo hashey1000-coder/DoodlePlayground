@@ -124,7 +124,7 @@ const lines = [`import type { GameTranslation } from '../gameTranslations';`, ''
 for (const [slug, { t, d }] of Object.entries(G)) {
   lines.push(`  '${slug}': {`);
   lines.push(`    title: '${t.replace(/'/g, "\\'")}',`);
-  lines.push(`    description: '${d.replace(/'/g, "\\'")}',`);
+  lines.push(`    description: '${d.replace(/\n/g, "\\n").replace(/'/g, "\\'")}',`);
   lines.push(`  },`);
 }
 lines.push(`};`, '');

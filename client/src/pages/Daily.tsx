@@ -19,12 +19,11 @@ function getDailyGame() {
 
   // Seasonal slug preferences by month/date range
   const seasonalPicks: { month: number; dayRange?: [number, number]; slugs: string[] }[] = [
-    { month: 2, dayRange: [10, 15], slugs: ['valentines-day-chemistry'] },
-    { month: 3, dayRange: [10, 20], slugs: ['holi-2019'] },
-    { month: 6, dayRange: [1, 10], slugs: ['dragon-boat-festival-2024'] },
-    { month: 10, dayRange: [25, 31], slugs: ['great-ghoul-duel', 'halloween-pac-man-2025'] },
-    { month: 12, dayRange: [15, 28], slugs: ['festivus-pole'] },
-    { month: 1, dayRange: [20, 31], slugs: ['lunar-new-year-snake-2025'] },
+    { month: 2, dayRange: [10, 15], slugs: ['valentines-day-chemistry', 'doodle-valentines-day', 'doodle-valentines-day-2022'] },
+    { month: 5, dayRange: [8, 14], slugs: ['mothers-day-2013'] },
+    { month: 10, dayRange: [25, 31], slugs: ['halloween', 'magic-cat-academy', 'magic-cat-academy-2', 'magic-cat-academy-3', 'great-ghoul-duel-2'] },
+    { month: 12, dayRange: [15, 28], slugs: ['santa-tracker'] },
+    { month: 1, dayRange: [20, 31], slugs: ['chinese-new-year-snake'] },
   ];
 
   // Check for seasonal match

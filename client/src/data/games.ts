@@ -12,7 +12,6 @@ export type Game = {
   /** When true, the game cannot be embedded in an iframe and must be opened in a new tab */
   externalOnly?: boolean;
   tags: string[];
-  rating: number;
   playCount: number;
 };
 
@@ -31,7 +30,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys to change direction. Eat the apples to grow longer. Avoid hitting the walls or your own body!',
     difficulty: 'easy',
     tags: ['classic', 'arcade', 'keyboard', 'endless'],
-    rating: 4.7,
     playCount: 485000,
   },
   {
@@ -42,11 +40,10 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/minesweeper.png',
-    iframeUrl: 'https://minesweeperonline.com/',
+    iframeUrl: 'https://www.minesweepergoogle.com/gameapp.html',
     controls: 'Click a square to reveal it. Numbers show how many adjacent mines exist. Right-click to flag a suspected mine. Clear all safe squares to win!',
     difficulty: 'medium',
     tags: ['classic', 'puzzle', 'brain', 'strategy', 'mouse'],
-    rating: 4.5,
     playCount: 390000,
   },
   {
@@ -57,11 +54,10 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/tic-tac-toe.jpg',
-    iframeUrl: 'https://d11jzht7mj96rr.cloudfront.net/games/2021/unity2/tic-tac-toe/index-ts.html',
+    iframeUrl: 'https://embed.gamesdoodle.org/tic-tac/',
     controls: 'Click on an empty square to place your mark. Get three X\'s in a row horizontally, vertically, or diagonally to win. Choose your difficulty level before starting.',
     difficulty: 'easy',
     tags: ['classic', 'strategy', 'vs-ai', 'mouse', 'kids-friendly'],
-    rating: 4.3,
     playCount: 312000,
   },
 
@@ -74,11 +70,10 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/pacman.png',
-    iframeUrl: '/google-doodle/2010/pacman10-i.html',
+    iframeUrl: '/tools/pacman.html',
     controls: 'Use arrow keys to guide PAC-MAN through the maze. Eat all dots to complete the level. Grab power pellets to turn ghosts blue and eat them for bonus points.',
     difficulty: 'medium',
     tags: ['classic', 'arcade', 'maze', 'keyboard', 'fast-paced'],
-    rating: 4.9,
     playCount: 520000,
   },
   {
@@ -93,7 +88,6 @@ export const GAMES: Game[] = [
     controls: 'Hover over the guitar strings and click to pluck them. Use keyboard keys A–L to play notes. Click the record button to capture and replay your melody.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'mouse', 'keyboard', 'relaxing'],
-    rating: 4.6,
     playCount: 280000,
   },
   {
@@ -108,7 +102,6 @@ export const GAMES: Game[] = [
     controls: 'Press and hold the spacebar to set your shot power, then release to shoot. Time your release to arc the ball perfectly into the basket. Score as many as you can!',
     difficulty: 'easy',
     tags: ['sports', 'olympics', 'timing', 'keyboard'],
-    rating: 4.4,
     playCount: 195000,
   },
   {
@@ -123,7 +116,6 @@ export const GAMES: Game[] = [
     controls: 'Alternate pressing the left and right arrow keys rapidly to run. Press spacebar to jump over each hurdle. Mistimed jumps will trip you and slow you down!',
     difficulty: 'easy',
     tags: ['sports', 'olympics', 'fast-paced', 'keyboard', 'timing'],
-    rating: 4.3,
     playCount: 175000,
   },
   {
@@ -138,7 +130,6 @@ export const GAMES: Game[] = [
     controls: 'Use left and right arrow keys to steer the canoe. Pass through each gate in order without missing any. Aim for the fastest time possible!',
     difficulty: 'easy',
     tags: ['sports', 'olympics', 'timing', 'keyboard'],
-    rating: 4.2,
     playCount: 125000,
   },
   {
@@ -153,7 +144,6 @@ export const GAMES: Game[] = [
     controls: 'Use the left and right arrow keys to dive in each direction. Press spacebar to stay in the centre. React quickly to the kicker\'s shot to make the save!',
     difficulty: 'easy',
     tags: ['sports', 'olympics', 'fast-paced', 'keyboard'],
-    rating: 4.3,
     playCount: 165000,
   },
   {
@@ -168,7 +158,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag the knobs to adjust oscillators, filters, and effects. Use the keyboard to play notes. Experiment with different settings to create unique sounds.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'mouse', 'relaxing'],
-    rating: 4.4,
     playCount: 110000,
   },
   {
@@ -183,7 +172,6 @@ export const GAMES: Game[] = [
     controls: 'Click on the Turing machine\'s states and transitions to program it. Press play to run the machine and check if it produces the correct output. Solve all levels!',
     difficulty: 'hard',
     tags: ['educational', 'coding', 'brain', 'puzzle', 'history'],
-    rating: 4.5,
     playCount: 98000,
   },
   {
@@ -198,7 +186,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys to drive the Zamboni around the rink. Cover every patch of rough ice to resurface it. Try to clean the whole rink before time runs out!',
     difficulty: 'easy',
     tags: ['classic', 'relaxing', 'keyboard'],
-    rating: 4.1,
     playCount: 72000,
   },
   {
@@ -213,7 +200,6 @@ export const GAMES: Game[] = [
     controls: 'Click on a clue to highlight its row or column. Type letters to fill in answers. Click between across and down clues. Complete the grid to win!',
     difficulty: 'medium',
     tags: ['puzzle', 'words', 'brain', 'keyboard'],
-    rating: 4.3,
     playCount: 115000,
   },
   {
@@ -228,7 +214,6 @@ export const GAMES: Game[] = [
     controls: 'Click on objects in the scene to interact with them. Find all the spaceship parts scattered across different locations. Solve simple puzzles to unlock new areas.',
     difficulty: 'easy',
     tags: ['adventure', 'point-and-click', 'funny', 'history'],
-    rating: 4.2,
     playCount: 85000,
   },
   {
@@ -243,7 +228,6 @@ export const GAMES: Game[] = [
     controls: 'Click on different craft supplies to decorate your card. Choose stickers, drawings, and messages. Print or share your finished card!',
     difficulty: 'easy',
     tags: ['seasonal', 'creative', 'kids-friendly'],
-    rating: 4.0,
     playCount: 52000,
   },
   {
@@ -258,7 +242,6 @@ export const GAMES: Game[] = [
     controls: 'Click or press spacebar to swing the stick at the piñata. Time your hits to break it open and scatter candy everywhere. Collect as much as you can!',
     difficulty: 'easy',
     tags: ['seasonal', 'clicking', 'funny', 'kids-friendly'],
-    rating: 4.1,
     playCount: 78000,
   },
 
@@ -275,7 +258,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to rotate the cube faces. Try to get each side to show a single colour. Aim for the fewest moves possible!',
     difficulty: 'hard',
     tags: ['puzzle', 'brain', 'strategy', '3d', 'mouse'],
-    rating: 4.5,
     playCount: 145000,
   },
   {
@@ -290,7 +272,6 @@ export const GAMES: Game[] = [
     controls: 'Drag and drop the musical bars into the correct order. Listen to each piece play back when you get it right. Complete all the compositions!',
     difficulty: 'medium',
     tags: ['music', 'puzzle', 'educational', 'history'],
-    rating: 4.5,
     playCount: 125000,
   },
   {
@@ -305,7 +286,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys to move and spacebar to attack. Defeat the monsters by hitting them with special effects beams. Complete all the stages!',
     difficulty: 'medium',
     tags: ['arcade', 'action', 'keyboard', 'history'],
-    rating: 4.4,
     playCount: 92000,
   },
   {
@@ -320,7 +300,6 @@ export const GAMES: Game[] = [
     controls: 'Press up and down arrow keys to switch lanes. Collect letters and mail along the trail. Avoid cacti, fences, and other obstacles. Deliver the mail!',
     difficulty: 'easy',
     tags: ['adventure', 'runner', 'endless', 'keyboard', 'history'],
-    rating: 4.5,
     playCount: 185000,
   },
   {
@@ -335,7 +314,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to move between houses. Collect candy and avoid obstacles. Race against other teams to grab the most treats before Halloween night ends!',
     difficulty: 'easy',
     tags: ['halloween', 'seasonal', 'clicking', 'multiplayer', 'cute'],
-    rating: 4.3,
     playCount: 142000,
   },
 
@@ -352,7 +330,6 @@ export const GAMES: Game[] = [
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. Match the shape accurately to cast the spell and defeat the ghost. Clear all ghosts in each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
-    rating: 4.8,
     playCount: 425000,
   },
   {
@@ -367,7 +344,6 @@ export const GAMES: Game[] = [
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. Match the shape accurately to cast the spell and defeat the ghost. Clear all ghosts in each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
-    rating: 4.8,
     playCount: 380000,
   },
   {
@@ -382,7 +358,6 @@ export const GAMES: Game[] = [
     controls: 'Move your mouse up and down to change the pitch. Move left and right to control volume. Try to play along with the on-screen music or create your own melodies.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'mouse', 'relaxing', 'history'],
-    rating: 4.4,
     playCount: 115000,
   },
   {
@@ -397,7 +372,6 @@ export const GAMES: Game[] = [
     controls: 'Click to throw ice cream scoops at the attacking peppers. Time your throws to hit each pepper before it reaches you. Survive through all the heat levels!',
     difficulty: 'medium',
     tags: ['arcade', 'action', 'clicking', 'food', 'funny'],
-    rating: 4.5,
     playCount: 165000,
   },
 
@@ -414,23 +388,7 @@ export const GAMES: Game[] = [
     controls: 'Click and drag ingredients to mix chocolates. Follow the recipes and craft the right treats. Serve them to the pangolin\'s love interest to progress!',
     difficulty: 'easy',
     tags: ['seasonal', 'puzzle', 'food', 'cute', 'mouse'],
-    rating: 4.4,
     playCount: 142000,
-  },
-  {
-    id: 'g27',
-    slug: 'pangolin-love',
-    title: 'Pangolin Love Doodle',
-    description: 'A charming Valentine\'s adventure where you craft chocolates to help a shy pangolin express its love. Follow recipes to mix, mould, and decorate sweet treats, then deliver them to your pangolin\'s sweetheart across four progressively challenging levels.\n\nAlso known as the Valentine\'s Day 2017 Doodle, this game raised global awareness about pangolins — the world\'s most trafficked animal. The loveable character design made pangolins go viral, with conservation organisations reporting significant increases in donations and awareness following the Doodle\'s release.',
-    
-    category: 'seasonal',
-    thumbnail: '/thumbnails/pangolin-love.jpg',
-    iframeUrl: '/google-doodle/2017/vday17/vday17-27919858.html',
-    controls: 'Click and drag ingredients to mix chocolates. Follow the recipes and craft the right treats. Serve them to the pangolin\'s love interest to progress!',
-    difficulty: 'easy',
-    tags: ['seasonal', 'puzzle', 'food', 'cute', 'mouse'],
-    rating: 4.4,
-    playCount: 138000,
   },
   {
     id: 'g28',
@@ -444,7 +402,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to swing the bat as the ball is bowled. Time your click to hit the ball and score runs. Don\'t miss or you\'re out!',
     difficulty: 'easy',
     tags: ['sports', 'clicking', 'fast-paced', 'touch-friendly', 'cute'],
-    rating: 4.6,
     playCount: 340000,
   },
   {
@@ -459,7 +416,6 @@ export const GAMES: Game[] = [
     controls: 'Drag and drop directional code blocks into the sequence area. Press the play button to run your program and watch the bunny follow your instructions.',
     difficulty: 'easy',
     tags: ['coding', 'educational', 'kids-friendly', 'puzzle', 'cute'],
-    rating: 4.7,
     playCount: 310000,
   },
   {
@@ -469,12 +425,11 @@ export const GAMES: Game[] = [
     description: 'Spin records on dual turntables and scratch your way through hip hop history in this groundbreaking interactive Doodle. Mix beats, crossfade between tracks, and unlock legendary samples as you learn about the origins and evolution of hip hop culture.\n\nReleased on 11 August 2017 to celebrate the 44th anniversary of hip hop\'s birth at a back-to-school party in the Bronx, this Doodle is a love letter to DJ culture. It features a fully functional turntable interface with real scratch mechanics, and its guided historical narrative takes players from DJ Kool Herc\'s first breakbeat to the global cultural movement hip hop became.',
     
     category: 'creative',
-    thumbnail: '/thumbnails/birth-of-hip-hop.gif',
+    thumbnail: '/thumbnails/birth-of-hip-hop.jpg',
     iframeUrl: '/google-doodle/2017/hiphop/hiphop17.html',
     controls: 'Click and drag the crossfader to mix between turntables. Scratch records by clicking and dragging on the vinyl. Unlock new tracks and beats as you progress.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'mouse', 'history'],
-    rating: 4.6,
     playCount: 225000,
   },
   {
@@ -489,7 +444,6 @@ export const GAMES: Game[] = [
     controls: 'Click on the grid to place and remove shapes. Each shape produces a different sound. Adjust the tempo, instruments, and effects to create your visual music piece.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'mouse', 'relaxing'],
-    rating: 4.5,
     playCount: 135000,
   },
   {
@@ -504,7 +458,6 @@ export const GAMES: Game[] = [
     controls: 'Click on your answer for each quiz question. Learn facts about Komodo dragons and their habitat. Score as many correct answers as you can!',
     difficulty: 'easy',
     tags: ['educational', 'trivia', 'nature', 'kids-friendly'],
-    rating: 4.2,
     playCount: 78000,
   },
 
@@ -521,7 +474,6 @@ export const GAMES: Game[] = [
     controls: 'Click and hold to set the launch angle, then release to fling the gnome. The longer you hold, the more power. Try to reach the maximum distance!',
     difficulty: 'easy',
     tags: ['seasonal', 'launching', 'clicking', 'funny', 'touch-friendly'],
-    rating: 4.5,
     playCount: 210000,
   },
   {
@@ -536,7 +488,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys or swipe to move your ghost around the map. Collect wandering spirit flames and bring them back to your base to score. Steal flames trailing behind opponents!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'multiplayer', 'action', 'arcade', 'cute'],
-    rating: 4.8,
     playCount: 425000,
   },
 
@@ -553,7 +504,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to swing the bat as the ball is pitched. Time your swing to make contact and hit the ball as far as possible. Score runs for your team!',
     difficulty: 'easy',
     tags: ['sports', 'clicking', 'fast-paced', 'touch-friendly', 'funny'],
-    rating: 4.6,
     playCount: 285000,
   },
   {
@@ -568,7 +518,6 @@ export const GAMES: Game[] = [
     controls: 'Click on matching cards on your board as they are called out. Complete a row, column, or pattern to call "¡Lotería!" and win the round.',
     difficulty: 'easy',
     tags: ['seasonal', 'cultural', 'multiplayer', 'mouse', 'kids-friendly'],
-    rating: 4.4,
     playCount: 155000,
   },
   {
@@ -583,7 +532,6 @@ export const GAMES: Game[] = [
     controls: 'Click on the staff to place notes and create your melody. Press the "Harmonise" button to let the AI add Bach-style accompaniment. Listen to your creation!',
     difficulty: 'easy',
     tags: ['music', 'creative', 'ai', 'educational', 'history'],
-    rating: 4.5,
     playCount: 165000,
   },
 
@@ -600,7 +548,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys or click to guide the bee between flowers. Land on flowers to collect pollen, then visit other flowers to pollinate them. Help the whole garden bloom!',
     difficulty: 'easy',
     tags: ['seasonal', 'nature', 'educational', 'cute', 'mouse'],
-    rating: 4.4,
     playCount: 185000,
   },
   {
@@ -615,7 +562,6 @@ export const GAMES: Game[] = [
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. New underwater enemies require different spell patterns. Defeat all ghosts to clear each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
-    rating: 4.7,
     playCount: 345000,
   },
   {
@@ -630,7 +576,6 @@ export const GAMES: Game[] = [
     controls: 'Click on the mbira tines to play notes. Follow along with the guided melody or create your own composition. Experiment with different rhythms and patterns.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'cultural', 'mouse', 'relaxing'],
-    rating: 4.3,
     playCount: 82000,
   },
 
@@ -647,7 +592,6 @@ export const GAMES: Game[] = [
     controls: 'Draw lines with your mouse to slice the pizza into the correct number of equal pieces. Match the order shown at the top. Be precise for the best score!',
     difficulty: 'easy',
     tags: ['seasonal', 'food', 'drawing', 'mouse', 'funny'],
-    rating: 4.5,
     playCount: 235000,
   },
   {
@@ -662,7 +606,6 @@ export const GAMES: Game[] = [
     controls: 'Click on the loom to weave threads through the warp. Select different colours and patterns. Complete the weaving to reveal a beautiful traditional textile design.',
     difficulty: 'easy',
     tags: ['creative', 'cultural', 'mouse', 'relaxing', 'educational'],
-    rating: 4.3,
     playCount: 72000,
   },
   {
@@ -677,7 +620,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys to move your character. Interact with NPCs by pressing spacebar. Each sport has unique controls — follow the in-game tutorial for each event.',
     difficulty: 'medium',
     tags: ['adventure', 'sports', 'rpg', 'keyboard', 'mini-games'],
-    rating: 4.9,
     playCount: 480000,
   },
 
@@ -694,7 +636,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to interact with puzzle elements. Guide the hamsters through each level by solving obstacles. Reunite the hamster couple!',
     difficulty: 'easy',
     tags: ['seasonal', 'puzzle', 'cute', 'mouse'],
-    rating: 4.3,
     playCount: 125000,
   },
   {
@@ -709,7 +650,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to set the angle and power of your throw. Release to toss the boule. Aim to land as close to the cochonnet (target ball) as possible!',
     difficulty: 'easy',
     tags: ['sports', 'aiming', 'precision', 'mouse', 'french'],
-    rating: 4.2,
     playCount: 85000,
   },
 
@@ -726,7 +666,6 @@ export const GAMES: Game[] = [
     controls: 'Click on ingredients to add them to your drink. Choose your tea base, flavour, toppings, and boba type. Mix everything together to create your perfect bubble tea!',
     difficulty: 'easy',
     tags: ['seasonal', 'food', 'creative', 'clicking', 'cultural'],
-    rating: 4.4,
     playCount: 195000,
   },
   {
@@ -741,7 +680,6 @@ export const GAMES: Game[] = [
     controls: 'Click to scoop and fill each puri with the correct combination of water and chutneys. Serve the finished pani puri to customers before they leave. Don\'t let them wait!',
     difficulty: 'easy',
     tags: ['seasonal', 'food', 'fast-paced', 'clicking', 'cultural'],
-    rating: 4.4,
     playCount: 175000,
   },
   {
@@ -756,7 +694,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to guide the axolotl through the canals. Interact with the environment and learn about Lake Xochimilco\'s unique floating gardens ecosystem.',
     difficulty: 'easy',
     tags: ['seasonal', 'nature', 'cultural', 'educational', 'cute'],
-    rating: 4.3,
     playCount: 110000,
   },
 
@@ -772,9 +709,7 @@ export const GAMES: Game[] = [
     iframeUrl: 'https://web.archive.org/web/20241124021400/https://www.google.com/logos/2024/popcorn/rc4/popcorn.html',
     controls: 'Click or tap to pop kernels at the right moment. Catch the popcorn in your bucket by moving left and right. Score bonus points for catching seasoned pieces!',
     difficulty: 'easy',
-    isNew: true,
     tags: ['seasonal', 'multiplayer', 'food', 'clicking'],
-    rating: 4.4,
     playCount: 167000,
   },
   {
@@ -788,9 +723,7 @@ export const GAMES: Game[] = [
     iframeUrl: '/google-doodle/2024/halloween24/rc3/halloween24.html',
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. New ghost types require new spell patterns. Defeat all ghosts to clear each level!',
     difficulty: 'medium',
-    isNew: true,
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
-    rating: 4.8,
     playCount: 295000,
   },
   {
@@ -801,12 +734,10 @@ export const GAMES: Game[] = [
     
     category: 'puzzle',
     thumbnail: '/thumbnails/rise-of-the-half-moon.gif',
-    iframeUrl: '/google-doodle/2024/moon/r3/moon.html',
+    iframeUrl: 'https://hg1.onga.io/rise-of-the-half-moon/',
     controls: 'Click to select and play cards from your hand. Balance sun and moon cards to create powerful combos. Outscore your opponent to win each round!',
     difficulty: 'medium',
-    isNew: true,
     tags: ['puzzle', 'strategy', 'cards', 'mouse'],
-    rating: 4.6,
     playCount: 156000,
   },
 
@@ -823,7 +754,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys or swipe to change the snake\'s direction. Collect items to grow longer while avoiding walls and your own tail.',
     difficulty: 'easy',
     tags: ['arcade', 'cultural', 'seasonal', 'classic', 'keyboard'],
-    rating: 4.3,
     playCount: 145000,
   },
   {
@@ -838,7 +768,6 @@ export const GAMES: Game[] = [
     controls: 'Click to move the Doctor around each level. Pick up items and use them to solve puzzles. Avoid the Daleks and other enemies!',
     difficulty: 'medium',
     tags: ['adventure', 'point-and-click', 'history', 'action'],
-    rating: 4.4,
     playCount: 125000,
   },
   {
@@ -853,7 +782,6 @@ export const GAMES: Game[] = [
     controls: 'Press spacebar or tap to jump over cacti. Press down arrow to duck under pterodactyls. The game gets faster as your score increases!',
     difficulty: 'easy',
     tags: ['arcade', 'runner', 'endless', 'keyboard', 'one-button'],
-    rating: 4.7,
     playCount: 450000,
   },
   {
@@ -868,7 +796,6 @@ export const GAMES: Game[] = [
     controls: 'Press spacebar to jump and down arrow to duck. Use left and right arrows to dodge in 3D. Collect coins and power-ups for bonus points!',
     difficulty: 'medium',
     tags: ['arcade', 'runner', 'endless', '3d', 'keyboard'],
-    rating: 4.5,
     playCount: 285000,
   },
   {
@@ -883,7 +810,6 @@ export const GAMES: Game[] = [
     controls: 'Press spacebar to jump and collect weapons. Use them automatically to destroy obstacles. Each weapon has a limited number of uses!',
     difficulty: 'medium',
     tags: ['arcade', 'runner', 'endless', 'weapons', 'keyboard', 'funny'],
-    rating: 4.6,
     playCount: 195000,
   },
   {
@@ -898,7 +824,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag the blobs up and down to change pitch, left and right to change vowel sounds. Move all four blobs to create harmonious opera arrangements!',
     difficulty: 'easy',
     tags: ['music', 'creative', 'ai', 'mouse', 'relaxing', 'kids-friendly'],
-    rating: 4.7,
     playCount: 285000,
   },
   {
@@ -913,7 +838,6 @@ export const GAMES: Game[] = [
     controls: 'Read the partial Google search query and type your guess for how it autocompletes. Score points for matching popular search suggestions. Play through multiple rounds!',
     difficulty: 'medium',
     tags: ['puzzle', 'words', 'trivia', 'funny', 'typing'],
-    rating: 4.5,
     playCount: 310000,
   },
   {
@@ -928,7 +852,6 @@ export const GAMES: Game[] = [
     controls: 'Draw the prompted object on the canvas using your mouse or finger within 20 seconds. The AI will try to guess what you\'re drawing in real time!',
     difficulty: 'easy',
     tags: ['educational', 'ai', 'drawing', 'funny', 'creative'],
-    rating: 4.6,
     playCount: 345000,
   },
   {
@@ -943,7 +866,6 @@ export const GAMES: Game[] = [
     controls: 'Click on any of the music experiments to explore. Each tool has different interactions — click, drag, and play to create music and discover how sound works.',
     difficulty: 'easy',
     tags: ['music', 'creative', 'educational', 'kids-friendly', 'mouse'],
-    rating: 4.5,
     playCount: 215000,
   },
   {
@@ -958,7 +880,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys to navigate your vehicle through the city streets. Pick up passengers to grow longer. Avoid hitting yourself or driving off the map!',
     difficulty: 'easy',
     tags: ['arcade', 'classic', 'keyboard', 'funny'],
-    rating: 4.4,
     playCount: 175000,
   },
   {
@@ -974,7 +895,6 @@ export const GAMES: Game[] = [
     difficulty: 'easy',
     externalOnly: true,
     tags: ['educational', 'geography', 'nature', 'mouse', 'relaxing'],
-    rating: 4.5,
     playCount: 250000,
   },
   {
@@ -989,7 +909,6 @@ export const GAMES: Game[] = [
     controls: 'Click on different games and activities in Santa\'s Village. Each mini-game has its own controls — follow the on-screen instructions!',
     difficulty: 'easy',
     tags: ['seasonal', 'christmas', 'mini-games', 'kids-friendly'],
-    rating: 4.4,
     playCount: 185000,
   },
   {
@@ -999,12 +918,11 @@ export const GAMES: Game[] = [
     description: 'Defend Earth from waves of descending alien invaders in this faithful recreation of the legendary 1978 arcade classic! Move your laser cannon left and right, fire upwards at the alien formations, and destroy every invader before they reach the bottom of the screen.\n\nSpace Invaders, created by Tomohiro Nishikado, was one of the first major arcade hits and helped launch the golden age of video games. It was so popular in Japan that it caused a temporary shortage of 100-yen coins. This web version preserves the original\'s iconic pixel art, distinctive alien march sound that speeds up as fewer invaders remain, and the intense pressure of watching enemies creep ever closer.',
     
     category: 'arcade',
-    thumbnail: '/thumbnails/space-invaders.png',
+    thumbnail: '/thumbnails/space-invaders.jpg',
     iframeUrl: 'https://elgoog.im/space-invaders/',
     controls: 'Use left and right arrow keys to move your cannon. Press spacebar to fire. Destroy all invaders before they reach the bottom of the screen!',
     difficulty: 'medium',
     tags: ['arcade', 'classic', 'shooter', 'keyboard', 'fast-paced'],
-    rating: 4.6,
     playCount: 265000,
   },
   {
@@ -1014,12 +932,11 @@ export const GAMES: Game[] = [
     description: 'Bounce your way to the top in this sequel to the legendary vertical platformer! Jump from platform to platform, avoid enemies and obstacles, grab power-ups like jetpacks and trampolines, and reach for the highest score as the challenge intensifies the higher you go.\n\nThe original Doodle Jump was released in 2009 and became one of the most downloaded mobile games of all time, with over 15 million sales. Its simple tilt-to-move mechanic and endlessly generated platforms created a perfect pick-up-and-play experience. This sequel builds on that addictive formula with new worlds, enemies, and power-ups while keeping the accessible gameplay that made the original a cultural touchstone.',
     
     category: 'arcade',
-    thumbnail: '/thumbnails/doodle-jump-2.png',
-    iframeUrl: 'https://doodlejump.io/',
+    thumbnail: '/thumbnails/doodle-jump-2.jpg',
+    iframeUrl: 'https://doodlejump2.org/doodle-jump-2.embed',
     controls: 'Use left and right arrow keys or tilt to move. The doodler jumps automatically — guide it onto platforms. Avoid enemies and grab power-ups!',
     difficulty: 'easy',
     tags: ['arcade', 'platformer', 'endless', 'keyboard'],
-    rating: 4.4,
     playCount: 215000,
   },
 
@@ -1036,7 +953,6 @@ export const GAMES: Game[] = [
     controls: 'Click or drag cards to move them between columns. Click the deck to draw new cards. Double-click a card to auto-send it to the foundation.',
     difficulty: 'easy',
     tags: ['cards', 'classic', 'relaxing', 'strategy', 'mouse'],
-    rating: 4.7,
     playCount: 485000,
   },
   {
@@ -1051,23 +967,7 @@ export const GAMES: Game[] = [
     controls: 'Drag cards to build descending sequences of the same suit. Complete a full run from King to Ace to clear it from the board. Click the stock pile to deal new cards.',
     difficulty: 'medium',
     tags: ['cards', 'classic', 'strategy', 'brain', 'mouse'],
-    rating: 4.5,
     playCount: 312000,
-  },
-  {
-    id: 'g71',
-    slug: 'google-freecell',
-    title: 'Google FreeCell',
-    description: 'Test your strategic thinking in this beloved card game where nearly every deal is solvable. Use four free cells as temporary storage to manoeuvre cards between eight tableau columns, building sequences in descending alternating colours while moving cards to the foundation piles by suit from Ace to King.\n\nFreeCell stands apart from other solitaire games because almost every game can be won — only one deal out of the original 32,000 numbered deals in Windows FreeCell is known to be unsolvable (deal #11982). This makes it a game of pure skill rather than luck, rewarding careful planning and the ability to think several moves ahead.',
-    
-    category: 'classic',
-    thumbnail: '/thumbnails/google-freecell.svg',
-    iframeUrl: 'https://www.247freecell.com/',
-    controls: 'Click to move cards between columns, free cells, and foundation piles. Build columns in descending alternating colors. Move cards to foundations in ascending order by suit.',
-    difficulty: 'medium',
-    tags: ['cards', 'classic', 'strategy', 'brain', 'mouse'],
-    rating: 4.4,
-    playCount: 278000,
   },
   {
     id: 'g73',
@@ -1081,7 +981,6 @@ export const GAMES: Game[] = [
     controls: 'Click on a card to flip it over. Try to find the matching card by remembering its position. Clear all pairs to win!',
     difficulty: 'easy',
     tags: ['classic', 'brain', 'kids-friendly', 'mouse'],
-    rating: 4.3,
     playCount: 195000,
   },
   {
@@ -1096,23 +995,7 @@ export const GAMES: Game[] = [
     controls: 'Click to roll the dice, then click a token to move it. Get a 6 to bring new tokens into play. Land on opponents to send them back to start.',
     difficulty: 'easy',
     tags: ['classic', 'strategy', 'multiplayer', 'vs-ai'],
-    rating: 4.3,
     playCount: 195000,
-  },
-  {
-    id: 'g75',
-    slug: 'google-word-coach',
-    title: 'Google Word Coach',
-    description: 'Expand your vocabulary with this engaging word quiz game that tests your knowledge of definitions, synonyms, and word relationships. Choose the correct answer from multiple-choice options, build scoring streaks, and learn new words with each round.\n\nGoogle Word Coach originally appeared in Google Search results for users in non-English-speaking countries, helping them improve their English vocabulary in a fun, gamified way. The quiz format with immediate feedback makes learning new words feel like play rather than study, and the progressive difficulty ensures that both beginners and advanced learners are constantly challenged.',
-    
-    category: 'educational',
-    thumbnail: '/thumbnails/google-word-coach.svg',
-    iframeUrl: 'https://www.merriam-webster.com/games/name-that-thing',
-    controls: 'Click on the correct answer from the options provided for each word question. Score points for each correct answer and build up your streak.',
-    difficulty: 'easy',
-    tags: ['words', 'educational', 'brain', 'trivia', 'kids-friendly'],
-    rating: 4.4,
-    playCount: 220000,
   },
   {
     id: 'g76',
@@ -1127,7 +1010,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to spin the spinner. The faster you swipe, the faster it spins. Toggle between fidget spinner and number wheel modes.',
     difficulty: 'easy',
     tags: ['classic', 'relaxing', 'touch-friendly'],
-    rating: 4.0,
     playCount: 89000,
   },
   {
@@ -1138,11 +1020,10 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/google-coin-flip.svg',
-    iframeUrl: 'https://justflipacoin.com/',
+    iframeUrl: '/tools/coin-flip.html',
     controls: 'Click the "Flip" button or tap the coin to toss it. The coin will spin and land randomly on heads or tails.',
     difficulty: 'easy',
     tags: ['classic', 'relaxing', 'touch-friendly', 'one-button'],
-    rating: 4.0,
     playCount: 76000,
   },
   {
@@ -1153,11 +1034,10 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/google-dice-roller.svg',
-    iframeUrl: 'https://rolladie.net/',
+    iframeUrl: '/tools/dice-roller.html',
     controls: 'Click "Roll" to throw the dice. Adjust the number of dice and sides using the controls. Results are shown with a satisfying rolling animation.',
     difficulty: 'easy',
     tags: ['classic', 'relaxing', 'touch-friendly'],
-    rating: 4.0,
     playCount: 82000,
   },
   {
@@ -1173,7 +1053,6 @@ export const GAMES: Game[] = [
     controls: 'Enter a time duration and click "Start" to begin the countdown. Use the stopwatch mode to count up. Pause, resume, or reset at any time.',
     difficulty: 'easy',
     tags: ['classic', 'relaxing'],
-    rating: 4.1,
     playCount: 95000,
   },
   {
@@ -1188,7 +1067,6 @@ export const GAMES: Game[] = [
     controls: 'Click "Start" to begin the beat. Adjust the tempo using the BPM slider or type in your desired beats per minute. Click "Stop" to pause.',
     difficulty: 'easy',
     tags: ['classic', 'music', 'relaxing'],
-    rating: 4.0,
     playCount: 67000,
   },
 
@@ -1205,7 +1083,6 @@ export const GAMES: Game[] = [
     controls: 'Click rapidly on the falling "O" characters to destroy them before they eat the search results. Each O takes three clicks to defeat. Survive as long as possible!',
     difficulty: 'medium',
     tags: ['arcade', 'clicking', 'fast-paced', 'action', 'funny'],
-    rating: 4.7,
     playCount: 365000,
   },
   {
@@ -1220,7 +1097,6 @@ export const GAMES: Game[] = [
     controls: 'Move your mouse or finger left and right to control the paddle. Bounce the ball to break all the bricks above. Don\'t let the ball fall past your paddle!',
     difficulty: 'easy',
     tags: ['classic', 'arcade', 'mouse', 'endless'],
-    rating: 4.8,
     playCount: 410000,
   },
   {
@@ -1235,7 +1111,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag any element on the page to pick it up and throw it around. Watch everything fall and bounce with realistic physics. Try searching for something!',
     difficulty: 'easy',
     tags: ['arcade', 'funny', 'mouse', 'relaxing'],
-    rating: 4.5,
     playCount: 285000,
   },
   {
@@ -1250,7 +1125,6 @@ export const GAMES: Game[] = [
     controls: 'Click the Infinity Gauntlet icon to perform the snap. Watch half the results disintegrate into dust. Click again to reverse the snap and restore everything.',
     difficulty: 'easy',
     tags: ['arcade', 'funny', 'clicking', 'action'],
-    rating: 4.6,
     playCount: 320000,
   },
   {
@@ -1265,23 +1139,7 @@ export const GAMES: Game[] = [
     controls: 'Click or tap the question mark block to hit it and release coins. Keep clicking to collect as many coins as possible. Listen for the classic coin sound!',
     difficulty: 'easy',
     tags: ['arcade', 'classic', 'clicking', 'funny'],
-    rating: 4.5,
     playCount: 260000,
-  },
-  {
-    id: 'g86',
-    slug: 'google-pac-man',
-    title: 'Google PAC-MAN (elgooG)',
-    description: 'The classic Google PAC-MAN Doodle hosted on elgooG, giving you a second way to play the iconic maze-chomping arcade game anytime you want. Navigate the maze, eat all the dots, grab power pellets to chase the ghosts, and aim for the highest score.\n\nThis version of the legendary 2010 PAC-MAN Doodle is preserved on elgooG, a website dedicated to keeping Google Easter eggs and Doodles playable forever. PAC-MAN remains the highest-grossing arcade game of all time, having generated over $14 billion in revenue. The game\'s creator, Toru Iwatani, was inspired by a pizza with a slice missing.',
-    
-    category: 'classic',
-    thumbnail: '/thumbnails/pacman.png',
-    iframeUrl: 'https://elgoog.im/pacman/',
-    controls: 'Use arrow keys to guide PAC-MAN through the maze. Eat all dots to complete the level. Grab power pellets to turn ghosts blue and eat them for bonus points.',
-    difficulty: 'medium',
-    tags: ['classic', 'arcade', 'maze', 'keyboard', 'fast-paced'],
-    rating: 4.9,
-    playCount: 520000,
   },
   {
     id: 'g87',
@@ -1295,7 +1153,6 @@ export const GAMES: Game[] = [
     controls: 'Type in the search bar to see your text appear mirrored. Navigate the reversed interface for a brain-bending experience. All links and buttons work in reverse!',
     difficulty: 'easy',
     tags: ['puzzle', 'funny', 'relaxing'],
-    rating: 4.2,
     playCount: 175000,
   },
   {
@@ -1310,7 +1167,6 @@ export const GAMES: Game[] = [
     controls: 'Type a search query in the classic 1998-style search bar and press Enter. Browse through the nostalgic results page. Click around to explore the vintage interface.',
     difficulty: 'easy',
     tags: ['educational', 'history', 'funny', 'relaxing'],
-    rating: 4.1,
     playCount: 125000,
   },
   {
@@ -1325,7 +1181,6 @@ export const GAMES: Game[] = [
     controls: 'Click the button to trigger the barrel roll animation. The entire page will spin 360 degrees. Click multiple times for continuous rolling fun!',
     difficulty: 'easy',
     tags: ['arcade', 'funny', 'one-button', 'relaxing'],
-    rating: 4.3,
     playCount: 245000,
   },
   {
@@ -1340,7 +1195,6 @@ export const GAMES: Game[] = [
     controls: 'Simply observe the tilted page and try to use it normally. Search, click links, and browse — all at a quirky angle. Refresh to see the tilt again.',
     difficulty: 'easy',
     tags: ['arcade', 'funny', 'relaxing'],
-    rating: 4.1,
     playCount: 155000,
   },
   {
@@ -1355,7 +1209,6 @@ export const GAMES: Game[] = [
     controls: 'Click on each character\'s icon to trigger their unique Easter egg animation. Explore all six characters to discover every hidden surprise and iconic catchphrase.',
     difficulty: 'easy',
     tags: ['seasonal', 'funny', 'social', 'clicking'],
-    rating: 4.0,
     playCount: 65000,
   },
   {
@@ -1370,7 +1223,6 @@ export const GAMES: Game[] = [
     controls: 'Move your mouse to interact with the underwater scene. Click to create ripples and scare the fish. Drag elements around and watch them float in the water.',
     difficulty: 'easy',
     tags: ['adventure', 'relaxing', 'mouse', 'nature'],
-    rating: 4.3,
     playCount: 195000,
   },
   {
@@ -1385,7 +1237,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag any element to toss it through space. Watch objects float and collide with zero-gravity physics. Try typing in the search bar as everything drifts away.',
     difficulty: 'easy',
     tags: ['arcade', 'funny', 'mouse', 'relaxing', 'sci-fi'],
-    rating: 4.3,
     playCount: 185000,
   },
   {
@@ -1400,7 +1251,6 @@ export const GAMES: Game[] = [
     controls: 'Use left and right arrow keys to move pieces. Press up arrow to rotate. Press down arrow for soft drop and spacebar for hard drop. Clear lines to score!',
     difficulty: 'medium',
     tags: ['classic', 'puzzle', 'keyboard', 'fast-paced', 'strategy'],
-    rating: 4.7,
     playCount: 395000,
   },
   {
@@ -1415,7 +1265,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys or swipe to slide all tiles in one direction. Matching numbers merge when they collide. Plan your moves carefully to avoid filling up the board!',
     difficulty: 'medium',
     tags: ['puzzle', 'brain', 'strategy', 'logic', 'keyboard'],
-    rating: 4.6,
     playCount: 345000,
   },
 
@@ -1433,7 +1282,6 @@ export const GAMES: Game[] = [
     difficulty: 'easy',
     externalOnly: true,
     tags: ['educational', 'kids-friendly', 'adventure', 'action'],
-    rating: 4.7,
     playCount: 350000,
   },
   {
@@ -1449,7 +1297,6 @@ export const GAMES: Game[] = [
     difficulty: 'easy',
     externalOnly: true,
     tags: ['educational', 'ai', 'funny', 'creative'],
-    rating: 4.5,
     playCount: 215000,
   },
   {
@@ -1465,7 +1312,6 @@ export const GAMES: Game[] = [
     difficulty: 'easy',
     externalOnly: true,
     tags: ['educational', 'ai', 'creative', 'kids-friendly'],
-    rating: 4.4,
     playCount: 145000,
   },
 
@@ -1482,7 +1328,6 @@ export const GAMES: Game[] = [
     controls: 'Use arrow keys or swipe to move your ghost. Collect spirit flames and return them to your base. Use new power-ups to gain an advantage over the opposing team!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'multiplayer', 'action', 'arcade'],
-    rating: 4.8,
     playCount: 380000,
   },
   {
@@ -1497,7 +1342,6 @@ export const GAMES: Game[] = [
     controls: 'Use the level editor to place platforms, enemies, and power-ups. Click "Play" to test your creation. Share your custom levels with friends!',
     difficulty: 'easy',
     tags: ['educational', 'creative', 'platformer', 'kids-friendly'],
-    rating: 4.7,
     playCount: 275000,
   },
   {
@@ -1513,7 +1357,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag elements to combine them and trigger chemical reactions. Match the right pairs to unlock love-themed animations and complete the puzzle.',
     difficulty: 'easy',
     tags: ['seasonal', 'puzzle', 'educational', 'clicking'],
-    rating: 4.3,
     playCount: 185000,
   },
   {
@@ -1528,7 +1371,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to interact with the moon phases. Solve puzzles by aligning celestial objects. Progress through the story by completing each challenge.',
     difficulty: 'medium',
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
-    rating: 4.4,
     playCount: 125000,
   },
   {
@@ -1543,7 +1385,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to interact with the moon phases. Solve puzzles by aligning celestial objects. Progress through the story by completing each challenge.',
     difficulty: 'medium',
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
-    rating: 4.4,
     playCount: 118000,
   },
   {
@@ -1558,7 +1399,6 @@ export const GAMES: Game[] = [
     controls: 'Click and drag to interact with the moon phases. Solve the final puzzles by aligning celestial objects. Complete the saga!',
     difficulty: 'medium',
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
-    rating: 4.5,
     playCount: 132000,
   },
   // ===== Google Easter Egg Games =====
@@ -1574,23 +1414,7 @@ export const GAMES: Game[] = [
     controls: 'Use WASD to move, mouse to look around. Left click to break blocks, right click to place blocks. Number keys to select different block types from your inventory.',
     difficulty: 'easy',
     tags: ['arcade', 'creative', 'keyboard', 'mouse', '3d'],
-    rating: 4.8,
     playCount: 425000,
-  },
-  {
-    id: 'g133',
-    slug: 'google-maps-pac-man',
-    title: 'Google Maps PAC-MAN',
-    description: 'Play PAC-MAN on actual city streets in this legendary Google Maps mashup! Navigate real-world road layouts while chomping dots, collecting fruit bonuses, and avoiding the four colourful ghosts as they chase you through your own neighbourhood.\n\nOriginally released as a Google Maps April Fools\' Day feature in 2015, this creative blend of classic gaming and real-world geography became one of Google\'s most popular April Fools\' pranks ever. The game transforms any city\'s street layout into a PAC-MAN maze, creating unique challenges depending on the location. Dense city centres with grid-like streets play very differently from suburban areas with cul-de-sacs.',
-    
-    category: 'classic',
-    thumbnail: '/thumbnails/google-maps-pac-man.webp',
-    iframeUrl: 'https://elgoog.im/pacman/',
-    controls: 'Use arrow keys to guide PAC-MAN through real city streets. Eat all the dots while avoiding ghosts. Grab power pellets to turn the tables on your pursuers!',
-    difficulty: 'medium',
-    tags: ['classic', 'arcade', 'maze', 'keyboard', 'geography'],
-    rating: 4.7,
-    playCount: 310000,
   },
   {
     id: 'g134',
@@ -1604,7 +1428,6 @@ export const GAMES: Game[] = [
     controls: 'Click or tap to make the helicopter fly upward. Release to let it descend. Navigate through gaps between obstacles without crashing!',
     difficulty: 'hard',
     tags: ['arcade', 'one-button', 'endless', 'fast-paced', 'touch-friendly'],
-    rating: 4.3,
     playCount: 175000,
   },
   {
@@ -1620,7 +1443,6 @@ export const GAMES: Game[] = [
     controls: 'Click to kick the ball and score points. Time your conversions and drop goals. Run with the ball and dodge defenders to score tries!',
     difficulty: 'easy',
     tags: ['sports', 'clicking', 'fast-paced', 'touch-friendly'],
-    rating: 4.2,
     playCount: 95000,
   },
 ];

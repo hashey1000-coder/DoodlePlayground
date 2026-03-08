@@ -60,9 +60,16 @@ function transformHtml(html, gamePath) {
   // 2. Inject fullscreen CSS + JS to make older games fill the entire iframe.
   //    Older doodles (pre-2017) only have #fpdoodle styles for full-page mode,
   //    but when embedded in an iframe they set id="sdoodles" on <html>.
-  //    We force id="fpdoodle" and add universal fullscreen overrides.
-  const fullscreenStyle = `<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000}#hplogo{width:100%!important;height:100%!important;max-width:100vw!important;max-height:100vh!important}#hplogo canvas,#hpcanvas{width:100%!important;height:100%!important}#ctaRoot{opacity:1!important;pointer-events:auto!important}</style>`;
-  const fullscreenScript = `<script>document.documentElement.id='fpdoodle';</script>`;
+  //    For those older doodles, we force id="fpdoodle".
+  //    Newer doodles (2018+) use their own IDs like "sadoodle" with matching CSS —
+  //    overwriting those IDs breaks their styling, so we only set fpdoodle when
+  //    there is no existing doodle ID on the <html> element.
+  const fullscreenStyle = `<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden}#hplogo{width:100%!important;height:100%!important;max-width:100vw!important;max-height:100vh!important}#hplogo canvas,#hpcanvas{width:100%!important;height:100%!important}#ctaRoot{opacity:1!important;pointer-events:auto!important}#hplogocta{opacity:1!important;visibility:visible!important;width:100%!important;height:100%!important;background-size:contain!important;background-position:center!important}</style>`;
+  // Only force fpdoodle if the HTML doesn't already have a doodle-specific ID on <html>
+  const hasDoodleId = /<html[^>]+id=["'][^"']+["']/.test(html);
+  const fullscreenScript = hasDoodleId
+    ? '' // Preserve the existing doodle ID (e.g. sadoodle, hpdoodle)
+    : `<script>document.documentElement.id='fpdoodle';</script>`;
   if (html.includes("</head>")) {
     html = html.replace("</head>", fullscreenStyle + fullscreenScript + "</head>");
   } else {
@@ -82,7 +89,7 @@ function transformHtml(html, gamePath) {
   //    Some doodles (e.g. Marie Tharp) show a CTA overlay that must be
   //    clicked before the game begins. Append at end of HTML since many
   //    older doodles lack a closing </body> tag.
-  const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));}else{var b=document.querySelector('#ctaRoot, .cta');if(b){b.click();}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(c,800);});}else{setTimeout(c,800);}})();</script>`;
+  const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));return;}var b=document.querySelector('#ctaRoot, .cta, #hplogocta');if(b){b.click();return;}var h=document.getElementById('hplogo');if(h){h.click();}}function r(){c();setTimeout(c,1500);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(r,800);});}else{setTimeout(r,800);}})();</script>`;
   html += autoClickCta;
 
   return html;

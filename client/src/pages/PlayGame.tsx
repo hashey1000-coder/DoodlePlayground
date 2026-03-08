@@ -17,21 +17,21 @@ import { CATEGORY_COLORS, CATEGORY_COLORS_BORDERED, CATEGORY_ACCENT, CATEGORY_FA
 import { prefetchGameUrl } from '@/lib/utils';
 import { useHead } from '@/hooks/useHead';
 
-// Persist likes/dislikes in localStorage — seeded from game.rating
+// Persist likes/dislikes in localStorage — seeded from playCount
 function useLikeDislike(slug: string) {
   const storageKey = `game-votes-${slug}`;
   const userVoteKey = `game-uservote-${slug}`;
 
   const getSeededVotes = () => {
-    // Seed realistic initial vote counts from the game's rating/playCount
+    // Seed realistic initial vote counts from the game's playCount
     const game = GAMES.find((g) => g.slug === slug);
     if (!game) return { likes: 0, dislikes: 0 };
     // Deterministic hash from slug for slight variation between games
     let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
     const jitter = (Math.abs(h) % 30) - 15; // ±15
     // sqrt scale keeps numbers in a realistic 50-300 range
-    const baseLikes = Math.round(40 + (game.rating / 5) * Math.sqrt(game.playCount / 100) + jitter);
-    const baseDislikes = Math.round(baseLikes * (5 - game.rating) / 15);
+    const baseLikes = Math.round(40 + Math.sqrt(game.playCount / 100) + jitter);
+    const baseDislikes = Math.round(baseLikes * 0.12);
     return { likes: Math.max(baseLikes, 5), dislikes: Math.max(baseDislikes, 1) };
   };
 
@@ -105,6 +105,14 @@ function getNextSuggestion(game: Game): Game {
 }
 
 const PLAY_NEXT_COUNTDOWN = 15; // seconds
+
+/** Redirect map for legacy / mismatched slugs → canonical slug */
+const SLUG_REDIRECTS: Record<string, string> = {
+  'feud': 'google-feud',
+  'alan-turing-machine-doodle': 'alan-turing',
+  'alan-turing-machine': 'alan-turing',
+  'turing-machine': 'alan-turing',
+};
 
 /** Extract the origin from a URL for preconnect hints */
 function getOrigin(url: string): string | null {
@@ -411,6 +419,12 @@ export default function PlayGame() {
 
   useEffect(() => {
     if (routeSlug) {
+      // Redirect legacy / mismatched slugs to canonical slug
+      const redirect = SLUG_REDIRECTS[routeSlug];
+      if (redirect) {
+        navigate(`/play/${redirect}/`, { replace: true });
+        return;
+      }
       const found = GAMES.find((g) => g.slug === routeSlug);
       if (found) {
         setGame(found);
@@ -513,12 +527,48 @@ export default function PlayGame() {
         },
       });
       document.head.appendChild(script);
+
+      // BreadcrumbList JSON-LD (matches prerender output)
+      const existingBreadcrumb = document.getElementById('jsonld-breadcrumb');
+      if (existingBreadcrumb) existingBreadcrumb.remove();
+      const breadcrumbScript = document.createElement('script');
+      breadcrumbScript.id = 'jsonld-breadcrumb';
+      breadcrumbScript.type = 'application/ld+json';
+      const origin = window.location.origin;
+      const localePrefix = locale === 'en' ? '' : `/${locale}`;
+      breadcrumbScript.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: t('seo.siteName' as any),
+            item: `${origin}${localePrefix}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: t('nav.allGames'),
+            item: `${origin}${localePrefix}/games/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: gameSeo.gameTitle,
+            item: window.location.href,
+          },
+        ],
+      });
+      document.head.appendChild(breadcrumbScript);
     }
     return () => {
       const script = document.getElementById('jsonld-game');
       if (script) script.remove();
+      const breadcrumb = document.getElementById('jsonld-breadcrumb');
+      if (breadcrumb) breadcrumb.remove();
     };
-  }, [game, gameSeo]);
+  }, [game, gameSeo, locale, t]);
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -625,7 +675,7 @@ export default function PlayGame() {
         )}
 
         {/* Compact breadcrumb */}
-        <div className="flex items-center gap-2 mb-3 text-sm">
+        <div className="flex items-center gap-2 mb-3 text-sm flex-wrap">
           <Link href="/">
             <span className="flex items-center gap-1 text-teal-600 hover:text-teal-700 transition-colors font-medium">
               <ChevronLeft className="w-4 h-4" />
@@ -639,9 +689,11 @@ export default function PlayGame() {
         {/* Game iframe — full width, no sidebar */}
         <div className="w-full">
           <div id="game-player-container" className={`game-iframe-container relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm ${
-            isFullscreen
+            isFakeFullscreen
               ? 'fullscreen-container'
-              : 'overflow-hidden rounded-2xl'
+              : isNativeFullscreen
+                ? '' /* native fullscreen is managed by the browser; adding position:fixed conflicts */
+                : 'overflow-hidden rounded-2xl'
           }`}>
             {/* Fullscreen / Exit fullscreen button */}
             {gameStarted && !game.externalOnly && (

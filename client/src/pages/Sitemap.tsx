@@ -58,7 +58,7 @@ export default function Sitemap() {
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-8">
 
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-6">
+        <div className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-6 flex-wrap">
           <Link href="/">
             <span className="hover:text-teal-600 transition-colors cursor-pointer">{t('nav.allGames')}</span>
           </Link>
