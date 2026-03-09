@@ -76,26 +76,9 @@ export default function Daily() {
   const t = useT();
   const { locale } = useLanguage();
 
-  // If no games are available yet, show a placeholder
-  if (!game) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-        <div className="text-center space-y-4">
-          <CalendarDays className="w-12 h-12 mx-auto text-slate-300" />
-          <h1 className="text-2xl font-bold text-slate-700 dark:text-slate-200">{t('daily.title')}</h1>
-          <p className="text-slate-500 dark:text-slate-400">{t('daily.subtitle')}</p>
-          <Link href="/">
-            <span className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 cursor-pointer">
-              <ChevronLeft className="w-4 h-4" />
-              {t('game.backToGames')}
-            </span>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const { title: gameTitle, description: gameDesc, controls: gameControls } = useGameT(game);
+  // All hooks must be called unconditionally (Rules of Hooks)
+  const fallbackGame = game ?? GAMES[0];
+  const { title: gameTitle, description: gameDesc, controls: gameControls } = useGameT(fallbackGame);
   const { isFavourite, toggleFavourite } = useFavourites();
   const [countdown, setCountdown] = useState(getCountdownToMidnight());
   const [copied, setCopied] = useState(false);
@@ -115,6 +98,25 @@ export default function Daily() {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // If no games are available yet, show a placeholder
+  if (!game) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="text-center space-y-4">
+          <CalendarDays className="w-12 h-12 mx-auto text-slate-300" />
+          <h1 className="text-2xl font-bold text-slate-700 dark:text-slate-200">{t('daily.title')}</h1>
+          <p className="text-slate-500 dark:text-slate-400">{t('daily.subtitle')}</p>
+          <Link href="/">
+            <span className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 cursor-pointer">
+              <ChevronLeft className="w-4 h-4" />
+              {t('game.backToGames')}
+            </span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const handlePlay = () => {
     const key = `daily-played-${getTodayKey()}`;

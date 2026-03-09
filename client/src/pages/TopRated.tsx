@@ -18,13 +18,17 @@ function readAllVotes(): Record<string, { likes: number; dislikes: number }> {
         const parsed = JSON.parse(stored);
         result[game.slug] = { likes: parsed.likes || 0, dislikes: parsed.dislikes || 0 };
       } else {
-        // Seed from playCount when no user votes exist
-        const baseLikes = Math.max(Math.round(Math.sqrt((game.playCount || 50) / 100) + 40), 5);
+        // Seed from playCount when no user votes exist (matches PlayGame formula)
+        let h = 0; for (let i = 0; i < game.slug.length; i++) h = ((h << 5) - h + game.slug.charCodeAt(i)) | 0;
+        const jitter = (Math.abs(h) % 30) - 15;
+        const baseLikes = Math.max(Math.round(40 + Math.sqrt((game.playCount || 50) / 100) + jitter), 5);
         const baseDislikes = Math.max(Math.round(baseLikes * 0.12), 1);
         result[game.slug] = { likes: baseLikes, dislikes: baseDislikes };
       }
     } catch {
-      const baseLikes = Math.max(Math.round(Math.sqrt((game.playCount || 50) / 100) + 40), 5);
+      let h = 0; for (let i = 0; i < game.slug.length; i++) h = ((h << 5) - h + game.slug.charCodeAt(i)) | 0;
+      const jitter = (Math.abs(h) % 30) - 15;
+      const baseLikes = Math.max(Math.round(40 + Math.sqrt((game.playCount || 50) / 100) + jitter), 5);
       const baseDislikes = Math.max(Math.round(baseLikes * 0.12), 1);
       result[game.slug] = { likes: baseLikes, dislikes: baseDislikes };
     }
@@ -211,10 +215,9 @@ export default function TopRated() {
 
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
           {/* Table header */}
-          <div className="grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_100px_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+          <div className="grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
             <div className="text-center">#</div>
             <div>{t('topRated.game')}</div>
-            <div className="text-center hidden sm:block">{t('topRated.category')}</div>
             <div className="text-center hidden sm:block">
               <ThumbsUp className="w-3.5 h-3.5 inline" /> {t('topRated.likes')}
             </div>
@@ -233,7 +236,7 @@ export default function TopRated() {
               <Link href={`/play/${game.slug}/`}>
                 <div
                   onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}
-                  className={`grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_100px_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 items-center border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-teal-50/50 dark:hover:bg-teal-950/30 transition-colors cursor-pointer group ${
+                  className={`grid grid-cols-[32px_1fr_64px] sm:grid-cols-[40px_1fr_80px_90px] md:grid-cols-[40px_1fr_80px_80px_90px] gap-2 sm:gap-4 px-3 sm:px-4 py-3 items-center border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-teal-50/50 dark:hover:bg-teal-950/30 transition-colors cursor-pointer group ${
                     index < 3 ? "bg-amber-50/30 dark:bg-amber-950/20" : ""
                   }`}
                 >
@@ -282,9 +285,6 @@ export default function TopRated() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Category (hidden on small) */}
-                  <div className="hidden sm:block" />
 
                   {/* Likes */}
                   <div className="text-center hidden sm:block">

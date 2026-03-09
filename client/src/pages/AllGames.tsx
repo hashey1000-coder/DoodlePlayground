@@ -10,6 +10,25 @@ import { prefetchGameUrl } from '@/lib/utils';
 import { CATEGORY_COLORS } from '@/data/categoryColors';
 import { useHead } from '@/hooks/useHead';
 
+function getLikeCount(slug: string): number {
+  try {
+    const stored = localStorage.getItem(`game-votes-${slug}`);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      return parsed.likes || 0;
+    }
+    const game = GAMES.find((g) => g.slug === slug);
+    if (game) {
+      let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
+      const jitter = (Math.abs(h) % 30) - 15;
+      return Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
+    }
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
 export default function AllGames() {
   const t = useT();
   const gt = useGameTranslate();
@@ -59,7 +78,7 @@ export default function AllGames() {
     }
     switch (sortBy) {
       case 'most-played': return games.sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0));
-      case 'highest-rated': return games.sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0));
+      case 'highest-rated': return games.sort((a, b) => getLikeCount(b.slug) - getLikeCount(a.slug));
       case 'newest': return games.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0) || gt(a).title.localeCompare(gt(b).title));
       default: return games.sort((a, b) => gt(a).title.localeCompare(gt(b).title));
     }

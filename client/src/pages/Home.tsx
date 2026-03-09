@@ -186,14 +186,14 @@ export default function Home() {
       } else if (sortBy === 'highest-rated') {
         games = [...games].sort((a, b) => getLikeCount(b.slug) - getLikeCount(a.slug));
       } else if (sortBy === 'a-z') {
-        games = [...games].sort((a, b) => a.title.localeCompare(b.title));
+        games = [...games].sort((a, b) => gt(a).title.localeCompare(gt(b).title));
       } else if (sortBy === 'newest') {
         games = [...games].sort((a, b) => (a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1));
       }
     }
 
     return games;
-  }, [activeCategory, searchQuery, favourites, kidsMode, activeTags, sortBy]);
+  }, [activeCategory, searchQuery, favourites, kidsMode, activeTags, sortBy, gt]);
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950">

@@ -8,10 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Fetches an elgoog.im page and modifies it to auto-click the play button.
- * elgoog.im pages have a landing article page with a CTA "Play the Easter Egg Now!"
- * button. This proxy fetches the page, fixes resource URLs, removes Cloudflare
- * rocket-loader obfuscation, and injects a script to auto-click the CTA button.
+ * Fetches an elgoog.im page and modifies it for proxied embedding.
+ * Fixes resource URLs with a <base> tag, removes Cloudflare rocket-loader
+ * obfuscation, and injects a pathname fix so elgoog's JS can detect the game.
  */
 async function proxyElgoogPage(gamePath: string): Promise<string | null> {
   const url = `https://elgoog.im/${gamePath}${gamePath.endsWith('/') ? '' : '/'}`;
@@ -38,37 +37,12 @@ async function proxyElgoogPage(gamePath: string): Promise<string | null> {
     html = html.replace(/<script[^>]*rocket-loader[^>]*><\/script>/g, '');
     html = html.replace(/<script[^>]*data-cf-settings[^>]*><\/script>/g, '');
 
-    // 4. Inject auto-play script: fix pathname for game init + auto-click the CTA button
-    const autoPlayScript = `
+    // 4. Inject pathname fix so elgoog's JS can determine which game to load
+    const pathFixScript = `
 <script>
-(function() {
-  // Fix pathname so elgoog's JS can determine which game to initialize
-  try { history.replaceState(null, '', '/${gamePath.replace(/\/+$/, '')}/'); } catch(e) {}
-
-  function autoPlay() {
-    var btn = document.querySelector('.easter-egg-CTA__button');
-    if (btn) {
-      btn.click();
-    } else {
-      // Fallback: if button not found, try to init the game directly
-      if (typeof window.init_current_page === 'function') {
-        window.init_current_page();
-        var vp = document.querySelector('.viewport');
-        if (vp) { vp.classList.add('visible', 'prepare-transition'); }
-        var landing = document.querySelector('.easter-egg-landing');
-        if (landing) { landing.style.display = 'none'; }
-      }
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { setTimeout(autoPlay, 300); });
-  } else {
-    setTimeout(autoPlay, 300);
-  }
-})();
+try { history.replaceState(null, '', '/${gamePath.replace(/\/+$/, '')}/'); } catch(e) {}
 </script>`;
-    html = html.replace('</body>', autoPlayScript + '\n</body>');
+    html = html.replace('</body>', pathFixScript + '\n</body>');
 
     return html;
   } catch {
@@ -126,8 +100,7 @@ async function proxyGoogleDoodlePage(gamePath: string): Promise<string | null> {
     const fullscreenScript = hasDoodleId
       ? '' // Preserve the existing doodle ID (e.g. sadoodle, hpdoodle)
       : `<script>document.documentElement.id='fpdoodle';</script>`;
-    // Auto-click the CTA play button after the game loads.
-    const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));return;}var b=document.querySelector('#ctaRoot, .cta, #hplogocta');if(b){b.click();return;}var h=document.getElementById('hplogo');if(h){h.click();}}function r(){c();setTimeout(c,1500);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(r,800);});}else{setTimeout(r,800);}})();</script>`;
+
     if (html.includes('</head>')) {
       html = html.replace('</head>', fullscreenStyle + fullscreenScript + '</head>');
     } else {
@@ -135,8 +108,6 @@ async function proxyGoogleDoodlePage(gamePath: string): Promise<string | null> {
     }
     // Append scale script at the end (after game JS has created #hplogo content)
     html += scaleScript;
-    // Append auto-click at the very end — many Google doodles lack </body>
-    html += autoClickCta;
 
     // Rewrite ALL /logos/ absolute paths to full Google URLs.
     // CSS url(), dynamically-created script.src, and other references to

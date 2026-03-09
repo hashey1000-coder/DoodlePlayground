@@ -19,6 +19,25 @@ function getQueryParam(search: string, key: string): string {
   }
 }
 
+function getLikeCount(slug: string): number {
+  try {
+    const stored = localStorage.getItem(`game-votes-${slug}`);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      return parsed.likes || 0;
+    }
+    const game = GAMES.find((g) => g.slug === slug);
+    if (game) {
+      let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
+      const jitter = (Math.abs(h) % 30) - 15;
+      return Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
+    }
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
 const DIFFICULTY_OPTIONS = [
   { id: "easy", labelKey: "difficulty.easy" as const, color: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100", activeColor: "bg-green-500 text-white border-green-500" },
   { id: "medium", labelKey: "difficulty.medium" as const, color: "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100", activeColor: "bg-amber-500 text-white border-amber-500" },
@@ -42,7 +61,6 @@ export default function SearchResults() {
     return 'default';
   });
   const [showSortMenu, setShowSortMenu] = useState(false);
-  const sortMenuRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sortBtnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -119,7 +137,7 @@ export default function SearchResults() {
     }
     switch (sortBy) {
       case 'most-played': return filtered.sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0));
-      case 'highest-rated': return filtered.sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0));
+      case 'highest-rated': return filtered.sort((a, b) => getLikeCount(b.slug) - getLikeCount(a.slug));
       case 'a-z': return filtered.sort((a, b) => gt(a).title.localeCompare(gt(b).title));
       case 'newest': return filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0) || gt(a).title.localeCompare(gt(b).title));
       default: return filtered;

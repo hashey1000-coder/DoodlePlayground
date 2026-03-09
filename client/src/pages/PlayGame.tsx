@@ -208,14 +208,14 @@ export default function PlayGame() {
   // This starts DNS + TLS handshake before the user clicks Play, shaving
   // 200-600 ms off the perceived load time.
 
-  // ── Route elgoog.im URLs through our proxy to auto-click their play button ──
-  // elgoog.im pages show a landing page with a "Play" CTA button before the game.
-  // Our proxy fetches the page, injects JS to auto-click that button, and serves it.
+  // ── Route elgoog.im URLs through our proxy for clean embedding ──
+  // elgoog.im pages need resource URL fixes and a pathname injection.
+  // Our proxy handles this and serves the modified HTML.
   const effectiveIframeUrl = useMemo(() => {
     if (!game) return '';
     const url = game.iframeUrl;
     if (url.includes('elgoog.im/')) {
-      // Route through our static proxy pages that auto-click the play button.
+      // Route through our static proxy pages that fix resource URLs.
       // In dev: served by Vite middleware. In production: pre-built static HTML files.
       const elgoogPath = url.replace(/^https?:\/\/elgoog\.im\//, '').replace(/\/+$/, '');
       return `/elgoog/${elgoogPath}/`;
@@ -853,12 +853,12 @@ export default function PlayGame() {
               </div>
             )}
 
-            {/* Game iframe — only for embeddable games */}
+            {/* Game iframe — only for embeddable games; src is set only after Play is clicked */}
             {!game.externalOnly && (
             <iframe
               ref={iframeRef}
               id="game-iframe"
-              src={effectiveIframeUrl}
+              src={gameStarted ? effectiveIframeUrl : undefined}
               title={gt(game).title}
               className={isFullscreen
                 ? 'w-full h-full'
