@@ -45,9 +45,13 @@ function elgoogProxyPlugin(): Plugin {
           html = html.replace(/<script[^>]*rocket-loader[^>]*><\/script>/g, '');
           html = html.replace(/<script[^>]*data-cf-settings[^>]*><\/script>/g, '');
 
-          // Inject auto-play script
+          // Inject pathname fix so elgoog's JS can determine which game to load
           const slug = gamePath.replace(/\/+$/, '');
-          const autoPlayScript = `<script>(function(){try{history.replaceState(null,'','/${slug}/');}catch(e){}function a(){var b=document.querySelector('.easter-egg-CTA__button');if(b){b.click();}else if(typeof window.init_current_page==='function'){window.init_current_page();var v=document.querySelector('.viewport');if(v){v.classList.add('visible','prepare-transition');}var l=document.querySelector('.easter-egg-landing');if(l){l.style.display='none';}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(a,300);});}else{setTimeout(a,300);}})();</script>`;
+          const pathFixScript = `<script>try{history.replaceState(null,'','/${slug}/');}catch(e){}</script>`;
+          html = html.replace('</body>', pathFixScript + '</body>');
+
+          // Auto-click the CTA "Play" button so the game starts immediately in our iframe.
+          const autoPlayScript = `<script>(function(){var t=0;function g(){var b=document.querySelector('.easter-egg-CTA__button');if(b){b.click();return}if(++t<20)setTimeout(g,150)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(g,200)});else setTimeout(g,200)})()</script>`;
           html = html.replace('</body>', autoPlayScript + '</body>');
 
           if (!res.writableEnded && !res.destroyed) {
@@ -130,9 +134,7 @@ function googleDoodleProxyPlugin(): Plugin {
           const fullscreenScript = hasDoodleId
             ? '' // Preserve the existing doodle ID (e.g. sadoodle, hpdoodle)
             : `<script>document.documentElement.id='fpdoodle';</script>`;
-          // Auto-click the CTA play button after the game loads.
-          // Many doodles show a CTA overlay that must be clicked before the game starts.
-          const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));return;}var b=document.querySelector('#ctaRoot, .cta, #hplogocta');if(b){b.click();return;}var h=document.getElementById('hplogo');if(h){h.click();}}function r(){c();setTimeout(c,1500);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(r,800);});}else{setTimeout(r,800);}})();</script>`;
+
           // Insert right before </head> or </body>
           if (html.includes('</head>')) {
             html = html.replace('</head>', fullscreenStyle + fullscreenScript + '</head>');
@@ -141,8 +143,6 @@ function googleDoodleProxyPlugin(): Plugin {
           }
           // Append scale script at the end (after game JS has created #hplogo content)
           html += scaleScript;
-          // Append auto-click at the very end — many Google doodles lack </body>
-          html += autoClickCta;
 
           // Rewrite ALL /logos/ absolute paths to full Google URLs.
           // This is critical because CSS url(), dynamically-created script.src,

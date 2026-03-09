@@ -65,38 +65,29 @@ function transformHtml(html, gamePath) {
     ""
   );
 
-  // 5. Inject auto-play script just before </body>
+  // 5. Inject pathname fix so elgoog's JS can identify which game to initialize
+  const pathFixScript = `
+<script>
+try { history.replaceState(null, '', '/${gamePath}/'); } catch(e) {}
+</script>`;
+
+  html = html.replace("</body>", pathFixScript + "\n</body>");
+
+  // 6. Auto-click the CTA "Play" button so the game starts immediately.
+  //    elgoog pages show a landing article first; clicking the CTA scrolls
+  //    to the game viewport and initialises it.  We retry because elgoog's
+  //    main.min.js attaches the click handler asynchronously.
   const autoPlayScript = `
 <script>
-(function() {
-  // Set the pathname so elgoog's JS can identify which game to initialize
-  try { history.replaceState(null, '', '/${gamePath}/'); } catch(e) {}
-
-  function autoPlay() {
-    // Primary: click the CTA button which triggers the ViewportManager flow
-    var btn = document.querySelector('.easter-egg-CTA__button');
-    if (btn) {
-      btn.click();
-      return;
-    }
-    // Fallback: directly init the game and show the viewport
-    if (typeof window.init_current_page === 'function') {
-      window.init_current_page();
-      var vp = document.querySelector('.viewport');
-      if (vp) { vp.classList.add('visible', 'prepare-transition'); }
-      var landing = document.querySelector('.easter-egg-landing');
-      if (landing) { landing.style.display = 'none'; }
-    }
+(function(){
+  var tries=0;
+  function go(){
+    var btn=document.querySelector('.easter-egg-CTA__button');
+    if(btn){btn.click();return;}
+    if(++tries<20) setTimeout(go,150);
   }
-
-  // Wait for DOM + ViewportManager initialization before auto-clicking
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(autoPlay, 400);
-    });
-  } else {
-    setTimeout(autoPlay, 400);
-  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(go,200);});
+  else setTimeout(go,200);
 })();
 </script>`;
 

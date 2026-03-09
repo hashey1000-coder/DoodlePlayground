@@ -44,6 +44,25 @@ try { history.replaceState(null, '', '/${gamePath.replace(/\/+$/, '')}/'); } cat
 </script>`;
     html = html.replace('</body>', pathFixScript + '\n</body>');
 
+    // 5. Auto-click the CTA "Play" button so the game starts immediately in our iframe.
+    //    elgoog.im pages show a landing article first; clicking the CTA scrolls to the
+    //    game viewport and initialises it.  We retry a few times because elgoog's
+    //    main.min.js attaches the click handler asynchronously.
+    const autoPlayScript = `
+<script>
+(function(){
+  var tries=0;
+  function go(){
+    var btn=document.querySelector('.easter-egg-CTA__button');
+    if(btn){btn.click();return;}
+    if(++tries<20) setTimeout(go,150);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(go,200);});
+  else setTimeout(go,200);
+})();
+</script>`;
+    html = html.replace('</body>', autoPlayScript + '\n</body>');
+
     return html;
   } catch {
     return null;
