@@ -271,6 +271,7 @@ export const RU: TranslationMap = {
   'game.challenged': 'Вас вызвали!',
   'game.challengeDesc': 'Друг вызывает вас. Удачи!',
   'game.challengeFriend': 'Вызвать друга',
+  'game.shareChallenge': 'Поделиться вызовом',
   'game.details': 'Подробности',
   'game.moreGames': 'Ещё Игры',
   'game.youMightLike': 'Вам Может Понравиться',

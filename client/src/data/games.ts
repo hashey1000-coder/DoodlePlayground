@@ -67,10 +67,10 @@ export const GAMES: Game[] = [
     slug: 'pacman',
     title: 'PAC-MAN Doodle',
     description: 'Play the legendary PAC-MAN arcade game, recreated as a fully playable Google Doodle celebrating its 30th anniversary in 2010. Navigate the iconic maze, chomp every dot, grab power pellets to turn the tables on Blinky, Pinky, Inky, and Clyde, and aim for the highest score.\n\nThis was the first-ever playable Google Doodle and it became a cultural sensation — an estimated 1 billion people played it in the first three days. The Doodle faithfully reproduces the original 1980 Namco arcade experience, complete with authentic sound effects, ghost AI behaviour patterns, and the classic fruit bonuses that made PAC-MAN the best-selling arcade game of all time.',
-    
+
     category: 'classic',
     thumbnail: '/thumbnails/pacman.png',
-    iframeUrl: '/tools/pacman.html',
+    iframeUrl: 'https://smashkartsonlinegames.github.io/v88/pac-man/',
     controls: 'Use arrow keys to guide PAC-MAN through the maze. Eat all dots to complete the level. Grab power pellets to turn ghosts blue and eat them for bonus points.',
     difficulty: 'medium',
     tags: ['classic', 'arcade', 'maze', 'keyboard', 'fast-paced'],
@@ -412,7 +412,7 @@ export const GAMES: Game[] = [
     
     category: 'educational',
     thumbnail: '/thumbnails/doodle-kids-coding.gif',
-    iframeUrl: '/google-doodle/2017/logo17/logo17.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25793/',
     controls: 'Drag and drop directional code blocks into the sequence area. Press the play button to run your program and watch the bunny follow your instructions.',
     difficulty: 'easy',
     tags: ['coding', 'educational', 'kids-friendly', 'puzzle', 'cute'],
@@ -544,7 +544,7 @@ export const GAMES: Game[] = [
     
     category: 'seasonal',
     thumbnail: '/thumbnails/doodle-earth-day.gif',
-    iframeUrl: '/google-doodle/2020/earthday20/r1/earthday20.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25833/',
     controls: 'Use arrow keys or click to guide the bee between flowers. Land on flowers to collect pollen, then visit other flowers to pollinate them. Help the whole garden bloom!',
     difficulty: 'easy',
     tags: ['seasonal', 'nature', 'educational', 'cute', 'mouse'],
@@ -572,9 +572,10 @@ export const GAMES: Game[] = [
     
     category: 'creative',
     thumbnail: '/thumbnails/doodle-mbira.gif',
-    iframeUrl: '/google-doodle/2020/mbira/r2/mbira20.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25834/',
     controls: 'Click on the mbira tines to play notes. Follow along with the guided melody or create your own composition. Experiment with different rhythms and patterns.',
     difficulty: 'easy',
+    externalOnly: true,
     tags: ['music', 'creative', 'cultural', 'mouse', 'relaxing'],
     playCount: 82000,
   },
@@ -646,7 +647,7 @@ export const GAMES: Game[] = [
     
     category: 'sports',
     thumbnail: '/thumbnails/celebrating-petanque.gif',
-    iframeUrl: '/google-doodle/2021/petanque/r041323/petanque.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25818/',
     controls: 'Click and drag to set the angle and power of your throw. Release to toss the boule. Aim to land as close to the cochonnet (target ball) as possible!',
     difficulty: 'easy',
     tags: ['sports', 'aiming', 'precision', 'mouse', 'french'],
@@ -1338,7 +1339,7 @@ export const GAMES: Game[] = [
     
     category: 'educational',
     thumbnail: '/thumbnails/gerald-lawson.svg',
-    iframeUrl: '/google-doodle/2022/lawson/r1201/lawson.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25779/',
     controls: 'Use the level editor to place platforms, enemies, and power-ups. Click "Play" to test your creation. Share your custom levels with friends!',
     difficulty: 'easy',
     tags: ['educational', 'creative', 'platformer', 'kids-friendly'],

@@ -10,7 +10,7 @@
 
 import { useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import type { Game } from './games';
+import { GAMES, type Game } from './games';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -79,6 +79,16 @@ export function useGameTranslate(): (game: Game) => { title: string; description
 /** Mutable map — locales are added lazily or eagerly (SSR) */
 export const GAME_TRANSLATIONS: GameTranslationMap = {};
 
+const ACTIVE_GAME_SLUGS = new Set(GAMES.map(g => g.slug));
+
+function normalizeGameTranslations(map: Record<string, GameTranslation>): Record<string, GameTranslation> {
+  const filtered: Record<string, GameTranslation> = {};
+  for (const [slug, t] of Object.entries(map)) {
+    if (ACTIVE_GAME_SLUGS.has(slug)) filtered[slug] = t;
+  }
+  return filtered;
+}
+
 /** Dynamic import loaders for each locale's game translations */
 const GAME_LOCALE_LOADERS: Record<string, () => Promise<Record<string, GameTranslation>>> = {
   es: () => import('./translations/es').then(m => m.ES_GAMES),
@@ -113,7 +123,7 @@ export function loadGameLocale(code: string): Promise<void> {
   const loader = GAME_LOCALE_LOADERS[code];
   if (!loader) return Promise.resolve();
   _gameLoadCache[code] = loader().then(data => {
-    GAME_TRANSLATIONS[code] = data;
+    GAME_TRANSLATIONS[code] = normalizeGameTranslations(data);
   });
   return _gameLoadCache[code]!;
 }
@@ -122,5 +132,5 @@ export function loadGameLocale(code: string): Promise<void> {
  * Register game translations eagerly (used by SSR / prerender).
  */
 export function registerGameTranslations(locale: string, map: Record<string, GameTranslation>) {
-  GAME_TRANSLATIONS[locale] = map;
+  GAME_TRANSLATIONS[locale] = normalizeGameTranslations(map);
 }

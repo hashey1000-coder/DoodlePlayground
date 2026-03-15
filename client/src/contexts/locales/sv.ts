@@ -271,6 +271,7 @@ export const SV: TranslationMap = {
   'game.challenged': 'Du har blivit utmanad!',
   'game.challengeDesc': 'En vän utmanar dig. Lycka till!',
   'game.challengeFriend': 'Utmana en vän',
+  'game.shareChallenge': 'Dela utmaning',
   'game.details': 'Detaljer',
   'game.moreGames': 'Fler Spel',
   'game.youMightLike': 'Du Kanske Också Gillar',

@@ -271,6 +271,7 @@ export const ZH_TW: TranslationMap = {
   'game.challenged': '您被挑戰了！',
   'game.challengeDesc': '朋友向您發起挑戰。祝好運！',
   'game.challengeFriend': '挑戰朋友',
+  'game.shareChallenge': '分享挑戰',
   'game.details': '詳情',
   'game.moreGames': '更多遊戲',
   'game.youMightLike': '您可能也喜歡',

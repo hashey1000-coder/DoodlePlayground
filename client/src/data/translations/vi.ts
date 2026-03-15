@@ -4,106 +4,132 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'snake': {
     title: 'Google Rắn',
     description: 'Chơi trò rắn săn mồi kinh điển ngay trên trang tìm kiếm Google. Điều khiển con rắn ngày càng dài hơn, ăn táo và tránh va vào tường cũng như đuôi của chính mình. Bạn sống càng lâu, trò chơi càng nhanh và khó hơn.\n\nTrò rắn săn mồi ban đầu nổi tiếng trên điện thoại Nokia vào cuối những năm 1990 và đã trở thành một trong những trò chơi điện tử được biết đến nhiều nhất mọi thời đại. Phiên bản trình duyệt của Google tái hiện trung thành sự đơn giản gây nghiện của trò chơi gốc.',
+    controls: 'Sử dụng các phím mũi tên để thay đổi hướng. Ăn táo để phát triển lâu hơn. Tránh va vào tường hoặc cơ thể của chính bạn!',
   },
   'minesweeper': {
     title: 'Google Dò Mìn',
     description: 'Dọn sạch bãi mìn mà không chạm vào bất kỳ quả mìn nào trong trò chơi logic kinh điển này. Sử dụng các con số làm gợi ý để suy luận vị trí mìn ẩn và đánh dấu chúng bằng cờ.\n\nDò Mìn đã trở thành trò chơi không thể thiếu trên máy tính kể từ khi Microsoft đưa nó vào Windows 3.1 năm 1992. Từ một trò giết thời gian đơn thuần, nó đã trở thành trò chơi logic cạnh tranh với cộng đồng speedrun toàn cầu.',
+    controls: 'Bấm vào một hình vuông để lộ nó. Những con số cho thấy có bao nhiêu mỏ lân cận tồn tại. Nhấp chuột phải để gắn cờ một mỏ nghi ngờ. Xóa tất cả các ô an toàn để giành chiến thắng!',
   },
   'tic-tac-toe': {
     title: 'Google Cờ Ca-rô 3x3',
     description: 'Chơi trò cờ X-O bất hủ với AI của Google ở ba mức độ: dễ, trung bình hoặc không thể thắng. Đặt X hoặc O trên bảng 3×3 và cố gắng xếp được ba ô liên tiếp.\n\nCờ X-O là một trong những trò chơi chiến thuật lâu đời nhất trong lịch sử nhân loại, có nguồn gốc từ Ai Cập cổ đại. Ở mức không thể thắng, AI chơi hoàn hảo về mặt toán học.',
+    controls: 'Bấm vào một hình vuông trống để đặt dấu của bạn. Nhận được ba chữ X liên tiếp theo chiều ngang, chiều dọc hoặc đường chéo để giành chiến thắng. Chọn mức độ khó của bạn trước khi bắt đầu.',
   },
   'pacman': {
     title: 'Doodle PAC-MAN',
     description: 'Trải nghiệm lại trò PAC-MAN huyền thoại, được tái tạo thành Google Doodle có thể chơi được nhân kỷ niệm 30 năm ra mắt vào năm 2010. Di chuyển qua mê cung biểu tượng, ăn hết các chấm và đuổi bắt ma bằng viên năng lượng.\n\nĐây là Google Doodle có thể chơi đầu tiên trong lịch sử và đã trở thành hiện tượng văn hóa — ước tính một tỷ người đã chơi trong ba ngày đầu tiên. Trò chơi tái hiện trung thành trải nghiệm arcade gốc của Namco năm 1980.',
+    controls: 'Sử dụng các phím mũi tên để hướng dẫn PAC-MAN vượt qua mê cung. Ăn tất cả các dấu chấm để hoàn thành cấp độ. Lấy các viên năng lượng để biến ma thành màu xanh và ăn chúng để nhận điểm thưởng.',
   },
   'les-paul-guitar': {
     title: 'Doodle Đàn Guitar Les Paul',
     description: 'Chơi và thu âm các đoạn riff guitar của riêng bạn trong Doodle tương tác này tôn vinh Les Paul, người phát minh ra đàn guitar điện thân đặc. Gảy dây bằng chuột hoặc chơi giai điệu bằng bàn phím.\n\nĐược phát hành vào ngày 9 tháng 6 năm 2011, nhân kỷ niệm sinh nhật lần thứ 96 của Les Paul, Doodle này đã trở thành một trong những Doodle tương tác được yêu thích nhất từng được tạo ra.',
+    controls: 'Di chuột qua dây đàn guitar và nhấp để gảy chúng. Sử dụng các phím bàn phím từ A–L để chơi các nốt. Nhấp vào nút ghi để ghi lại và phát lại giai điệu của bạn.',
   },
   'basketball-2012': {
     title: 'Doodle Bóng Rổ 2012',
     description: 'Ghi điểm trong Doodle bóng rổ Olympic London 2012 này. Giữ phím cách để điều chỉnh lực ném và thả ra đúng thời điểm để ghi bàn.\n\nDoodle này là một phần trong loạt trò chơi thể thao tương tác của Google trong Thế vận hội Mùa hè London 2012.',
+    controls: 'Nhấn và giữ phím cách để thiết lập lực bắn, sau đó thả ra để bắn. Chọn thời điểm thả bóng để đưa bóng vào rổ một cách hoàn hảo. Ghi càng nhiều càng tốt!',
   },
   'hurdles-2012': {
     title: 'Doodle Chạy Vượt Rào 2012',
     description: 'Chạy trên đường đua và nhảy qua các rào cản trong Doodle Olympic London 2012 này. Nhấn phím trái và phải xen kẽ để tăng tốc và dùng phím cách để nhảy.\n\nLà một trong những Doodle Olympic phổ biến nhất năm 2012, trò chạy vượt rào này đã trở thành hiện tượng viral khi người chơi thi nhau lập kỷ lục thời gian nhanh nhất.',
+    controls: 'Luân phiên nhấn nhanh phím mũi tên trái phải để chạy. Nhấn phím cách để nhảy qua từng chướng ngại vật. Những cú nhảy không đúng lúc sẽ khiến bạn vấp ngã và làm bạn chậm lại!',
   },
   'slalom-canoe': {
     title: 'Doodle Ca-nô Slalom 2012',
     description: 'Chèo ca-nô qua đường đua slalom trong Doodle Olympic London 2012 này. Dùng các phím mũi tên để điều hướng qua từng cổng theo đúng thứ tự.\n\nDoodle thể thao dưới nước này đã mang sự hào hứng của ca-nô slalom Olympic đến hàng triệu trình duyệt trong Thế vận hội London 2012.',
+    controls: 'Sử dụng phím mũi tên trái và phải để điều khiển ca nô. Đi qua từng cổng theo thứ tự không bỏ sót cổng nào. Hãy nhắm đến thời gian nhanh nhất có thể!',
   },
   'soccer-2012': {
     title: 'Doodle Bóng Đá 2012',
     description: 'Vào vai thủ môn trong Doodle bóng đá Olympic London 2012 này. Lao sang trái hoặc phải bằng phím mũi tên, hoặc đứng yên ở giữa bằng phím cách để cản phá cú sút.\n\nThử thách thủ môn này là một trong những Doodle thể thao được chơi nhiều nhất trong kỳ Olympic 2012.',
+    controls: 'Sử dụng các phím mũi tên trái và phải để lặn theo từng hướng. Nhấn phím cách để ở giữa. Phản ứng nhanh với cú sút của người đá để cứu thua!',
   },
   'robert-moog': {
     title: 'Doodle Synthesizer Robert Moog',
     description: 'Xoay các núm vặn và kết nối dây cáp trên bộ tổng hợp âm thanh Moog ảo trong Doodle tương tác này tôn vinh Robert Moog, người tiên phong của nhạc điện tử.\n\nĐược phát hành vào ngày 23 tháng 5 năm 2012, Doodle này là bộ tổng hợp hoạt động đầy đủ với bốn bộ dao động. Phát minh của Moog đã cách mạng hóa nhạc đại chúng trong thập niên 1960 và 1970.',
+    controls: 'Nhấp và kéo các núm để điều chỉnh bộ dao động, bộ lọc và hiệu ứng. Sử dụng bàn phím để chơi các nốt nhạc. Thử nghiệm với các cài đặt khác nhau để tạo ra âm thanh độc đáo.',
   },
   'alan-turing': {
     title: 'Doodle Máy Alan Turing',
     description: 'Giải các câu đố logic trên máy Turing ảo và tôn vinh cha đẻ của khoa học máy tính, Alan Turing. Lập trình đầu đọc-ghi bằng cách thiết lập các trạng thái và quy tắc chuyển đổi.\n\nĐược tạo ra nhân kỷ niệm 100 năm ngày sinh của Turing vào ngày 23 tháng 6 năm 2012, Doodle này là một công cụ giáo dục thực sự. Khái niệm máy tính vạn năng của Turing đã đặt nền tảng cho khoa học máy tính hiện đại.',
+    controls: 'Nhấp vào các trạng thái và chuyển tiếp của máy Turing để lập trình cho nó. Nhấn play để chạy máy và kiểm tra xem nó có tạo ra kết quả chính xác hay không. Giải quyết tất cả các cấp độ!',
   },
   'zamboni': {
     title: 'Doodle Zamboni',
     description: 'Lái máy làm phẳng băng Zamboni trên sân trượt băng trong Doodle duyên dáng này. Dùng phím mũi tên để điều khiển Zamboni trên bề mặt băng gồ ghề và làm phẳng toàn bộ sân.\n\nDoodle này kỷ niệm ngày sinh của Frank Zamboni, người đã phát minh ra chiếc máy làm phẳng băng biểu tượng mang tên ông vào năm 1949.',
+    controls: 'Sử dụng các phím mũi tên để lái Zamboni quanh sân trượt. Che từng mảng băng thô để làm nổi lại bề mặt. Hãy cố gắng dọn dẹp toàn bộ sân trước khi hết thời gian!',
   },
   'doodle-crossword': {
     title: 'Doodle Ô Chữ',
     description: 'Giải ô chữ Google với các gợi ý về lịch sử ô chữ và kiến thức tổng hợp. Nhấp vào gợi ý để đánh dấu hàng hoặc cột và gõ câu trả lời của bạn.\n\nDoodle này kỷ niệm 100 năm ra đời ô chữ, lần đầu tiên được đăng trên tờ New York World vào ngày 21 tháng 12 năm 1913.',
+    controls: 'Bấm vào một đầu mối để đánh dấu hàng hoặc cột của nó. Gõ các chữ cái để điền vào câu trả lời. Nhấp chuột giữa các đầu mối trên và dưới. Hoàn thành lưới để giành chiến thắng!',
   },
   'doodle-roswell': {
     title: 'Doodle Kỷ Niệm 66 Năm Roswell',
     description: 'Giúp người ngoài hành tinh bị rơi tìm các bộ phận tàu vũ trụ bị phân tán trong trò phiêu lưu chỉ-và-nhấp tại Roswell năm 1947. Nhấp vào các vật thể để tương tác và giải câu đố.\n\nĐược tạo ra nhân kỷ niệm 66 năm sự kiện Roswell nổi tiếng, Doodle ba phần này là một trong những trò phiêu lưu được yêu thích nhất của Google.',
+    controls: 'Nhấp vào các đối tượng trong cảnh để tương tác với chúng. Tìm tất cả các bộ phận của tàu vũ trụ nằm rải rác ở các địa điểm khác nhau. Giải các câu đố đơn giản để mở khóa các khu vực mới.',
   },
   'mothers-day-2013': {
     title: 'Doodle Ngày Của Mẹ 2013',
     description: 'Tạo thiệp Ngày Của Mẹ cá nhân hóa với nhiều vật liệu thủ công, nhãn dán và trang trí trong Doodle tương tác đầy yêu thương này.\n\nDoodle năm 2013 này tôn vinh sự sáng tạo và tình yêu thương chứa đựng trong những tấm thiệp làm tay. Với giao diện kéo-thả trực quan, cả trẻ em lẫn người lớn đều có thể dễ dàng thiết kế điều gì đó thật đặc biệt.',
+    controls: 'Bấm vào các vật dụng thủ công khác nhau để trang trí thiệp của bạn. Chọn nhãn dán, hình vẽ và tin nhắn. In hoặc chia sẻ thẻ đã hoàn thành của bạn!',
   },
   'doodle-google-15th': {
     title: 'Sinh Nhật Lần Thứ 15 Của Google',
     description: 'Chúc mừng sinh nhật 15 tuổi của Google bằng cách đập piñata đầy kẹo và bất ngờ! Nhấp hoặc nhấn phím cách để vung gậy và thu thập thật nhiều kẹo.\n\nĐược phát hành vào ngày 27 tháng 9 năm 2013. Google được thành lập vào ngày 4 tháng 9 năm 1998 bởi Larry Page và Sergey Brin trong một nhà để xe tại Menlo Park, California.',
+    controls: 'Nhấp hoặc nhấn phím cách để vung gậy vào piñata. Hãy căn thời gian cho các cú đánh của bạn để phá vỡ nó và rải kẹo khắp nơi. Thu thập càng nhiều càng tốt!',
   },
   'rubiks-cube': {
     title: 'Doodle Khối Rubik',
     description: 'Xoay các mặt của khối Rubik ảo hoàn toàn tương tác để giải nó với ít bước nhất có thể. Nhấp và kéo để xoay các mặt sao cho mỗi mặt chỉ có một màu.\n\nDoodle này kỷ niệm 40 năm khối Rubik, được phát minh bởi kiến trúc sư Hungary Ernő Rubik vào năm 1974. Với hơn 43 tỷ tỷ cấu hình khả thi, đây là trò chơi xếp hình bán chạy nhất thế giới.',
+    controls: 'Nhấp và kéo để xoay các mặt khối. Cố gắng để mỗi bên hiển thị một màu duy nhất. Hãy nhắm tới số lần di chuyển ít nhất có thể!',
   },
   'doodle-beethoven': {
     title: 'Doodle Beethoven',
     description: 'Giúp Beethoven sắp xếp lại các tác phẩm nổi tiếng bằng cách đặt các ô nhịp bị xáo trộn về đúng thứ tự. Kéo các ô nhịp vào vị trí chính xác và lắng nghe khi mỗi kiệt tác được phát lên.\n\nDoodle năm 2015 này kỷ niệm sinh nhật lần thứ 245 của Beethoven bằng trò chơi ghép nhạc hấp dẫn sử dụng các tác phẩm biểu tượng như Für Elise và Giao hưởng số 5.',
+    controls: 'Kéo và thả các ô nhạc theo đúng thứ tự. Nghe từng đoạn phát lại khi bạn hiểu đúng. Hoàn thành tất cả các tác phẩm!',
   },
   'eiji-tsuburaya': {
     title: 'Doodle Eiji Tsuburaya',
     description: 'Chơi trò cuộn ngang kiểu retro tôn vinh Eiji Tsuburaya, nhà sáng tạo hiệu ứng đặc biệt huyền thoại trong Godzilla và Ultraman. Chiến đấu với quái vật khổng lồ và cứu thành phố.\n\nĐược phát hành vào ngày 7 tháng 7 năm 2015 nhân kỷ niệm sinh nhật lần thứ 114 của Tsuburaya, Doodle này tôn vinh cha đẻ của dòng phim tokusatsu Nhật Bản.',
+    controls: 'Sử dụng các phím mũi tên để di chuyển và phím cách để tấn công. Đánh bại lũ quái vật bằng cách đánh chúng bằng chùm tia hiệu ứng đặc biệt. Hoàn thành tất cả các giai đoạn!',
   },
   'pony-express': {
     title: 'Doodle Pony Express',
     description: 'Cưỡi ngựa xuyên miền Viễn Tây nước Mỹ, thu thập thư và bưu kiện trong khi tránh xương rồng và chướng ngại vật. Dùng phím mũi tên để chuyển làn trong trò chạy vô tận này.\n\nDoodle này kỷ niệm 155 năm Pony Express, dịch vụ bưu chính huyền thoại đi khoảng 3.200 km từ Missouri đến California từ tháng 4 năm 1860 đến tháng 10 năm 1861.',
+    controls: 'Nhấn phím mũi tên lên xuống để chuyển làn. Thu thập thư và thư dọc theo con đường mòn. Tránh xương rồng, hàng rào và các chướng ngại vật khác. Đưa thư đi!',
   },
   'global-candy-cup': {
     title: 'Cúp Kẹo Toàn Cầu 2015',
     description: 'Chọn đội của bạn và tham gia Cúp Kẹo Toàn Cầu — cuộc thi Halloween thu thập kẹo nhiều nhất có thể. Chọn nhân vật phù thủy, ma, ma cà rồng hoặc các nhân vật đáng sợ khác.\n\nDoodle Halloween năm 2015 này giới thiệu cơ chế thi đấu đồng đội, nơi người chơi từ khắp thế giới đóng góp vào tổng điểm của đội mình.',
+    controls: 'Nhấp hoặc nhấn để di chuyển giữa các ngôi nhà. Thu thập kẹo và tránh chướng ngại vật. Chạy đua với các đội khác để giành được nhiều phần thưởng nhất trước khi đêm Halloween kết thúc!',
   },
   'magic-cat-academy': {
     title: 'Magic Cat Academy (Halloween 2016)',
     description: 'Vào vai mèo phép thuật Momo và bảo vệ trường phép thuật khỏi cuộc xâm lăng của bầy ma! Vẽ biểu tượng bằng chuột để niệm chú khớp với hình dạng phía trên mỗi con ma.\n\nDoodle Halloween năm 2016 này đã trở thành một trong những sáng tạo tương tác được yêu thích nhất của Google. Nhân vật chính đáng yêu Momo đã chinh phục trái tim người chơi trên toàn thế giới.',
+    controls: 'Vẽ biểu tượng hiển thị phía trên mỗi con ma bằng chuột hoặc ngón tay của bạn. Ghép hình dạng chính xác để niệm phép và đánh bại ma. Xóa tất cả ma ở mỗi cấp độ!',
   },
   'google-cat-game': {
     title: 'Google Trò Chơi Mèo Phép Thuật',
     description: 'Trò chơi Magic Cat Academy nổi tiếng với mèo phép thuật Momo — vẽ biểu tượng để niệm chú và bảo vệ trường của bạn khỏi đám ma quái phá phách.\n\nCòn được gọi là "trò chơi mèo Halloween Google," đây vẫn là một trong những trò chơi Google được tìm kiếm nhiều nhất mỗi năm. Momo đã trở thành linh vật Halloween không chính thức của Google.',
+    controls: 'Vẽ biểu tượng hiển thị phía trên mỗi con ma bằng chuột hoặc ngón tay của bạn. Ghép hình dạng chính xác để niệm phép và đánh bại ma. Xóa tất cả ma ở mỗi cấp độ!',
   },
   'doodle-clara-rockmore': {
     title: 'Doodle Theremin Clara Rockmore',
     description: 'Chơi theremin ảo để tôn vinh Clara Rockmore, người được coi là nghệ sĩ chơi theremin xuất sắc nhất mọi thời đại. Di chuyển chuột lên xuống để điều khiển cao độ.\n\nĐược phát hành vào ngày 9 tháng 3 năm 2016, Doodle này có chế độ hướng dẫn với hình ảnh động tuyệt đẹp. Theremin, được phát minh vào năm 1920, là nhạc cụ duy nhất được chơi mà không cần chạm vào.',
+    controls: 'Di chuyển chuột lên và xuống để thay đổi cao độ. Di chuyển sang trái và phải để điều khiển âm lượng. Hãy thử chơi theo nhạc trên màn hình hoặc tạo giai điệu của riêng bạn.',
   },
   'doodle-scoville': {
     title: 'Doodle Scoville',
     description: 'Kiểm tra khả năng chịu cay của bạn trong Doodle tôn vinh Wilbur Scoville và thang đo độ cay nổi tiếng của ông. Ném kem vào những quả ớt ngày càng cay xếp hàng tiến về phía bạn.\n\nĐược tạo ra nhân kỷ niệm sinh nhật lần thứ 151 của Scoville vào ngày 22 tháng 1 năm 2016, Doodle này dạy về thang Scoville một cách thú vị, từ 0 (ớt chuông) đến hơn 2 triệu (Carolina Reaper).',
+    controls: 'Bấm vào để ném muỗng kem vào những quả ớt đang tấn công. Hãy canh thời gian để ném trúng từng quả ớt trước khi nó chạm tới bạn. Sống sót qua tất cả các mức nhiệt!',
   },
   'doodle-valentines-day': {
     title: 'Ngày Lễ Tình Nhân 2017 — Tình Yêu Tê Tê',
     description: 'Giúp chú tê tê đang yêu chinh phục trái tim người thương bằng cách làm sô-cô-la praline thơm ngon. Trộn nguyên liệu theo công thức và tạo hình sô-cô-la.\n\nDoodle Lễ Tình Nhân năm 2017 này làm nổi bật loài động vật bị buôn lậu nhiều nhất thế giới. Cả tám loài tê tê đều đang bị đe dọa tuyệt chủng.',
+    controls: 'Nhấp và kéo các thành phần để trộn sôcôla. Thực hiện theo các công thức nấu ăn và chế biến các món ăn phù hợp. Phục vụ chúng cho tình yêu của tê tê để tiến bộ!',
   },
   'pangolin-love': {
     title: 'Doodle Tình Yêu Tê Tê',
@@ -112,162 +138,202 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'doodle-cricket-game': {
     title: 'Doodle Cricket',
     description: 'Chơi trận cricket đáng yêu với ốc sên và dế mèn trong Doodle dành cho ICC Champions Trophy. Nhấp đúng thời điểm để đánh bóng và ghi điểm.\n\nĐược phát hành trong ICC Champions Trophy 2017, Doodle này mang niềm vui cricket đến hàng triệu người chơi. Cricket, với khoảng 2,5 tỷ người hâm mộ, là môn thể thao phổ biến thứ hai trên thế giới.',
+    controls: 'Nhấp hoặc chạm để vung gậy khi bóng được ném xuống. Thời gian nhấp chuột của bạn để đánh bóng và ghi điểm. Đừng bỏ lỡ nếu không bạn sẽ bị loại!',
   },
   'doodle-kids-coding': {
     title: 'Lập Trình Cho Trẻ Em',
     description: 'Giúp chú thỏ dễ thương thu thập cà rốt bằng cách ghép các khối hướng dẫn. Kéo và thả các khối mũi tên, vòng lặp và hành động để xây dựng chuỗi lệnh.\n\nĐược tạo ra nhân kỷ niệm 50 năm ngôn ngữ lập trình cho trẻ em, Doodle này dạy các khái niệm lập trình cơ bản như chuỗi lệnh, vòng lặp và điều kiện.',
+    controls: 'Kéo và thả các khối mã định hướng vào vùng tuần tự. Nhấn nút phát để chạy chương trình và xem chú thỏ làm theo hướng dẫn của bạn.',
   },
   'birth-of-hip-hop': {
     title: 'Doodle Sự Ra Đời Của Hip-Hop',
     description: 'Quay đĩa vinyl trên hai bàn xoay và scratch xuyên suốt lịch sử hip-hop. Trộn nhịp, crossfade bài hát và mở khóa các mẫu âm thanh huyền thoại.\n\nĐược phát hành vào ngày 11 tháng 8 năm 2017 nhân kỷ niệm 44 năm sự ra đời của hip-hop tại một bữa tiệc ở Bronx, New York. Doodle này có giao diện bàn xoay hoạt động đầy đủ.',
+    controls: 'Nhấp và kéo crossfader để trộn giữa các bàn xoay. Cào bản ghi bằng cách nhấp và kéo trên vinyl. Mở khóa các bản nhạc và nhịp điệu mới khi bạn tiến bộ.',
   },
   'oskar-fischinger': {
     title: 'Doodle Oskar Fischinger',
     description: 'Tạo ra các tác phẩm âm nhạc thị giác ấn tượng trong Doodle tôn vinh nhà hoạt hình trừu tượng Oskar Fischinger. Đặt các hình học lên lưới nhạc và xem chúng tạo ra giai điệu.\n\nOskar Fischinger là nhà hoạt hình tiên phong người Đức-Mỹ, tác phẩm của ông đã trực tiếp truyền cảm hứng cho phân đoạn "Toccata và Fuga" trong phim Fantasia của Disney.',
+    controls: 'Bấm vào lưới để đặt và loại bỏ hình dạng. Mỗi hình dạng tạo ra một âm thanh khác nhau. Điều chỉnh nhịp độ, nhạc cụ và hiệu ứng để tạo ra bản nhạc trực quan của bạn.',
   },
   'komodo-national-park': {
     title: 'Doodle Câu Đố Vườn Quốc Gia Komodo',
     description: 'Trả lời câu đố hấp dẫn về rồng Komodo và môi trường sống của chúng tại Vườn Quốc gia Indonesia. Tìm hiểu những sự thật đáng kinh ngạc về loài thằn lằn lớn nhất thế giới.\n\nDoodle giáo dục này kỷ niệm 37 năm thành lập Vườn Quốc gia Komodo, Di sản Thế giới UNESCO nằm tại Indonesia.',
+    controls: 'Bấm vào câu trả lời của bạn cho mỗi câu hỏi trắc nghiệm. Tìm hiểu sự thật về rồng Komodo và môi trường sống của chúng. Ghi càng nhiều câu trả lời đúng càng tốt!',
   },
   'garden-gnomes': {
     title: 'Doodle Chú Lùn Vườn',
     description: 'Bắn chú lùn vườn từ máy phóng đi xa nhất có thể qua cảnh quan tuyệt đẹp. Nhấp và giữ để điều chỉnh góc phóng và thả ra để bắn.\n\nDoodle năm 2018 này kỷ niệm lịch sử chú lùn vườn, có nguồn gốc từ nước Đức thế kỷ 19 với tên gọi "Gartenzwerge".',
+    controls: 'Nhấp và giữ để đặt góc phóng, sau đó thả ra để ném chú lùn. Bạn giữ càng lâu thì sức mạnh càng lớn. Hãy cố gắng đạt được khoảng cách tối đa!',
   },
   'halloween': {
     title: 'Đại Chiến Ma Quỷ (Halloween 2018)',
     description: 'Tham gia Đại Chiến Ma Quỷ, Doodle nhiều người chơi nơi hai đội ma đua nhau thu thập lửa linh hồn. Di chuyển qua các hành lang ma ám và đánh cắp lửa linh hồn của đội đối thủ.\n\nDoodle Halloween năm 2018 này là trò chơi nhiều người chơi đầu tiên của Google, kết nối người chơi từ khắp thế giới theo thời gian thực.',
+    controls: 'Sử dụng các phím mũi tên hoặc vuốt để di chuyển hồn ma của bạn khắp bản đồ. Thu thập những ngọn lửa linh hồn lang thang và mang chúng về căn cứ của bạn để ghi điểm. Đánh cắp ngọn lửa theo sau đối thủ!',
   },
   'baseball': {
     title: 'Doodle Bóng Chày (4 Tháng 7)',
     description: 'Đứng trên home plate và đánh home run trong Doodle bóng chày ngày 4 tháng 7 này. Chơi với nhân vật đồ ăn Mỹ và đánh bóng bay qua sân ngoài.\n\nĐược phát hành vào Ngày Độc lập Hoa Kỳ 2019, Doodle này nắm bắt tinh thần môn thể thao quốc gia Mỹ một cách vui nhộn.',
+    controls: 'Nhấp hoặc chạm để vung gậy khi bóng được ném. Hãy căn thời gian cho cú vung của bạn để tiếp xúc và đánh bóng càng xa càng tốt. Điểm chạy cho đội của bạn!',
   },
   'doodle-loteria': {
     title: 'Doodle Lotería',
     description: 'Chơi trò chơi bài Mexico yêu thích Lotería trong Doodle nhiều người chơi đầy màu sắc này. Lắng nghe câu đố của người xướng và đánh dấu thẻ đúng để hét "Lotería!".\n\nThường được gọi là "bingo Mexico," Lotería đã là truyền thống gia đình ở Mexico từ thế kỷ 18.',
+    controls: 'Nhấp vào các thẻ phù hợp trên bảng của bạn khi chúng được gọi tên. Hoàn thành một hàng, cột hoặc mẫu để gọi "¡Lotería!" và giành chiến thắng trong vòng đấu.',
   },
   'celebrating-bach': {
     title: 'Tôn Vinh Johann Sebastian Bach',
     description: 'Sáng tác hòa âm theo phong cách Bach với sự trợ giúp của trí tuệ nhân tạo. Viết một giai điệu đơn giản và nhấn "Hòa âm" để mô hình AI thêm đối âm baroque.\n\nDoodle đột phá năm 2019 này là Doodle đầu tiên sử dụng AI làm cơ chế trò chơi chính. Google đã huấn luyện mô hình tên Coconet bằng 306 bản hợp xướng của Bach.',
+    controls: 'Bấm vào khuông nhạc để đặt nốt và tạo giai điệu của bạn. Nhấn nút "Harmonise" để AI thêm phần đệm theo phong cách Bach. Hãy lắng nghe sự sáng tạo của bạn!',
   },
   'doodle-earth-day': {
     title: 'Doodle Ngày Trái Đất 2020 — Ong Mật',
     description: 'Giúp chú ong thụ phấn cho các bông hoa trong khu vườn xinh đẹp. Bay từ hoa này sang hoa khác, thu thập và phân phối phấn hoa.\n\nĐược tạo ra cho Ngày Trái Đất 2020 như một phần trong chiến dịch "Ở Nhà và Chơi" của Google trong đại dịch. Ong mật thụ phấn cho khoảng 75% tất cả các loài thực vật có hoa.',
+    controls: 'Sử dụng các phím mũi tên hoặc nhấp chuột để hướng dẫn ong giữa các bông hoa. Đậu lên những bông hoa để thu thập phấn hoa, sau đó ghé thăm những bông hoa khác để thụ phấn cho chúng. Giúp cả khu vườn nở hoa!',
   },
   'magic-cat-academy-2': {
     title: 'Magic Cat Academy 2 (Halloween 2020)',
     description: 'Mèo phép thuật Momo trở lại trong cuộc phiêu lưu dưới đáy biển — lặn xuống dưới mặt nước để chiến đấu với ma biển. Vẽ biểu tượng để niệm chú chống lại các kẻ thù biển mới.\n\nPhần tiếp theo Halloween năm 2020 đưa Momo từ trường học xuống đáy đại dương. Ra mắt trong đại dịch, trò chơi đã mang lại niềm vui cho hàng triệu người chơi.',
+    controls: 'Vẽ biểu tượng hiển thị phía trên mỗi con ma bằng chuột hoặc ngón tay của bạn. Kẻ thù dưới nước mới đòi hỏi các mẫu phép thuật khác nhau. Đánh bại tất cả ma để vượt qua từng cấp độ!',
   },
   'doodle-mbira': {
     title: 'Doodle Mbira',
     description: 'Chơi mbira ảo — nhạc cụ truyền thống châu Phi chơi bằng ngón cái — trong Doodle âm nhạc này tôn vinh một trong những nhạc cụ quý giá nhất của Zimbabwe.\n\nMbira dzavadzimu đã giữ vị trí trung tâm trong văn hóa Shona hơn một nghìn năm, được sử dụng trong các nghi lễ và kể chuyện truyền thống.',
+    controls: 'Bấm vào các nốt mbira để chơi các nốt nhạc. Làm theo giai điệu được hướng dẫn hoặc sáng tác tác phẩm của riêng bạn. Thử nghiệm với các nhịp điệu và kiểu mẫu khác nhau.',
   },
   'doodle-history-of-pizza': {
     title: 'Doodle Lịch Sử Pizza',
     description: 'Cắt và phục vụ pizza trong Doodle tương tác về lịch sử pizza. Vẽ đường bằng chuột để cắt mỗi chiếc pizza thành các miếng bằng nhau theo đơn hàng khách.\n\nDoodle năm 2021 này đưa người chơi vào hành trình ẩm thực xuyên suốt 10.000 năm lịch sử pizza, từ bánh mì dẹt cổ đại đến Margherita hiện đại.',
+    controls: 'Dùng chuột vẽ các đường để cắt bánh pizza thành đúng số miếng bằng nhau. Phù hợp với thứ tự hiển thị ở trên cùng. Hãy chính xác để có điểm số tốt nhất!',
   },
   'wewa-weaving': {
     title: 'Doodle Dệt We:wa',
     description: 'Dệt các hoa văn đầy màu sắc trên khung dệt ảo trong Doodle tôn vinh nghệ thuật dệt may truyền thống của người bản địa Pueblo.\n\nDoodle năm 2021 này tôn vinh truyền thống dệt vải hàng trăm năm của người Pueblo ở tây nam Hoa Kỳ. Mỗi hoa văn mang ý nghĩa văn hóa sâu sắc.',
+    controls: 'Bấm vào khung dệt để dệt sợi qua sợi dọc. Chọn màu sắc và hoa văn khác nhau. Hoàn tất quá trình dệt để lộ ra một thiết kế dệt truyền thống đẹp mắt.',
   },
   'champion-island-games': {
     title: 'Doodle Champion Island Games',
     description: 'Bắt đầu cuộc phiêu lưu RPG hoành tráng trên Đảo Vô Địch. Tham gia bảy mini-game thể thao và khám phá thế giới mở lấy cảm hứng từ truyện dân gian Nhật Bản.\n\nĐược tạo ra cho Thế vận hội Tokyo 2020, đây là Google Doodle lớn nhất và tham vọng nhất từng được tạo ra. Phát triển trong ba năm hợp tác với STUDIO 4°C.',
+    controls: 'Sử dụng các phím mũi tên để di chuyển nhân vật của bạn. Tương tác với các NPC bằng cách nhấn phím cách. Mỗi môn thể thao có cách điều khiển riêng — hãy làm theo hướng dẫn trong trò chơi cho từng sự kiện.',
   },
   'doodle-valentines-day-2022': {
     title: 'Doodle Lễ Tình Nhân 2022 — Chuột Hamster',
     description: 'Dẫn đường cho những chú chuột hamster dễ thương qua mê cung đầy câu đố và chướng ngại vật để đoàn tụ chúng trong Doodle Lễ Tình Nhân này.\n\nDoodle năm 2022 này mê hoặc người chơi bằng những anh hùng nhỏ bé và cơ chế giải đố sáng tạo. Cốt truyện cảm động khiến nó trở thành hoạt động Lễ Tình Nhân hoàn hảo.',
+    controls: 'Nhấp hoặc nhấn để tương tác với các yếu tố câu đố. Hướng dẫn chuột đồng qua từng cấp độ bằng cách giải quyết các chướng ngại vật. Đoàn tụ cặp đôi hamster!',
   },
   'celebrating-petanque': {
     title: 'Doodle Pétanque',
     description: 'Ném quả boule và nhắm vào cochonnet trong Doodle tôn vinh trò chơi cổ điển của Pháp, pétanque. Nhấp và kéo để điều chỉnh góc và lực ném.\n\nPétanque bắt nguồn từ năm 1907 ở miền nam nước Pháp và đã trở thành một trong những hoạt động giải trí phổ biến nhất tại đất nước này.',
+    controls: 'Nhấp và kéo để đặt góc và lực ném của bạn. Thả ra để ném bó hoa. Hãy nhắm đến việc tiếp đất càng gần cochonnet (bóng mục tiêu) càng tốt!',
   },
   'boba-bubble-tea': {
     title: 'Doodle Trà Sữa Trân Châu',
     description: 'Pha chế và kết hợp hương vị để tạo ra ly trà sữa trân châu hoàn hảo trong Doodle tương tác về thức uống nổi tiếng của Đài Loan. Chọn nền trà, thêm hương vị và chọn topping.\n\nTrà sữa trân châu được phát minh ở Đài Loan vào thập niên 1980 và từ đó đã trở thành hiện tượng toàn cầu, có mặt tại hơn 30 quốc gia.',
+    controls: 'Bấm vào thành phần để thêm chúng vào đồ uống của bạn. Chọn cơ sở trà, hương vị, lớp phủ và loại trân châu. Trộn mọi thứ lại với nhau để tạo ra loại trà bong bóng hoàn hảo của bạn!',
   },
   'celebrating-pani-puri': {
     title: 'Doodle Pani Puri',
     description: 'Phục vụ pani puri thơm ngon cho khách hàng đang đói trong Doodle nhanh tay này tôn vinh món ăn đường phố được yêu thích nhất Ấn Độ. Nhồi bánh puri giòn với sự kết hợp chutney hoàn hảo.\n\nPani puri là một trong những món ăn đường phố biểu tượng nhất của Ấn Độ. Doodle năm 2023 này nắm bắt sự hào hứng và tốc độ của một quầy pani puri thực sự.',
+    controls: 'Nhấp để múc và đổ đầy từng món puri với sự kết hợp chính xác giữa nước và tương ớt. Phục vụ món pani puri đã hoàn thành cho khách hàng trước khi họ rời đi. Đừng để họ chờ đợi!',
   },
   'celebrating-lake-xochimilco': {
     title: 'Doodle Hồ Xochimilco',
     description: 'Khám phá vườn nổi ở Hồ Xochimilco và dẫn đường cho chú kỳ giông axolotl quyến rũ qua môi trường nước trong Doodle Di sản Thế giới UNESCO này.\n\nChinampa ở Hồ Xochimilco là di tích nông nghiệp Aztec tiền Tây Ban Nha. Doodle này làm nổi bật loài axolotl đang đối mặt nguy cơ tuyệt chủng.',
+    controls: 'Nhấp hoặc nhấn để hướng dẫn axolotl đi qua các kênh đào. Tương tác với môi trường và tìm hiểu về hệ sinh thái vườn nổi độc đáo của Hồ Xochimilco.',
   },
   'celebrating-popcorn': {
     title: 'Doodle Bỏng Ngô',
     description: 'Nổ, bắt và phục vụ bỏng ngô trong Doodle nhiều người chơi này. Nhấp đúng thời điểm để nổ hạt ngô và thu thập nhiều điểm nhất có thể.\n\nDoodle năm 2024 này kỷ niệm lịch sử bỏng ngô — các phát hiện khảo cổ cho thấy bỏng ngô đã được ăn ở Peru từ 4.700 năm trước.',
+    controls: 'Nhấp hoặc nhấn để bật hạt nhân vào đúng thời điểm. Bắt bỏng ngô trong thùng của bạn bằng cách di chuyển sang trái và phải. Ghi điểm thưởng khi bắt được những miếng dày dặn!',
   },
   'magic-cat-academy-3': {
     title: 'Magic Cat Academy 3 (Halloween 2024)',
     description: 'Mèo phép thuật Momo trở lại trong cuộc phiêu lưu rùng rợn thứ ba. Vẽ biểu tượng để niệm chú chống lại các loại ma mới với những nâng cấp hoàn toàn mới.\n\nDoodle Halloween năm 2024 này tiếp nối loạt trò chơi định kỳ phổ biến nhất của Google — loạt Magic Cat Academy.',
+    controls: 'Vẽ biểu tượng hiển thị phía trên mỗi con ma bằng chuột hoặc ngón tay của bạn. Các loại ma mới yêu cầu các mẫu phép thuật mới. Đánh bại tất cả ma để vượt qua từng cấp độ!',
   },
   'rise-of-the-half-moon': {
     title: 'Doodle Rise of the Half Moon',
     description: 'Chơi trò chơi thẻ bài chiến thuật nơi bạn cân bằng các thẻ ngày và đêm để tạo ra những tổ hợp mạnh mẽ. Chọn thẻ dựa trên tương tác giữa mặt trời và mặt trăng.\n\nDoodle theo kỳ này mang đến trải nghiệm chiến thuật sâu sắc với nghệ thuật bầu trời tuyệt đẹp. Nhiều tập đã được phát hành trong suốt năm 2024–2025.',
+    controls: 'Bấm để chọn và chơi bài từ tay bạn. Cân bằng các lá bài mặt trời và mặt trăng để tạo ra những combo mạnh mẽ. Vượt qua đối thủ của bạn để giành chiến thắng mỗi vòng!',
   },
   'chinese-new-year-snake': {
     title: 'Tết Nguyên Đán — Trò Chơi Rắn',
     description: 'Chào đón Năm Con Rắn với phiên bản lễ hội của trò chơi rắn kinh điển. Thu thập bao lì xì, đèn lồng và các biểu tượng truyền thống khi vượt qua các cấp độ.\n\nTrò chơi này tôn vinh cung hoàng đạo Trung Hoa. Năm Con Rắn đến sau mỗi 12 năm; trong chiêm tinh Trung Hoa, rắn tượng trưng cho sự khôn ngoan và thanh lịch.',
+    controls: 'Sử dụng phím mũi tên hoặc vuốt để thay đổi hướng của con rắn. Thu thập vật phẩm để phát triển lâu hơn trong khi tránh các bức tường và đuôi của chính bạn.',
   },
   'doctor-who': {
     title: 'Doodle Kỷ Niệm 50 Năm Doctor Who',
     description: 'Chơi với tất cả các Bác sĩ trong cuộc phiêu lưu chỉ-và-nhấp kỷ niệm 50 năm Doctor Who. Vượt qua các cấp độ lấy cảm hứng từ các tập phim kinh điển.\n\nĐược tạo ra vào tháng 11 năm 2013 nhân kỷ niệm 50 năm loạt phim khoa học viễn tưởng huyền thoại của BBC. Doctor Who phát sóng lần đầu vào ngày 23 tháng 11 năm 1963.',
+    controls: 'Nhấp để di chuyển Bác sĩ xung quanh mỗi cấp độ. Nhặt vật phẩm và sử dụng chúng để giải câu đố. Tránh Daleks và những kẻ thù khác!',
   },
   'chrome-dino': {
     title: 'Chrome Dino (Trò Chơi Ngoại Tuyến)',
     description: 'Trò chạy T-Rex nổi tiếng từ trang ngoại tuyến Chrome — nay luôn sẵn sàng. Nhảy qua xương rồng và tránh thằn lằn bay.\n\nTrò Chrome Dino được tạo ra năm 2014 bởi nhà thiết kế Google, Sebastien Gabriel. Với khoảng 270 triệu lượt chơi mỗi tháng, đây là một trong những trò chơi được chơi nhiều nhất trên thế giới.',
+    controls: 'Nhấn phím cách hoặc nhấn để nhảy qua xương rồng. Nhấn mũi tên xuống để cúi xuống dưới pterodactyls. Trò chơi sẽ nhanh hơn khi điểm số của bạn tăng lên!',
   },
   't-rex-run-3d': {
     title: 'T-Rex Run 3D',
     description: 'Trải nghiệm lại trò khủng long Chrome kinh điển trong đồ họa 3D ấn tượng. Chạy xuyên cảnh quan sa mạc rộng lớn với chiều sâu và góc nhìn phối cảnh.\n\nPhiên bản 3D do người hâm mộ tạo ra này biến trò cuộn ngang yêu thích thành trải nghiệm ba chiều với môi trường có kết cấu và ánh sáng động.',
+    controls: 'Nhấn phím cách để nhảy và mũi tên xuống để vịt. Sử dụng mũi tên trái và phải để né tránh trong không gian 3D. Thu thập tiền xu và tăng sức mạnh để nhận điểm thưởng!',
   },
   'dino-swords': {
     title: 'Dino Swords',
     description: 'Trò khủng long Chrome, nhưng có kho vũ khí. Thu thập kiếm, súng, búa và công cụ khi chạy để tự động phá hủy chướng ngại vật.\n\nĐược tạo bởi tập thể nghệ thuật internet viral MSCHF, Dino Swords thêm 26 loại vũ khí khác nhau vào trò Chrome Dino.',
+    controls: 'Nhấn phím cách để nhảy và thu thập vũ khí. Sử dụng chúng tự động để tiêu diệt chướng ngại vật. Mỗi loại vũ khí đều có số lần sử dụng hạn chế!',
   },
   'blob-opera': {
     title: 'Blob Opera',
     description: 'Kéo bốn nhân vật blob đầy màu sắc để tạo ra âm nhạc opera tuyệt đẹp. Mỗi blob hát ở một quãng giọng khác nhau và mô hình AI hòa âm chúng theo thời gian thực.\n\nĐược phát triển bởi David Li hợp tác với Google Arts & Culture, Blob Opera sử dụng AI được huấn luyện từ giọng hát của bốn ca sĩ opera thực thụ.',
+    controls: 'Nhấp và kéo các đốm màu lên xuống để thay đổi cao độ, sang trái và phải để thay đổi nguyên âm. Di chuyển tất cả bốn đốm màu để tạo ra sự sắp xếp opera hài hòa!',
   },
   'google-feud': {
     title: 'Google Feud',
     description: 'Đoán các gợi ý tự động hoàn thành phổ biến nhất của Google trong trò chơi đố vui gây nghiện này. Gõ câu trả lời của bạn và khám phá thế giới đang tìm kiếm gì.\n\nLấy cảm hứng từ chương trình truyền hình nổi tiếng, Google Feud tiết lộ những điều bất ngờ và hài hước mà hàng triệu người tìm kiếm mỗi ngày.',
+    controls: 'Đọc một phần truy vấn tìm kiếm của Google và nhập dự đoán của bạn về cách nó tự động hoàn thành. Ghi điểm khi kết hợp các đề xuất tìm kiếm phổ biến. Chơi qua nhiều vòng!',
   },
   'quick-draw': {
     title: 'Quick, Draw!',
     description: 'Mạng nơ-ron có thể nhận ra những gì bạn vẽ không? Vẽ chủ đề được cho trong 20 giây và xem AI Google cố gắng nhận diện bức vẽ của bạn theo thời gian thực.\n\nQuick, Draw! là một trong những thí nghiệm AI phổ biến nhất của Google. Bộ dữ liệu với hơn 50 triệu bức vẽ đã được phát hành dưới dạng mã nguồn mở.',
+    controls: 'Vẽ đối tượng được nhắc trên canvas bằng chuột hoặc ngón tay của bạn trong vòng 20 giây. AI sẽ cố gắng đoán xem bạn đang vẽ gì trong thời gian thực!',
   },
   'chrome-music-lab': {
     title: 'Chrome Music Lab',
     description: 'Khám phá âm nhạc thông qua các thí nghiệm tương tác trong bộ công cụ sáng tạo của Google. Tạo bài hát, khám phá nhịp điệu và trực quan hóa sóng âm.\n\nChrome Music Lab được tạo ra để giúp giáo dục âm nhạc dễ tiếp cận với tất cả mọi người và được sử dụng trong các lớp học trên toàn thế giới.',
+    controls: 'Nhấp vào bất kỳ thử nghiệm âm nhạc nào để khám phá. Mỗi công cụ có các tương tác khác nhau — nhấp, kéo và phát để tạo nhạc và khám phá cách hoạt động của âm thanh.',
   },
   'google-maps-snake': {
     title: 'Google Maps Rắn Săn Mồi',
     description: 'Chơi trò rắn kinh điển trên đường phố thực với Google Maps làm bàn cờ. Lái xe buýt qua các thành phố như Cairo, São Paulo, London, Sydney và Tokyo.\n\nĐược phát hành như trò đùa Cá tháng Tư của Google Maps năm 2019, trò chơi này kết hợp sự hoài niệm trò rắn với địa lý thực tế.',
+    controls: 'Sử dụng các phím mũi tên để điều hướng xe của bạn qua các đường phố trong thành phố. Đón khách để phát triển lâu hơn. Tránh đánh mình hoặc lái xe ra khỏi bản đồ!',
   },
   'google-earth': {
     title: 'Google Earth',
     description: 'Khám phá toàn bộ hành tinh ở dạng 3D với Google Earth — từ đỉnh Himalaya đến đáy đại dương sâu thẳm. Bay trên hình ảnh vệ tinh và tham gia các chuyến tham quan có hướng dẫn.\n\nKể từ khi ra mắt năm 2005, Google Earth đã cách mạng hóa cách chúng ta nhìn hành tinh của mình.',
+    controls: 'Nhấp và kéo để xoay quả địa cầu. Cuộn để phóng to và thu nhỏ. Nhấp đúp vào bất kỳ vị trí nào để bay tới đó. Sử dụng thanh tìm kiếm để tìm địa điểm cụ thể.',
   },
   'santa-tracker': {
     title: 'Google Theo Dõi Ông Già Noel',
     description: 'Theo dõi hành trình kỳ diệu của Ông Già Noel vòng quanh thế giới vào Đêm Giáng Sinh và chơi hàng chục mini-game lễ hội suốt tháng 12.\n\nGoogle Theo Dõi Ông Già Noel đã trở thành truyền thống Giáng Sinh được yêu mến từ năm 2004, mang lại niềm vui cho hàng triệu gia đình mỗi năm.',
+    controls: 'Nhấp vào các trò chơi và hoạt động khác nhau trong Làng ông già Noel. Mỗi trò chơi nhỏ có cách điều khiển riêng - hãy làm theo hướng dẫn trên màn hình!',
   },
   'space-invaders': {
     title: 'Space Invaders',
     description: 'Bảo vệ Trái Đất khỏi từng đợt kẻ xâm lược ngoài hành tinh trong bản tái tạo trung thành của trò arcade kinh điển năm 1978. Bắn hạ đội hình người ngoài hành tinh trước khi chúng chạm đáy màn hình.\n\nĐược tạo ra bởi Tomohiro Nishikado, Space Invaders là một trong những trò arcade hit lớn đầu tiên và mở đầu cho kỷ nguyên vàng của trò chơi điện tử.',
+    controls: 'Sử dụng phím mũi tên trái và phải để di chuyển khẩu pháo của bạn. Nhấn phím cách để bắn. Tiêu diệt tất cả những kẻ xâm lược trước khi chúng chạm tới cuối màn hình!',
   },
   'doodle-jump-2': {
     title: 'Doodle Jump 2',
     description: 'Nhảy lên đỉnh trong phần tiếp theo của trò chơi nhảy dọc huyền thoại. Bật từ bệ này sang bệ khác, tránh kẻ thù và thu thập vật phẩm tăng sức mạnh như ba lô phản lực.\n\nDoodle Jump gốc từ năm 2009 đã bán hơn 15 triệu bản và trở thành một trong những trò chơi di động được tải xuống nhiều nhất mọi thời đại.',
+    controls: 'Sử dụng phím mũi tên trái và phải hoặc nghiêng để di chuyển. Trình vẽ nguệch ngoạc tự động nhảy — hướng dẫn nó lên các nền tảng. Tránh kẻ thù và giành lấy sức mạnh!',
   },
   'google-solitaire': {
     title: 'Google Xếp Bài',
     description: 'Chơi xếp bài Klondike kinh điển ngay trên trình duyệt. Xếp các lá bài xen kẽ màu theo thứ tự giảm dần và xây dựng các chồng từ Át đến Già.\n\nXếp bài Klondike là trò chơi bài được chơi nhiều nhất thế giới và đã có mặt trong mọi phiên bản Windows kể từ năm 1990.',
+    controls: 'Nhấp hoặc kéo thẻ để di chuyển chúng giữa các cột. Nhấp vào bộ bài để rút thẻ mới. Bấm đúp vào một thẻ để tự động gửi nó đến tổ chức.',
   },
   'google-spider-solitaire': {
     title: 'Google Spider Solitaire',
     description: 'Sắp xếp bài theo thứ tự giảm dần cùng chất trong mười cột. Hoàn thành chuỗi từ Già đến Át để xóa chúng. Chọn giữa 1, 2 hoặc 4 chất bài.\n\nSpider Solitaire trở nên cực kỳ phổ biến sau khi Microsoft đưa nó vào Windows XP năm 2001.',
+    controls: 'Kéo các thẻ để xây dựng chuỗi giảm dần của cùng một bộ. Hoàn thành một lượt chạy từ King đến Ace để xóa nó khỏi bảng. Nhấp vào đống cổ phiếu để chia thẻ mới.',
   },
   'google-freecell': {
     title: 'Google FreeCell',
@@ -280,10 +346,12 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'google-memory': {
     title: 'Google Trò Chơi Trí Nhớ',
     description: 'Lật thẻ và tìm các cặp trùng khớp trong trò chơi tập trung kinh điển này. Nhấp vào hai thẻ — nếu trùng, chúng giữ nguyên mặt ngửa, nếu không, chúng úp lại.\n\nTrò chơi trí nhớ là bài tập nhận thức đã được chứng minh giúp tăng cường trí nhớ ngắn hạn và nhận diện thị giác.',
+    controls: 'Bấm vào một thẻ để lật nó lại. Cố gắng tìm thẻ phù hợp bằng cách ghi nhớ vị trí của nó. Xóa tất cả các cặp để giành chiến thắng!',
   },
   'google-ludo': {
     title: 'Google Cờ Cá Ngựa',
     description: 'Tung xúc xắc và di chuyển quân cờ quanh bàn trong trò chơi gia đình chiến thuật kinh điển này. Tung được số sáu để đưa quân mới vào bàn cờ.\n\nCờ Cá Ngựa có nguồn gốc từ trò chơi Pachisi cổ đại của Ấn Độ, được chơi từ thế kỷ thứ 6. Phiên bản hiện đại được cấp bằng sáng chế tại Anh năm 1896.',
+    controls: 'Nhấp để tung xúc xắc, sau đó nhấp vào mã thông báo để di chuyển nó. Nhận 6 để mang các mã thông báo mới vào chơi. Đáp xuống đối thủ để đưa họ quay lại bắt đầu.',
   },
   'google-word-coach': {
     title: 'Google Word Coach',
@@ -292,42 +360,52 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'google-spinner': {
     title: 'Google Vòng Xoay',
     description: 'Quay vòng xoay ảo và ngắm nhìn nó quay. Chuyển đổi giữa con quay fidget và bánh xe số để đưa ra quyết định ngẫu nhiên.\n\nCông cụ vòng xoay của Google được giới thiệu trong cơn sốt con quay fidget năm 2017.',
+    controls: 'Nhấp và kéo để quay con quay. Bạn vuốt càng nhanh thì nó quay càng nhanh. Chuyển đổi giữa chế độ fidget spinner và bánh xe số.',
   },
   'google-coin-flip': {
     title: 'Google Tung Đồng Xu',
     description: 'Cần quyết định nhanh? Tung đồng xu ảo và để số phận chọn giữa mặt ngửa hay mặt sấp.\n\nTung đồng xu đã được sử dụng từ thời Đế chế La Mã để ra quyết định. Phiên bản kỹ thuật số của Google mang truyền thống hàng nghìn năm này vào thời đại hiện đại.',
+    controls: 'Nhấp vào nút "Lật" hoặc chạm vào đồng xu để ném nó. Đồng xu sẽ quay và rơi ngẫu nhiên vào mặt ngửa hoặc mặt sấp.',
   },
   'google-dice-roller': {
     title: 'Google Gieo Xúc Xắc',
     description: 'Gieo xúc xắc ảo cho trò chơi bàn cờ, nhập vai hoặc đơn giản là để vui. Tùy chỉnh số lượng xúc xắc và số mặt theo ý muốn.\n\nXúc xắc kỹ thuật số đã trở thành công cụ không thể thiếu cho cộng đồng trò chơi bàn cờ.',
+    controls: 'Nhấp vào "Roll" để ném xúc xắc. Điều chỉnh số lượng xúc xắc và mặt bằng cách sử dụng các nút điều khiển. Kết quả được hiển thị với hình ảnh động cuộn tròn thỏa mãn.',
   },
   'google-timer': {
     title: 'Google Bộ Hẹn Giờ',
     description: 'Bộ đếm ngược gọn gàng và đơn giản kèm đồng hồ bấm giờ trên trình duyệt. Đặt thời gian tùy ý và nhận chuông báo khi hết giờ.\n\nCông cụ hẹn giờ của Google đã trở thành trợ thủ không thể thiếu cho hàng triệu người trong nấu ăn, học tập và năng suất làm việc.',
+    controls: 'Nhập khoảng thời gian và nhấp vào "Bắt đầu" để bắt đầu đếm ngược. Sử dụng chế độ đồng hồ bấm giờ để đếm ngược. Tạm dừng, tiếp tục hoặc đặt lại bất kỳ lúc nào.',
   },
   'google-metronome': {
     title: 'Google Máy Đếm Nhịp',
     description: 'Giữ nhịp hoàn hảo với máy đếm nhịp kỹ thuật số có BPM tùy chỉnh, từ adagio chậm rãi đến prestissimo nhanh như gió.\n\nMáy đếm nhịp được Johann Maelzel cấp bằng sáng chế năm 1815 và trong hơn 200 năm đã trở thành công cụ không thể thiếu cho các nhạc sĩ.',
+    controls: 'Nhấp vào "Bắt đầu" để bắt đầu nhịp. Điều chỉnh nhịp độ bằng thanh trượt BPM hoặc nhập nhịp mong muốn mỗi phút của bạn. Nhấp vào "Dừng" để tạm dừng.',
   },
   'zerg-rush': {
     title: 'Zerg Rush',
     description: 'Bảo vệ kết quả tìm kiếm Google của bạn khỏi cuộc tấn công ồ ạt của các chữ "O" trong easter egg huyền thoại lấy cảm hứng từ StarCraft. Nhấp nhanh vào từng chữ O để tiêu diệt chúng trước khi chúng nuốt hết mọi thứ.\n\nEaster egg Zerg Rush lần đầu xuất hiện năm 2012 trên Google Tìm kiếm như một sự tôn vinh dành cho loạt game StarCraft của Blizzard.',
+    controls: 'Nhấp nhanh vào các ký tự "O" đang rơi xuống để tiêu diệt chúng trước khi chúng ăn hết kết quả tìm kiếm. Mỗi chữ O cần ba lần nhấp chuột để đánh bại. Tồn tại càng lâu càng tốt!',
   },
   'atari-breakout': {
     title: 'Atari Breakout',
     description: 'Phá vỡ các khối màu bằng quả bóng nảy trong phiên bản trò arcade kinh điển Atari năm 1976. Di chuyển thanh chắn để giữ bóng trong cuộc chơi và phá hủy tất cả các khối.\n\nBreakout được thiết kế bởi Nolan Bushnell và Steve Bristow, và bản mẫu được tạo bởi Steve Jobs trẻ tuổi và Steve Wozniak — những nhà sáng lập Apple đã làm việc trên trò chơi này trước khi thành lập công ty.',
+    controls: 'Di chuyển chuột hoặc ngón tay của bạn sang trái và phải để điều khiển mái chèo. Tung bóng để phá vỡ tất cả các viên gạch ở trên. Đừng để quả bóng rơi qua mái chèo của bạn!',
   },
   'google-gravity': {
     title: 'Google Trọng Lực',
     description: 'Xem trang chủ Google sụp đổ dưới sức hút của trọng lực. Tất cả các yếu tố — logo, thanh tìm kiếm và nút — rơi xuống và chất đống lên nhau.\n\nGoogle Gravity là một trong những easter egg phổ biến nhất mọi thời đại. Thanh tìm kiếm vẫn hoạt động bình thường, ngay cả khi mọi thứ đã nằm la liệt trên sàn.',
+    controls: 'Nhấp và kéo bất kỳ phần tử nào trên trang để nhặt nó lên và ném nó đi khắp nơi. Xem mọi thứ rơi và nảy lên với vật lý thực tế. Hãy thử tìm kiếm một cái gì đó!',
   },
   'thanos-snap': {
     title: 'Cái Búng Tay Thanos',
     description: 'Đeo Infinity Gauntlet và búng ngón tay để nửa số kết quả tìm kiếm biến mất, giống hệt Thanos trong Vũ trụ Điện ảnh Marvel.\n\nEaster egg này được tạo ra năm 2019 nhân dịp công chiếu Avengers: Endgame và trở thành một trong những tính năng tương tác lan truyền mạnh nhất của Google.',
+    controls: 'Nhấp vào biểu tượng Infinity Gauntlet để thực hiện cú búng tay. Xem một nửa kết quả tan thành cát bụi. Nhấp lại để đảo ngược ảnh chụp và khôi phục mọi thứ.',
   },
   'super-mario-coin-block': {
     title: 'Khối Xu Super Mario',
     description: 'Khám phá easter egg ẩn với khối xu từ Super Mario Bros. và đập để thu thập xu với âm thanh "Cha-Ching" biểu tượng.\n\nEaster egg này kỷ niệm 30 năm Super Mario Bros., một trong những trò chơi điện tử có ảnh hưởng nhất mọi thời đại.',
+    controls: 'Nhấp hoặc chạm vào khối dấu hỏi để đánh nó và giải phóng tiền. Tiếp tục nhấp chuột để thu thập càng nhiều xu càng tốt. Lắng nghe âm thanh đồng xu cổ điển!',
   },
   'google-pac-man': {
     title: 'Google PAC-MAN (elgooG)',
@@ -336,54 +414,67 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'google-mirror': {
     title: 'Google Gương (elgooG)',
     description: 'Xem trang tìm kiếm Google như một hình ảnh phản chiếu hoàn hảo. Mọi thứ đều bị đảo ngược — chữ đọc ngược, nút bị lật và thậm chí cả việc gõ phím cũng hiển thị trong gương.\n\nGoogle Mirror (elgooG — "Google" viết ngược) đã giải trí cho khách truy cập từ năm 2002.',
+    controls: 'Nhập vào thanh tìm kiếm để xem văn bản của bạn được phản chiếu. Điều hướng giao diện đảo ngược để có trải nghiệm thú vị. Tất cả các liên kết và nút hoạt động ngược lại!',
   },
   'google-in-1998': {
     title: 'Google Năm 1998',
     description: 'Hành trình hoài niệm quay về năm 1998 để xem giao diện Google khi mới thành lập. Duyệt giao diện gốc với thiết kế tối giản.\n\nKhi Larry Page và Sergey Brin ra mắt Google vào tháng 9 năm 1998 từ ký túc xá Stanford, đó chỉ là một trang trắng với logo, thanh tìm kiếm và hai nút bấm.',
+    controls: 'Nhập truy vấn tìm kiếm vào thanh tìm kiếm kiểu cổ điển năm 1998 và nhấn Enter. Duyệt qua trang kết quả hoài cổ. Nhấp chuột xung quanh để khám phá giao diện cổ điển.',
   },
   'do-a-barrel-roll': {
     title: 'Do a Barrel Roll',
     description: 'Xem toàn bộ trang Google xoay 360 độ. Trang thực hiện một vòng quay mượt mà hoàn chỉnh rồi trở lại vị trí bình thường.\n\nEaster egg này được giới thiệu năm 2011 như một sự tôn vinh trò chơi Star Fox trên Nintendo 64, nơi Peppy Hare hét với người chơi "Hãy xoay thùng đi!".',
+    controls: 'Nhấp vào nút để kích hoạt hoạt ảnh cuộn thùng. Toàn bộ trang sẽ quay 360 độ. Bấm nhiều lần để có được niềm vui lăn lộn liên tục!',
   },
   'google-askew': {
     title: 'Google Nghiêng / Askew',
     description: 'Trong easter egg tinh tế và hài hước này, toàn bộ trang Google nghiêng nhẹ sang một bên. Mọi thứ vẫn hoạt động bình thường, nhưng góc nghiêng bất ngờ khiến người xem ngạc nhiên.\n\nTìm kiếm "askew" hoặc "tilt" trên Google sẽ kích hoạt trò đùa thị giác này, đã khiến người dùng bất ngờ từ năm 2011.',
+    controls: 'Đơn giản chỉ cần quan sát trang bị nghiêng và cố gắng sử dụng nó bình thường. Tìm kiếm, nhấp vào liên kết và duyệt qua — tất cả đều ở một góc độ kỳ lạ. Làm mới để xem lại độ nghiêng.',
   },
   'friends-easter-eggs': {
     title: 'Easter Egg Phim Friends',
     description: 'Khám phá các easter egg ẩn từ series truyền hình Friends trên Google Tìm kiếm. Tìm các bất ngờ tương tác từ Ross, Rachel, Monica, Chandler, Joey và Phoebe.\n\nCác easter egg này được tạo ra nhân kỷ niệm 25 năm series truyền hình Friends, phát sóng lần đầu vào ngày 22 tháng 9 năm 1994 trên NBC.',
+    controls: 'Nhấp vào biểu tượng của từng nhân vật để kích hoạt hình ảnh động trứng Phục sinh độc đáo của họ. Khám phá tất cả sáu nhân vật để khám phá mọi điều ngạc nhiên tiềm ẩn và câu khẩu hiệu mang tính biểu tượng.',
   },
   'google-underwater': {
     title: 'Google Dưới Nước',
     description: 'Trang chủ Google chìm vào thế giới dưới nước xinh đẹp. Ngắm nhìn cá nhiệt đới bơi lội và tương tác với sinh vật biển.\n\nGoogle Dưới Nước biến trang tìm kiếm thành môi trường biển yên bình với vật lý nước chân thực. Thanh tìm kiếm vẫn hoạt động bình thường.',
+    controls: 'Di chuyển chuột để tương tác với cảnh dưới nước. Bấm vào để tạo gợn sóng và dọa cá. Kéo các phần tử xung quanh và xem chúng trôi nổi trong nước.',
   },
   'google-space': {
     title: 'Google Không Gian',
     description: 'Phóng trang chủ Google vào vũ trụ và xem mọi yếu tố lơ lửng trong trạng thái không trọng lực. Logo, thanh tìm kiếm và các nút trôi nổi trong khoảng không vũ trụ.\n\nGoogle Không Gian mô phỏng vật lý không trọng lực trong trình duyệt.',
+    controls: 'Nhấp và kéo bất kỳ phần tử nào để ném nó vào không gian. Xem các vật thể trôi nổi và va chạm với vật lý không trọng lực. Hãy thử gõ vào thanh tìm kiếm khi mọi thứ trôi đi.',
   },
   'google-tetris': {
     title: 'Google Tetris',
     description: 'Xếp các khối tetromino rơi xuống và lấp đầy hàng để xóa chúng trong bản tái tạo trung thành của trò chơi xếp hình nổi tiếng nhất thế giới.\n\nTetris được tạo ra năm 1984 bởi kỹ sư phần mềm Liên Xô Aleksei Pazhitnov và với hơn 520 triệu bản bán ra, đây là trò chơi điện tử bán chạy nhất mọi thời đại.',
+    controls: 'Sử dụng phím mũi tên trái và phải để di chuyển quân cờ. Nhấn mũi tên lên để xoay. Nhấn mũi tên xuống để thả mềm và phím cách để thả cứng. Xóa dòng để ghi điểm!',
   },
   'google-2048': {
     title: 'Google 2048',
     description: 'Trượt các ô số trên lưới 4×4 và gộp các số giống nhau để đạt ô 2048. Lập kế hoạch di chuyển chiến lược để bàn cờ không bị đầy.\n\nĐược tạo ra năm 2014 bởi nhà phát triển Ý Gabriele Cirulli, 2048 đã trở thành hiện tượng lan truyền chỉ sau một đêm.',
+    controls: 'Sử dụng các phím mũi tên hoặc vuốt để trượt tất cả các ô theo một hướng. Các số trùng khớp sẽ hợp nhất khi chúng va chạm. Lập kế hoạch di chuyển của bạn một cách cẩn thận để tránh lấp đầy bảng!',
   },
   'google-interland': {
     title: 'Google Interland',
     description: 'Khám phá thế giới kỳ diệu Interland và học các kỹ năng an toàn internet quan trọng trong bốn vùng phiêu lưu. Chống hacker, nhận diện lừa đảo và bảo vệ dữ liệu của bạn.\n\nĐược phát triển như một phần của sáng kiến "Be Internet Awesome" của Google, Interland được sử dụng tại hàng nghìn trường học trên toàn thế giới.',
+    controls: 'Sử dụng các phím mũi tên hoặc nhấp chuột để điều hướng qua từng vùng. Trả lời các câu hỏi và hoàn thành thử thách để kiếm điểm. Tiến bộ qua cả bốn vương quốc để làm chủ an toàn internet.',
   },
   'google-arts-culture-face-match': {
     title: 'Google Arts & Culture Đối Chiếu Khuôn Mặt',
     description: 'Chụp selfie và tìm người giống bạn trong các tác phẩm nghệ thuật nổi tiếng từ hàng nghìn bức tranh và chân dung từ các bảo tàng trên thế giới.\n\nĐối Chiếu Khuôn Mặt ra mắt năm 2018 như một phần của Google Arts & Culture và ngay lập tức lan truyền mạnh mẽ. AI so sánh ảnh của bạn với tác phẩm từ hơn 1.200 bảo tàng.',
+    controls: 'Cho phép truy cập máy ảnh và chụp ảnh tự sướng bằng cách nhấp vào nút chụp. AI sẽ quét các bộ sưu tập của bảo tàng và hiển thị tác phẩm nghệ thuật gần nhất của bạn cùng với lịch sử của bức tranh.',
   },
   'google-teachable-machine': {
     title: 'Google Teachable Machine',
     description: 'Huấn luyện mô hình AI của riêng bạn bằng webcam, micro hoặc hình ảnh tải lên — không cần kiến thức lập trình. Tạo mô hình phân loại chỉ trong vài phút.\n\nGoogle Teachable Machine giúp mọi người hiểu AI bằng cách cho phép bất kỳ ai xây dựng mô hình học máy chỉ trong vài phút.',
+    controls: 'Nhấp vào "Đào tạo" để ghi lại mẫu cho từng lớp bằng webcam hoặc micrô của bạn. Thêm nhiều lớp, sau đó nhấp vào "Mô hình đào tạo" để xây dựng AI của bạn. Kiểm tra nó trong thời gian thực!',
   },
   'great-ghoul-duel-2': {
     title: 'Đại Chiến Ma Quỷ 2 (Halloween 2022)',
     description: 'Tham gia cùng người chơi từ khắp thế giới trong phần tiếp theo rùng rợn của Đại Chiến Ma Quỷ. Thu thập lửa linh hồn với tư cách là ma với các nâng cấp và khả năng mới.\n\nDoodle Halloween năm 2022 này được xây dựng dựa trên thành công của trò nhiều người chơi gốc năm 2018 với đồ họa đẹp hơn và môi trường mới.',
+    controls: 'Sử dụng phím mũi tên hoặc vuốt để di chuyển hồn ma của bạn. Thu thập ngọn lửa tinh thần và đưa chúng về căn cứ của bạn. Sử dụng sức mạnh mới để giành lợi thế trước đội đối phương!',
   },
   'doodle-solitaire': {
     title: 'Doodle Xếp Bài (Ở Nhà 2020)',
@@ -392,22 +483,27 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'gerald-lawson-game-maker': {
     title: 'Tôn Vinh Gerald "Jerry" Lawson',
     description: 'Tôn vinh cha đẻ ngành công nghiệp game hiện đại bằng cách tự xây dựng cấp độ game trong Doodle tương tác này. Đặt bệ đỡ, kẻ thù và vật phẩm tăng sức mạnh để thiết kế sáng tạo của riêng bạn.\n\nJerry Lawson phát minh ra máy chơi game gia đình đầu tiên có thể thay băng trò chơi vào năm 1976 — Fairchild Channel F. Phát minh của ông đã cách mạng hóa toàn bộ ngành công nghiệp game.',
+    controls: 'Sử dụng trình chỉnh sửa cấp độ để đặt nền tảng, kẻ thù và tăng sức mạnh. Nhấp vào "Play" để kiểm tra sự sáng tạo của bạn. Chia sẻ cấp độ tùy chỉnh của bạn với bạn bè!',
   },
   'valentines-day-chemistry': {
     title: 'Hóa Học Tình Yêu CuPd (2024)',
     description: 'Khám phá hóa học tình yêu trong Doodle Lễ Tình Nhân này nơi các nguyên tố CuPd (đồng và paladi — "CuPid") phản ứng với nhau.\n\nDoodle sáng tạo năm 2024 này kết hợp tình yêu lãng mạn với hóa học thực thụ, sử dụng các nguyên tố có thật từ bảng tuần hoàn.',
+    controls: 'Nhấp và kéo các phần tử để kết hợp chúng và kích hoạt các phản ứng hóa học. Ghép các cặp phù hợp để mở khóa hoạt hình theo chủ đề tình yêu và hoàn thành câu đố.',
   },
   'rise-of-the-half-moon-november': {
     title: 'Rise of the Half Moon — Tháng 11 Năm 2024',
     description: 'Tiếp tục cuộc phiêu lưu thiên thể trong phần 2 của loạt Rise of the Half Moon. Những thử thách thẻ bài mới và thần thoại mở rộng đang chờ bạn.\n\nTập tháng 11 năm 2024 này mở rộng vũ trụ với các loại thẻ mới và cơ chế trò chơi được cải tiến.',
+    controls: 'Nhấp và kéo để tương tác với các giai đoạn của mặt trăng. Giải câu đố bằng cách sắp xếp các thiên thể. Tiến bộ thông qua câu chuyện bằng cách hoàn thành từng thử thách.',
   },
   'rise-of-the-half-moon-december': {
     title: 'Rise of the Half Moon — Tháng 12 Năm 2024',
     description: 'Khám phá cảnh quan trăng mùa đông và giải các câu đố thiên thể mới trong phần 3. Thành thạo chiến thuật thẻ bài nâng cao để giành chiến thắng.\n\nTập tháng 12 năm 2024 này mang đến chủ đề mùa đông với các câu đố phức tạp hơn và khả năng chiến thuật sâu hơn.',
+    controls: 'Nhấp và kéo để tương tác với các giai đoạn của mặt trăng. Giải câu đố bằng cách sắp xếp các thiên thể. Tiến bộ thông qua câu chuyện bằng cách hoàn thành từng thử thách.',
   },
   'rise-of-the-half-moon-january': {
     title: 'Rise of the Half Moon — Tháng 1 Năm 2025',
     description: 'Trải nghiệm đại kết cục của loạt Rise of the Half Moon trong tập kết thúc thứ tư này. Hoàn thành trận chiến thiên thể cuối cùng.\n\nĐại kết cục tháng 1 năm 2025 này khép lại thiên sử thi một cách trọn vẹn. Cách tiếp cận phát hành theo kỳ này là điều mới mẻ đối với Google.',
+    controls: 'Nhấp và kéo để tương tác với các giai đoạn của mặt trăng. Giải các câu đố cuối cùng bằng cách sắp xếp các thiên thể. Hoàn thành câu chuyện!',
   },
   'indigenous-stickball': {
     title: 'Tôn Vinh Stickball Bản Địa',
@@ -420,6 +516,7 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'minecraft-easter-egg': {
     title: 'Easter Egg Minecraft',
     description: 'Khám phá thế giới khối vuông biểu tượng của Minecraft Classic ngay trên trình duyệt. Xây dựng, đào và sáng tạo trong phiên bản hoài niệm này.\n\nMinecraft được tạo ra năm 2009 bởi Markus "Notch" Persson và với hơn 300 triệu bản bán ra, đã trở thành trò chơi điện tử bán chạy nhất mọi thời đại.',
+    controls: 'Sử dụng WASD để di chuyển, chuột để quan sát xung quanh. Nhấp chuột trái để phá vỡ các khối, nhấp chuột phải để đặt khối. Phím số để chọn các loại khối khác nhau từ kho của bạn.',
   },
   'google-science-journal': {
     title: 'Google Nhật Ký Khoa Học',
@@ -432,9 +529,11 @@ export const VI_GAMES: Record<string, GameTranslation> = {
   'google-whirlybird': {
     title: 'Google Whirlybird',
     description: 'Điều khiển chiếc trực thăng nhỏ vượt qua các đường đua chướng ngại vật đầy thử thách. Nhấp để bay lên, thả ra để hạ xuống và lách qua các lối đi hẹp.\n\nLấy cảm hứng từ hiện tượng lan truyền Flappy Bird năm 2014, trò chơi trực thăng một nút đã trở thành thể loại phổ biến trong game giải trí.',
+    controls: 'Nhấp hoặc chạm để làm cho trực thăng bay lên trên. Thả ra để nó hạ xuống. Điều hướng qua các khoảng trống giữa các chướng ngại vật mà không bị rơi!',
   },
   'rugby-world-cup-2015': {
     title: 'Doodle Giải Vô Địch Rugby Thế Giới 2015',
     description: 'Ghi try và sút chuyển đổi trong Doodle kỷ niệm Giải Vô Địch Rugby Thế Giới 2015. Chơi trò rugby nhanh và dẫn đội của bạn đến chiến thắng.\n\nDoodle này được tạo ra cho lễ khai mạc Giải Vô Địch Rugby Thế Giới 2015 tại Anh. Rugby được chơi tại hơn 120 quốc gia.',
+    controls: 'Click để đá bóng và ghi điểm. Thời gian chuyển đổi của bạn và giảm mục tiêu. Chạy với quả bóng và né tránh các hậu vệ để ghi bàn!',
   },
 };

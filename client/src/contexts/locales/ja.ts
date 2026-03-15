@@ -271,6 +271,7 @@ export const JA: TranslationMap = {
   'game.challenged': 'チャレンジされました！',
   'game.challengeDesc': '友達があなたに挑戦しています。頑張って！',
   'game.challengeFriend': '友達にチャレンジ',
+  'game.shareChallenge': 'チャレンジを共有',
   'game.details': '詳細',
   'game.moreGames': 'もっとゲーム',
   'game.youMightLike': 'おすすめ',

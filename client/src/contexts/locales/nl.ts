@@ -271,6 +271,7 @@ export const NL: TranslationMap = {
   'game.challenged': 'Je bent uitgedaagd!',
   'game.challengeDesc': 'Een vriend daagt je uit. Succes!',
   'game.challengeFriend': 'Daag een vriend uit',
+  'game.shareChallenge': 'Uitdaging delen',
   'game.details': 'Details',
   'game.moreGames': 'Meer Spellen',
   'game.youMightLike': 'Misschien Vind Je Dit Leuk',

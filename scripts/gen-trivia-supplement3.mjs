@@ -1,0 +1,220 @@
+#!/usr/bin/env node
+/**
+ * Supplement trivia translations for: ar, hi, tr
+ */
+import { readFileSync, writeFileSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DIR = resolve(__dirname, '..', 'client', 'src', 'data', 'translations', 'trivia');
+
+function merge(locale, translations) {
+  const filePath = resolve(DIR, `${locale}.ts`);
+  let src = readFileSync(filePath, 'utf-8');
+  let count = 0;
+  for (const [slug, text] of Object.entries(translations)) {
+    const escaped = text.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const re = new RegExp(`(  '${slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}': ').*(',)`);
+    if (re.test(src)) { src = src.replace(re, `$1${escaped}$2`); count++; }
+  }
+  writeFileSync(filePath, src, 'utf-8');
+  console.log(`✅ ${locale}.ts — ${count} entries translated`);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ARABIC
+// ═══════════════════════════════════════════════════════════════════════════
+merge('ar', {
+  'snake': 'ظهرت لعبة الثعبان لأول مرة على هواتف نوكيا عام 1998 وأصبحت سريعاً أكثر الألعاب المحمولة لعباً في التاريخ، حيث شُحن أكثر من 400 مليون هاتف نوكيا مثبتة عليها مسبقاً.',
+  'minesweeper': 'أُدرجت كاسحة الألغام مع ويندوز 3.1 عام 1992 لتعليم المستخدمين النقر بالزر الأيسر والأيمن — الرقم القياسي العالمي في المستوى الخبير أقل من 30 ثانية.',
+  'tic-tac-toe': 'تعود لعبة إكس أو إلى مصر القديمة حوالي 1300 قبل الميلاد، وفي عام 1952 أصبحت موضوع إحدى أولى ألعاب الفيديو على الإطلاق، OXO، على حاسوب جامعي.',
+  'les-paul-guitar': 'كان ليس بول رائداً في التسجيل متعدد المسارات والغيتار الكهربائي — كان رسم غوغل التفاعلي لعام 2011 أول رسم تفاعلي وقابل للتسجيل، حيث أتاح إنشاء الأغاني ومشاركتها.',
+  'basketball-2012': 'اختُرعت كرة السلة عام 1891 على يد المعلم الكندي جيمس نايسميث باستخدام كرة قدم وسلتي خوخ — انتهت أول مباراة بنتيجة 1-0 فقط.',
+  'hurdles-2012': 'سباق 110 أمتار حواجز من الأحداث الأولمبية منذ أول ألعاب حديثة في أثينا 1896 — رسم غوغل لعام 2012 سمح لك بالسباق بأسهم لوحة المفاتيح.',
+  'slalom-canoe': 'ظهر التجديف بالتعرج لأول مرة في أولمبياد ميونيخ 1972 ويتطلب عبور بوابات معلقة في مياه هائجة — لمس البوابة يضيف عقوبة ثانيتين.',
+  'soccer-2012': 'نهائي كأس العالم لكرة القدم هو الحدث الرياضي الأكثر مشاهدة على الأرض، حيث يجتذب بانتظام أكثر من مليار مشاهد — أكثر من أربعة أضعاف جمهور السوبر بول.',
+  'robert-moog': 'أحدث مُركّب روبرت موغ المقدم عام 1964 ثورة في الموسيقى — استخدمه البيتلز وستيفي وندر وكرافتفيرك، مما جعل الموسيقى الإلكترونية نوعاً سائداً.',
+  'alan-turing': 'يُقدّر أن عمل آلان تورينغ في فك شفرة إنيغما النازية في بلتشلي بارك قد اختصر الحرب العالمية الثانية بسنتين إلى أربع سنوات، مما أنقذ ملايين الأرواح.',
+  'zamboni': 'اختُرعت آلة تمهيد الجليد زامبوني على يد فرانك زامبوني عام 1949 — قبل آلته كان تمهيد حلبة الجليد يستغرق أكثر من 90 دقيقة؛ الزامبوني تفعل ذلك في أقل من 10.',
+  'doodle-crossword': 'نُشرت أول لعبة كلمات متقاطعة في صحيفة نيويورك وورلد في 21 ديسمبر 1913 — كانت على شكل معين وبلا مربعات سوداء.',
+  'doodle-roswell': 'أصبحت حادثة روزويل عام 1947 أشهر حدث مرتبط بالأجسام الطائرة المجهولة — قال الجيش الأمريكي أولاً إنه عثر على "قرص طائر" ثم غيّر القصة إلى بالون أرصاد.',
+  'mothers-day-2013': 'أصبح عيد الأم عطلة رسمية في أمريكا عام 1914 بعد حملة آنا جارفيس — ومن المفارقة أنها قاتلت لاحقاً لإلغائه بعد أن أرعبتها تجارته.',
+  'doodle-google-15th': 'تأسست غوغل في 4 سبتمبر 1998 في مرآب بمنلو بارك، كاليفورنيا — اسم "Google" مشتق من "غوغول"، الرقم 1 متبوعاً بمائة صفر.',
+  'rubiks-cube': 'احتاج إرنو روبيك أكثر من شهر لحل اختراعه بعد ابتكاره عام 1974 — اليوم يحله محترفو السرعة في أقل من 4 ثوانٍ والرقم القياسي 3.13 ثانية.',
+  'doodle-beethoven': 'ألّف بيتهوفن بعض أعظم روائعه بما فيها السيمفونية التاسعة وهو شبه أصم تماماً — كان يعض قضيباً معدنياً متصلاً بالبيانو ليشعر بالاهتزازات.',
+  'eiji-tsuburaya': 'ابتكر إيجي تسوبورايا المؤثرات الخاصة الرائدة لفيلم غودزيلا الأصلي عام 1954 باستخدام مجسمات مصغرة ورجل يرتدي بدلة مطاطية — تقنيات عرّفت نوع التوكوساتسو.',
+  'pony-express': 'عمل بوني إكسبريس 18 شهراً فقط (1860-1861) قبل أن يحل محله التلغراف، لكنه أصبح أحد أكثر رموز الحدود الأمريكية أسطورية.',
+  'global-candy-cup': 'ينفق الأمريكيون أكثر من 4 مليارات دولار على حلوى الهالوين سنوياً — تكفي لشراء نحو 270 مليون كيلوغرام من الحلويات.',
+  'magic-cat-academy': 'أكاديمية القطة السحرية، رسم غوغل لهالوين 2016، تقود فيه القطة مومو التي ترسم رموزاً لإلقاء التعاويذ — مستوحاة من قطط حقيقية في حرم غوغل.',
+  'google-cat-game': 'تُظهر الدراسات أن مشاهدة مقاطع فيديو القطط تعزز الطاقة والمشاعر الإيجابية — وجد باحثون في جامعة إنديانا أن المشاهدين شعروا بقلق وحزن أقل.',
+  'doodle-clara-rockmore': 'كانت كلارا روكمور أعظم عازفة ثيرمين في التاريخ — كانت تعزف دون لمس الآلة، مستخدمة حركات يد دقيقة في الهواء للتحكم بالنغمة والحجم.',
+  'doodle-scoville': 'اخترع ويلبر سكوفيل مقياس سكوفيل عام 1912 لقياس حرارة الفلفل — الفلفل الحلو يسجل 0 وحدة، بينما كارولينا ريبر يتجاوز 2.2 مليون وحدة سكوفيل.',
+  'doodle-valentines-day': 'يعود تقليد رسائل الحب في عيد الحب إلى القرن الخامس عشر — أقدم رسالة معروفة هي قصيدة كتبها شارل دوق أورليان لزوجته عام 1415 من السجن.',
+  'birth-of-hip-hop': 'وُلد الهيب هوب في 11 أغسطس 1973 في حفلة بالبرونكس حيث عزل DJ كول هيرك المقاطع الآلية من أسطوانات الفانك — مخترعاً البريكبيت.',
+  'oskar-fischinger': 'كان أوسكار فيشنغر رائداً في الرسوم المتحركة التجريدية على الموسيقى في الثلاثينيات — ألهمت مفاهيمه البصرية مباشرة مشهد فانتازيا في فيلم ديزني 1940.',
+  'komodo-national-park': 'تنانين كومودو أكبر السحالي الحية في العالم بطول يصل إلى 3 أمتار ووزن 70 كغ — عضتها السامة تطلق سموماً تمنع تخثر الدم.',
+  'garden-gnomes': 'نشأ أقزام الحدائق في ألمانيا أوائل القرن التاسع عشر حيث كان يُعتقد أنهم يحرسون الحدائق ليلاً — اليوم ثمة ثقافة فرعية لـ"تحرير الأقزام" تسرقهم مزاحاً.',
+  'halloween': 'نشأ الهالوين من مهرجان ساوين الكلتي قبل أكثر من 2000 عام، حين كان الناس يشعلون النيران ويرتدون الأزياء لطرد الأشباح ليلة رأس سنتهم.',
+  'baseball': 'أُقيمت أول مباراة بيسبول مسجلة رسمياً في 19 يونيو 1846 في هوبوكن بنيوجيرسي — خسر فريق نيويورك نيكربوكرز أمام نيويورك ناين 23-1.',
+  'doodle-loteria': 'اللوتيريا، لعبة البطاقات المكسيكية المحبوبة، تعود للقرن الخامس عشر حين وصلت من إيطاليا عبر إسبانيا — كل بطاقة تحمل رسماً مميزاً ولغزاً.',
+  'celebrating-bach': 'ألّف يوهان سيباستيان باخ أكثر من 1100 عمل لكنه نُسي بعد وفاته — أعاد مندلسون إحياء شهرته بتقديم "آلام القديس متى" عام 1829.',
+  'doodle-earth-day': 'احتُفل بيوم الأرض لأول مرة في 22 أبريل 1970 بمشاركة 20 مليون أمريكي — أدى مباشرة لإنشاء وكالة حماية البيئة الأمريكية.',
+  'magic-cat-academy-2': 'نقل الجزء الثاني من أكاديمية القطة السحرية مغامرة مومو تحت الماء — القطط تكره الماء فعلاً لكن الحيوانات الكبيرة كالنمور سباحون ممتازون.',
+  'doodle-mbira': 'المبيرا، المعروفة أيضاً ببيانو الإبهام أو الكاليمبا، تُعزف في زيمبابوي منذ أكثر من 1000 عام وتُعتبر آلة مقدسة للتواصل مع أرواح الأسلاف.',
+  'doodle-history-of-pizza': 'نشأت البيتزا كما نعرفها في نابولي في القرن الثامن عشر، وسُميت مارغريتا على اسم ملكة إيطاليا عام 1889 باستخدام الطماطم والموتزاريلا والريحان ألوان العلم الإيطالي.',
+  'wewa-weaving': 'النسيج من أقدم الحرف البشرية بعمر يزيد عن 12000 عام — صُنعت أولى الأقمشة من ألياف نباتية قبل ترويض الأغنام للصوف بفترة طويلة.',
+  'champion-island-games': 'ألعاب جزيرة البطل هي من أكثر ألعاب رسم غوغل طموحاً، بعالم RPG كامل يتضمن سبعة تحديات رياضية مستوحاة من الأساطير والفولكلور الياباني.',
+  'doodle-valentines-day-2022': 'شكل القلب الذي نربطه بالحب لا يشبه القلب البشري الحقيقي — يعتقد المؤرخون أنه قد يكون مشتقاً من أوراق اللبلاب أو بذور السيلفيوم أو أعناق البجع.',
+  'celebrating-petanque': 'نشأت البيتانك في لاسيوتا بفرنسا عام 1907 عندما كيّف لاعب مصاب بالروماتيزم اللعبة ليتمكن من اللعب جالساً دون ركض.',
+  'boba-bubble-tea': 'اختُرع شاي الفقاعات في تايوان في الثمانينيات — متجران ادعيا ابتكاره وذهبت المعركة القانونية للمحاكم التي حكمت بأنه لا يمكن لأي منهما تسجيل براءة اختراع.',
+  'celebrating-pani-puri': 'يُعرف باني بوري بأسماء مختلفة في الهند: غولغابا في الشمال وبوتشكا في الشرق وباني بوري في الغرب — لكل منطقة وصفة مياه متبلة خاصة.',
+  'celebrating-lake-xochimilco': 'بحيرة سوتشيميلكو في مكسيكو سيتي هي الموطن الطبيعي الأخير للأكسولوتل، وهو سمندر يمكنه تجديد أطرافه بالكامل وأجزاء من قلبه وحتى أقسام من دماغه.',
+  'magic-cat-academy-3': 'في سلسلة أكاديمية القطة السحرية، تحارب مومو الأشباح برسم التعاويذ — صُممت آلية السحب للأجهزة المحمولة مما يجعلها من أكثر رسوم غوغل ملاءمة للمس.',
+  'doctor-who': 'عُرض دكتور هو لأول مرة في 23 نوفمبر 1963 — بعد يوم واحد من اغتيال الرئيس كينيدي — وهو أطول مسلسل خيال علمي في التاريخ.',
+  'chrome-dino': 'لعبة ديناصور كروم المخفية في صفحة "لا إنترنت" يلعبها أكثر من 270 مليون شخص شهرياً — مما يجعلها من أكثر الألعاب لعباً على الإطلاق.',
+  't-rex-run-3d': 'أطلق المطورون على لعبة ديناصور كروم الاسم الرمزي "مشروع بولان" تيمناً بمارك بولان، مغني فرقة الغلام روك T. Rex في السبعينيات.',
+  'dino-swords': 'أضاف Dino Swords ترسانة أسلحة لمفهوم ديناصور كروم — صُمم الديناصور الأصلي ك"تحية لعصر ما قبل التاريخ" عند انقطاع الإنترنت.',
+  'blob-opera': 'أُنشئ Blob Opera بالتعلم الآلي المدرب على أربعة مغنّي أوبرا حقيقيين — تينور وباس وميتزو سوبرانو وسوبرانو — سجّلوا 16 ساعة من الغناء.',
+  'google-feud': 'يعتمد Google Feud على توقعات الإكمال التلقائي لغوغل المُولّدة من مليارات عمليات البحث الحقيقية — بعض الإجابات تكشف اتجاهات ثقافية مذهلة.',
+  'quick-draw': 'جمعت لعبة Quick, Draw! أكثر من 15 مليار رسمة من لاعبين حول العالم، مكوّنة واحدة من أكبر مجموعات بيانات الرسم — تُستخدم لتدريب الذكاء الاصطناعي.',
+  'chrome-music-lab': 'أُنشئ Chrome Music Lab لجعل تعلم الموسيقى أسهل — استخدم أداة Song Maker ملايين الطلاب في فصول دراسية بأكثر من 80 دولة.',
+  'google-maps-snake': 'ظهرت لعبة الثعبان على خرائط غوغل كمزحة كذبة أبريل في 2019، تتيح توجيه قطار متنامٍ عبر شوارع حقيقية على خرائط غوغل.',
+  'google-earth': 'تغطي صور غوغل إيرث الفضائية أكثر من 97% من سطح الأرض بأكثر من 93 مليون كم² من الصور عالية الدقة — تكفي لتغطية 10 مليارات ملعب كرة قدم.',
+  'santa-tracker': 'يعمل متتبع بابا نويل من غوغل منذ 2004، وفي ليلة عيد الميلاد يتتبع رحلة بابا نويل حول العالم بكاميرات وألعاب في كل محطة.',
+  'space-invaders': 'تسببت لعبة غزاة الفضاء بنقص وطني في العملات المعدنية في اليابان عام 1978 — اضطرت الحكومة لمضاعفة إنتاج عملات الين أربع مرات لتلبية الطلب.',
+  'doodle-jump-2': 'حُمّل Doodle Jump الأصلي أكثر من 30 مليون مرة منذ 2009، وصنع مبتكره النسخة الأولى في ثلاثة أسابيع فقط مع أخيه.',
+  'google-memory': 'ثبت أن ألعاب الذاكرة تقوي المسارات العصبية — تُظهر الدراسات أن اللعب المنتظم يمكن أن يحسن الذاكرة قصيرة وطويلة المدى بنسبة تصل إلى 25%.',
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HINDI
+// ═══════════════════════════════════════════════════════════════════════════
+merge('hi', {
+  'snake': 'स्नेक 1998 में नोकिया फ़ोन पर पहली बार आया और तेज़ी से इतिहास का सबसे ज़्यादा खेला जाने वाला मोबाइल गेम बन गया — 400 मिलियन से अधिक नोकिया फ़ोन में यह प्री-इंस्टॉल था।',
+  'minesweeper': 'माइनस्वीपर 1992 में विंडोज़ 3.1 के साथ आया था ताकि यूज़र्स को लेफ़्ट-क्लिक और राइट-क्लिक सिखाया जा सके — एक्सपर्ट डिफ़िकल्टी का विश्व रिकॉर्ड 30 सेकंड से कम है।',
+  'tic-tac-toe': 'टिक-टैक-टो लगभग 1300 ईसा पूर्व प्राचीन मिस्र में शुरू हुआ, और 1952 में यह पहले वीडियो गेमों में से एक OXO का विषय बना, जो एक विश्वविद्यालय कंप्यूटर पर बना था।',
+  'les-paul-guitar': 'लेस पॉल ने मल्टी-ट्रैक रिकॉर्डिंग और सॉलिड-बॉडी इलेक्ट्रिक गिटार का बीड़ा उठाया — उनका 2011 गूगल डूडल पहला इंटरैक्टिव और रिकॉर्ड करने योग्य डूडल था।',
+  'basketball-2012': 'बास्केटबॉल का आविष्कार 1891 में कनाडाई शिक्षक जेम्स नाइस्मिथ ने सॉकर बॉल और दो आड़ू की टोकरियों से किया — पहला मैच सिर्फ़ 1-0 के स्कोर से ख़त्म हुआ।',
+  'hurdles-2012': '110 मीटर बाधा दौड़ 1896 एथेंस ओलंपिक से ही ओलंपिक इवेंट है — 2012 के गूगल डूडल में आप कीबोर्ड एरो से बाधा दौड़ खेल सकते थे।',
+  'slalom-canoe': 'स्लैलम कैनोइंग पहली बार 1972 म्यूनिख ओलंपिक में आई और इसमें लटकते गेटों से होकर गुज़रना होता है — गेट को छूने पर 2 सेकंड की पेनल्टी लगती है।',
+  'soccer-2012': 'फ़ीफ़ा वर्ल्ड कप फ़ाइनल पृथ्वी पर सबसे ज़्यादा देखा जाने वाला खेल आयोजन है, नियमित रूप से 1 अरब से अधिक दर्शक देखते हैं — सुपर बाउल से चार गुना अधिक।',
+  'robert-moog': 'रॉबर्ट मूग का 1964 में प्रदर्शित सिंथेसाइज़र संगीत में क्रांतिकारी था — बीटल्स, स्टीवी वंडर और क्राफ़्टवर्क ने इसे इस्तेमाल किया और इलेक्ट्रॉनिक संगीत को मुख्यधारा बनाया।',
+  'alan-turing': 'ब्लेचले पार्क में नाज़ी एनिग्मा कोड तोड़ने में एलन ट्यूरिंग के काम ने अनुमानित तौर पर द्वितीय विश्व युद्ध को दो से चार साल कम किया, लाखों जीवन बचाए।',
+  'zamboni': 'ज़ैम्बोनी आइस रिसर्फ़ेसर का आविष्कार फ़्रैंक ज़ैम्बोनी ने 1949 में किया — इसकी मशीन से पहले एक आइस रिंक को ठीक करने में 90 मिनट लगते थे; ज़ैम्बोनी इसे 10 से कम में करती है।',
+  'doodle-crossword': 'पहली क्रॉसवर्ड पहेली 21 दिसंबर 1913 को न्यूयॉर्क वर्ल्ड अख़बार में प्रकाशित हुई — यह हीरे के आकार की थी और इसमें काले वर्ग नहीं थे।',
+  'doodle-roswell': '1947 की रोसवेल घटना दुनिया की सबसे प्रसिद्ध UFO घटना बनी — अमेरिकी सेना ने पहले "उड़ने वाली तश्तरी" बरामद करने की बात कही फिर मौसम गुब्बारे में बदल दी।',
+  'mothers-day-2013': 'अन्ना जार्विस के अभियान के बाद 1914 में मदर्स डे अमेरिका में आधिकारिक छुट्टी बना — विडंबना यह है कि बाद में उन्होंने इसके व्यावसायीकरण से घबराकर इसे हटाने की लड़ाई लड़ी।',
+  'doodle-google-15th': 'गूगल की स्थापना 4 सितंबर 1998 को मेनलो पार्क, कैलिफ़ोर्निया के एक गैरेज में हुई — "Google" नाम "गूगोल" पर आधारित है, जो 1 के बाद 100 शून्य है।',
+  'rubiks-cube': 'एर्नो रूबिक को 1974 में अपना आविष्कार हल करने में एक महीने से ज़्यादा लगा — आज स्पीडक्यूबर्स इसे 4 सेकंड से कम में हल करते हैं और विश्व रिकॉर्ड 3.13 सेकंड है।',
+  'doodle-beethoven': 'बीथोवन ने अपनी सबसे बड़ी रचनाएँ, जिसमें नौवीं सिम्फनी शामिल है, लगभग पूरी तरह बहरे होने पर लिखीं — वे कंपन महसूस करने के लिए पियानो से जुड़ी धातु की छड़ काटते थे।',
+  'eiji-tsuburaya': 'एजी त्सुबुराया ने 1954 की मूल गोज़िला फ़िल्म के लिए लघु सेट और रबर सूट पहने व्यक्ति से अभूतपूर्व विशेष प्रभाव बनाए — ये तकनीकें टोकुसात्सु शैली की पहचान बनीं।',
+  'pony-express': 'पोनी एक्सप्रेस केवल 18 महीने (1860-1861) चला फिर टेलीग्राफ़ ने इसकी जगह ले ली, फिर भी यह अमेरिकी सीमांत के सबसे प्रसिद्ध प्रतीकों में से एक बन गया।',
+  'global-candy-cup': 'अमेरिकी हर साल हैलोवीन कैंडी पर 4 अरब डॉलर से अधिक ख़र्च करते हैं — लगभग 27 करोड़ किलो मिठाइयाँ ख़रीदने के लिए पर्याप्त।',
+  'magic-cat-academy': 'मैजिक कैट अकादमी, गूगल का 2016 हैलोवीन डूडल, बिल्ली मोमो की कहानी है जो प्रतीक बनाकर जादू करती है — गेम गूगल कैंपस की असली बिल्लियों से प्रेरित था।',
+  'google-cat-game': 'अध्ययन दिखाते हैं कि ऑनलाइन बिल्ली के वीडियो देखना ऊर्जा और सकारात्मक भावनाओं को बढ़ाता है — इंडियाना विश्वविद्यालय के शोधकर्ताओं ने पाया कि दर्शक कम चिंतित महसूस करते हैं।',
+  'doodle-clara-rockmore': 'क्लारा रॉकमोर इतिहास की सबसे महान थेरेमिन वादक थीं — वे बिना छुए वाद्य बजाती थीं, हवा में सटीक हाथ गतियों से पिच और वॉल्यूम नियंत्रित करती थीं।',
+  'doodle-scoville': 'विल्बर स्कोविल ने 1912 में मिर्च की तीखापन मापने के लिए स्कोविल स्केल का आविष्कार किया — शिमला मिर्च 0 यूनिट है, जबकि कैरोलिना रीपर 22 लाख स्कोविल यूनिट से अधिक है।',
+  'doodle-valentines-day': 'वैलेंटाइन डे पर प्रेम पत्र लिखने की परंपरा 15वीं शताब्दी से है — सबसे पुराना ज्ञात वैलेंटाइन 1415 में ऑर्लियन्स के ड्यूक चार्ल्स की जेल से अपनी पत्नी को लिखी कविता है।',
+  'birth-of-hip-hop': 'हिप हॉप का जन्म 11 अगस्त 1973 को ब्रोंक्स की एक पार्टी में हुआ जहाँ DJ कूल हर्क ने फ़ंक रिकॉर्ड्स के इंस्ट्रुमेंटल ब्रेक्स अलग किए — ब्रेकबीट का आविष्कार।',
+  'oskar-fischinger': 'ऑस्कर फ़िशिंगर ने 1930 के दशक में संगीत पर अमूर्त एनिमेशन का बीड़ा उठाया — उनके विज़ुअल म्यूज़िक कॉन्सेप्ट्स ने डिज़्नी की 1940 की क्लासिक फ़ैंटेसिया को सीधे प्रेरित किया।',
+  'komodo-national-park': 'कोमोडो ड्रैगन दुनिया की सबसे बड़ी जीवित छिपकलियाँ हैं, 3 मीटर लंबी और 70 किलो वज़नी — उनका ज़हरीला काटना रक्त जमने से रोकने वाले विषाक्त पदार्थ छोड़ता है।',
+  'garden-gnomes': 'गार्डन नोम 19वीं सदी की शुरुआत में जर्मनी में उत्पन्न हुए जहाँ माना जाता था कि वे रात में बगीचों की रक्षा करते हैं — आज "नोम मुक्ति" समूह मज़ाक़ में इन्हें चुरा लेते हैं।',
+  'halloween': 'हैलोवीन 2,000 साल से अधिक पुराने केल्टिक त्यौहार सैमहेन से उत्पन्न हुआ, जब लोग अपने नए साल की पूर्व संध्या पर भूतों को भगाने के लिए अलाव जलाते और वेशभूषा पहनते थे।',
+  'baseball': 'पहला आधिकारिक रूप से दर्ज बेसबॉल मैच 19 जून 1846 को होबोकेन, न्यू जर्सी में हुआ — न्यूयॉर्क निकरबॉकर्स न्यूयॉर्क नाइन से 23-1 से हारे।',
+  'doodle-loteria': 'लोटेरिया, मेक्सिको का प्रिय कार्ड गेम, 15वीं शताब्दी में स्पेन के ज़रिए इटली से आया — हर कार्ड पर एक प्रतिष्ठित चित्र और एक पहेली होती है।',
+  'celebrating-bach': 'जोहान सेबेस्टियन बाख ने 1,100 से अधिक रचनाएँ बनाईं लेकिन मृत्यु के बाद भुला दिए गए — मेंडेल्सन द्वारा 1829 में सेंट मैथ्यू पैशन की पुनर्प्रस्तुति ने उनकी ख्याति फिर जगाई।',
+  'doodle-earth-day': 'पृथ्वी दिवस पहली बार 22 अप्रैल 1970 को मनाया गया जब 2 करोड़ अमेरिकियों ने पर्यावरण संरक्षण के लिए रैली निकाली — इससे अमेरिकी पर्यावरण संरक्षण एजेंसी बनी।',
+  'magic-cat-academy-2': 'मैजिक कैट अकादमी सीक्वल ने मोमो की यात्रा पानी के नीचे ले गई — बिल्लियाँ वास्तव में पानी से नफ़रत करती हैं लेकिन बाघ जैसे बड़े बिल्ली वंशी बेहतरीन तैराक हैं।',
+  'doodle-mbira': 'म्बीरा, जिसे अंगूठा पियानो या कालिम्बा भी कहते हैं, ज़िम्बाब्वे में 1,000 से अधिक वर्षों से बजाई जाती है और पूर्वजों की आत्माओं से संवाद का पवित्र वाद्य मानी जाती है।',
+  'doodle-history-of-pizza': 'पिज़्ज़ा जैसा हम जानते हैं 18वीं सदी में नेपल्स में उत्पन्न हुआ, और क्लासिक मार्गेरिटा का नाम 1889 में इटली की रानी मार्गेरिटा के नाम पर रखा गया।',
+  'wewa-weaving': 'बुनाई सबसे प्राचीन मानव शिल्पों में से एक है, 12,000 से अधिक वर्ष पुरानी — पहले बुने कपड़े भेड़ों के पालतू बनाने से बहुत पहले पौधों के रेशों से बने थे।',
+  'champion-island-games': 'चैंपियन आइलैंड गेम्स गूगल के सबसे महत्वाकांक्षी डूडल गेमों में से एक है, जापानी पौराणिक कथाओं और लोककथाओं से प्रेरित सात खेल चुनौतियों वाला पूर्ण RPG संसार।',
+  'doodle-valentines-day-2022': 'प्रेम से जुड़ा दिल का आकार वास्तविक मानव हृदय जैसा बिल्कुल नहीं दिखता — इतिहासकार मानते हैं कि यह आइवी पत्तियों, सिल्फ़ियम बीजों या हंस की गर्दनों से आया हो सकता है।',
+  'celebrating-petanque': 'पेटांक 1907 में फ़्रांस के ला सिओटा में शुरू हुआ जब एक गठिया रोगी ने ज्यू प्रोवांसाल को बैठकर बिना दौड़े खेलने के लिए अनुकूलित किया।',
+  'boba-bubble-tea': 'बबल टी 1980 के दशक में ताइवान में बनी — दो चाय की दुकानों ने श्रेय का दावा किया और कानूनी लड़ाई ताइवान की अदालत तक गई, जिसने फ़ैसला दिया कि कोई भी पेटेंट नहीं ले सकता।',
+  'celebrating-pani-puri': 'पानी पूरी भारत भर में अलग-अलग नामों से जानी जाती है: उत्तर में गोलगप्पा, पूर्व में फुचका और पश्चिम में पानी पूरी — हर क्षेत्र का अपना मसालेदार पानी का नुस्खा है।',
+  'celebrating-lake-xochimilco': 'मेक्सिको सिटी की सोचिमिल्को झील एक्सोलोटल का अंतिम प्राकृतिक निवास है, एक सैलामैंडर जो पूरे अंग, दिल के हिस्से और मस्तिष्क के भाग तक पुनर्जीवित कर सकता है।',
+  'magic-cat-academy-3': 'मैजिक कैट अकादमी सीरीज़ में मोमो स्पेल ड्रॉ करके भूतों से लड़ती है — स्वाइप मैकेनिक मोबाइल के लिए डिज़ाइन किया गया, जिससे यह सबसे टच-फ़्रेंडली गूगल डूडल में से एक है।',
+  'doctor-who': 'डॉक्टर हू पहली बार 23 नवंबर 1963 को प्रसारित हुआ — राष्ट्रपति कैनेडी की हत्या के ठीक एक दिन बाद — और यह इतिहास का सबसे लंबा साइंस फ़िक्शन टीवी शो है।',
+  'chrome-dino': 'क्रोम डायनासोर गेम, "नो इंटरनेट" पेज में छिपा, प्रति माह 27 करोड़ से अधिक लोग खेलते हैं — यह अब तक बनाए गए सबसे ज़्यादा खेले जाने वाले गेमों में से एक है।',
+  't-rex-run-3d': 'क्रोम डायनो गेम को डेवलपर्स ने "प्रोजेक्ट बोलान" कोड नाम दिया, 1970 के ग्लैम रॉक बैंड T. Rex के गायक मार्क बोलान के नाम पर।',
+  'dino-swords': 'डायनो स्वॉर्ड्स क्रोम डायनो कॉन्सेप्ट में हथियार जोड़ता है — मूल क्रोम डायनो इंटरनेट न होने पर "प्रागैतिहासिक युग को श्रद्धांजलि" के रूप में बनाया गया था।',
+  'blob-opera': 'ब्लॉब ओपेरा मशीन लर्निंग से बनाया गया, चार असली ओपेरा गायकों — टेनर, बेस, मेज़ो-सोप्रानो और सोप्रानो — ने AI के लिए 16 घंटे गायन रिकॉर्ड किया।',
+  'google-feud': 'गूगल फ़्यूड गूगल के ऑटोकम्पलीट पूर्वानुमानों पर आधारित है, जो अरबों वास्तविक खोजों से उत्पन्न होते हैं — कुछ आश्चर्यजनक उत्तर दिलचस्प सांस्कृतिक प्रवृत्तियाँ दर्शाते हैं।',
+  'quick-draw': 'Quick, Draw! ने दुनियाभर के खिलाड़ियों से 15 अरब से अधिक चित्र एकत्र किए हैं, सबसे बड़े ड्रॉइंग डेटासेट में से एक बनाया — AI को स्केच पहचानना सिखाने में प्रयुक्त।',
+  'chrome-music-lab': 'क्रोम म्यूज़िक लैब संगीत सीखना सुलभ बनाने के लिए बनाया गया — इसके Song Maker टूल का उपयोग 80+ देशों की कक्षाओं में लाखों छात्रों ने किया।',
+  'google-maps-snake': 'गूगल मैप्स स्नेक 2019 में अप्रैल फ़ूल फ़ीचर के रूप में आया, गूगल मैप्स पर असली सड़कों में बढ़ती ट्रेन को गाइड करने देता था।',
+  'google-earth': 'गूगल अर्थ की सैटेलाइट इमेजरी पृथ्वी की सतह का 97% से अधिक कवर करती है, 93 मिलियन वर्ग किमी से अधिक हाई-रेज़ोल्यूशन इमेज के साथ।',
+  'santa-tracker': 'गूगल का सांता ट्रैकर 2004 से चल रहा है, क्रिसमस की पूर्व संध्या पर सांता की दुनिया भर की यात्रा को "सांता कैम" और गेम्स के साथ ट्रैक करता है।',
+  'space-invaders': 'स्पेस इनवेडर्स ने 1978 में जापान में राष्ट्रीय सिक्का कमी पैदा कर दी — सरकार को आर्केड की माँग पूरी करने के लिए येन सिक्कों का उत्पादन चार गुना करना पड़ा।',
+  'doodle-jump-2': 'ओरिजिनल डूडल जंप 2009 से 3 करोड़ से अधिक बार डाउनलोड हो चुका है, और इसके निर्माता ने पहला संस्करण अपने भाई के साथ सिर्फ़ तीन हफ़्तों में बनाया।',
+  'google-memory': 'मेमोरी गेम्स तंत्रिका मार्गों को मज़बूत करते हैं — अध्ययन दिखाते हैं कि नियमित रूप से मैचिंग गेम खेलने से अल्पकालिक और दीर्घकालिक स्मृति 25% तक सुधर सकती है।',
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TURKISH
+// ═══════════════════════════════════════════════════════════════════════════
+merge('tr', {
+  'snake': 'Snake, 1998\'de Nokia telefonlarında ilk kez göründü ve hızla tarihin en çok oynanan mobil oyunu oldu — 400 milyonun üzerinde Nokia telefon oyun yüklü olarak satıldı.',
+  'minesweeper': 'Mayın Tarlası, 1992\'de Windows 3.1 ile birlikte geldi ve kullanıcılara sol ve sağ tıklamayı öğretti — Uzman zorluğundaki dünya rekoru 30 saniyenin altındadır.',
+  'tic-tac-toe': 'SOS oyunu (Tic-tac-toe) yaklaşık MÖ 1300\'de Eski Mısır\'a kadar uzanır ve 1952\'de bir üniversite bilgisayarında yapılmış ilk video oyunlarından biri olan OXO\'nun konusu oldu.',
+  'les-paul-guitar': 'Les Paul, çok kanallı kayıt ve katı gövdeli elektro gitarın öncüsüydü — 2011 Google Doodle\'ı hem etkileşimli hem de kayıt yapılabilir ilk Doodle oldu, şarkı oluşturup paylaşmaya izin verdi.',
+  'basketball-2012': 'Basketbol 1891\'de Kanadalı beden eğitimi öğretmeni James Naismith tarafından bir futbol topu ve iki şeftali sepeti ile icat edildi — ilk maç sadece 1-0 bitti.',
+  'hurdles-2012': '110 metre engelli koşu, 1896 Atina\'daki ilk modern Olimpiyat Oyunları\'ndan beri olimpik bir branştır — 2012 Google Doodle\'ı klavye oklarıyla yarış yapmanıza izin verdi.',
+  'slalom-canoe': 'Slalom kano, ilk kez 1972 Münih Olimpiyatları\'nda yer aldı ve asılı kapılardan geçmeyi gerektirir — bir kapıya dokunmak 2 saniye ceza ekler.',
+  'soccer-2012': 'FIFA Dünya Kupası finali dünyadaki en çok izlenen spor etkinliğidir, düzenli olarak 1 milyardan fazla izleyici çeker — Super Bowl\'un dört katından fazla.',
+  'robert-moog': 'Robert Moog\'un 1964\'te tanıttığı sentezleyici müzikte devrim yarattı — Beatles, Stevie Wonder ve Kraftwerk onu kullandı ve elektronik müziği ana akım bir tür haline getirdi.',
+  'alan-turing': 'Alan Turing\'in Bletchley Park\'ta Nazi Enigma kodunu kırma çalışmasının İkinci Dünya Savaşı\'nı iki ila dört yıl kısalttığı ve milyonlarca hayat kurtardığı tahmin ediliyor.',
+  'zamboni': 'Zamboni buz düzeltme makinesi 1949\'da Frank Zamboni tarafından icat edildi — makinesi öncesinde bir buz pistini düzeltmek 90 dakikadan fazla sürerdi; Zamboni bunu 10 dakikadan kısa sürede yapar.',
+  'doodle-crossword': 'İlk bulmaca 21 Aralık 1913\'te New York World gazetesinde yayımlandı — elmas şeklindeydi ve siyah kareler yoktu.',
+  'doodle-roswell': '1947 Roswell olayı dünyanın en ünlü UFO olayı oldu — ABD ordusu önce bir "uçan disk" bulduğunu söyledi, sonra hikayeyi meteoroloji balonuna çevirdi.',
+  'mothers-day-2013': 'Anneler Günü, Anna Jarvis\'in yıllarca süren kampanyasının ardından 1914\'te ABD\'de resmi tatil oldu — ironik bir şekilde daha sonra ticarileşmesinden dehşete düşerek kaldırılması için savaştı.',
+  'doodle-google-15th': 'Google 4 Eylül 1998\'de Menlo Park, Kaliforniya\'da bir garajda kuruldu — "Google" adı, 1\'in arkasına 100 sıfır konan sayı olan "googol"dan gelir.',
+  'rubiks-cube': 'Ernő Rubik, 1974\'te icat ettiği küpü çözmek için bir aydan fazla uğraştı — bugün hız çözücüler 4 saniyenin altında çözüyor ve dünya rekoru 3,13 saniye.',
+  'doodle-beethoven': 'Beethoven, Dokuzuncu Senfoni dahil en büyük şaheserlerinden bazılarını neredeyse tamamen sağırken besteledi — titreşimleri hissetmek için piyanoya bağlı bir metal çubuğu ısırırdı.',
+  'eiji-tsuburaya': 'Eiji Tsuburaya, 1954 orijinal Godzilla filmi için minyatür setler ve kauçuk kostümlü bir adam kullanarak çığır açan özel efektler yarattı — tokusatsu türünü tanımlayan teknikler.',
+  'pony-express': 'Pony Express yalnızca 18 ay (1860-1861) çalıştıktan sonra telgrafla modası geçti, ancak Amerikan sınırının en efsanevi sembollerinden biri oldu.',
+  'global-candy-cup': 'Amerikalılar her yıl Cadılar Bayramı şekerlemelerine 4 milyar dolardan fazla harcıyor — yaklaşık 270 milyon kilo şeker almaya yetecek kadar.',
+  'magic-cat-academy': 'Magic Cat Academy, Google\'ın 2016 Cadılar Bayramı Doodle\'ı, semboller çizerek büyü yapan kedi Momo\'nun yıldızıdır — oyun Google kampüsündeki gerçek kedilerden esinlenmiştir.',
+  'google-cat-game': 'Araştırmalar, çevrimiçi kedi videoları izlemenin enerjiyi ve olumlu duyguları artırdığını gösteriyor — Indiana Üniversitesi araştırmacıları izleyicilerin daha az kaygılı hissettiğini buldu.',
+  'doodle-clara-rockmore': 'Clara Rockmore tarihin en büyük teremin virtüözüydü — enstrümana dokunmadan, havadaki hassas el hareketleriyle perde ve ses seviyesini kontrol ederek çalardı.',
+  'doodle-scoville': 'Wilbur Scoville, 1912\'de biber acılığını ölçmek için Scoville ölçeğini icat etti — dolma biber 0 birim alırken, Carolina Reaper 2,2 milyon Scoville birimini aşar.',
+  'doodle-valentines-day': 'Sevgililer Günü aşk mektupları geleneği 15. yüzyıla uzanır — bilinen en eski sevgililer günü mektubu, 1415\'te Orléans Dükü Charles\'ın cezaevinden eşine yazdığı şiirdir.',
+  'birth-of-hip-hop': 'Hip hop 11 Ağustos 1973\'te Bronx\'ta bir partide DJ Kool Herc\'ün funk plakların enstrümantal bölümlerini izole etmesiyle doğdu — breakbeat\'in icadı.',
+  'oskar-fischinger': 'Oskar Fischinger, 1930\'larda müzikle soyut animasyonun öncüsü oldu — görsel müzik konseptleri Disney\'in 1940 Fantasia klasiğini doğrudan etkiledi.',
+  'komodo-national-park': 'Komodo ejderleri dünyanın en büyük yaşayan kertenkeleleridir, 3 metreye ve 70 kiloya kadar büyürler — zehirli ısırıkları kan pıhtılaşmasını engelleyen toksinler salar.',
+  'garden-gnomes': 'Bahçe cüceleri 19. yüzyıl başlarında Almanya\'da ortaya çıktı ve geceleri bahçeleri koruduklarına inanılırdı — bugün bir "cüce özgürleştirme" alt kültürü onları şaka olarak çalıyor.',
+  'halloween': 'Cadılar Bayramı, 2.000 yıldan fazla önceki Kelt festivali Samhain\'den doğdu — insanlar yeni yıllarının önceki gecesinde ateş yakıp kostüm giyerek hayaletleri uzaklaştırırdı.',
+  'baseball': 'Resmi olarak kayıtlara geçen ilk beyzbol maçı 19 Haziran 1846\'da Hoboken, New Jersey\'de oynandı — New York Knickerbockers, New York Nine\'a 23-1 yenildi.',
+  'doodle-loteria': 'Lotería, Meksika\'nın sevilen kart oyunu, 15. yüzyılda İspanya üzerinden İtalya\'dan geldi — her kartta ikonik bir illüstrasyon ve bir bilmece bulunur.',
+  'celebrating-bach': 'Johann Sebastian Bach yaşamı boyunca 1.100\'den fazla eser besteledi ama ölümünden sonra büyük ölçüde unutuldu — Mendelssohn\'un 1829\'da Aziz Matta Pasyon\'unu yeniden sahnelemesi şöhretini yeniden alevlendirdi.',
+  'doodle-earth-day': 'Dünya Günü ilk kez 22 Nisan 1970\'te kutlandı ve 20 milyon Amerikalı çevre koruma için yürüdü — doğrudan ABD Çevre Koruma Ajansı\'nın kurulmasına yol açtı.',
+  'magic-cat-academy-2': 'Magic Cat Academy devam oyunu Momo\'nun macerasını su altına taşıdı — kediler gerçekte sudan nefret eder ama kaplanlar gibi büyük kediler mükemmel yüzücülerdir.',
+  'doodle-mbira': 'Mbira, başparmak piyanosu veya kalimba olarak da bilinir, Zimbabve\'de 1.000 yılı aşkın süredir çalınır ve ataların ruhuyla iletişim kurmak için kullanılan kutsal bir çalgı kabul edilir.',
+  'doodle-history-of-pizza': 'Bildiğimiz pizza 1700\'lerde Napoli\'de doğdu ve klasik Margherita, 1889\'da İtalya Kraliçesi Margherita\'nın onuruna domates, mozzarella ve fesleğenle İtalyan bayrağını temsil etti.',
+  'wewa-weaving': 'Dokumacılık 12.000 yılı aşkın geçmişiyle en eski insan zanaatlarından biridir — ilk dokuma kumaşlar, koyunların evcilleştirilmesinden çok önce bitki liflerinden yapılmıştır.',
+  'champion-island-games': 'Champion Island Games, Japon mitolojisi ve folklorundan esinlenen yedi spor mücadelesiyle tam bir RPG dünyası sunan, Google\'ın en iddialı Doodle oyunlarından biridir.',
+  'doodle-valentines-day-2022': 'Aşkla ilişkilendirdiğimiz kalp şekli gerçek bir insan kalbine hiç benzemiyor — tarihçiler bunun sarmaşık yapraklarından, silphium tohumlarından veya kuğu boyunlarından türemiş olabileceğini düşünüyor.',
+  'celebrating-petanque': 'Petank, 1907\'de Fransa\'nın La Ciotat şehrinde romatizmalı bir jeu provençal oyuncusunun oturarak, koşmadan oynayabilmek için oyunu uyarlamasıyla doğdu.',
+  'boba-bubble-tea': 'Bubble tea 1980\'lerde Tayvan\'da icat edildi — iki çay dükkanı buluşu sahiplendi ve hukuki savaş mahkemeye taşındı, hiçbirinin patent alamayacağına karar verildi.',
+  'celebrating-pani-puri': 'Pani puri Hindistan\'ın farklı bölgelerinde farklı isimlerle bilinir: kuzeyde golgappa, doğuda puchka, batıda pani puri — her bölgenin kendine özgü baharatlı su tarifi vardır.',
+  'celebrating-lake-xochimilco': 'Mexico City\'deki Xochimilco Gölü, uzuvlarının tamamını, kalbinin bir bölümünü ve hatta beyninin bazı kısımlarını yenileyebilen bir semender olan aksolotl\'ün son doğal yaşam alanıdır.',
+  'magic-cat-academy-3': 'Magic Cat Academy serisinde Momo büyü çizerek hayaletlerle savaşır — kaydırma mekaniği mobil için tasarlandı ve onu en dokunmatik uyumlu Google Doodle\'larından biri yaptı.',
+  'doctor-who': 'Doctor Who ilk kez 23 Kasım 1963\'te yayınlandı — Başkan Kennedy\'nin suikastından bir gün sonra — ve tarihin en uzun süre yayınlanan bilim kurgu dizisidir.',
+  'chrome-dino': 'Chrome dinozor oyunu, "İnternet yok" sayfasında gizlidir ve ayda 270 milyondan fazla kişi tarafından oynanır — şimdiye kadar yapılmış en çok oynanan oyunlardan biri.',
+  't-rex-run-3d': 'Chrome Dino oyunu geliştiricileri tarafından "Proje Bolan" olarak adlandırıldı — 1970\'lerin glam rock grubu T. Rex\'in solisti Marc Bolan\'ın adından.',
+  'dino-swords': 'Dino Swords, Chrome Dino konseptine silah cephaneliği ekler — orijinal Chrome Dino, internet olmadığında "tarih öncesi çağa selam" olarak tasarlanmıştı.',
+  'blob-opera': 'Blob Opera, dört gerçek opera sanatçısı — tenor, bas, mezzo-soprano ve soprano — tarafından 16 saat şarkı kaydedilerek eğitilen makine öğrenmesiyle oluşturuldu.',
+  'google-feud': 'Google Feud, milyarlarca gerçek aramadan üretilen Google otomatik tamamlama tahminlerine dayanır — bazı şaşırtıcı cevaplar büyüleyici kültürel eğilimleri ortaya koyar.',
+  'quick-draw': 'Quick, Draw! dünya genelinde oyunculardan 15 milyardan fazla çizim topladı ve en büyük çizim veri setlerinden birini oluşturdu — el çizimi taslakları tanıyan yapay zeka eğitmekte kullanılıyor.',
+  'chrome-music-lab': 'Chrome Music Lab müzik öğrenmeyi erişilebilir kılmak için oluşturuldu — Song Maker aracı 80\'den fazla ülkedeki sınıflarda milyonlarca öğrenci tarafından kullanıldı.',
+  'google-maps-snake': 'Google Maps Snake, 2019\'da eğlenceli bir 1 Nisan şakası olarak ortaya çıktı ve Google Haritalar\'daki gerçek sokaklar boyunca büyüyen bir treni yönlendirmenize izin verdi.',
+  'google-earth': 'Google Earth\'ün uydu görüntüleri dünya yüzeyinin %97\'sinden fazlasını kapsar ve 93 milyon km²\'den fazla yüksek çözünürlüklü görüntüye sahiptir.',
+  'santa-tracker': 'Google\'ın Noel Baba takipçisi 2004\'ten beri çalışıyor ve Noel arifesinde "Noel Baba Kameraları" ve oyunlarla Noel Baba\'nın dünya turunu takip ediyor.',
+  'space-invaders': 'Space Invaders, 1978\'de piyasaya çıktığında Japonya\'da ulusal madeni para kıtlığına neden oldu — hükümet oyun salonlarının talebini karşılamak için yen üretimini dört katına çıkarmak zorunda kaldı.',
+  'doodle-jump-2': 'Orijinal Doodle Jump 2009\'dan bu yana 30 milyondan fazla kez indirildi ve yaratıcısı ilk sürümü kardeşiyle sadece üç haftada geliştirdi.',
+  'google-memory': 'Hafıza oyunlarının nöral yolları güçlendirdiği kanıtlanmıştır — araştırmalar düzenli oynamanın kısa ve uzun süreli hafızayı %25\'e kadar iyileştirebileceğini göstermektedir.',
+});
+
+console.log('\\n✅ Batch 3 complete (ar, hi, tr)');

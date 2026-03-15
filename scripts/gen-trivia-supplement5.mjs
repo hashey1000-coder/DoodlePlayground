@@ -1,0 +1,220 @@
+#!/usr/bin/env node
+/**
+ * Supplement trivia translations for: id, vi, th
+ */
+import { readFileSync, writeFileSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DIR = resolve(__dirname, '..', 'client', 'src', 'data', 'translations', 'trivia');
+
+function merge(locale, translations) {
+  const filePath = resolve(DIR, `${locale}.ts`);
+  let src = readFileSync(filePath, 'utf-8');
+  let count = 0;
+  for (const [slug, text] of Object.entries(translations)) {
+    const escaped = text.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const re = new RegExp(`(  '${slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}': ').*(',)`);
+    if (re.test(src)) { src = src.replace(re, `$1${escaped}$2`); count++; }
+  }
+  writeFileSync(filePath, src, 'utf-8');
+  console.log(`✅ ${locale}.ts — ${count} entries translated`);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INDONESIAN
+// ═══════════════════════════════════════════════════════════════════════════
+merge('id', {
+  'snake': 'Snake pertama kali muncul di ponsel Nokia pada tahun 1998 dan dengan cepat menjadi game mobile paling banyak dimainkan sepanjang masa — lebih dari 400 juta ponsel Nokia sudah memasangnya.',
+  'minesweeper': 'Minesweeper disertakan bersama Windows 3.1 pada tahun 1992 untuk mengajarkan pengguna klik kiri dan kanan — rekor dunia tingkat Expert kurang dari 30 detik.',
+  'tic-tac-toe': 'Tic-tac-toe berasal dari Mesir Kuno sekitar 1300 SM dan pada tahun 1952 menjadi subjek salah satu video game pertama, OXO, yang dibuat di komputer universitas.',
+  'les-paul-guitar': 'Les Paul menjadi pelopor rekaman multi-track dan gitar elektrik solid-body — Google Doodle tahun 2011 miliknya adalah yang pertama yang bisa dimainkan dan direkam.',
+  'basketball-2012': 'Bola basket ditemukan pada tahun 1891 oleh guru olahraga Kanada James Naismith menggunakan bola sepak dan dua keranjang persik — pertandingan pertama berakhir dengan skor 1-0.',
+  'hurdles-2012': 'Lari gawang 110 meter telah menjadi cabang Olimpiade sejak Olimpiade modern pertama di Athena 1896 — Google Doodle 2012 memungkinkan Anda berlomba menggunakan tombol panah.',
+  'slalom-canoe': 'Kano slalom pertama kali muncul di Olimpiade Munich 1972 dan mengharuskan navigasi melalui gerbang gantung — menyentuh gerbang dikenakan penalti 2 detik.',
+  'soccer-2012': 'Final Piala Dunia FIFA adalah acara olahraga paling banyak ditonton di dunia, secara rutin menarik lebih dari 1 miliar penonton — lebih dari empat kali lipat penonton Super Bowl.',
+  'robert-moog': 'Synthesizer Robert Moog, yang didemonstrasikan pada tahun 1964, merevolusi musik — The Beatles, Stevie Wonder, dan Kraftwerk menggunakannya dan menjadikan musik elektronik sebagai arus utama.',
+  'alan-turing': 'Karya Alan Turing dalam memecahkan kode Enigma Nazi di Bletchley Park diperkirakan memperpendek Perang Dunia II dua hingga empat tahun, menyelamatkan jutaan nyawa.',
+  'zamboni': 'Mesin es Zamboni ditemukan oleh Frank Zamboni pada tahun 1949 — sebelum mesinnya, kru membutuhkan lebih dari 90 menit untuk melapisi ulang arena es; Zamboni melakukannya dalam kurang dari 10.',
+  'doodle-crossword': 'Teka-teki silang pertama diterbitkan di surat kabar New York World pada 21 Desember 1913 — berbentuk berlian dan tidak memiliki kotak hitam.',
+  'doodle-roswell': 'Insiden Roswell tahun 1947 menjadi peristiwa UFO paling terkenal di dunia — militer AS awalnya mengatakan telah menemukan "piring terbang" sebelum mengubah ceritanya menjadi balon cuaca.',
+  'mothers-day-2013': 'Hari Ibu menjadi hari libur resmi AS pada tahun 1914 setelah kampanye bertahun-tahun oleh Anna Jarvis — ironisnya, ia kemudian berjuang untuk menghapusnya, kecewa dengan komersialisasinya.',
+  'doodle-google-15th': 'Google didirikan pada 4 September 1998 di sebuah garasi di Menlo Park, California — nama "Google" adalah permainan kata dari "googol", angka 1 diikuti 100 nol.',
+  'rubiks-cube': 'Ernő Rubik membutuhkan lebih dari sebulan untuk menyelesaikan penemuannya sendiri tahun 1974 — saat ini speedcuber menyelesaikannya dalam waktu kurang dari 4 detik, dengan rekor dunia 3,13 detik.',
+  'doodle-beethoven': 'Beethoven menggubah beberapa karya agungnya termasuk Simfoni Kesembilan saat hampir sepenuhnya tuli — ia menggigit batang logam yang terpasang di piano untuk merasakan getarannya.',
+  'eiji-tsuburaya': 'Eiji Tsuburaya menciptakan efek spesial revolusioner untuk film Godzilla asli tahun 1954 menggunakan set miniatur dan pria dalam kostum karet — teknik yang mendefinisikan genre tokusatsu.',
+  'pony-express': 'Pony Express hanya beroperasi selama 18 bulan (1860-1861) sebelum telegraf membuatnya usang, tetapi menjadi salah satu simbol paling legendaris dari perbatasan Amerika.',
+  'global-candy-cup': 'Orang Amerika menghabiskan lebih dari 4 miliar dolar untuk permen Halloween setiap tahun — cukup untuk sekitar 270 juta kilogram makanan manis.',
+  'magic-cat-academy': 'Magic Cat Academy, Doodle Halloween Google 2016, menampilkan kucing Momo yang menggambar simbol untuk merapalkan mantra — game ini terinspirasi oleh kucing sungguhan di kampus Google.',
+  'google-cat-game': 'Penelitian menunjukkan bahwa menonton video kucing online meningkatkan energi dan emosi positif — peneliti dari Indiana University menemukan penonton merasa berkurang kecemasannya.',
+  'doodle-clara-rockmore': 'Clara Rockmore adalah virtuoso theremin terbesar dalam sejarah — ia memainkan instrumen tanpa menyentuhnya, mengontrol nada dan volume dengan gerakan tangan presisi di udara.',
+  'doodle-scoville': 'Wilbur Scoville menemukan skala Scoville pada tahun 1912 untuk mengukur kepedasan cabai — paprika memiliki 0 unit sementara Carolina Reaper melebihi 2,2 juta unit Scoville.',
+  'doodle-valentines-day': 'Tradisi surat cinta Hari Valentine sudah ada sejak abad ke-15 — valentine tertua yang diketahui adalah puisi dari Charles, Adipati Orléans, kepada istrinya pada tahun 1415 dari penjara.',
+  'birth-of-hip-hop': 'Hip hop lahir pada 11 Agustus 1973 di sebuah pesta di Bronx ketika DJ Kool Herc mengisolasi break instrumental dari piringan hitam funk — menciptakan breakbeat.',
+  'oskar-fischinger': 'Oskar Fischinger memelopori animasi abstrak untuk musik pada tahun 1930-an — konsep musik visualnya secara langsung menginspirasi sekuens Fantasia dalam klasik Disney tahun 1940.',
+  'komodo-national-park': 'Komodo adalah kadal terbesar yang masih hidup di dunia, bisa mencapai 3 meter dan 70 kg — gigitan berbisanya melepaskan racun yang mencegah pembekuan darah.',
+  'garden-gnomes': 'Kurcaci taman berasal dari Jerman awal abad ke-19, di mana orang percaya mereka menjaga kebun di malam hari — saat ini subkultur "pembebas kurcaci" mencuri mereka untuk bercanda.',
+  'halloween': 'Halloween berasal dari festival Celtic Samhain lebih dari 2.000 tahun lalu, ketika orang menyalakan api unggun dan mengenakan kostum untuk mengusir hantu pada malam tahun baru mereka.',
+  'baseball': 'Pertandingan bisbol tercatat resmi pertama dimainkan pada 19 Juni 1846 di Hoboken, New Jersey — New York Knickerbockers kalah dari New York Nine dengan skor 23-1.',
+  'doodle-loteria': 'Lotería, permainan kartu favorit Meksiko, berasal dari abad ke-15 ketika datang dari Italia melalui Spanyol — setiap kartu menampilkan ilustrasi ikonik dan teka-teki.',
+  'celebrating-bach': 'Johann Sebastian Bach menggubah lebih dari 1.100 karya tetapi sebagian besar dilupakan setelah kematiannya — kebangkitan Mendelssohn atas Passion Menurut Matius pada 1829 menghidupkan kembali ketenaran Bach.',
+  'doodle-earth-day': 'Hari Bumi pertama kali diperingati pada 22 April 1970 dengan 20 juta orang Amerika berdemonstrasi — secara langsung mengarah pada pembentukan Badan Perlindungan Lingkungan AS.',
+  'magic-cat-academy-2': 'Sekuel Magic Cat Academy membawa petualangan Momo ke bawah air — kucing membenci air, tetapi kucing besar seperti harimau adalah perenang yang sangat baik.',
+  'doodle-mbira': 'Mbira, juga dikenal sebagai piano ibu jari atau kalimba, telah dimainkan di Zimbabwe selama lebih dari 1.000 tahun dan dianggap sebagai instrumen sakral untuk berkomunikasi dengan roh leluhur.',
+  'doodle-history-of-pizza': 'Pizza seperti yang kita kenal berasal dari Napoli pada abad ke-18, dan Margherita klasik dinamai menurut Ratu Margherita dari Italia pada tahun 1889 — dengan tomat, mozzarella, dan kemangi.',
+  'wewa-weaving': 'Tenun adalah salah satu kerajinan manusia tertua, berusia lebih dari 12.000 tahun — kain tenun pertama dibuat dari serat tanaman jauh sebelum domestikasi domba untuk wol.',
+  'champion-island-games': 'Champion Island Games adalah salah satu game Doodle Google paling ambisius, menampilkan dunia RPG lengkap dengan tujuh tantangan olahraga yang terinspirasi mitologi dan folklor Jepang.',
+  'doodle-valentines-day-2022': 'Bentuk hati yang kita kaitkan dengan cinta sama sekali tidak menyerupai jantung manusia asli — sejarawan berpendapat bentuk itu mungkin berasal dari daun ivy, biji silphium, atau leher angsa.',
+  'celebrating-petanque': 'Pétanque lahir di La Ciotat, Prancis, pada tahun 1907 ketika seorang pemain jeu provençal yang rematik mengadaptasi permainan agar bisa bermain sambil duduk tanpa berlari.',
+  'boba-bubble-tea': 'Bubble tea ditemukan di Taiwan pada tahun 1980-an — dua kedai teh sama-sama mengklaim sebagai penciptanya, dan perselisihan hukum tersebut sampai ke pengadilan yang memutuskan tidak ada yang bisa mematenkannya.',
+  'celebrating-pani-puri': 'Pani puri memiliki nama berbeda di seluruh India: golgappa di utara, puchka di timur, dan pani puri di barat — setiap daerah juga memiliki resep air rempah sendiri.',
+  'celebrating-lake-xochimilco': 'Danau Xochimilco di Mexico City adalah habitat alami terakhir axolotl, salamander yang dapat meregenerasi seluruh anggota tubuh, bagian jantung, dan bahkan bagian otaknya.',
+  'magic-cat-academy-3': 'Dalam seri Magic Cat Academy, Momo melawan hantu dengan menggambar mantra — mekanik gesek dirancang untuk perangkat mobile, menjadikannya salah satu Google Doodle paling ramah sentuh.',
+  'doctor-who': 'Doctor Who pertama kali ditayangkan pada 23 November 1963 — satu hari setelah pembunuhan Presiden Kennedy — dan merupakan serial fiksi ilmiah terlama yang masih berjalan dalam sejarah.',
+  'chrome-dino': 'Game dinosaurus Chrome, tersembunyi di halaman "Tidak Ada Internet", dimainkan lebih dari 270 juta orang per bulan — salah satu game paling banyak dimainkan sepanjang masa.',
+  't-rex-run-3d': 'Game Chrome Dino diberi nama kode "Project Bolan" oleh pengembangnya, mengambil nama dari Marc Bolan, vokalis band glam rock T. Rex dari tahun 1970-an.',
+  'dino-swords': 'Dino Swords mengambil konsep Chrome Dino dan menambahkan senjata — Chrome Dino asli dirancang sebagai "anggukan ke masa prasejarah" saat Anda tidak memiliki koneksi internet.',
+  'blob-opera': 'Blob Opera dibuat menggunakan machine learning yang dilatih dari empat penyanyi opera sungguhan — tenor, bass, mezzo-soprano, dan soprano — yang merekam 16 jam nyanyian untuk AI.',
+  'google-feud': 'Google Feud didasarkan pada prediksi autocomplete Google yang dihasilkan dari miliaran pencarian nyata — beberapa jawaban mengejutkan mengungkapkan tren budaya yang menarik.',
+  'quick-draw': 'Quick, Draw! telah mengumpulkan lebih dari 15 miliar gambar dari pemain di seluruh dunia, menciptakan salah satu dataset coretan terbesar yang pernah ada — digunakan untuk melatih AI mengenali sketsa.',
+  'chrome-music-lab': 'Chrome Music Lab dibuat untuk membuat pembelajaran musik lebih mudah diakses — alat Song Maker-nya telah digunakan oleh jutaan siswa di kelas di lebih dari 80 negara.',
+  'google-maps-snake': 'Google Maps Snake muncul sebagai fitur April Mop yang menyenangkan pada 2019, memungkinkan pemain mengarahkan kereta yang terus tumbuh melalui jalan-jalan kota nyata di Google Maps.',
+  'google-earth': 'Citra satelit Google Earth mencakup lebih dari 97% permukaan bumi, dengan lebih dari 93 juta km² gambar resolusi tinggi — cukup untuk menutupi 10 miliar lapangan sepak bola.',
+  'santa-tracker': 'Pelacak Santa Google telah berjalan sejak 2004, dan pada Malam Natal ia melacak perjalanan Santa di seluruh dunia dengan "Kamera Santa" dan permainan di setiap pemberhentian.',
+  'space-invaders': 'Space Invaders menyebabkan kelangkaan koin nasional di Jepang saat diluncurkan pada 1978 — pemerintah harus melipatgandakan produksi koin yen empat kali lipat untuk memenuhi permintaan arcade.',
+  'doodle-jump-2': 'Doodle Jump asli telah diunduh lebih dari 30 juta kali sejak 2009, dan penciptanya membuat versi pertama hanya dalam tiga minggu bersama saudaranya.',
+  'google-memory': 'Permainan memori terbukti memperkuat koneksi saraf — penelitian menunjukkan bermain secara teratur dapat meningkatkan memori jangka pendek dan jangka panjang hingga 25%.',
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VIETNAMESE
+// ═══════════════════════════════════════════════════════════════════════════
+merge('vi', {
+  'snake': 'Snake xuất hiện lần đầu trên điện thoại Nokia năm 1998 và nhanh chóng trở thành trò chơi di động được chơi nhiều nhất mọi thời đại — hơn 400 triệu điện thoại Nokia được cài đặt sẵn.',
+  'minesweeper': 'Dò mìn được đóng gói cùng Windows 3.1 năm 1992 để dạy người dùng nhấp chuột trái và phải — kỷ lục thế giới ở chế độ Expert là dưới 30 giây.',
+  'tic-tac-toe': 'Cờ ca-rô có nguồn gốc từ Ai Cập cổ đại khoảng 1300 TCN và năm 1952 trở thành chủ đề của một trong những trò chơi điện tử đầu tiên, OXO, được tạo trên máy tính đại học.',
+  'les-paul-guitar': 'Les Paul là người tiên phong trong thu âm đa rãnh và đàn guitar điện thân đặc — Google Doodle năm 2011 của ông là Doodle đầu tiên vừa có thể tương tác vừa có thể ghi âm.',
+  'basketball-2012': 'Bóng rổ được phát minh năm 1891 bởi giáo viên thể dục người Canada James Naismith sử dụng quả bóng đá và hai giỏ đào — trận đầu tiên kết thúc chỉ với tỷ số 1-0.',
+  'hurdles-2012': 'Chạy vượt rào 110 mét đã là môn thi Olympic từ Thế vận hội hiện đại đầu tiên tại Athens 1896 — Google Doodle 2012 cho phép bạn chạy bằng phím mũi tên.',
+  'slalom-canoe': 'Chèo thuyền slalom xuất hiện lần đầu tại Thế vận hội Munich 1972 và yêu cầu điều hướng qua các cổng treo — chạm cổng bị phạt 2 giây.',
+  'soccer-2012': 'Trận chung kết FIFA World Cup là sự kiện thể thao được xem nhiều nhất trên Trái Đất, thường xuyên thu hút hơn 1 tỷ khán giả — gấp hơn bốn lần Super Bowl.',
+  'robert-moog': 'Bộ tổng hợp âm thanh của Robert Moog, được trình diễn năm 1964, đã cách mạng hóa âm nhạc — The Beatles, Stevie Wonder và Kraftwerk đều sử dụng nó, đưa nhạc điện tử thành dòng chính.',
+  'alan-turing': 'Công trình giải mã Enigma của Đức Quốc xã của Alan Turing tại Bletchley Park được ước tính rút ngắn Thế chiến II từ hai đến bốn năm, cứu sống hàng triệu người.',
+  'zamboni': 'Máy làm đá Zamboni được Frank Zamboni phát minh năm 1949 — trước đó, đội ngũ cần hơn 90 phút để làm lại mặt sân băng; Zamboni làm trong chưa đầy 10 phút.',
+  'doodle-crossword': 'Ô chữ đầu tiên được đăng trên tờ New York World ngày 21 tháng 12 năm 1913 — có hình thoi và không có ô đen.',
+  'doodle-roswell': 'Sự kiện Roswell năm 1947 trở thành vụ UFO nổi tiếng nhất thế giới — quân đội Mỹ ban đầu nói thu hồi được "đĩa bay" trước khi đổi sang khinh khí cầu thời tiết.',
+  'mothers-day-2013': 'Ngày của Mẹ trở thành ngày lễ chính thức tại Mỹ năm 1914 sau chiến dịch nhiều năm của Anna Jarvis — trớ trêu thay, bà sau đó đấu tranh để bãi bỏ nó vì sự thương mại hóa.',
+  'doodle-google-15th': 'Google được thành lập ngày 4 tháng 9 năm 1998 trong một nhà để xe ở Menlo Park, California — tên "Google" là chơi chữ từ "googol", số 1 theo sau bởi 100 số không.',
+  'rubiks-cube': 'Ernő Rubik mất hơn một tháng để giải chính phát minh của mình năm 1974 — ngày nay các speedcuber giải nó trong dưới 4 giây, với kỷ lục thế giới là 3,13 giây.',
+  'doodle-beethoven': 'Beethoven sáng tác một số kiệt tác vĩ đại nhất bao gồm Bản giao hưởng số 9 khi gần như hoàn toàn điếc — ông cắn vào một thanh kim loại gắn với đàn piano để cảm nhận rung động.',
+  'eiji-tsuburaya': 'Eiji Tsuburaya tạo ra kỹ xảo đặc biệt đột phá cho phim Godzilla gốc năm 1954 bằng phim trường thu nhỏ và người mặc đồ cao su — kỹ thuật định hình thể loại tokusatsu.',
+  'pony-express': 'Pony Express chỉ hoạt động 18 tháng (1860-1861) trước khi điện báo khiến nó lỗi thời, nhưng nó trở thành một trong những biểu tượng huyền thoại nhất của biên giới nước Mỹ.',
+  'global-candy-cup': 'Người Mỹ chi hơn 4 tỷ đô la cho kẹo Halloween mỗi năm — đủ cho khoảng 270 triệu kg đồ ngọt.',
+  'magic-cat-academy': 'Magic Cat Academy, Doodle Halloween 2016 của Google, có mèo Momo vẽ biểu tượng để niệm chú — trò chơi được lấy cảm hứng từ những chú mèo thật trên khuôn viên Google.',
+  'google-cat-game': 'Nghiên cứu cho thấy xem video mèo trực tuyến thực sự tăng năng lượng và cảm xúc tích cực — các nhà nghiên cứu tại Đại học Indiana phát hiện người xem cảm thấy bớt lo lắng hơn.',
+  'doodle-clara-rockmore': 'Clara Rockmore là nghệ sĩ theremin vĩ đại nhất trong lịch sử — bà chơi nhạc cụ mà không chạm vào nó, điều khiển cao độ và âm lượng bằng chuyển động tay chính xác trong không khí.',
+  'doodle-scoville': 'Wilbur Scoville phát minh thang Scoville năm 1912 để đo độ cay của ớt — ớt chuông có 0 đơn vị trong khi Carolina Reaper vượt quá 2,2 triệu đơn vị Scoville.',
+  'doodle-valentines-day': 'Truyền thống viết thư tình ngày Valentine có từ thế kỷ 15 — valentine lâu đời nhất được biết là bài thơ từ Charles, Công tước Orléans, gửi vợ năm 1415 từ nhà tù.',
+  'birth-of-hip-hop': 'Hip hop ra đời ngày 11 tháng 8 năm 1973 tại một bữa tiệc ở Bronx khi DJ Kool Herc cô lập phần nhạc cụ từ đĩa funk — phát minh ra breakbeat.',
+  'oskar-fischinger': 'Oskar Fischinger là người tiên phong trong hoạt hình trừu tượng theo nhạc vào thập niên 1930 — các khái niệm nhạc hình ảnh của ông trực tiếp truyền cảm hứng cho chuỗi Fantasia của Disney năm 1940.',
+  'komodo-national-park': 'Rồng Komodo là loài thằn lằn lớn nhất còn sống, dài tới 3 mét và nặng 70 kg — vết cắn có nọc của chúng giải phóng độc tố ngăn đông máu.',
+  'garden-gnomes': 'Chú lùn vườn có nguồn gốc từ đầu thế kỷ 19 ở Đức, nơi người ta tin chúng bảo vệ vườn vào ban đêm — ngày nay có hẳn một tiểu văn hóa "giải phóng chú lùn" trộm chúng để đùa.',
+  'halloween': 'Halloween bắt nguồn từ lễ hội Samhain của người Celtic hơn 2.000 năm trước, khi mọi người đốt lửa và mặc trang phục để xua đuổi ma vào đêm trước năm mới.',
+  'baseball': 'Trận bóng chày chính thức đầu tiên được ghi nhận diễn ra ngày 19 tháng 6 năm 1846 tại Hoboken, New Jersey — New York Knickerbockers thua New York Nine 23-1.',
+  'doodle-loteria': 'Lotería, trò chơi bài yêu thích của Mexico, có từ thế kỷ 15 khi du nhập từ Ý qua Tây Ban Nha — mỗi lá bài có hình minh họa mang tính biểu tượng và một câu đố.',
+  'celebrating-bach': 'Johann Sebastian Bach sáng tác hơn 1.100 tác phẩm nhưng phần lớn bị lãng quên sau khi mất — buổi biểu diễn lại Khổ nạn theo Thánh Matthêu của Mendelssohn năm 1829 đã hồi sinh danh tiếng của ông.',
+  'doodle-earth-day': 'Ngày Trái Đất được tổ chức lần đầu vào 22 tháng 4 năm 1970 với 20 triệu người Mỹ biểu tình — trực tiếp dẫn đến việc thành lập Cơ quan Bảo vệ Môi trường Hoa Kỳ.',
+  'magic-cat-academy-2': 'Phần tiếp theo Magic Cat Academy đưa cuộc phiêu lưu của Momo xuống dưới nước — mèo ghét nước nhưng các loài mèo lớn như hổ lại là những tay bơi xuất sắc.',
+  'doodle-mbira': 'Mbira, còn gọi là đàn ngón tay hay kalimba, đã được chơi ở Zimbabwe hơn 1.000 năm và được coi là nhạc cụ thiêng liêng để giao tiếp với linh hồn tổ tiên.',
+  'doodle-history-of-pizza': 'Pizza như chúng ta biết bắt nguồn từ Naples vào thế kỷ 18, và Margherita cổ điển được đặt theo tên Nữ hoàng Margherita của Ý năm 1889 — với cà chua, mozzarella và húng quế.',
+  'wewa-weaving': 'Dệt vải là một trong những nghề thủ công lâu đời nhất của loài người, hơn 12.000 năm tuổi — những tấm vải dệt đầu tiên được làm từ sợi thực vật, rất lâu trước khi thuần hóa cừu lấy len.',
+  'champion-island-games': 'Champion Island Games là một trong những game Doodle tham vọng nhất của Google, với thế giới RPG hoàn chỉnh gồm bảy thử thách thể thao lấy cảm hứng từ thần thoại và truyền thuyết Nhật Bản.',
+  'doodle-valentines-day-2022': 'Hình trái tim mà chúng ta liên tưởng đến tình yêu hoàn toàn không giống tim người thật — các nhà sử học cho rằng nó có thể bắt nguồn từ lá thường xuân, hạt silphium hoặc cổ thiên nga.',
+  'celebrating-petanque': 'Pétanque ra đời tại La Ciotat, Pháp, năm 1907 khi một người chơi jeu provençal bị thấp khớp điều chỉnh trò chơi để có thể chơi ngồi mà không cần chạy.',
+  'boba-bubble-tea': 'Trà sữa trân châu được phát minh ở Đài Loan vào thập niên 1980 — hai cửa hàng trà đều tuyên bố là người sáng tạo, và tranh chấp pháp lý kéo đến tòa án, nơi phán quyết không ai có thể cấp bằng sáng chế.',
+  'celebrating-pani-puri': 'Pani puri có nhiều tên khác nhau ở Ấn Độ: golgappa ở miền Bắc, puchka ở miền Đông và pani puri ở miền Tây — mỗi vùng có công thức nước gia vị riêng.',
+  'celebrating-lake-xochimilco': 'Hồ Xochimilco ở Mexico City là môi trường sống tự nhiên cuối cùng của axolotl, loài kỳ giông có thể tái tạo toàn bộ chi, phần tim và thậm chí các phần não.',
+  'magic-cat-academy-3': 'Trong loạt Magic Cat Academy, Momo chiến đấu với ma bằng cách vẽ phép thuật — cơ chế vuốt được thiết kế cho di động, khiến nó trở thành một trong những Google Doodle thân thiện nhất với cảm ứng.',
+  'doctor-who': 'Doctor Who phát sóng lần đầu ngày 23 tháng 11 năm 1963 — một ngày sau vụ ám sát Tổng thống Kennedy — và là series khoa học viễn tưởng dài nhất trong lịch sử.',
+  'chrome-dino': 'Game khủng long Chrome, ẩn trong trang "Không có Internet", được hơn 270 triệu người chơi mỗi tháng — một trong những game được chơi nhiều nhất mọi thời đại.',
+  't-rex-run-3d': 'Game Chrome Dino có tên mã "Project Bolan" do các nhà phát triển đặt, theo tên Marc Bolan, ca sĩ chính của ban nhạc glam rock T. Rex những năm 1970.',
+  'dino-swords': 'Dino Swords lấy ý tưởng Chrome Dino và thêm vũ khí — Chrome Dino gốc được thiết kế như một "gật đầu về thời tiền sử" khi bạn mất kết nối internet.',
+  'blob-opera': 'Blob Opera được tạo bằng machine learning được huấn luyện từ bốn ca sĩ opera thực — tenor, bass, mezzo-soprano và soprano — họ đã thu âm 16 giờ hát cho AI.',
+  'google-feud': 'Google Feud dựa trên gợi ý tự động hoàn thành của Google được tạo từ hàng tỷ tìm kiếm thực — một số câu trả lời bất ngờ tiết lộ xu hướng văn hóa thú vị.',
+  'quick-draw': 'Quick, Draw! đã thu thập hơn 15 tỷ bản vẽ từ người chơi khắp thế giới, tạo ra một trong những bộ dữ liệu phác thảo lớn nhất — dùng để huấn luyện AI nhận dạng hình vẽ.',
+  'chrome-music-lab': 'Chrome Music Lab được tạo để giúp học nhạc dễ tiếp cận hơn — công cụ Song Maker đã được hàng triệu học sinh sử dụng trong lớp học tại hơn 80 quốc gia.',
+  'google-maps-snake': 'Google Maps Snake xuất hiện như một tính năng Cá tháng Tư vui nhộn năm 2019, cho phép người chơi điều khiển đoàn tàu ngày càng dài qua các đường phố thật trên Google Maps.',
+  'google-earth': 'Hình ảnh vệ tinh Google Earth bao phủ hơn 97% bề mặt Trái Đất, với hơn 93 triệu km² hình ảnh độ phân giải cao — đủ để che phủ 10 tỷ sân bóng đá.',
+  'santa-tracker': 'Trình theo dõi ông già Noel của Google đã chạy từ năm 2004, và vào đêm Giáng sinh nó theo dõi hành trình của ông già Noel khắp thế giới với "Camera ông già Noel" và trò chơi tại mỗi điểm dừng.',
+  'space-invaders': 'Space Invaders gây ra tình trạng thiếu tiền xu trên toàn quốc tại Nhật Bản khi ra mắt năm 1978 — chính phủ phải tăng gấp bốn lần sản xuất đồng xu yên để đáp ứng nhu cầu arcade.',
+  'doodle-jump-2': 'Doodle Jump gốc đã được tải hơn 30 triệu lần từ năm 2009, và người sáng tạo đã xây dựng phiên bản đầu tiên chỉ trong ba tuần cùng anh trai mình.',
+  'google-memory': 'Các trò chơi trí nhớ được chứng minh tăng cường kết nối thần kinh — nghiên cứu cho thấy chơi thường xuyên có thể cải thiện trí nhớ ngắn hạn và dài hạn lên đến 25%.',
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// THAI
+// ═══════════════════════════════════════════════════════════════════════════
+merge('th', {
+  'snake': 'Snake ปรากฏครั้งแรกบนโทรศัพท์ Nokia ในปี 1998 และกลายเป็นเกมมือถือที่ถูกเล่นมากที่สุดตลอดกาลอย่างรวดเร็ว — โทรศัพท์ Nokia กว่า 400 ล้านเครื่องติดตั้งมาพร้อมเกมนี้',
+  'minesweeper': 'Minesweeper มาพร้อมกับ Windows 3.1 ในปี 1992 เพื่อสอนผู้ใช้คลิกซ้ายและขวา — สถิติโลกระดับ Expert อยู่ที่ต่ำกว่า 30 วินาที',
+  'tic-tac-toe': 'เกม OX ย้อนไปถึงอียิปต์โบราณราว 1300 ปีก่อนคริสตกาล และในปี 1952 ได้กลายเป็นหนึ่งในวิดีโอเกมแรกๆ คือ OXO ที่สร้างบนคอมพิวเตอร์ของมหาวิทยาลัย',
+  'les-paul-guitar': 'Les Paul เป็นผู้บุกเบิกการบันทึกเสียงหลายแทร็กและกีตาร์ไฟฟ้าแบบ solid-body — Google Doodle ปี 2011 ของเขาเป็นตัวแรกที่เล่นได้และบันทึกเสียงได้',
+  'basketball-2012': 'บาสเกตบอลถูกคิดค้นในปี 1891 โดย James Naismith ครูพลศึกษาชาวแคนาดา โดยใช้ลูกฟุตบอลและตะกร้าลูกพีชสองใบ — เกมแรกจบลงด้วยคะแนนเพียง 1-0',
+  'hurdles-2012': 'วิ่งข้ามรั้ว 110 เมตรเป็นกีฬาโอลิมปิกตั้งแต่โอลิมปิกสมัยใหม่ครั้งแรกที่เอเธนส์ปี 1896 — Google Doodle ปี 2012 ให้คุณวิ่งด้วยปุ่มลูกศร',
+  'slalom-canoe': 'เรือแคนูสลาลอมปรากฏครั้งแรกในโอลิมปิกมิวนิก 1972 และต้องนำทางผ่านประตูแขวน — การสัมผัสประตูจะถูกลงโทษ 2 วินาที',
+  'soccer-2012': 'นัดชิงฟุตบอลโลก FIFA เป็นงานกีฬาที่มีผู้ชมมากที่สุดในโลก โดยมีผู้ชมมากกว่า 1 พันล้านคนเป็นประจำ — มากกว่า Super Bowl กว่าสี่เท่า',
+  'robert-moog': 'ซินธิไซเซอร์ของ Robert Moog ที่สาธิตในปี 1964 ได้ปฏิวัติวงการเพลง — The Beatles, Stevie Wonder และ Kraftwerk ใช้มันและทำให้ดนตรีอิเล็กทรอนิกส์เป็นกระแสหลัก',
+  'alan-turing': 'ผลงานของ Alan Turing ในการถอดรหัส Enigma ของนาซีที่ Bletchley Park ประเมินว่าทำให้สงครามโลกครั้งที่สองสั้นลง 2-4 ปี ช่วยชีวิตคนนับล้าน',
+  'zamboni': 'เครื่อง Zamboni ถูกคิดค้นโดย Frank Zamboni ในปี 1949 — ก่อนหน้านี้ทีมงานต้องใช้เวลากว่า 90 นาทีในการปรับผิวน้ำแข็งใหม่ Zamboni ทำได้ในไม่ถึง 10 นาที',
+  'doodle-crossword': 'ปริศนาอักษรไขว้ชิ้นแรกถูกตีพิมพ์ในหนังสือพิมพ์ New York World เมื่อวันที่ 21 ธันวาคม 1913 — มีรูปทรงเพชรและไม่มีช่องดำ',
+  'doodle-roswell': 'เหตุการณ์ Roswell ปี 1947 กลายเป็นเหตุการณ์ UFO ที่มีชื่อเสียงที่สุดในโลก — กองทัพสหรัฐฯ เริ่มแรกบอกว่าพบ "จานบิน" ก่อนจะเปลี่ยนเป็นบอลลูนอากาศ',
+  'mothers-day-2013': 'วันแม่กลายเป็นวันหยุดราชการในสหรัฐฯ ปี 1914 หลังการรณรงค์หลายปีของ Anna Jarvis — น่าประหลาดที่เธอต่อสู้เพื่อยกเลิกมันในภายหลังเพราะการค้าขาย',
+  'doodle-google-15th': 'Google ก่อตั้งเมื่อวันที่ 4 กันยายน 1998 ในโรงรถที่ Menlo Park รัฐแคลิฟอร์เนีย — ชื่อ "Google" มาจากคำว่า "googol" คือเลข 1 ตามด้วยศูนย์ 100 ตัว',
+  'rubiks-cube': 'Ernő Rubik ใช้เวลากว่าหนึ่งเดือนในการแก้สิ่งประดิษฐ์ของตัวเองปี 1974 — ปัจจุบัน speedcuber แก้ได้ในเวลาไม่ถึง 4 วินาที สถิติโลกคือ 3.13 วินาที',
+  'doodle-beethoven': 'Beethoven แต่งผลงานชิ้นเอกที่ยิ่งใหญ่ที่สุดรวมถึงซิมโฟนีหมายเลข 9 ขณะที่เขาแทบจะหูหนวกสนิท — เขากัดแท่งโลหะที่ติดกับเปียโนเพื่อรับรู้การสั่นสะเทือน',
+  'eiji-tsuburaya': 'Eiji Tsuburaya สร้างเทคนิคพิเศษบุกเบิกสำหรับหนัง Godzilla ต้นฉบับปี 1954 ด้วยฉากจำลองขนาดเล็กและคนสวมชุดยาง — เทคนิคที่นิยามแนว tokusatsu',
+  'pony-express': 'Pony Express ดำเนินการเพียง 18 เดือน (1860-1861) ก่อนที่โทรเลขจะทำให้ล้าสมัย แต่กลายเป็นสัญลักษณ์ในตำนานของชายแดนอเมริกา',
+  'global-candy-cup': 'ชาวอเมริกันใช้จ่ายกว่า 4 พันล้านดอลลาร์สำหรับขนม Halloween ทุกปี — เพียงพอสำหรับขนมประมาณ 270 ล้านกิโลกรัม',
+  'magic-cat-academy': 'Magic Cat Academy, Doodle Halloween ปี 2016 ของ Google มีแมว Momo วาดสัญลักษณ์เพื่อร่ายมนตร์ — เกมนี้ได้แรงบันดาลใจจากแมวจริงในวิทยาเขต Google',
+  'google-cat-game': 'การวิจัยแสดงว่าการดูวิดีโอแมวออนไลน์เพิ่มพลังงานและอารมณ์เชิงบวก — นักวิจัยจาก Indiana University พบว่าผู้ชมรู้สึกวิตกกังวลน้อยลง',
+  'doodle-clara-rockmore': 'Clara Rockmore เป็นนักเทเรมินผู้ยิ่งใหญ่ที่สุดในประวัติศาสตร์ — เธอเล่นเครื่องดนตรีโดยไม่ต้องสัมผัส ควบคุมระดับเสียงและความดังด้วยการเคลื่อนไหวมือในอากาศ',
+  'doodle-scoville': 'Wilbur Scoville คิดค้นมาตราส่วน Scoville ในปี 1912 เพื่อวัดความเผ็ดของพริก — พริกหวานมี 0 หน่วย ขณะที่ Carolina Reaper เกิน 2.2 ล้านหน่วย Scoville',
+  'doodle-valentines-day': 'ประเพณีการเขียนจดหมายรักวันวาเลนไทน์ย้อนไปถึงศตวรรษที่ 15 — วาเลนไทน์ที่เก่าแก่ที่สุดคือบทกวีจาก Charles ดยุกแห่ง Orléans ถึงภรรยาในปี 1415 จากคุก',
+  'birth-of-hip-hop': 'ฮิปฮอปถือกำเนิดเมื่อวันที่ 11 สิงหาคม 1973 ในงานปาร์ตี้ที่ Bronx เมื่อ DJ Kool Herc แยกท่อนเครื่องดนตรีจากแผ่นเสียงฟังก์ — ประดิษฐ์ breakbeat',
+  'oskar-fischinger': 'Oskar Fischinger เป็นผู้บุกเบิกแอนิเมชันนามธรรมประกอบเพลงในทศวรรษ 1930 — แนวคิดดนตรีภาพของเขาเป็นแรงบันดาลใจโดยตรงให้กับ Fantasia ของ Disney ปี 1940',
+  'komodo-national-park': 'มังกรโคโมโดเป็นกิ้งก่าที่ใหญ่ที่สุดที่ยังมีชีวิต ยาวได้ถึง 3 เมตร หนัก 70 กก. — การกัดที่มีพิษจะปล่อยสารพิษที่ป้องกันการแข็งตัวของเลือด',
+  'garden-gnomes': 'คนแคระสวนมีต้นกำเนิดจากเยอรมนีต้นศตวรรษที่ 19 ที่เชื่อว่าพวกเขาปกป้องสวนในเวลากลางคืน — ปัจจุบันมีวัฒนธรรมย่อย "ปลดปล่อยคนแคระ" ที่ขโมยพวกเขาเป็นเรื่องตลก',
+  'halloween': 'Halloween มีต้นกำเนิดจากเทศกาล Samhain ของชาวเคลต์กว่า 2,000 ปีก่อน เมื่อผู้คนจุดกองไฟและสวมชุดเพื่อไล่ผีในคืนก่อนปีใหม่',
+  'baseball': 'เกมเบสบอลที่บันทึกอย่างเป็นทางการครั้งแรกเล่นเมื่อวันที่ 19 มิถุนายน 1846 ที่ Hoboken รัฐ New Jersey — New York Knickerbockers แพ้ New York Nine 23-1',
+  'doodle-loteria': 'Lotería เกมไพ่สุดที่รักของเม็กซิโก ย้อนไปถึงศตวรรษที่ 15 เมื่อเดินทางจากอิตาลีผ่านสเปน — ไพ่แต่ละใบมีภาพประกอบอันเป็นสัญลักษณ์และปริศนา',
+  'celebrating-bach': 'Johann Sebastian Bach แต่งผลงานกว่า 1,100 ชิ้น แต่ถูกลืมเลือนหลังเสียชีวิต — การรื้อฟื้น Passion ตาม Matthew ของ Mendelssohn ปี 1829 ทำให้ชื่อเสียงเขากลับมา',
+  'doodle-earth-day': 'วันคุ้มครองโลกจัดขึ้นครั้งแรกเมื่อวันที่ 22 เมษายน 1970 มีชาวอเมริกัน 20 ล้านคนร่วมประท้วง — นำไปสู่การจัดตั้งสำนักงานปกป้องสิ่งแวดล้อมของสหรัฐฯ โดยตรง',
+  'magic-cat-academy-2': 'ภาคต่อ Magic Cat Academy พา Momo ผจญภัยใต้น้ำ — แมวเกลียดน้ำ แต่แมวใหญ่อย่างเสือเป็นนักว่ายน้ำที่เก่งมาก',
+  'doodle-mbira': 'Mbira หรือที่เรียกว่าเปียโนนิ้วหัวแม่มือหรือ kalimba ถูกเล่นในซิมบับเวมากว่า 1,000 ปี และถือเป็นเครื่องดนตรีศักดิ์สิทธ์สำหรับสื่อสารกับวิญญาณบรรพบุรุษ',
+  'doodle-history-of-pizza': 'พิซซ่าอย่างที่เรารู้จักมีต้นกำเนิดจากเนเปิลส์ในศตวรรษที่ 18 และ Margherita คลาสสิกตั้งชื่อตามพระราชินี Margherita แห่งอิตาลีปี 1889 — ด้วยมะเขือเทศ มอสซาเรลลา และใบโหระพา',
+  'wewa-weaving': 'การทอผ้าเป็นหนึ่งในงานฝีมือเก่าแก่ที่สุดของมนุษย์ อายุกว่า 12,000 ปี — ผ้าทอแรกทำจากเส้นใยพืช นานก่อนการเลี้ยงแกะเพื่อเอาขนสัตว์',
+  'champion-island-games': 'Champion Island Games เป็นหนึ่งในเกม Doodle ที่ทะเยอทะยานที่สุดของ Google มีโลก RPG เต็มรูปแบบพร้อมความท้าทายกีฬาเจ็ดอย่างที่ได้แรงบันดาลใจจากตำนานและนิทานพื้นบ้านญี่ปุ่น',
+  'doodle-valentines-day-2022': 'รูปหัวใจที่เราเชื่อมโยงกับความรักไม่เหมือนหัวใจจริงของมนุษย์เลย — นักประวัติศาสตร์คิดว่าอาจมาจากใบไม้เลื้อย เมล็ด silphium หรือคอหงส์',
+  'celebrating-petanque': 'Pétanque เกิดขึ้นที่ La Ciotat ประเทศฝรั่งเศสในปี 1907 เมื่อผู้เล่น jeu provençal ที่เป็นโรคข้อรูมาตอยด์ปรับเกมให้เล่นนั่งได้โดยไม่ต้องวิ่ง',
+  'boba-bubble-tea': 'ชานมไข่มุกถูกคิดค้นในไต้หวันในทศวรรษ 1980 — ร้านชาสองร้านต่างอ้างว่าเป็นผู้สร้าง และข้อพิพาทไปถึงศาลซึ่งตัดสินว่าไม่มีใครสามารถจดสิทธิบัตรได้',
+  'celebrating-pani-puri': 'Pani puri มีชื่อเรียกต่างกันทั่วอินเดีย: golgappa ทางเหนือ puchka ทางตะวันออก และ pani puri ทางตะวันตก — แต่ละภูมิภาคมีสูตรน้ำเครื่องเทศของตัวเอง',
+  'celebrating-lake-xochimilco': 'ทะเลสาบ Xochimilco ในเม็กซิโกซิตี้เป็นถิ่นที่อยู่ธรรมชาติแห่งสุดท้ายของ axolotl ซาลาแมนเดอร์ที่สามารถงอกแขนขาใหม่ หัวใจบางส่วน และแม้แต่สมองบางส่วนได้',
+  'magic-cat-academy-3': 'ในซีรีส์ Magic Cat Academy แมว Momo ต่อสู้กับผีด้วยการวาดคาถา — กลไกการปัดถูกออกแบบสำหรับมือถือ ทำให้เป็นหนึ่งใน Google Doodle ที่เป็นมิตรกับจอสัมผัสมากที่สุด',
+  'doctor-who': 'Doctor Who ออกอากาศครั้งแรกเมื่อวันที่ 23 พฤศจิกายน 1963 — หนึ่งวันหลังการลอบสังหารประธานาธิบดี Kennedy — และเป็นซีรีส์นิยายวิทยาศาสตร์ที่ออกอากาศยาวนานที่สุดในประวัติศาสตร์',
+  'chrome-dino': 'เกมไดโนเสาร์ Chrome ซ่อนอยู่ในหน้า "ไม่มีอินเทอร์เน็ต" มีผู้เล่นมากกว่า 270 ล้านคนต่อเดือน — เป็นหนึ่งในเกมที่ถูกเล่นมากที่สุดตลอดกาล',
+  't-rex-run-3d': 'เกม Chrome Dino ได้รับชื่อรหัส "Project Bolan" จากนักพัฒนา ตั้งตาม Marc Bolan นักร้องนำวง glam rock T. Rex ในทศวรรษ 1970',
+  'dino-swords': 'Dino Swords นำแนวคิด Chrome Dino มาเพิ่มอาวุธ — Chrome Dino ดั้งเดิมถูกออกแบบเป็น "การพยักหน้าสู่ยุคก่อนประวัติศาสตร์" เมื่อคุณไม่มีอินเทอร์เน็ต',
+  'blob-opera': 'Blob Opera สร้างด้วย machine learning ที่ฝึกจากนักร้องโอเปร่าจริงสี่คน — เทเนอร์ เบส เมซโซ-โซปราโน และโซปราโน — ที่บันทึกเสียงร้อง 16 ชั่วโมงให้ AI',
+  'google-feud': 'Google Feud อิงจากการคาดเดาของ Google Autocomplete ที่สร้างจากการค้นหาจริงหลายพันล้านครั้ง — คำตอบที่น่าประหลาดใจบางอย่างเผยให้เห็นเทรนด์วัฒนธรรมที่น่าสนใจ',
+  'quick-draw': 'Quick, Draw! รวบรวมภาพวาดกว่า 15 พันล้านภาพจากผู้เล่นทั่วโลก สร้างชุดข้อมูลภาพสเก็ตช์ที่ใหญ่ที่สุดชุดหนึ่ง — ใช้ฝึก AI ให้จดจำภาพร่าง',
+  'chrome-music-lab': 'Chrome Music Lab สร้างขึ้นเพื่อให้การเรียนรู้ดนตรีเข้าถึงได้ง่ายขึ้น — เครื่องมือ Song Maker ถูกใช้โดยนักเรียนหลายล้านคนในห้องเรียนกว่า 80 ประเทศ',
+  'google-maps-snake': 'Google Maps Snake ปรากฏเป็นฟีเจอร์วัน April Fools ที่สนุกสนานในปี 2019 ให้ผู้เล่นนำรถไฟที่ยาวขึ้นเรื่อยๆ ผ่านถนนจริงในเมืองบน Google Maps',
+  'google-earth': 'ภาพถ่ายดาวเทียมของ Google Earth ครอบคลุมกว่า 97% ของพื้นผิวโลก มีภาพความละเอียดสูงกว่า 93 ล้านตารางกิโลเมตร — เพียงพอที่จะครอบคลุมสนามฟุตบอล 10 พันล้านสนาม',
+  'santa-tracker': 'เครื่องติดตามซานตาของ Google เปิดให้ใช้งานมาตั้งแต่ปี 2004 และในคืนคริสต์มาสอีฟจะติดตามการเดินทางของซานตาทั่วโลกพร้อม "กล้องซานตา" และเกมที่แต่ละจุดแวะ',
+  'space-invaders': 'Space Invaders ทำให้เกิดการขาดแคลนเหรียญทั่วประเทศญี่ปุ่นเมื่อเปิดตัวในปี 1978 — รัฐบาลต้องเพิ่มการผลิตเหรียญเยนเป็นสี่เท่าเพื่อตอบสนองความต้องการของตู้เกม',
+  'doodle-jump-2': 'Doodle Jump ดั้งเดิมถูกดาวน์โหลดมากกว่า 30 ล้านครั้งตั้งแต่ปี 2009 และผู้สร้างสร้างเวอร์ชันแรกภายในเวลาเพียงสามสัปดาห์ร่วมกับพี่ชาย',
+  'google-memory': 'เกมความจำพิสูจน์แล้วว่าเสริมสร้างการเชื่อมต่อของระบบประสาท — การศึกษาแสดงให้เห็นว่าการเล่นเป็นประจำสามารถปรับปรุงความจำระยะสั้นและระยะยาวได้ถึง 25%',
+});
+
+console.log('\\n✅ Batch 5 complete (id, vi, th)');

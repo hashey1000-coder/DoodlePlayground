@@ -33,7 +33,8 @@ function getLikeCount(slug: string): number {
     if (game) {
       let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
       const jitter = (Math.abs(h) % 30) - 15;
-      return Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
+      const baseLikes = Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
+      return baseLikes;
     }
     return 0;
   } catch {
@@ -241,9 +242,9 @@ export default function Home() {
           <div className="absolute inset-0 hero-dot-grid opacity-[0.07]" aria-hidden="true" />
 
           {/* Content — centered single column */}
-          <div className="relative z-10 flex flex-col items-center text-center p-5 md:p-8 lg:py-10 lg:px-14">
+          <div className="relative z-10 flex flex-col items-center text-center px-4 py-4 md:p-8 lg:py-10 lg:px-14">
             {/* Badge */}
-            <div className="hero-text-enter inline-flex items-center gap-2 mb-4 md:mb-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 shadow-lg shadow-black/5">
+            <div className="hero-text-enter inline-flex items-center gap-2 mb-2 md:mb-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 shadow-lg shadow-black/5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
               <span className="text-white/90 text-[11px] font-bold tracking-[0.2em] uppercase">
                 Doodle Playground
@@ -251,44 +252,44 @@ export default function Home() {
             </div>
 
             {/* Headline */}
-            <h1 className="hero-text-enter-delay-1 text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-3 md:mb-4 max-w-3xl">
+            <h1 className="hero-text-enter-delay-1 text-2xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-2 md:mb-4 max-w-3xl">
               {t('home.heroTitleLine1')}<br />
               <span className="hero-gradient-text">{t('home.heroTitle')}</span>
             </h1>
 
             {/* Subtext */}
-            <p className="hero-text-enter-delay-2 text-white/60 text-sm md:text-lg max-w-xl leading-relaxed mx-auto">
+            <p className="hero-text-enter-delay-2 text-white/60 text-xs md:text-lg max-w-xl leading-relaxed mx-auto">
               {t('home.heroSubtitle')}
             </p>
 
             {/* Inline stats strip */}
-            <div className="hero-text-enter-delay-2 flex items-center gap-3 md:gap-6 mt-5 md:mt-8 flex-wrap justify-center">
+            <div className="hero-text-enter-delay-2 flex items-center gap-2 md:gap-6 mt-3 md:mt-8 flex-wrap justify-center">
               {[
                 { value: String(GAMES.length), label: t('home.heroStats.games'), icon: "🎮" },
                 { value: String(new Set(GAMES.map(g => g.category)).size), label: t('home.heroStats.categories'), icon: "📂" },
                 { value: t('common.free'), label: t('home.heroStats.free'), icon: "✨" },
               ].map(({ value, label, icon }, i) => (
-                <div key={label} className="hero-stat-card flex items-center gap-2">
-                  <span className="text-lg md:text-xl">{icon}</span>
-                  <span className="text-white font-extrabold text-lg md:text-xl leading-none">{value}</span>
-                  <span className="text-white/40 text-xs font-medium uppercase tracking-wider">{label}</span>
+                <div key={label} className="hero-stat-card flex items-center gap-1.5 md:gap-2">
+                  <span className="text-base md:text-xl">{icon}</span>
+                  <span className="text-white font-extrabold text-base md:text-xl leading-none">{value}</span>
+                  <span className="text-white/40 text-[10px] md:text-xs font-medium uppercase tracking-wider">{label}</span>
                   {i < 2 && <span className="text-white/20 ml-1 md:ml-3 hidden sm:inline">|</span>}
                 </div>
               ))}
             </div>
 
             {/* CTA buttons */}
-            <div className="hero-text-enter-delay-3 flex flex-wrap items-center justify-center gap-3 mt-6 md:mt-8">
+            <div className="hero-text-enter-delay-3 flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-4 md:mt-8">
               <Link href="/daily/">
-                <span className="hero-cta-primary inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-7 md:py-3.5 rounded-2xl text-sm md:text-base font-bold bg-white text-slate-900 hover:bg-slate-100 shadow-xl shadow-white/20 transition-all cursor-pointer active:scale-95">
-                  <span className="text-lg">🎯</span> {t('home.cta.todayChallenge')}
+                <span className="hero-cta-primary inline-flex items-center justify-center gap-2 px-4 py-2 md:px-7 md:py-3.5 rounded-2xl text-xs md:text-base font-bold bg-white text-slate-900 hover:bg-slate-100 shadow-xl shadow-white/20 transition-all cursor-pointer active:scale-95">
+                  <span className="text-base md:text-lg">🎯</span> {t('home.cta.todayChallenge')}
                 </span>
               </Link>
               <button
                 onClick={toggleKidsMode}
                 aria-pressed={kidsMode}
                 aria-label={kidsMode ? t('nav.kidsModeTooltipOn' as any) : t('nav.kidsModeTooltipOff' as any)}
-                className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-7 md:py-3.5 rounded-2xl text-sm md:text-base font-bold transition-all duration-200 active:scale-95 ${
+                className={`inline-flex items-center justify-center gap-2 px-4 py-2 md:px-7 md:py-3.5 rounded-2xl text-xs md:text-base font-bold transition-all duration-200 active:scale-95 ${
                   kidsMode
                     ? "bg-emerald-400 text-emerald-950 shadow-lg shadow-emerald-400/30"
                     : "bg-white/10 text-white hover:bg-white/20 border border-white/20 backdrop-blur-sm"

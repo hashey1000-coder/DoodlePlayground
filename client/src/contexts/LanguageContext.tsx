@@ -204,7 +204,7 @@ export type TranslationKey =
   | 'contact.backToGames'
   // Game/Play extras
   | 'game.playTime' | 'game.longestSession' | 'game.challenged'
-  | 'game.challengeDesc' | 'game.challengeFriend'
+  | 'game.challengeDesc' | 'game.challengeFriend' | 'game.shareChallenge'
   | 'game.details' | 'game.moreGames' | 'game.youMightLike'
   | 'game.keepPlaying' | 'game.startPlaying'
   | 'game.exitPrompt' | 'game.ratePrompt' | 'game.lovedIt' | 'game.notForMe'
@@ -613,6 +613,7 @@ const EN: TranslationMap = {
   'game.challenged': "You've been challenged!",
   'game.challengeDesc': 'A friend challenged you to beat their score. Good luck!',
   'game.challengeFriend': 'Challenge a friend',
+  'game.shareChallenge': 'Share Challenge',
   'game.details': 'Details',
   'game.moreGames': 'More Games',
   'game.youMightLike': 'You Might Also Like',

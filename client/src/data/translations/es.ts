@@ -344,6 +344,7 @@ export const ES_GAMES: Record<string, GameTranslation> = {
   'google-cricket': {
     title: 'Google Cricket',
     description: 'Sal a batear y golpea boundaries en este divertido juego de cricket con adorables personajes insecto. Cronometra tus clics para batear en el momento justo y acumula la mayor puntuación posible.\n\nEste juego usa el mismo motor de cricket del Doodle del Trofeo ICC 2017, con el entrañable elenco de caracoles y grillos. El cricket es el segundo deporte más popular del mundo con unos 2.500 millones de aficionados.',
+    controls: 'Utilice las teclas de flecha para cambiar de dirección. Come las manzanas para que crezcan más. ¡Evita golpear las paredes o tu propio cuerpo!',
   },
   'google-memory': {
     title: 'Juego de Memoria Google',
@@ -483,6 +484,7 @@ export const ES_GAMES: Record<string, GameTranslation> = {
   'doodle-solitaire': {
     title: 'Doodle Solitario (Quédate y Juega en Casa 2020)',
     description: 'Juega al clásico Solitario Klondike como parte de la serie "Quédate y Juega en Casa" de Google de 2020. Construye pilas base de As a Rey por palo y despeja el tablero.\n\nDurante la pandemia de COVID-19 en abril de 2020, Google lanzó la serie de Doodles trayendo de vuelta juegos queridos para ayudar a la gente a pasar el tiempo durante el distanciamiento social. Fue jugado por cientos de millones de personas.',
+    controls: 'Haga clic en un cuadrado para revelarlo. Los números muestran cuántas minas adyacentes existen. Haga clic derecho para marcar una mina sospechosa. ¡Despeja todos los cuadrados seguros para ganar!',
   },
   'gerald-lawson-game-maker': {
     title: 'Celebrando a Gerald "Jerry" Lawson',
@@ -512,10 +514,12 @@ export const ES_GAMES: Record<string, GameTranslation> = {
   'indigenous-stickball': {
     title: 'Celebrando el Stickball Indígena',
     description: 'Aprende sobre el stickball indígena norteamericano — uno de los deportes de equipo más antiguos del continente — en este bellamente ilustrado Doodle. Descubre las tradiciones ceremoniales y la rica historia cultural.\n\nEl stickball indígena, a veces llamado "el hermano menor de la guerra", era jugado por tribus nativas americanas mucho antes del contacto europeo. El juego servía tanto como competición atlética como práctica ceremonial.',
+    controls: 'Haga clic en un cuadrado vacío para colocar su marca. Consigue tres X seguidas en horizontal, vertical o diagonal para ganar. Elige tu nivel de dificultad antes de comenzar.',
   },
   'marie-tharp-doodle': {
     title: 'Celebrando a Marie Tharp',
     description: 'Explora el fondo oceánico con la geóloga pionera Marie Tharp en este Doodle interactivo. Cartografía cordilleras submarinas y ayuda a probar la teoría revolucionaria de la deriva continental.\n\nMarie Tharp creó el primer mapa completo del fondo oceánico, y su trabajo proporcionó evidencia crucial para la teoría de las placas tectónicas — uno de los descubrimientos científicos más importantes del siglo XX.',
+    controls: 'Utilice las teclas de flecha para guiar a PAC-MAN a través del laberinto. Come todos los puntos para completar el nivel. Coge bolitas de poder para volver azules a los fantasmas y cómelos para obtener puntos de bonificación.',
   },
   'minecraft-easter-egg': {
     title: 'Easter Egg de Minecraft',
@@ -525,6 +529,7 @@ export const ES_GAMES: Record<string, GameTranslation> = {
   'google-science-journal': {
     title: 'Google Science Journal',
     description: 'Convierte tu dispositivo en un laboratorio de ciencias portátil. Usa los sensores de tu teléfono para medir intensidad lumínica, niveles de sonido, aceleración, presión barométrica y más.\n\nGoogle Science Journal democratiza la exploración científica convirtiendo los smartphones en poderosas herramientas de medición. Se ha usado en aulas desde primaria hasta universidad, haciendo la ciencia accesible y emocionante.',
+    controls: 'Coloca el cursor sobre las cuerdas de la guitarra y haz clic para tocarlas. Utilice las teclas A–L del teclado para tocar notas. Haga clic en el botón de grabación para capturar y reproducir su melodía.',
   },
   'google-maps-pac-man': {
     title: 'Google Maps PAC-MAN',

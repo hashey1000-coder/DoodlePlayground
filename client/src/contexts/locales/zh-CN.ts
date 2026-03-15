@@ -271,6 +271,7 @@ export const ZH_CN: TranslationMap = {
   'game.challenged': '\u60a8\u88ab\u6311\u6218\u4e86\uff01',
   'game.challengeDesc': '\u670b\u53cb\u5411\u60a8\u53d1\u8d77\u6311\u6218\u3002\u795d\u597d\u8fd0\uff01',
   'game.challengeFriend': '\u6311\u6218\u670b\u53cb',
+  'game.shareChallenge': '分享挑战',
   'game.details': '\u8be6\u60c5',
   'game.moreGames': '\u66f4\u591a\u6e38\u620f',
   'game.youMightLike': '\u60a8\u53ef\u80fd\u8fd8\u559c\u6b22',

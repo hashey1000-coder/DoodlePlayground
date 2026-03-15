@@ -271,6 +271,7 @@ export const TR: TranslationMap = {
   'game.challenged': 'Meydan okudular!',
   'game.challengeDesc': 'Bir arkadaşınız sizi yenmeye çağırıyor. İyi şanslar!',
   'game.challengeFriend': 'Arkadaşına meydan oku',
+  'game.shareChallenge': 'Meydan okumayı paylaş',
   'game.details': 'Detaylar',
   'game.moreGames': 'Daha Fazla Oyun',
   'game.youMightLike': 'Bunları da Beğenebilirsiniz',

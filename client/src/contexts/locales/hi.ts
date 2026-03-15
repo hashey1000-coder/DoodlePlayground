@@ -271,6 +271,7 @@ export const HI: TranslationMap = {
   'game.challenged': 'आपको चुनौती दी गई!',
   'game.challengeDesc': 'एक दोस्त आपको चुनौती देता है। शुभकामनाएं!',
   'game.challengeFriend': 'दोस्त को चुनौती दें',
+  'game.shareChallenge': 'चुनौती साझा करें',
   'game.details': 'विवरण',
   'game.moreGames': 'और गेम्स',
   'game.youMightLike': 'आपको यह भी पसंद आ सकता है',

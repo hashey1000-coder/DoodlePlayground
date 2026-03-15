@@ -85,13 +85,6 @@ function transformHtml(html, gamePath) {
   //    navigate the iframe to our site.
   html = html.replace(/(["'(=])\/search\?/g, "$1https://www.google.com/search?");
 
-  // 5. Inject auto-click CTA script so doodle games auto-start.
-  //    Some doodles (e.g. Marie Tharp) show a CTA overlay that must be
-  //    clicked before the game begins. Append at end of HTML since many
-  //    older doodles lack a closing </body> tag.
-  const autoClickCta = `<script>(function(){function c(){var e=document.getElementById('ctaCanvas');if(e){e.click();e.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));e.dispatchEvent(new MouseEvent('mouseup',{bubbles:true}));return;}var b=document.querySelector('#ctaRoot, .cta, #hplogocta');if(b){b.click();return;}var h=document.getElementById('hplogo');if(h){h.click();}}function r(){c();setTimeout(c,1500);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(r,800);});}else{setTimeout(r,800);}})();</script>`;
-  html += autoClickCta;
-
   return html;
 }
 

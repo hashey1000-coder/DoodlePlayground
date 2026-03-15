@@ -31,7 +31,9 @@ function useLikeDislike(slug: string) {
     const jitter = (Math.abs(h) % 30) - 15; // ±15
     // sqrt scale keeps numbers in a realistic 50-300 range
     const baseLikes = Math.round(40 + Math.sqrt(game.playCount / 100) + jitter);
-    const baseDislikes = Math.round(baseLikes * 0.12);
+    // Vary dislike ratio (3-25%) based on hash for realistic spread (80-97%)
+    const dislikeRatio = 0.03 + (Math.abs(h >> 4) % 23) / 100;
+    const baseDislikes = Math.round(baseLikes * dislikeRatio);
     return { likes: Math.max(baseLikes, 5), dislikes: Math.max(baseDislikes, 1) };
   };
 
@@ -707,21 +709,23 @@ export default function PlayGame() {
               </button>
             )}
 
-            {/* Play Next button (visible while playing) */}
+            {/* Play Next button (visible while playing) — only shows on hover near top to avoid blocking game controls */}
             {gameStarted && !game.externalOnly && (
-              <button
-                onClick={() => {
-                  if (isFullscreen) exitFullscreen();
-                  setNextGame(getNextSuggestion(game));
-                  setShowPlayNext(true);
-                }}
-                className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-teal-600/80 hover:bg-teal-600 text-white text-xs font-semibold rounded-lg transition-colors backdrop-blur-sm"
-                title={t('game.suggestNext' as any)}
-                aria-label={t('game.suggestNext' as any)}
-              >
-                <SkipForward className="w-3.5 h-3.5" />
-                {t('game.moreGames')}
-              </button>
+              <div className="absolute top-0 left-0 right-0 z-20 h-14 flex items-start justify-between px-3 pt-3 opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none [&>*]:pointer-events-auto">
+                <button
+                  onClick={() => {
+                    if (isFullscreen) exitFullscreen();
+                    setNextGame(getNextSuggestion(game));
+                    setShowPlayNext(true);
+                  }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-teal-600/80 hover:bg-teal-600 text-white text-xs font-semibold rounded-lg transition-colors backdrop-blur-sm"
+                  title={t('game.suggestNext' as any)}
+                  aria-label={t('game.suggestNext' as any)}
+                >
+                  <SkipForward className="w-3.5 h-3.5" />
+                  {t('game.moreGames')}
+                </button>
+              </div>
             )}
 
             {/* Click-to-play overlay */}
@@ -965,11 +969,11 @@ export default function PlayGame() {
                   ? "bg-amber-500 text-white"
                   : "bg-amber-50 text-amber-600 hover:bg-amber-100"
               }`}
-              title={t('game.challengeFriend')}
-              aria-label={t('game.challengeFriend')}
+              title={t('game.share')}
+              aria-label={t('game.share')}
             >
-              {challengeCopied ? <Check className="w-3.5 h-3.5" /> : <Trophy className="w-3.5 h-3.5" />}
-              <span className="hidden sm:inline">{challengeCopied ? t('common.copied') : t('game.challengeFriend')}</span>
+              {challengeCopied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{challengeCopied ? t('common.copied') : t('game.shareChallenge' as any)}</span>
             </button>
 
             {/* Share */}

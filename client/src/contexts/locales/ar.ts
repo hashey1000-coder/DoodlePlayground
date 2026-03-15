@@ -271,6 +271,7 @@ export const AR: TranslationMap = {
   'game.challenged': 'تم تحديك!',
   'game.challengeDesc': 'صديق يتحداك. حظاً سعيداً!',
   'game.challengeFriend': 'تحدي صديق',
+  'game.shareChallenge': 'مشاركة التحدي',
   'game.details': 'تفاصيل',
   'game.moreGames': 'المزيد',
   'game.youMightLike': 'قد يعجبك أيضاً',

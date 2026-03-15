@@ -271,6 +271,7 @@ export const KO: TranslationMap = {
   'game.challenged': '도전받았습니다!',
   'game.challengeDesc': '친구가 도전장을 보냈습니다. 행운을 빕니다!',
   'game.challengeFriend': '친구에게 도전',
+  'game.shareChallenge': '챌린지 공유',
   'game.details': '상세 정보',
   'game.moreGames': '더 많은 게임',
   'game.youMightLike': '이런 게임도 좋아할 수 있어요',

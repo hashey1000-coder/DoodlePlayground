@@ -271,6 +271,7 @@ export const FR: TranslationMap = {
   'game.challenged': 'Vous avez été défié !',
   'game.challengeDesc': 'Un ami vous défie de battre son score. Bonne chance !',
   'game.challengeFriend': 'Défier un ami',
+  'game.shareChallenge': 'Partager le défi',
   'game.details': 'Détails',
   'game.moreGames': 'Plus de Jeux',
   'game.youMightLike': 'Vous Aimerez Aussi',

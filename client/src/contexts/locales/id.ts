@@ -271,6 +271,7 @@ export const ID: TranslationMap = {
   'game.challenged': 'Anda ditantang!',
   'game.challengeDesc': 'Seorang teman menantang Anda. Semoga berhasil!',
   'game.challengeFriend': 'Tantang teman',
+  'game.shareChallenge': 'Bagikan Tantangan',
   'game.details': 'Detail',
   'game.moreGames': 'Lebih Banyak Game',
   'game.youMightLike': 'Anda Mungkin Juga Suka',

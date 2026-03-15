@@ -270,6 +270,7 @@ export const DE: TranslationMap = {
   'game.challenged': 'Du wurdest herausgefordert!',
   'game.challengeDesc': 'Ein Freund fordert dich heraus. Viel Glück!',
   'game.challengeFriend': 'Einen Freund herausfordern',
+  'game.shareChallenge': 'Challenge teilen',
   'game.details': 'Details',
   'game.moreGames': 'Mehr Spiele',
   'game.youMightLike': 'Das Könnte Dir Gefallen',

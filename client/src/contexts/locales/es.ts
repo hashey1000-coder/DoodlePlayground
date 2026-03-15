@@ -271,6 +271,7 @@ export const ES: TranslationMap = {
   'game.challenged': '¡Te han retado!',
   'game.challengeDesc': 'Un amigo te reta a superar su puntuación. ¡Buena suerte!',
   'game.challengeFriend': 'Retar a un amigo',
+  'game.shareChallenge': 'Compartir desafío',
   'game.details': 'Detalles',
   'game.moreGames': 'Más Juegos',
   'game.youMightLike': 'También Te Puede Gustar',

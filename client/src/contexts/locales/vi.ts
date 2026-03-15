@@ -271,6 +271,7 @@ export const VI: TranslationMap = {
   'game.challenged': 'B\u1ea1n b\u1ecb th\u00e1ch \u0111\u1ea5u!',
   'game.challengeDesc': 'M\u1ed9t ng\u01b0\u1eddi b\u1ea1n th\u00e1ch b\u1ea1n. Ch\u00fac may m\u1eafn!',
   'game.challengeFriend': 'Th\u00e1ch \u0111\u1ea5u b\u1ea1n b\u00e8',
+  'game.shareChallenge': 'Chia sẻ thử thách',
   'game.details': 'Chi ti\u1ebft',
   'game.moreGames': 'Th\u00eam Game',
   'game.youMightLike': 'B\u1ea1n C\u00f3 Th\u1ec3 Th\u00edch',

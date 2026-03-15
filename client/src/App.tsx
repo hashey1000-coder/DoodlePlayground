@@ -51,7 +51,9 @@ function AppRoutes() {
           <Route path="/sitemap" component={Sitemap} />
           <Route path="/leaderboard">{() => <Redirect to="/top-rated" />}</Route>
           <Route path="/a-z">{() => <Redirect to="/games" />}</Route>
+          <Route path="/a-z/">{() => <Redirect to="/games" />}</Route>
           <Route path="/az">{() => <Redirect to="/games" />}</Route>
+          <Route path="/az/">{() => <Redirect to="/games" />}</Route>
           <Route path="/kids">{() => <Redirect to="/" />}</Route>
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />

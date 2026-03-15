@@ -271,6 +271,7 @@ export const IT: TranslationMap = {
   'game.challenged': 'Sei stato sfidato!',
   'game.challengeDesc': 'Un amico ti sfida a battere il suo punteggio. Buona fortuna!',
   'game.challengeFriend': 'Sfida un amico',
+  'game.shareChallenge': 'Condividi sfida',
   'game.details': 'Dettagli',
   'game.moreGames': 'Altri Giochi',
   'game.youMightLike': 'Potrebbe Piacerti Anche',
