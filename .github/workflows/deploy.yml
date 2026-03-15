@@ -58,6 +58,9 @@ jobs:
       # ──────────────────────────────────────────────
       # 5. Deploy via rsync over SSH (cPanel)
       # ──────────────────────────────────────────────
+      - name: Install rsync
+        run: sudo apt-get install -y rsync
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
