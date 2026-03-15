@@ -66,8 +66,6 @@ jobs:
           ssh-keyscan -H "${{ secrets.CPANEL_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Deploy dist/public to server
-        env:
-          DEPLOY_PATH: /home/${{ secrets.CPANEL_USER }}/doodleplayground.com/public_html
         run: |
           SSH="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}"
 
@@ -80,17 +78,18 @@ jobs:
             "${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}:/tmp/deploy.tar.gz"
 
           # On the server: back up .htaccess, wipe directory, restore .htaccess, extract
-          $SSH bash << 'REMOTE'
+          $SSH bash << REMOTE
             set -e
-            DEST="/home/$USER/doodleplayground.com/public_html"
+            DEST="/home/juliaspl/doodleplayground.com"
+            echo "Deploying to: \$DEST"
             # Preserve .htaccess if it exists
-            [ -f "$DEST/.htaccess" ] && cp "$DEST/.htaccess" /tmp/.htaccess_bak || true
+            [ -f "\$DEST/.htaccess" ] && cp "\$DEST/.htaccess" /tmp/.htaccess_bak || true
             # Clear existing files
-            find "$DEST" -mindepth 1 -delete
+            find "\$DEST" -mindepth 1 -delete
             # Extract new build
-            tar -xzf /tmp/deploy.tar.gz -C "$DEST"
+            tar -xzf /tmp/deploy.tar.gz -C "\$DEST"
             # Restore .htaccess
-            [ -f /tmp/.htaccess_bak ] && mv /tmp/.htaccess_bak "$DEST/.htaccess" || true
+            [ -f /tmp/.htaccess_bak ] && mv /tmp/.htaccess_bak "\$DEST/.htaccess" || true
             rm -f /tmp/deploy.tar.gz
           REMOTE
 
