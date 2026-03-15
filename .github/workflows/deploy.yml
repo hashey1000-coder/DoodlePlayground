@@ -1,0 +1,169 @@
+name: Deploy to doodleplayground.com
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # ──────────────────────────────────────────────
+      # 1. Checkout
+      # ──────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ──────────────────────────────────────────────
+      # 2. Setup Node + pnpm
+      # ──────────────────────────────────────────────
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # ──────────────────────────────────────────────
+      # 3. Install dependencies & build
+      # ──────────────────────────────────────────────
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # ──────────────────────────────────────────────
+      # 4. Fetch live sitemap BEFORE deploying
+      #    so we can diff new vs. current URLs later
+      # ──────────────────────────────────────────────
+      - name: Fetch live sitemap
+        id: live_sitemap
+        run: |
+          curl -sf --max-time 30 \
+            "https://doodleplayground.com/sitemap.xml" \
+            -o /tmp/sitemap-live.xml \
+            || echo "LIVE_SITEMAP_MISSING=true" >> "$GITHUB_ENV"
+
+      # ──────────────────────────────────────────────
+      # 5. Deploy via rsync over SSH (cPanel)
+      # ──────────────────────────────────────────────
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.CPANEL_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy dist/public to server
+        run: |
+          rsync -avz --delete \
+            --exclude='.htaccess' \
+            -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" \
+            dist/public/ \
+            "${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}:/home/${{ secrets.CPANEL_USER }}/doodleplayground.com/public_html/"
+
+      # ──────────────────────────────────────────────
+      # 6. Compare sitemaps & submit new URLs to
+      #    Bing via IndexNow
+      # ──────────────────────────────────────────────
+      - name: Compare sitemaps and submit new URLs via IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          SITE_HOST: doodleplayground.com
+        run: |
+          node - <<'EOF'
+          import { readFileSync } from 'fs';
+          import { existsSync } from 'fs';
+
+          const INDEXNOW_KEY  = process.env.INDEXNOW_KEY ?? 'bae054a1da344ed296187ab5ce77bb5e';
+          const SITE_HOST     = process.env.SITE_HOST;
+          const BATCH_SIZE    = 100; // IndexNow max per request
+
+          // ── helpers ──────────────────────────────
+          function extractLocs(xml) {
+            const urls = new Set();
+            for (const m of xml.matchAll(/<loc>\s*(https?:\/\/[^\s<]+)\s*<\/loc>/g)) {
+              urls.add(m[1].trim());
+            }
+            return urls;
+          }
+
+          async function submitBatch(urls) {
+            const body = JSON.stringify({
+              host:    SITE_HOST,
+              key:     INDEXNOW_KEY,
+              keyLocation: `https://${SITE_HOST}/${INDEXNOW_KEY}.txt`,
+              urlList: urls,
+            });
+
+            const res = await fetch('https://api.indexnow.org/indexnow', {
+              method:  'POST',
+              headers: { 'Content-Type': 'application/json; charset=utf-8' },
+              body,
+            });
+
+            console.log(`IndexNow response: ${res.status} ${res.statusText}`);
+            if (!res.ok) {
+              const text = await res.text().catch(() => '');
+              console.warn('IndexNow body:', text);
+            }
+            return res.ok;
+          }
+
+          // ── load sitemaps ─────────────────────────
+          const newXml = readFileSync('dist/public/sitemap.xml', 'utf8');
+          const newUrls = extractLocs(newXml);
+          console.log(`New sitemap URL count: ${newUrls.size}`);
+
+          if (!existsSync('/tmp/sitemap-live.xml')) {
+            console.log('No live sitemap found – submitting ALL URLs from new sitemap.');
+            const allUrls = [...newUrls];
+            if (!INDEXNOW_KEY) { console.log('INDEXNOW_KEY not set, skipping submission.'); process.exit(0); }
+            for (let i = 0; i < allUrls.length; i += BATCH_SIZE) {
+              await submitBatch(allUrls.slice(i, i + BATCH_SIZE));
+            }
+            process.exit(0);
+          }
+
+          const liveXml  = readFileSync('/tmp/sitemap-live.xml', 'utf8');
+          const liveUrls = extractLocs(liveXml);
+          console.log(`Live sitemap URL count: ${liveUrls.size}`);
+
+          const newlyAdded = [...newUrls].filter(u => !liveUrls.has(u));
+          console.log(`New URLs to index: ${newlyAdded.length}`);
+
+          if (newlyAdded.length === 0) {
+            console.log('No new URLs detected – skipping IndexNow submission.');
+            process.exit(0);
+          }
+
+          if (!INDEXNOW_KEY) {
+            console.log('INDEXNOW_KEY secret not set – skipping submission.');
+            newlyAdded.forEach(u => console.log(' +', u));
+            process.exit(0);
+          }
+
+          console.log('Submitting new URLs:');
+          newlyAdded.forEach(u => console.log(' +', u));
+
+          let allOk = true;
+          for (let i = 0; i < newlyAdded.length; i += BATCH_SIZE) {
+            const ok = await submitBatch(newlyAdded.slice(i, i + BATCH_SIZE));
+            if (!ok) allOk = false;
+          }
+
+          process.exit(allOk ? 0 : 1);
+          EOF
