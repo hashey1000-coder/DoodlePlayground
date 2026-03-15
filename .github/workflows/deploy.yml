@@ -58,9 +58,6 @@ jobs:
       # ──────────────────────────────────────────────
       # 5. Deploy via rsync over SSH (cPanel)
       # ──────────────────────────────────────────────
-      - name: Install rsync
-        run: sudo apt-get install -y rsync
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -69,12 +66,33 @@ jobs:
           ssh-keyscan -H "${{ secrets.CPANEL_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Deploy dist/public to server
+        env:
+          DEPLOY_PATH: /home/${{ secrets.CPANEL_USER }}/doodleplayground.com/public_html
         run: |
-          rsync -avz --delete \
-            --exclude='.htaccess' \
-            -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" \
-            dist/public/ \
-            "${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}:/home/${{ secrets.CPANEL_USER }}/doodleplayground.com/public_html/"
+          SSH="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}"
+
+          # Pack the build output
+          tar -czf /tmp/deploy.tar.gz -C dist/public .
+
+          # Upload the tarball
+          scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
+            /tmp/deploy.tar.gz \
+            "${{ secrets.CPANEL_USER }}@${{ secrets.CPANEL_HOST }}:/tmp/deploy.tar.gz"
+
+          # On the server: back up .htaccess, wipe directory, restore .htaccess, extract
+          $SSH bash << 'REMOTE'
+            set -e
+            DEST="/home/$USER/doodleplayground.com/public_html"
+            # Preserve .htaccess if it exists
+            [ -f "$DEST/.htaccess" ] && cp "$DEST/.htaccess" /tmp/.htaccess_bak || true
+            # Clear existing files
+            find "$DEST" -mindepth 1 -delete
+            # Extract new build
+            tar -xzf /tmp/deploy.tar.gz -C "$DEST"
+            # Restore .htaccess
+            [ -f /tmp/.htaccess_bak ] && mv /tmp/.htaccess_bak "$DEST/.htaccess" || true
+            rm -f /tmp/deploy.tar.gz
+          REMOTE
 
       # ──────────────────────────────────────────────
       # 6. Compare sitemaps & submit new URLs to
