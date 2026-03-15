@@ -8,6 +8,7 @@
     "build": "node scripts/generate-sitemap.mjs && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:static": "node scripts/generate-sitemap.mjs && node scripts/prerender.mjs && node scripts/fetch-elgoog-pages.mjs && node scripts/fetch-google-doodle-pages.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "preview:static": "npx serve dist/public",
