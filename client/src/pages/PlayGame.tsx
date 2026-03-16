@@ -844,7 +844,9 @@ export default function PlayGame() {
           </div>
 
           {/* Bottom row: Action buttons */}
-          <div className="px-4 sm:px-5 pb-3 flex items-center gap-2 flex-wrap border-t border-slate-50 dark:border-slate-800 pt-3">
+          <div className="px-4 sm:px-5 pb-3 flex items-center justify-between gap-2 border-t border-slate-50 dark:border-slate-800 pt-3">
+            {/* Left group: votes + how to play */}
+            <div className="flex items-center gap-2 flex-wrap">
             {/* Like */}
             <button
               onClick={() => vote("like")}
@@ -882,10 +884,12 @@ export default function PlayGame() {
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
             >
               <Gamepad2 className="w-3.5 h-3.5" />
-              <span>{t('game.howToPlay')}</span>
+              <span className="hidden sm:inline">{t('game.howToPlay')}</span>
             </button>
+            </div>
 
-            <div className="flex-1" />
+            {/* Right group: share + mute + fullscreen */}
+            <div className="flex items-center gap-2 shrink-0">
 
             {/* Challenge */}
             <button
@@ -945,6 +949,7 @@ export default function PlayGame() {
                 </button>
               </>
             )}
+            </div>
           </div>
         </div>
 
