@@ -846,12 +846,12 @@ export default function PlayGame() {
           {/* Bottom row: Action buttons */}
           <div className="px-4 sm:px-5 pb-3 flex items-center justify-between gap-2 border-t border-slate-50 dark:border-slate-800 pt-3">
             {/* Left group: votes + how to play */}
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Like */}
             <button
               onClick={() => vote("like")}
               aria-label={`${t('game.vote.helpful' as any)} (${votes.likes})`}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                 userVote === "like"
                   ? "bg-emerald-500 text-white shadow-sm"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600"
@@ -865,7 +865,7 @@ export default function PlayGame() {
             <button
               onClick={() => vote("dislike")}
               aria-label={`${t('game.vote.notHelpful' as any)} (${votes.dislikes})`}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                 userVote === "dislike"
                   ? "bg-red-500 text-white shadow-sm"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500"
@@ -881,7 +881,7 @@ export default function PlayGame() {
             <button
               onClick={() => setShowControls(true)}
               aria-label={t('game.howToPlay')}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
+              className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
             >
               <Gamepad2 className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{t('game.howToPlay')}</span>
@@ -889,12 +889,12 @@ export default function PlayGame() {
             </div>
 
             {/* Right group: share + mute + fullscreen */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
 
-            {/* Challenge */}
+            {/* Challenge — hidden on mobile to keep bar single-line */}
             <button
               onClick={handleCopyChallenge}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                 challengeCopied
                   ? "bg-amber-500 text-white"
                   : "bg-amber-50 text-amber-600 hover:bg-amber-100"
@@ -909,7 +909,7 @@ export default function PlayGame() {
             {/* Share */}
             <button
               onClick={handleShare}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                 copied
                   ? "bg-emerald-500 text-white"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
@@ -927,7 +927,7 @@ export default function PlayGame() {
                 <div className="w-px h-5 bg-slate-200 dark:bg-slate-700 mx-1" />
                 <button
                   onClick={toggleMute}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                     isMuted
                       ? 'bg-slate-700 text-white'
                       : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
@@ -941,7 +941,7 @@ export default function PlayGame() {
                 {/* Fullscreen */}
                 <button
                   onClick={isFullscreen ? exitFullscreen : enterFullscreen}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-150"
+                  className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-150"
                   title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
                   aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
                 >
