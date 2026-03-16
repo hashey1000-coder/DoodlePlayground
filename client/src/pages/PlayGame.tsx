@@ -945,6 +945,8 @@ export default function PlayGame() {
                 </button>
               </>
             )}
+          </div>
+        </div>
 
         {/* Two-column content: Description + Sessions left, Game details + Trivia right */}
         <div className="mt-4 grid grid-cols-1 lg:grid-cols-5 gap-4">
