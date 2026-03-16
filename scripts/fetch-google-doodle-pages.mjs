@@ -38,6 +38,23 @@ if (uniquePaths.length === 0) {
 console.log(`\n🎨 Fetching ${uniquePaths.length} Google Doodle game pages…`);
 
 /**
+ * Transforms a Google Doodle game JS file so absolute /logos/ paths
+ * resolve to Google's CDN instead of our own domain.
+ *
+ * The game JS (e.g. moon.js) contains hundreds of inline CSS `url(/logos/...)`
+ * references and JS string literals like `"/logos/2024/moon/novr2/"` that are
+ * used for sprite backgrounds.  When served from our domain these all 404.
+ * We rewrite them to full `https://www.google.com/logos/...` URLs.
+ */
+function transformJs(js) {
+  // CSS url() references without quotes: url(/logos/...)
+  js = js.replace(/url\(\/logos\//g, "url(https://www.google.com/logos/");
+  // String literals: "/logos/...", '/logos/...', `/logos/...`
+  js = js.replace(/(["'`])\/logos\//g, "$1https://www.google.com/logos/");
+  return js;
+}
+
+/**
  * Transforms raw Google Doodle HTML so it can be embedded in an iframe
  * on our domain without CSP or sizing issues.
  */
@@ -85,7 +102,37 @@ function transformHtml(html, gamePath) {
   //    navigate the iframe to our site.
   html = html.replace(/(["'(=])\/search\?/g, "$1https://www.google.com/search?");
 
+  // 5. Rewrite the game's main JS loading URL from Google's CDN to our
+  //    locally-patched copy.  We download + patch the JS at build time
+  //    (see fetchAndSaveJs below) to fix the absolute /logos/ sprite paths.
+  html = html.replace(
+    /h\(["'](https:\/\/www\.google\.com\/logos\/(.*?\.js))["']\)/g,
+    (_match, _fullUrl, relPath) => `h("/google-doodle/${relPath}")`
+  );
+
   return html;
+}
+
+/**
+ * Fetch a single Google Doodle game JS file, rewrite absolute /logos/ paths,
+ * and write the patched file to dist/public/google-doodle/<relPath>.
+ */
+async function fetchAndSaveJs(jsUrl, relPath) {
+  const resp = await fetch(jsUrl, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    },
+  });
+  if (!resp.ok) {
+    console.warn(`    ⚠ Failed to fetch JS ${jsUrl} (HTTP ${resp.status})`);
+    return;
+  }
+  let js = await resp.text();
+  js = transformJs(js);
+  const outPath = resolve(DIST_DIR, relPath);
+  mkdirSync(dirname(outPath), { recursive: true });
+  writeFileSync(outPath, js, "utf-8");
 }
 
 /**
@@ -114,6 +161,17 @@ async function fetchAndSave(gamePath) {
   }
 
   let html = await resp.text();
+
+  // Extract game JS URLs *before* transformHtml rewrites them.
+  // Google serves them as relative paths: h("/logos/PATH/GAME.js")
+  const jsUrlMatches = [
+    ...html.matchAll(/h\(["'](\/logos\/([^"']+\.js))["']\)/g),
+  ];
+  const jsFiles = jsUrlMatches.map((m) => ({
+    url: `https://www.google.com${m[1]}`,
+    relPath: m[2],
+  }));
+
   html = transformHtml(html, gamePath);
 
   // Save at the exact path so /google-doodle/<gamePath> resolves correctly.
@@ -128,6 +186,11 @@ async function fetchAndSave(gamePath) {
   const indexPath = resolve(DIST_DIR, nameWithoutExt, "index.html");
   mkdirSync(dirname(indexPath), { recursive: true });
   writeFileSync(indexPath, html, "utf-8");
+
+  // Download and patch each game JS file so /logos/ sprite paths resolve correctly.
+  for (const { url: jsUrl, relPath } of jsFiles) {
+    await fetchAndSaveJs(jsUrl, relPath);
+  }
 
   return true;
 }
