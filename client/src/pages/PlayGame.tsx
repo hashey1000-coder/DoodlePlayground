@@ -642,30 +642,7 @@ export default function PlayGame() {
                 ? '' /* native fullscreen is managed by the browser; adding position:fixed conflicts */
                 : 'overflow-hidden rounded-2xl'
           }`}>
-            {/* Mute / Unmute button */}
-            {gameStarted && !game.externalOnly && (
-              <button
-                onClick={toggleMute}
-                className="absolute top-3 right-12 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-all backdrop-blur-sm opacity-20 hover:opacity-100"
-                title={isMuted ? 'Unmute' : 'Mute'}
-                aria-label={isMuted ? 'Unmute game' : 'Mute game'}
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-            )}
-            {/* Fullscreen / Exit fullscreen button */}
-            {gameStarted && !game.externalOnly && (
-              <button
-                onClick={isFullscreen ? exitFullscreen : enterFullscreen}
-                className="absolute top-3 right-3 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-all backdrop-blur-sm opacity-20 hover:opacity-100"
-                title={t('game.fullscreen' as any)}
-                aria-label={t('game.fullscreen' as any)}
-              >
-                {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-              </button>
-            )}
-
-            {/* Play Next button (visible while playing) — only shows on hover near top to avoid blocking game controls */}
+            {/* Play Next button (visible while playing) — only shows on hover near top to avoid blocking game controls */}}
             {gameStarted && !game.externalOnly && (
               <div className="absolute top-0 left-0 right-0 z-20 h-14 flex items-start justify-between px-3 pt-3 opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none [&>*]:pointer-events-auto">
                 <button
@@ -939,8 +916,35 @@ export default function PlayGame() {
               {copied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
               <span className="hidden sm:inline">{copied ? t('common.copied') : t('game.share')}</span>
             </button>
-          </div>
-        </div>
+
+            {/* Mute */}
+            {!game.externalOnly && (
+              <>
+                <div className="w-px h-5 bg-slate-200 dark:bg-slate-700 mx-1" />
+                <button
+                  onClick={toggleMute}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                    isMuted
+                      ? 'bg-slate-700 text-white'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                  title={isMuted ? 'Unmute' : 'Mute'}
+                  aria-label={isMuted ? 'Unmute game' : 'Mute game'}
+                >
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                </button>
+
+                {/* Fullscreen */}
+                <button
+                  onClick={isFullscreen ? exitFullscreen : enterFullscreen}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-150"
+                  title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                  aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                >
+                  {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                </button>
+              </>
+            )}
 
         {/* Two-column content: Description + Sessions left, Game details + Trivia right */}
         <div className="mt-4 grid grid-cols-1 lg:grid-cols-5 gap-4">

@@ -727,7 +727,7 @@ export default function Home() {
                   const likeCount = getLikeCount(game.slug);
                   const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
                   return (
-                    <AnimatedCard key={game.slug} index={globalIndex} className={`h-[180px] sm:h-auto${isLarge ? ' sm:col-span-2 sm:row-span-2' : ''}${i === 4 ? ' col-span-2 sm:col-span-1' : ''}`}>
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`h-[180px] sm:h-full${isLarge ? ' sm:col-span-2 sm:row-span-2' : ''}${i === 4 ? ' col-span-2 sm:col-span-1' : ''}`}>
                       <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                         <Link href={`/play/${game.slug}/`} className="block h-full">
                           <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">
