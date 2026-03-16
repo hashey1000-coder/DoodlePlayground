@@ -1,43 +1,28 @@
 /**
- * Firebase initialisation — only runs in the browser.
- *
- * Required env vars (add to .env / .env.local):
- *   VITE_FIREBASE_API_KEY
- *   VITE_FIREBASE_AUTH_DOMAIN
- *   VITE_FIREBASE_PROJECT_ID
- *   VITE_FIREBASE_STORAGE_BUCKET
- *   VITE_FIREBASE_MESSAGING_SENDER_ID
- *   VITE_FIREBASE_APP_ID
- *
- * If any of these are missing the module exports `null` for both `app` and
- * `db` and the vote hook silently falls back to localStorage-only mode.
+ * Firebase initialisation — Realtime Database for vote counts.
+ * Client-side keys are intentionally public (security is enforced by RTDB rules).
  */
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getDatabase, type Database } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey:            import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain:        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId:         import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket:     import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId:             import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey:            "AIzaSyDtEoyffhyJ9qvC00qUbUxtmXGdEy40_1U",
+  authDomain:        "doodleplayground-41d6f.firebaseapp.com",
+  databaseURL:       "https://doodleplayground-41d6f-default-rtdb.firebaseio.com",
+  projectId:         "doodleplayground-41d6f",
+  storageBucket:     "doodleplayground-41d6f.firebasestorage.app",
+  messagingSenderId: "495328495069",
+  appId:             "1:495328495069:web:31be2abe9dc391011e2234",
 };
 
-const isConfigured = Boolean(
-  firebaseConfig.apiKey &&
-  firebaseConfig.projectId &&
-  firebaseConfig.appId,
-);
-
 let app: FirebaseApp | null = null;
-let db: Firestore | null = null;
+let db: Database | null = null;
 
 // Guard against SSR / prerender environments where `window` doesn't exist
-if (isConfigured && typeof window !== 'undefined') {
+if (typeof window !== 'undefined') {
   try {
     app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-    db = getFirestore(app);
+    db = getDatabase(app);
   } catch (err) {
     console.warn('[Firebase] Failed to initialise:', err);
   }
