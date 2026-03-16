@@ -17,10 +17,13 @@
  * and the game starts immediately without any extra user interaction.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
 
-const DIST_DIR = resolve("dist/public/elgoog");
+// Write to client/public/elgoog/ so Vite copies them verbatim into dist/public/
+// at build time. These files are committed to the repo so CI doesn't need to
+// re-fetch them (elgoog.im blocks GitHub Actions IPs with 403).
+const DIST_DIR = resolve("client/public/elgoog");
 
 // Extract all elgoog.im paths from games.ts
 const gamesSource = readFileSync("client/src/data/games.ts", "utf-8");
@@ -100,6 +103,16 @@ try { history.replaceState(null, '', '/${gamePath}/'); } catch(e) {}
  * Fetch a single elgoog.im page, transform it, and write to disk.
  */
 async function fetchAndSave(gamePath) {
+  const outDir = resolve(DIST_DIR, gamePath);
+  const outFile = resolve(outDir, "index.html");
+
+  // Skip if already generated — allows CI to reuse committed files without
+  // hitting elgoog.im (which blocks GitHub Actions IPs with 403).
+  if (existsSync(outFile) && !process.argv.includes('--force')) {
+    console.log(`  ↩ ${gamePath} (already exists, skipping)`);
+    return true;
+  }
+
   const url = `https://elgoog.im/${gamePath}/`;
 
   const resp = await fetch(url, {
@@ -119,9 +132,9 @@ async function fetchAndSave(gamePath) {
   let html = await resp.text();
   html = transformHtml(html, gamePath);
 
-  const outDir = resolve(DIST_DIR, gamePath);
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(resolve(outDir, "index.html"), html, "utf-8");
+  writeFileSync(outFile, html, "utf-8");
+  console.log(`  ✓ ${gamePath}`);
 
   return true;
 }
@@ -134,7 +147,6 @@ for (const gamePath of uniquePaths) {
   try {
     const ok = await fetchAndSave(gamePath);
     if (ok) {
-      console.log(`  ✓ ${gamePath}`);
       succeeded++;
     } else {
       failed++;
@@ -146,7 +158,7 @@ for (const gamePath of uniquePaths) {
 }
 
 console.log(
-  `\n✅ Generated ${succeeded} elgoog auto-play pages` +
-    (failed ? ` (${failed} failed)` : "") +
+  `\n✅ Elgoog pages: ${succeeded} ready` +
+    (failed ? ` (${failed} failed — will use fallback direct iframe)` : "") +
     `\n   Output: ${DIST_DIR}\n`
 );
