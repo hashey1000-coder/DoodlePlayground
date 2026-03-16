@@ -52,6 +52,7 @@ export default function Home() {
   const [showSortMenu, setShowSortMenu] = useState(false);
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const categoryFilterRef = useRef<HTMLDivElement>(null);
+  const gameGridRef = useRef<HTMLDivElement>(null);
   const [showTagPanel, setShowTagPanel] = useState(false);
   const pulseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -594,7 +595,7 @@ export default function Home() {
         </div>
 
         {/* Games count + context — below sort */}
-        <div className="mb-4 flex items-center gap-3 flex-wrap">
+        <div ref={gameGridRef} className="mb-4 flex items-center gap-3 flex-wrap">
           <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">{activeCategory === 'all' ? t('nav.allGames') : activeCategory === 'favourites' ? t('home.favourites') : activeCategory === 'top-rated' ? t('home.topRated') : t(`category.${activeCategory}` as any)}</h2>
           <p className="text-sm text-slate-500 font-medium">
             {filteredGames.length} {t('home.gamesCount' as any)}{" "}
@@ -716,7 +717,7 @@ export default function Home() {
                   const likeCount = getLikeCount(game.slug);
                   const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
                   return (
-                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'sm:col-span-2 sm:row-span-2' : ''}`}>
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'sm:col-span-2 sm:row-span-2' : ''} ${i === 4 ? 'col-span-2 sm:col-span-1' : ''}`.trim()}>
                       <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                         <Link href={`/play/${game.slug}/`} className="block h-full">
                           <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">
@@ -885,7 +886,7 @@ export default function Home() {
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 pt-6">
                 <button
-                  onClick={() => { setCurrentPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  onClick={() => { setCurrentPage((p) => Math.max(1, p - 1)); gameGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
                   disabled={currentPage === 1}
                   className="flex items-center gap-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                 >
@@ -907,7 +908,7 @@ export default function Home() {
                       ) : (
                         <button
                           key={item}
-                          onClick={() => { setCurrentPage(item as number); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          onClick={() => { setCurrentPage(item as number); gameGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
                           className={`w-9 h-9 rounded-xl text-sm font-semibold transition-all ${
                             currentPage === item
                               ? 'bg-teal-600 text-white shadow-sm'
@@ -921,7 +922,7 @@ export default function Home() {
                 </div>
 
                 <button
-                  onClick={() => { setCurrentPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  onClick={() => { setCurrentPage((p) => Math.min(totalPages, p + 1)); gameGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
                   disabled={currentPage === totalPages}
                   className="flex items-center gap-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                 >

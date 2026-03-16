@@ -5,7 +5,7 @@ import { SessionHistory } from "@/components/SessionHistory";
 const lazyConfetti = () => import("canvas-confetti").then(m => m.default);
 import { toast } from "sonner";
 import { Link, useParams, useLocation, useSearch } from "wouter";
-import { Maximize2, Minimize2, ChevronLeft, Play, ThumbsUp, ThumbsDown, Gamepad2, X, Share2, Check, ArrowRight, Shuffle, SkipForward, Trophy, ExternalLink } from "lucide-react";
+import { Maximize2, Minimize2, ChevronLeft, Play, ThumbsUp, ThumbsDown, Gamepad2, X, Share2, Check, ArrowRight, Shuffle, SkipForward, Trophy, ExternalLink, VolumeX, Volume2 } from "lucide-react";
 import { GAMES, ALL_TAGS, type Game } from "@/data/games";
 import { useGameTranslate, getGameT } from '@/data/gameTranslations';
 import { GAME_TRIVIA } from "@/data/trivia";
@@ -107,6 +107,19 @@ export default function PlayGame() {
       exitCSSFullscreen();
     }
   }
+  function toggleMute() {
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+    try {
+      const iframe = iframeRef.current;
+      const doc = iframe?.contentDocument ?? iframe?.contentWindow?.document;
+      doc?.querySelectorAll('audio, video').forEach((el) => {
+        (el as HTMLMediaElement).muted = newMuted;
+      });
+    } catch {
+      // Cross-origin iframe — silently ignore
+    }
+  }
   const t = useT();
   const gt = useGameTranslate();
   const { locale } = useLanguage();
@@ -121,6 +134,7 @@ export default function PlayGame() {
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
   const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
   const isFullscreen = isFakeFullscreen || isNativeFullscreen;
+  const [isMuted, setIsMuted] = useState(false);
   const [moreGames, setMoreGames] = useState<Game[]>([]);
 
   // Play Next overlay state
@@ -628,6 +642,17 @@ export default function PlayGame() {
                 ? '' /* native fullscreen is managed by the browser; adding position:fixed conflicts */
                 : 'overflow-hidden rounded-2xl'
           }`}>
+            {/* Mute / Unmute button */}
+            {gameStarted && !game.externalOnly && (
+              <button
+                onClick={toggleMute}
+                className="absolute top-3 right-12 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-all backdrop-blur-sm opacity-20 hover:opacity-100"
+                title={isMuted ? 'Unmute' : 'Mute'}
+                aria-label={isMuted ? 'Unmute game' : 'Mute game'}
+              >
+                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+            )}
             {/* Fullscreen / Exit fullscreen button */}
             {gameStarted && !game.externalOnly && (
               <button
