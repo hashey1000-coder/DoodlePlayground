@@ -642,7 +642,7 @@ export default function PlayGame() {
                 ? '' /* native fullscreen is managed by the browser; adding position:fixed conflicts */
                 : 'overflow-hidden rounded-2xl'
           }`}>
-            {/* Play Next button (visible while playing) — only shows on hover near top to avoid blocking game controls */}}
+            {/* Play Next button (visible while playing) — only shows on hover near top to avoid blocking game controls */}
             {gameStarted && !game.externalOnly && (
               <div className="absolute top-0 left-0 right-0 z-20 h-14 flex items-start justify-between px-3 pt-3 opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none [&>*]:pointer-events-auto">
                 <button
