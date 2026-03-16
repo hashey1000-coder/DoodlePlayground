@@ -93,6 +93,16 @@ export default function Home() {
   useEffect(() => {
     markAllSeen();
   }, [markAllSeen]);
+
+  // One-time cleanup: wipe any stale/seeded vote counts from localStorage cache
+  useEffect(() => {
+    if (!localStorage.getItem('doodle-votes-cleared-v1')) {
+      Object.keys(localStorage)
+        .filter((k) => k.startsWith('game-votes-'))
+        .forEach((k) => localStorage.removeItem(k));
+      localStorage.setItem('doodle-votes-cleared-v1', '1');
+    }
+  }, []);
   // Close sort menu on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -711,13 +721,13 @@ export default function Home() {
 
             {/* ── Bento section: games 2–6, asymmetric grid ── */}
             {paginatedGames.length > 1 && (
-              <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[200px]">
+              <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 sm:auto-rows-[200px]">
                 {paginatedGames.slice(1, 6).map((game, i) => {
                   const globalIndex = i + 1;
                   const likeCount = getLikeCount(game.slug);
                   const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
                   return (
-                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'sm:col-span-2 sm:row-span-2' : ''} ${i === 4 ? 'col-span-2 sm:col-span-1' : ''}`.trim()}>
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`h-[180px] sm:h-auto${isLarge ? ' sm:col-span-2 sm:row-span-2' : ''}${i === 4 ? ' col-span-2 sm:col-span-1' : ''}`}>
                       <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                         <Link href={`/play/${game.slug}/`} className="block h-full">
                           <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">

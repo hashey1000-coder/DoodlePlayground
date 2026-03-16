@@ -67,15 +67,14 @@ export function useFirebaseVotes(slug: string) {
     const unsubscribe = onValue(
       votesRef,
       (snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val() as Partial<Votes>;
-          const normalised: Votes = {
-            likes:    Math.max(0, data.likes    ?? 0),
-            dislikes: Math.max(0, data.dislikes ?? 0),
-          };
-          setVotes(normalised);
-          try { localStorage.setItem(cacheKey, JSON.stringify(normalised)); } catch { /* ignore */ }
-        }
+        const normalised: Votes = snapshot.exists()
+          ? {
+              likes:    Math.max(0, (snapshot.val() as Partial<Votes>).likes    ?? 0),
+              dislikes: Math.max(0, (snapshot.val() as Partial<Votes>).dislikes ?? 0),
+            }
+          : { likes: 0, dislikes: 0 };
+        setVotes(normalised);
+        try { localStorage.setItem(cacheKey, JSON.stringify(normalised)); } catch { /* ignore */ }
       },
       (err) => console.warn('[Firebase] onValue error:', err),
     );
