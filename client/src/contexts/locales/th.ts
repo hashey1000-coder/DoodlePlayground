@@ -386,6 +386,7 @@ export const TH: TranslationMap = {
   // Category & Tag
   'category.all': 'เกมทั้งหมด',
   'category.classic': 'คลาสสิก',
+  'category.online': 'เกมออนไลน์',
   'tag_ai': 'AI',
   'tag_christmas': 'คริสต์มาส',
   'tag_coding': 'เขียนโค้ด',

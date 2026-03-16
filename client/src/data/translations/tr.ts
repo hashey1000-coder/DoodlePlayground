@@ -536,4 +536,108 @@ export const TR_GAMES: Record<string, GameTranslation> = {
     description: 'Bu 2015 Rugby Dünya Kupası Doodle\'ında try\'lar atın ve vuruşları dönüştürün. Hızlı tempolu rugby aksiyonları oynayın.\n\nBu Doodle, İngiltere\'de düzenlenen 2015 Rugby Dünya Kupası\'nın açılışı için oluşturulmuştur. Rugby, 120\'den fazla ülkede oynanmaktadır.',
     controls: 'Topa vurmak ve puan kazanmak için tıklayın. Dönüşümlerinizi zamanlayın ve hedefleri bırakın. Topla koşun ve sayı denemeleri yapmak için defans oyuncularından kaçın!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Bir nesli tanımlayan efsanevi düşen blok oyunu. Tetromino\'ları döndürüp kaydırarak tam yatay satırlar oluşturun.\n\n1984\'te Sovyet mühendis Alexey Pajitnov tarafından tasarlanan Tetris, 520 milyondan fazla kopya ile tüm zamanların en çok satan oyunlarından biridir.',
+    controls: 'Ok tuşları: ← → kaydırmak, ↑ döndürmek, ↓ yavaş düşüş için. Boşluk tuşu hızlı düşüş için.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Tüm bir sektörü başlatan orijinal arcade klasiği.\n\nAtari tarafından 1972\'de geliştirilen Pong, ticari olarak başarılı olan ilk video oyunuydu.',
+    controls: 'Raketi fare veya W / S tuşlarıyla hareket ettir. 7 puana ilk ulaşan kazanır.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Bir top ve raketla renkli tuğla sıralarını kır.\n\nNolan Bushnell tarafından 1976\'da tasarlanan prototip, Steve Jobs ve Steve Wozniak tarafından dört günde yapıldı.',
+    controls: '← → veya fareyle raketi hareket ettir. Topu oyunda tut ve tuğlaları hedefle.',
+  },
+  '2048': {
+    title: '2048',
+    description: '4×4\'lük bir ızgarada numaralı karoları kaydır, aynı sayıları birleştir.\n\n19 yaşındaki Gabriele Cirulli tarafından Mart 2014\'te oluşturuldu.',
+    controls: 'Tüm karoları hareket ettirmek için ok tuşlarını (← → ↑ ↓) kullan. Aynı karolar birleşir.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: '9×9 ızgarayı her satır, sütun ve 3×3 kutunun 1–9 rakamlarını tam olarak bir kez içermesi için doldur.\n\nJapon adına rağmen, Sudoku 1979\'da Amerikalı Howard Garns tarafından icat edildi.',
+    controls: 'Boş bir hücreye tıkla ve bir rakam (1–9) yaz. Zorluk seviyesini seç.',
+  },
+  'word-search': {
+    title: 'Kelime Arama',
+    description: 'Harf ızgarasında gizlenmiş kelimeleri bulun — yatay, dikey, çapraz ve hatta geriye doğru arayın. Süre dolmadan tüm kelimeleri bulmak için zamana karşı yarışın.\n\nKelime arama bulmacaları 1968\'de Norman E. Gibat tarafından icat edildi. Bugün dünya genelinde yüz milyonlarca kişi her gün bunları çözüyor.',
+    controls: 'Bir kelimenin ilk ve son harfine tıklayarak vurgulayın. Kelimeler herhangi bir yönde olabilir. Listedeki her kelimeyi bularak işaretleyin.',
+  },
+  'word-scramble': {
+    title: 'Karışık Kelimeler',
+    description: 'Karışık harfleri çözerek gizli kelimeyi mümkün olduğunca hızlı bulun. Baskı altında yazım içgüdünüzü test eden bir kelime oyunu.\n\nKelime bulmacaları beynin büyüleyici bir özelliğini kullanır: ilk ve son harf yerindeyse, ortadaki harfler karışık olsa bile kelimeyi tanıyabilir.',
+    controls: 'Ekranda gösterilen karışık harfleri okuyun. Cevabınızı metin kutusuna yazın ve onaylamak için Enter tuşuna basın.',
+  },
+  'connect-four': {
+    title: 'Dört Bağla',
+    description: 'Renkli diskleri dikey bir ızgaraya bırakın ve renginizden dördünü ilk siz hizalayın — yatay, dikey veya çapraz. Görünüşte basit, stratejide derin.\n\nConnect Four 1988\'de matematiksel olarak çözüldü: ilk oyuncu orta sütundan başlayarak her zaman kazanmayı garanti edebilir.',
+    controls: 'Diskinizi bırakmak için bir sütuna tıklayın. Diskler mevcut en alt konuma düşer. Renginizden dördünü ilk bağlayan kazanır.',
+  },
+  'sliding-puzzle': {
+    title: 'Kayan Bulmaca',
+    description: '4×4 ızgarada (bir boş alan ile) numaralı karoları kaydırarak 1\'den 15\'e sıralayın. En iyi çözüm için birkaç hamle ileriye düşünün.\n\n15-Bulmaca 1880\'lerde dünya çapında bir çılgınlığa yol açtı. Matematiksel olarak, tüm karıştırılmış pozisyonların tam yarısı çözülemez.',
+    controls: 'Boş alanın yanındaki bir karoya tıklayarak kaydırın. Tüm karoları 1\'den 15\'e kadar sıralayın.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Kuşun kanatlarını çırpmak için dokunun ve sonsuz boru aralıklarından geçin. Her dokunuş kuşu hafifçe kaldırır; yerçekimi onu acımasızca geri çeker.\n\n2013\'te Vietnamlı geliştirici Dong Nguyen tarafından yaratılan Flappy Bird, reklamlardan günde 50.000 dolar kazanan küresel bir fenomen haline geldi ve ardından yaratıcısı tarafından gönüllü olarak mağazalardan kaldırıldı.',
+    controls: 'Kanatları çırpmak için Boşluk tuşuna basın veya herhangi bir yere tıklayın. Kuşu borular arasındaki boşluklardan dokunmadan yönlendirin.',
+  },
+  'space-invaders-online': {
+    title: 'Uzay İstilacıları',
+    description: 'Dünya\'yı alçalan uzaylı istilacı dalgalarından koruyun. Lazer topunuzu hareket ettirin ve uzaylıları yere ulaşmadan yok edin.\n\n1978\'de Tomohiro Nishikado tarafından yaratılan Space Invaders, muazzam popülaritesi nedeniyle Japonya\'da 100 yenlik madeni para sıkıntısına neden oldu.',
+    controls: '← → ile topunuzu hareket ettirin. Ateş etmek için Boşluk tuşuna basın. Tüm uzaylıları alta ulaşmadan yok edin. UFO\'lar bonus puan verir.',
+  },
+  'asteroids': {
+    title: 'Asteroidler',
+    description: 'Uzay gemisini dönen asteroit alanında yönlendirin ve onları giderek küçülen parçalara ayırın. Enkazdan kaçının ve düşman uçan dairelerine dikkat edin.\n\n1979\'da Atari tarafından yaratılan Asteroids, dünya genelinde 70.000\'den fazla satışla en çok satan arcade kabinleri oldu.',
+    controls: '← → döndürmek, ↑ hızlanmak ve Boşluk ateş etmek için. Büyük asteroitler ortaya, sonra küçüğe bölünür. Uçan dairelerden kaçının.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Kurbağanızı yoğun bir yoldan ve tehlikeli bir nehirden güvenle eve ulaştırın. Arabalardan, kamyonlardan ve otobüslerden kaçının, sonra kütükler ve kaplumbağalar üzerinden atlayın.\n\n1981\'de Konami tarafından tasarlanan Frogger, 20 milyondan fazla satarak oyun tarihinin ilk çevre yorumlarından biri olarak kabul edilir.',
+    controls: 'Ok tuşlarıyla kurbağayı adım adım hareket ettirin. Trafikte boşlukları zamanlayarak yolu geçin. Nehri geçmek için kütükleri ve kaplumbağaları kullanın.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Bu ikonik uzay atıcısında dalga dalga gelen uzaylı formasyonlarıyla savaşın. Düşmanlar formasyonda saldırır ve bir çekici ışın geminizi yakalayabilir.\n\n1981\'de Namco tarafından yayınlanan Galaga, video oyun tarihinin gelmiş geçmiş en büyük arcade oyunlarından biri olarak kabul edilir.',
+    controls: '← → gemiyi hareket ettirmek, Boşluk ateş etmek için. Boss Galaga\'nın geminizi yakalamasına izin verin, sonra onu vurup çift ateş gücüyle savaşın.',
+  },
+  'brick-breaker': {
+    title: 'Tuğla Kırıcı',
+    description: 'Zıplayan bir top ve raaketle çok katmanlı tuğlaları kırın. Güçlendirmeler toplayın — daha uzun raketler, çoklu top, lazer atışları — ve ilerlemek için tüm tuğlaları temizleyin.\n\nBrick Breaker, klasik Breakout\'un ruhani halefidir ve zıplayan top türünü yaklaşık 50 yıldır yaşatmaktadır.',
+    controls: 'Raketi fare veya ← → ile hareket ettirin. Topu oyunda tutun ve tuğlaları hedefleyin. Düşen güçlendirmeleri toplayın. Tüm tuğlaları temizleyin.',
+  },
+  'stack-tower': {
+    title: 'Blok Kulesi',
+    description: 'Bloklar sallanırken kesip üst üste yığmak için dokunun. Her sarkan kısım kesilir ve platformunuz daralır. Ne kadar yükseğe inşa edebilirsiniz?\n\nStack Tower beynin hassasiyet ve ritim arzusunu kullanarak basit bir döngüyle anlık gerilim yaratır: sallan → dokun → hizala.',
+    controls: 'Hareketli bloğu kesmek için Boşluk tuşuna basın veya tıklayın. Hizalama ne kadar hassas olursa platform o kadar geniş kalır. Mümkün olduğunca yükseğe yığın.',
+  },
+  'reaction-time': {
+    title: 'Tepki Süresi Testi',
+    description: 'Ekran yeşile döndüğünde en hızlı şekilde tıklayın! Tepki süreniz milisaniye cinsinden kaydedilir — reflekslerinizi test etmenin bilimsel bir yolu.\n\nOrtalama insan tepki süresi yaklaşık 250 milisaniyedir. Eğitimli sporcular yaklaşık 150 ms\'ye ulaşır. Formula 1 pilotları 100 ms\'nin altında tepki verebilir.',
+    controls: 'Ekranın kırmızıdan yeşile dönmesini bekleyin, sonra mümkün olduğunca hızlı tıklayın. Zamanlayıcı renk değişimi ile tıklamanız arasındaki süreyi ölçer. Erken tıklamayın!',
+  },
+  'whack-a-mole': {
+    title: 'Köstebek Vur',
+    description: 'Köstebekler deliklerinden çıkmaya devam ediyor — saklanmadan önce mümkün olduğunca çok vurun! Her seviyede köstebekler hızlanır ve tepki pencereleri daralır.\n\nWhac-A-Mole (orijinal adı "Mogura Taiji") 1975\'te Japon üretici TOGO tarafından icat edildi ve dünya genelinde arcade salonlarının vazgeçilmezi olmaya devam ediyor.',
+    controls: 'Köstebek çıkar çıkmaz tıklayın veya dokunun. Her başarılı vuruş bir puan. 30 saniyede mümkün olduğunca çok vurun!',
+  },
+  'dots-and-boxes': {
+    title: 'Nokta ve Kutular',
+    description: 'Sırayla noktalar arasına çizgiler çizin. Bir kutunun dördüncü kenarını tamamlayarak onu sahiplenin ve tekrar oynayın. En çok kutu sahiplenen oyuncu kazanır.\n\nDots and Boxes, 1889\'da Fransız matematikçi Édouard Lucas tarafından icat edildi. Çocuksu görünümüne rağmen derin bir kombinatorik oyun teorisi yapısına sahiptir.',
+    controls: 'İki komşu nokta arasına tıklayarak bir çizgi çizin. Çizginiz bir kutuyu tamamlarsa onu sahiplenirsiniz ve tekrar oynarsınız. Rakipten daha fazla kutu sahiplenin.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Tahtaya diskler yerleştirin ve rakibin taşlarını çevirerek kendi renginize dönüştürmek için kuşatın. Tek bir hamle tüm satır ve sütunları çevirebilir — tahta birkaç turda kökten değişebilir.\n\nReversi 1883\'te İngiltere\'de icat edildi. Modern Othello versiyonu (1971) "öğrenmesi bir dakika, ustalaşması bir ömür" sloganını taşır.',
+    controls: 'Geçerli bir kareye (yeşil gösterilen) tıklayarak diskinizi yerleştirin. Hamle yalnızca en az bir rakip diski kuşatıyorsa geçerlidir. Kuşatılan tüm diskler çevrilir. Sonunda en çok diske sahip olan kazanır.',
+  },
+
 };

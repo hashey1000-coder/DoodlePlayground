@@ -386,6 +386,7 @@ export const VI: TranslationMap = {
   // Category & Tag
   'category.all': 'Tất Cả Game',
   'category.classic': 'Cổ Điển',
+  'category.online': 'Trò Chơi Trực Tuyến',
   'tag_ai': 'AI',
   'tag_christmas': 'Giáng sinh',
   'tag_coding': 'Lập trình',

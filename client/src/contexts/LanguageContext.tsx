@@ -258,7 +258,7 @@ export type TranslationKey =
   | 'about.curationTitle' | 'about.curationP1' | 'about.curationP2' | 'about.curationP3'
   | 'about.faqTitle'
   // Category & Tag keys
-  | 'category.all' | 'category.classic'
+  | 'category.all' | 'category.classic' | 'category.online'
   | 'tag_music' | 'tag_multiplayer' | 'tag_kids' | 'tag_oneButton'
   | 'tag_keyboard' | 'tag_touch' | 'tag_relaxing' | 'tag_fastPaced'
   | 'tag_creative' | 'tag_educational' | 'tag_story' | 'tag_endless'
@@ -736,6 +736,7 @@ const EN: TranslationMap = {
   // Category & Tag
   'category.all': 'All Games',
   'category.classic': 'Classic',
+  'category.online': 'Online Games',
   'tag_music': 'Music',
   'tag_multiplayer': 'Multiplayer',
   'tag_kids': 'Kids',

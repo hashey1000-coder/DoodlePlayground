@@ -386,6 +386,7 @@ export const ID: TranslationMap = {
   // Category & Tag
   'category.all': 'Semua Game',
   'category.classic': 'Klasik',
+  'category.online': 'Game Online',
   'tag_ai': 'Bertenaga AI',
   'tag_christmas': 'Natal',
   'tag_coding': 'Pemrograman',

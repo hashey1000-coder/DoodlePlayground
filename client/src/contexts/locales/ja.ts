@@ -386,6 +386,7 @@ export const JA: TranslationMap = {
   // Category & Tag
   'category.all': 'すべてのゲーム',
   'category.classic': 'クラシック',
+  'category.online': 'オンラインゲーム',
   'tag_ai': 'AI搭載',
   'tag_christmas': 'クリスマス',
   'tag_coding': 'プログラミング',

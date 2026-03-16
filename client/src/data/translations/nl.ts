@@ -536,4 +536,108 @@ export const NL_GAMES: Record<string, GameTranslation> = {
     description: 'Scoor try\'s en converteer trappen in deze Doodle van het Rugby Wereldbeker 2015. Speel snel rugbyactie en leid je team naar de overwinning.\n\nDeze Doodle werd gemaakt voor de opening van het Rugby Wereldbeker 2015 in Engeland. Rugby wordt in meer dan 120 landen gespeeld.',
     controls: 'Klik om de bal te schoppen en punten te scoren. Time uw conversies en bereik doelen. Ren met de bal en ontwijk verdedigers om pogingen te scoren!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Het legendarische vallende-blokkenspel dat een generatie definieerde. Draai en schuif tetromino\'s om volledige horizontale rijen te maken.\n\nOntworpen door Alexey Pajitnov in 1984, is Tetris een van de bestverkochte spellen aller tijden met meer dan 520 miljoen exemplaren.',
+    controls: 'Pijltjestoetsen: ← → schuiven, ↑ draaien, ↓ langzaam vallen. Spatie voor snelle val.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'De originele arcade-klassieker die een hele industrie lanceerde.\n\nDoor Atari in 1972 ontwikkeld, was Pong het eerste commercieel succesvolle videospel.',
+    controls: 'Beweeg de bat met de muis of W / S. De eerste die 7 punten bereikt wint.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Vernietig rijen gekleurde stenen met een springende bal.\n\nOntworpen door Nolan Bushnell in 1976, werd het prototype door Steve Jobs en Steve Wozniak in vier dagen gebouwd.',
+    controls: 'Beweeg de bat met ← → of de muis. Houd de bal in het spel.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Schuif genummerde tegels op een 4×4-raster en voeg gelijke nummers samen.\n\nGemaakt door Gabriele Cirulli in maart 2014, op 19-jarige leeftijd.',
+    controls: 'Pijltjestoetsen (← → ↑ ↓) om tegels te bewegen. Gelijke tegels fuseren.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Vul het 9×9-raster in zodat elke rij, kolom en 3×3-vak de cijfers 1–9 precies één keer bevat.\n\nOndanks de Japanse naam werd Sudoku in 1979 in de VS uitgevonden door Howard Garns.',
+    controls: 'Klik op een lege cel en typ een cijfer (1–9). Kies het moeilijkheidsniveau.',
+  },
+  'word-search': {
+    title: 'Woordzoeker',
+    description: 'Vind verborgen woorden in een lettergrid — horizontaal, verticaal, diagonaal en zelfs achterstevoren. Race tegen de klok om elk woord te vinden voordat de tijd op is.\n\nWoordzoekpuzzels werden in 1968 uitgevonden door Norman E. Gibat. Vandaag de dag lossen honderden miljoenen mensen ze dagelijks op over de hele wereld.',
+    controls: 'Klik op de eerste en laatste letter van een woord om het te markeren. Woorden kunnen in elke richting lopen. Streep elk woord van de lijst af om de puzzel te voltooien.',
+  },
+  'word-scramble': {
+    title: 'Letterzoeker',
+    description: 'Ontwar door elkaar gehusselde letters om het verborgen woord zo snel mogelijk te onthullen. Een woordenschatspel dat je spellinginstinct onder druk test.\n\nWoordpuzzels maken gebruik van een fascinerend hersentrucje: het brein kan woorden herkennen waarvan de middelste letters door elkaar staan, zolang de eerste en laatste letter op hun plek staan.',
+    controls: 'Lees de door elkaar gehusselde letters op het scherm. Typ je antwoord in het tekstveld en druk op Enter om te bevestigen.',
+  },
+  'connect-four': {
+    title: 'Vier op een rij',
+    description: 'Laat gekleurde schijven in een verticaal raster vallen en wees de eerste die vier van jouw kleur op een rij krijgt — horizontaal, verticaal of diagonaal. Simpel om te leren, moeilijk te beheersen.\n\nVier op een Rij werd in 1988 wiskundig opgelost: de eerste speler kan altijd winnen door in de middelste kolom te beginnen.',
+    controls: 'Klik op een kolom om je schijf te laten vallen. Schijven vallen naar de laagste beschikbare positie. Verbind als eerste vier schijven van jouw kleur.',
+  },
+  'sliding-puzzle': {
+    title: 'Schuifpuzzle',
+    description: 'Schuif genummerde tegels over een 4×4-raster (met één lege plek) om ze van 1 tot 15 te ordenen. Denk meerdere zetten vooruit voor de beste oplossing.\n\nDe 15-puzzel veroorzaakte een wereldwijde rage in de jaren 1880. Wiskundig gezien is exact de helft van alle geschudde posities onoplosbaar.',
+    controls: 'Klik op een tegel naast de lege plek om hem te verschuiven. Rangschik alle tegels van 1 tot 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Tik om met de vleugels te klapperen en navigeer door een eindeloze reeks openingen tussen pijpen. Elke tik tilt de vogel iets op; de zwaartekracht trekt hem onverbiddelijk terug.\n\nGemaakt door de Vietnamese ontwikkelaar Dong Nguyen in 2013, werd Flappy Bird een wereldwijd fenomeen dat 50.000 dollar per dag aan advertenties opbracht voordat de maker het vrijwillig verwijderde.',
+    controls: 'Druk op Spatie of klik ergens om te klapperen. Leid de vogel door de openingen tussen de pijpen zonder ze te raken.',
+  },
+  'space-invaders-online': {
+    title: 'Ruimte-indringers',
+    description: 'Verdedig de aarde tegen golven van dalende buitenaardse indringers. Beweeg je laserkanon en vernietig de aliens voordat ze de grond bereiken.\n\nOntwikkeld door Tomohiro Nishikado in 1978, veroorzaakte Space Invaders een landelijk tekort aan 100-yenmunten in Japan door zijn enorme populariteit.',
+    controls: 'Gebruik ← → om je kanon te bewegen. Druk op Spatie om te schieten. Vernietig alle aliens voordat ze beneden aankomen. UFO\'s geven bonuspunten.',
+  },
+  'asteroids': {
+    title: 'Asteroïden',
+    description: 'Bestuur je ruimteschip door een veld van ronddraaiende asteroïden en vernietig ze in steeds kleinere brokstukken. Ontwijkpuin en let op vijandige vliegende schotels.\n\nGemaakt door Atari in 1979, was Asteroids hun bestverkochte speelautomaat met meer dan 70.000 eenheden wereldwijd.',
+    controls: '← → om te draaien, ↑ om gas te geven en Spatie om te schieten. Grote asteroïden splitsen in middelgrote en dan kleine. Ontwijkvliegende schotels.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Leid je kikker veilig over een drukke weg en een gevaarlijke rivier naar huis. Ontwijkauto\'s, vrachtwagens en bussen en spring vervolgens over boomstammen en schildpadden.\n\nOntworpen door Konami in 1981, verkocht Frogger meer dan 20 miljoen exemplaren en wordt beschouwd als een van de eerste milieucommentaren in de gamegeschiedenis.',
+    controls: 'Gebruik de pijltjestoetsen om de kikker stap voor stap te bewegen. Steek de weg over door de gaten in het verkeer te timen. Gebruik boomstammen en schildpadden om de rivier over te steken.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Bestrijd golf na golf van buitenaardse formaties in deze iconische ruimteshooter. Vijanden duiken in formatie aan en een tractorstraal kan je schip vangen.\n\nUitgebracht door Namco in 1981, wordt Galaga beschouwd als een van de grootste arcadespellen aller tijden in de geschiedenis van videogames.',
+    controls: '← → om het schip te bewegen. Spatie om te schieten. Laat de Boss Galaga je schip vangen, schiet hem dan neer om met dubbele vuurkracht te vechten.',
+  },
+  'brick-breaker': {
+    title: 'Steenbreker',
+    description: 'Breek door meerdere lagen stenen met een stuiterende bal en een paddle. Verzamel power-ups — langere paddles, multi-bal, laserschoten — en ruim alle stenen op om verder te gaan.\n\nBrick Breaker is de geestelijke opvolger van het klassieke Breakout en houdt het stuiterende-balgenre al bijna 50 jaar in leven.',
+    controls: 'Beweeg de paddle met de muis of ← →. Houd de bal in het spel en richt op de stenen. Vang vallende power-ups. Ruim alle stenen op.',
+  },
+  'stack-tower': {
+    title: 'Blokkenturm',
+    description: 'Tik om de zwaaiende blokken te snijden en te stapelen. Elk uitstekend deel wordt afgesneden en je platform wordt smaller. Hoe hoog kun je bouwen?\n\nStack Tower maakt gebruik van het verlangen van de hersenen naar precisie en ritme en creëert direct spanning met een eenvoudige lus: zwaaien → tikken → uitlijnen.',
+    controls: 'Druk op Spatie of klik om het bewegende blok te snijden. Hoe preciezer je uitlijnt, hoe breder het platform blijft. Stapel zo hoog mogelijk.',
+  },
+  'reaction-time': {
+    title: 'Reactietijdtest',
+    description: 'Als het scherm groen wordt, klik zo snel als je kunt! Je reactietijd wordt gemeten in milliseconden — een wetenschappelijke manier om je reflexen te testen.\n\nDe gemiddelde menselijke reactietijd is ongeveer 250 milliseconden. Getrainde atleten halen rond de 150 ms. Formule 1-coureurs kunnen in minder dan 100 ms reageren.',
+    controls: 'Wacht tot het scherm van rood naar groen verandert en klik dan zo snel mogelijk. De timer meet de exacte tijd tussen de kleurverandering en je klik. Klik niet te vroeg!',
+  },
+  'whack-a-mole': {
+    title: 'Mol Slaan',
+    description: 'Mollen duiken op uit hun holen — sla er zoveel mogelijk voordat ze zich verstoppen! Met elk level worden de mollen sneller en de reactievensters kleiner.\n\nWhac-A-Mole (oorspronkelijk "Mogura Taiji") werd in 1975 uitgevonden door de Japanse ontwikkelaar TOGO en blijft wereldwijd een arcade-klassieker.',
+    controls: 'Klik of tik op een mol zodra hij opduikt om hem te slaan. Elke geslaagde klap levert een punt op. Sla er zoveel mogelijk in 30 seconden!',
+  },
+  'dots-and-boxes': {
+    title: 'Stippen en Dozen',
+    description: 'Teken om de beurt lijnen tussen punten. Maak de vierde zijde van een doos af om hem te claimen en opnieuw te spelen. De speler met de meeste dozen wint.\n\nKamertje Verhuren werd in 1889 uitgevonden door de Franse wiskundige Édouard Lucas. Ondanks het kinderlijke uiterlijk heeft het een diepe combinatorische speltheoretische structuur.',
+    controls: 'Klik tussen twee aangrenzende punten om een lijn te tekenen. Als je lijn een doos compleet maakt, claim je hem en speel je opnieuw. Claim meer dozen dan je tegenstander.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Plaats schijven op het bord en omsingel de stukken van je tegenstander om ze naar jouw kleur om te draaien. Eén zet kan hele rijen en kolommen omdraaien — het bord kan in enkele beurten drastisch veranderen.\n\nReversi werd in 1883 in Engeland uitgevonden. De moderne Othello-versie (1971) draagt de slogan "een minuut om te leren, een leven lang om te beheersen".',
+    controls: 'Klik op een geldig veld (groen gemarkeerd) om je schijf te plaatsen. Een zet is alleen geldig als het minstens één tegenstander omsingelt. Alle omsingelde schijven worden omgedraaid. Wie de meeste heeft, wint.',
+  },
+
 };

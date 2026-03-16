@@ -140,7 +140,8 @@ export default function Home() {
   const clearTags = () => setActiveTags([]);
 
   const filteredGames = useMemo(() => {
-    let games = GAMES;
+    // Exclude online-collection games — they have their own dedicated page
+    let games = GAMES.filter((g) => g.category !== 'online');
 
     // Kids Mode: only Easy games
     if (kidsMode) {
@@ -500,6 +501,7 @@ export default function Home() {
                 const isActive = activeTags.includes(tag.id);
                 // Count matching games for this tag (considering current filters except tags)
                 const matchCount = GAMES.filter((g) => {
+                  if (g.category === 'online') return false;
                   if (kidsMode && g.difficulty !== "easy") return false;
                   if (activeCategory === "favourites" && !favourites.includes(g.slug)) return false;
                   if (activeCategory !== "all" && activeCategory !== "favourites" && activeCategory !== "top-rated" && g.category !== activeCategory) return false;

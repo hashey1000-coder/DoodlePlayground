@@ -8,7 +8,7 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link, useLocation } from "wouter";
 import {
   Gamepad2, Shuffle, LayoutList, Search, Baby, X, Trophy,
-  CalendarDays, Sun, Moon, Menu, Home, Info, Heart, Globe, Check, Mail, Shield,
+  CalendarDays, Sun, Moon, Menu, Home, Info, Heart, Globe, Check, Mail, Shield, Monitor,
 } from "lucide-react";
 const SpinWheel = lazy(() => import("@/components/SpinWheel"));
 import { GAMES } from "@/data/games";
@@ -218,6 +218,12 @@ export default function Navbar() {
                   {t('nav.leaderboard')}
                 </span>
               </Link>
+              <Link href="/online-games/" aria-label={t('category.online')}>
+                <span className={`flex items-center gap-1.5 text-sm font-medium transition-colors px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive('/online-games/') ? 'text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/50' : 'text-slate-600 dark:text-slate-300 hover:text-violet-600 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  <Monitor className="w-3.5 h-3.5 shrink-0" />
+                  {t('category.online')}
+                </span>
+              </Link>
             </nav>
 
             {/* Flexible spacer */}
@@ -425,6 +431,13 @@ export default function Navbar() {
                           🔥 {streak}
                         </span>
                       )}
+                    </div>
+                  </Link>
+
+                  <Link href="/online-games/">
+                    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${isActive('/online-games/') ? 'bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400' : 'text-slate-700 dark:text-slate-200 hover:bg-violet-50 dark:hover:bg-violet-950/50 hover:text-violet-600'}`}>
+                      <Monitor className="w-4 h-4 shrink-0" />
+                      <span className="text-sm font-medium">{t('category.online' as any) || 'Online Games'}</span>
                     </div>
                   </Link>
 

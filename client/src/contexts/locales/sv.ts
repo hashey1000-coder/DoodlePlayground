@@ -386,6 +386,7 @@ export const SV: TranslationMap = {
   // Category & Tag
   'category.all': 'Alla Spel',
   'category.classic': 'Klassisk',
+  'category.online': 'Online-Spel',
   'tag_ai': 'AI-driven',
   'tag_christmas': 'Jul',
   'tag_coding': 'Kodning',

@@ -536,4 +536,108 @@ export const PL_GAMES: Record<string, GameTranslation> = {
     description: 'Zdobywaj przyłożenia i wykonuj kopnięcia za bramkę w tej Doodle z okazji Pucharu Świata w Rugby 2015. Graj w szybką akcję rugby i prowadź swoją drużynę do zwycięstwa.\n\nTa Doodle została stworzona na otwarcie Pucharu Świata w Rugby 2015 w Anglii. Rugby jest uprawiane w ponad 120 krajach.',
     controls: 'Kliknij, aby kopnąć piłkę i zdobyć punkty. Mierz czas konwersji i rezygnuj z celów. Biegaj z piłką i unikaj obrońców, aby zdobywać punkty!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Legendarna gra z spadającymi klockami, która definiowała pokolenie. Obracaj i przesuwaj tetromina, aby tworzyć pełne poziome linie.\n\nZaprojektowany przez sowieckiego inżyniera Aleksieja Pajitnowa w 1984 roku, Tetris jest jedną z najlepiej sprzedających się gier wszech czasów z ponad 520 milionami egzemplarzy.',
+    controls: 'Klawisze strzałek: ← → przesuwanie, ↑ obracanie, ↓ wolne opadanie. Spacja dla szybkiego opadania.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Oryginalny klasyk arkadowy, który zapoczątkował całą branżę.\n\nOpracowany przez Atari w 1972 roku, Pong był pierwszą komercyjnie udaną grą wideo.',
+    controls: 'Przesuń rakietkę myszą lub klawiszami W / S. Pierwszy, kto zdobędzie 7 punktów, wygrywa.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Niszcz rzędy kolorowych cegieł piłką i rakietką.\n\nZaprojektowany przez Nolana Bushnella w 1976 roku, prototyp został zbudowany przez Steve\'a Jobsa i Steve\'a Wozniaka w cztery dni.',
+    controls: 'Przesuń rakietkę strzałkami ← → lub myszą. Utrzymuj piłkę w grze.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Przesuwaj ponumerowane kafelki na siatce 4×4, łącząc te same liczby.\n\nStworzony przez Gabriele Cirulliego w marcu 2014 roku w wieku 19 lat.',
+    controls: 'Klawisze strzałek (← → ↑ ↓) do przesuwania kafelków. Takie same kafelki łączą się.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Wypełnij siatkę 9×9 tak, aby każdy wiersz, kolumna i blok 3×3 zawierały cyfry 1–9 dokładnie raz.\n\nPomimo japońskiej nazwy, sudoku zostało wynalezione w USA przez Howarda Garnsa w 1979 roku.',
+    controls: 'Kliknij na pustą komórkę i wpisz cyfrę (1–9). Wybierz poziom trudności.',
+  },
+  'word-search': {
+    title: 'Wyszukiwanie Słów',
+    description: 'Znajdź ukryte słowa w siatce liter — poziomo, pionowo, po przekątnej, a nawet wspak. Ścigaj się z czasem, aby znaleźć każde słowo przed upływem limitu.\n\nŁamigłówki szukania słów zostały wynalezione przez Normana E. Gibata w 1968 roku. Dziś setki milionów ludzi na całym świecie rozwiązuje je codziennie.',
+    controls: 'Kliknij pierwszą i ostatnią literę słowa, aby je zaznaczyć. Słowa mogą biec w dowolnym kierunku. Skreśl każde znalezione słowo z listy.',
+  },
+  'word-scramble': {
+    title: 'Anagram',
+    description: 'Ułóż pomieszane litery, aby jak najszybciej odgadnąć ukryte słowo. Gra słowna, która testuje twój instynkt ortograficzny pod presją czasu.\n\nGry z pomieszanymi słowami wykorzystują fascynującą cechę mózgu: potrafi on rozpoznawać słowa z wymieszanymi środkowymi literami, jeśli pierwsza i ostatnia litera są na swoim miejscu.',
+    controls: 'Przeczytaj pomieszane litery na ekranie. Wpisz odpowiedź w pole tekstowe i naciśnij Enter, aby potwierdzić.',
+  },
+  'connect-four': {
+    title: 'Cztery w rzędzie',
+    description: 'Wrzucaj kolorowe krążki do pionowej planszy i jako pierwszy ułóż cztery w jednym kolorze — poziomo, pionowo lub po przekątnej. Prosta w założeniu, głęboka strategicznie.\n\nCzwórki zostały matematycznie rozwiązane w 1988 roku: pierwszy gracz zawsze może wygrać, zaczynając od środkowej kolumny.',
+    controls: 'Kliknij kolumnę, aby wrzucić krążek. Krążki spadają na najniższą wolną pozycję. Pierwszy, kto połączy cztery krążki, wygrywa.',
+  },
+  'sliding-puzzle': {
+    title: 'Układanka przesuwna',
+    description: 'Przesuwaj ponumerowane kafelki na planszy 4×4 (z jednym pustym polem), aby ułożyć je od 1 do 15. Myśl kilka ruchów naprzód, aby znaleźć najlepsze rozwiązanie.\n\nŁamigłówka 15 wywołała światową manię w latach 80. XIX wieku. Matematycznie dokładnie połowa wszystkich wymieszanych pozycji jest nierozwiązywalna.',
+    controls: 'Kliknij kafelek sąsiadujący z pustym polem, aby go przesunąć. Ułóż wszystkie kafelki od 1 do 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Stuknij, aby machać skrzydłami ptaka i przedzierać się przez niekończącą się serię szczelin między rurami. Każde stuknięcie unosi ptaka lekko w górę; grawitacja ściąga go nieustannie w dół.\n\nStworzona przez wietnamskiego programistę Dong Nguyena w 2013 roku, Flappy Bird stała się globalnym fenomenem zarabiającym 50 000 dolarów dziennie na reklamach, zanim twórca dobrowolnie ją usunął ze sklepów.',
+    controls: 'Naciśnij Spację lub kliknij gdziekolwiek, aby machać skrzydłami. Przeprowadź ptaka przez szczeliny między rurami, nie dotykając ich.',
+  },
+  'space-invaders-online': {
+    title: 'Kosmiczni Najeźdźcy',
+    description: 'Broń Ziemi przed falami kosmicznych najeźdźców schodzących z nieba. Poruszaj swoim działem laserowym i zniszcz obcych, zanim dotrą do ziemi.\n\nStworzony przez Tomohiro Nishikado w 1978 roku, Space Invaders spowodował ogólnokrajowy niedobór monet 100-jenowych w Japonii z powodu swojej ogromnej popularności.',
+    controls: 'Użyj ← → do poruszania działem. Naciśnij Spację, aby strzelać. Zniszcz wszystkich obcych, zanim dotrą na dół. UFO dają punkty bonusowe.',
+  },
+  'asteroids': {
+    title: 'Asteroidy',
+    description: 'Pilotuj swój statek kosmiczny przez pole wirujących asteroid i niszcz je na coraz mniejsze fragmenty. Unikaj odłamków i uważaj na wrogie spodki.\n\nStworzona przez Atari w 1979 roku, Asteroids była ich najlepiej sprzedającym się automatem arcade z ponad 70 000 jednostkami na całym świecie.',
+    controls: '← → do obrotu, ↑ do napędu i Spacja do strzału. Duże asteroidy dzielą się na średnie, potem małe. Unikaj latających spodków.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Przeprowadź swoją żabę przez ruchliwą drogę i niebezpieczną rzekę, aby bezpiecznie dotrzeć do domu. Unikaj samochodów, ciężarówek i autobusów, a potem skacz po kłodach i żółwiach.\n\nZaprojektowana przez Konami w 1981 roku, Frogger sprzedała się w ponad 20 milionach egzemplarzy i jest uważana za jeden z pierwszych komentarzy ekologicznych w historii gier.',
+    controls: 'Użyj strzałek, aby poruszać żabą krok po kroku. Przejdź przez drogę, wyczuwając przerwy w ruchu. Użyj kłód i żółwi, aby przeprawić się przez rzekę.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Walcz z falą za falą formacji obcych w tej kultowej kosmicznej strzelance. Wrogowie atakują w szyku, a wiązka chwytająca może porwać twój statek.\n\nWydana przez Namco w 1981 roku, Galaga jest uważana za jedną z najwspanialszych gier arcade w historii gier wideo.',
+    controls: '← → do poruszania statkiem. Spacja do strzelania. Pozwól Boss Galaga schwytać twój statek, a potem go zestrzel — odzyskasz go z podwójną siłą ognia.',
+  },
+  'brick-breaker': {
+    title: 'Łamacz Cegieł',
+    description: 'Rozbijaj warstwy cegieł odbijającą się piłką i paletką. Zbieraj ulepszenia — dłuższa paletka, multi-piłka, strzały laserowe — i wyczyść wszystkie cegły, aby przejść dalej.\n\nBrick Breaker jest duchowym następcą klasycznego Breakout, utrzymując gatunek odbijania piłki przy życiu od prawie 50 lat.',
+    controls: 'Poruszaj paletką myszką lub ← →. Utrzymuj piłkę w grze i celuj w cegły. Zbieraj spadające ulepszenia. Wyczyść wszystkie cegły.',
+  },
+  'stack-tower': {
+    title: 'Wieża Bloków',
+    description: 'Stuknij, aby ciąć i układać bloki, gdy kołyszą się w przód i w tył. Każda wystająca część zostaje obcięta, zwężając twoją platformę. Jak wysoko potrafisz zbudować?\n\nStack Tower wykorzystuje pragnienie mózgu do precyzji i rytmu, tworząc natychmiastowe napięcie prostą pętlą: kołysanie → stuknięcie → wyrównanie.',
+    controls: 'Naciśnij Spację lub kliknij, aby ciąć ruchomy blok. Im dokładniejsze wyrównanie, tym szersza platforma. Układaj jak najwyżej.',
+  },
+  'reaction-time': {
+    title: 'Test Czasu Reakcji',
+    description: 'Gdy ekran zmieni kolor na zielony, kliknij jak najszybciej! Twój czas reakcji jest rejestrowany w milisekundach — naukowy sposób na przetestowanie refleksu.\n\nŚredni czas reakcji człowieka wynosi około 250 milisekund. Wytrenowani sportowcy osiągają około 150 ms. Kierowcy Formuły 1 potrafią zareagować w mniej niż 100 ms.',
+    controls: 'Poczekaj, aż ekran zmieni się z czerwonego na zielony, a następnie kliknij najszybciej jak potrafisz. Timer mierzy dokładny czas między zmianą koloru a twoim kliknięciem. Nie klikaj za wcześnie!',
+  },
+  'whack-a-mole': {
+    title: 'Bij Kreta',
+    description: 'Krety wyskakują z nor — uderz jak najwięcej, zanim się schowają! Z każdym poziomem krety stają się szybsze, a okna reakcji się kurczą.\n\nWhac-A-Mole (pierwotna nazwa „Mogura Taiji") został wynaleziony przez japońskiego producenta TOGO w 1975 roku i pozostaje klasykiem salonów gier na całym świecie.',
+    controls: 'Kliknij lub stuknij kreta, gdy tylko się pojawi. Każde uderzenie to punkt. Uderz jak najwięcej w 30 sekund!',
+  },
+  'dots-and-boxes': {
+    title: 'Kropki i Pudełka',
+    description: 'Na zmianę rysujcie linie między kropkami. Dokończ czwarty bok pola, aby je przejąć i zagrać ponownie. Gracz, który przejmie więcej pól, wygrywa.\n\nKropki i kwadraty została wynaleziona przez francuskiego matematyka Édouarda Lucasa w 1889 roku. Pomimo dziecięcego wyglądu ma głęboką strukturę kombinatorycznej teorii gier.',
+    controls: 'Kliknij między dwoma sąsiednimi kropkami, aby narysować linię. Jeśli twoja linia kończy pole, przejmujesz je i grasz ponownie. Przejmij więcej pól niż przeciwnik.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Kładź krążki na planszy i otaczaj pionki przeciwnika, aby odwrócić je na swój kolor. Jeden ruch może odwrócić całe rzędy i kolumny — plansza może się dramatycznie zmienić w kilka tur.\n\nReversi zostało wynalezione w Anglii w 1883 roku. Współczesna wersja Othello (1971) nosi hasło „minuta, by się nauczyć, życie, by opanować".',
+    controls: 'Kliknij na prawidłowe pole (zaznaczone na zielono), aby położyć krążek. Ruch jest prawidłowy tylko jeśli otacza co najmniej jeden pionek przeciwnika. Otoczone pionki są odwracane. Kto ma więcej na końcu, wygrywa.',
+  },
+
 };

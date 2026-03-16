@@ -386,6 +386,7 @@ export const KO: TranslationMap = {
   // Category & Tag
   'category.all': '모든 게임',
   'category.classic': '클래식',
+  'category.online': '온라인 게임',
   'tag_ai': 'AI 기반',
   'tag_christmas': '크리스마스',
   'tag_coding': '코딩',

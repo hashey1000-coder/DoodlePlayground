@@ -386,6 +386,7 @@ export const ZH_TW: TranslationMap = {
   // Category & Tag
   'category.all': '所有遊戲',
   'category.classic': '經典',
+  'category.online': '線上遊戲',
   'tag_ai': 'AI驅動',
   'tag_christmas': '聖誕節',
   'tag_coding': '程式設計',

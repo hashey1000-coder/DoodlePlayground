@@ -1042,7 +1042,7 @@ export default function PlayGame() {
                         {t('game.moreGames')} — {t(`category.${game.category}` as any)}
                       </h2>
                     </div>
-                    <Link href={`/?category=${game.category}`}>
+                    <Link href={game.category === 'online' ? '/online-games' : `/?category=${game.category}`}>
                       <span className="text-xs text-teal-500 hover:text-teal-700 font-medium flex items-center gap-1 cursor-pointer transition-colors">
                         {t('common.seeAll')} <ArrowRight className="w-3 h-3" />
                       </span>

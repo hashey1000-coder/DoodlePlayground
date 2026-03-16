@@ -386,6 +386,7 @@ export const TR: TranslationMap = {
   // Category & Tag
   'category.all': 'Tüm Oyunlar',
   'category.classic': 'Klasik',
+  'category.online': 'Online Oyunlar',
   'tag_ai': 'Yapay Zeka',
   'tag_christmas': 'Noel',
   'tag_coding': 'Kodlama',

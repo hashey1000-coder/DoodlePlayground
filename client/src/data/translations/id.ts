@@ -536,4 +536,108 @@ export const ID_GAMES: Record<string, GameTranslation> = {
     description: 'Cetak try dan tendangan konversi dalam Doodle ini yang merayakan Piala Dunia Rugby 2015. Mainkan aksi rugby cepat dan pimpin timmu menuju kemenangan.\n\nDoodle ini dibuat untuk pembukaan Piala Dunia Rugby 2015 di Inggris. Rugby dimainkan di lebih dari 120 negara.',
     controls: 'Klik untuk menendang bola dan mencetak poin. Atur waktu konversi Anda dan hilangkan sasaran. Berlari dengan bola dan hindari pemain bertahan untuk mencoba mencetak gol!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Permainan blok jatuh legendaris yang mendefinisikan sebuah generasi. Putar dan geser tetromino untuk membuat baris horizontal yang lengkap.\n\nDirancang oleh insinyur Soviet Alexey Pajitnov pada tahun 1984, Tetris adalah salah satu game terlaris sepanjang masa dengan lebih dari 520 juta salinan.',
+    controls: 'Tombol panah: ← → untuk menggeser, ↑ untuk memutar, ↓ untuk jatuh lambat. Spasi untuk jatuh cepat.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Klasik arcade asli yang meluncurkan seluruh industri.\n\nDikembangkan oleh Atari pada tahun 1972, Pong adalah video game pertama yang sukses secara komersial.',
+    controls: 'Gerakkan pemukul dengan mouse atau W / S. Pemain pertama yang mencapai 7 poin menang.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Hancurkan barisan bata berwarna dengan bola pantul dan pemukul.\n\nDirancang oleh Nolan Bushnell pada tahun 1976, prototipenya dibangun oleh Steve Jobs dan Steve Wozniak dalam empat hari.',
+    controls: 'Gerakkan pemukul dengan ← → atau mouse. Jaga bola tetap dalam permainan.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Geser ubin bernomor di kisi 4×4, gabungkan angka yang sama.\n\nDibuat oleh Gabriele Cirulli pada Maret 2014, pada usia 19 tahun.',
+    controls: 'Tombol panah (← → ↑ ↓) untuk menggeser ubin. Ubin yang sama bergabung.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Isi kisi 9×9 sehingga setiap baris, kolom, dan kotak 3×3 berisi angka 1–9 tepat satu kali.\n\nMeskipun namanya Jepang, Sudoku ditemukan di AS oleh Howard Garns pada tahun 1979.',
+    controls: 'Klik sel kosong dan ketikkan angka (1–9). Pilih tingkat kesulitan.',
+  },
+  'word-search': {
+    title: 'Pencarian Kata',
+    description: 'Temukan kata-kata tersembunyi dalam kotak huruf — secara horizontal, vertikal, diagonal, dan bahkan mundur. Kalahkan waktu untuk menemukan semua kata sebelum habis.\n\nTeka-teki cari kata diciptakan oleh Norman E. Gibat pada tahun 1968. Saat ini ratusan juta orang di seluruh dunia menyelesaikannya setiap hari.',
+    controls: 'Klik huruf pertama lalu terakhir untuk menyorot kata. Kata bisa berjalan ke segala arah. Coret setiap kata dari daftar untuk menyelesaikan teka-teki.',
+  },
+  'word-scramble': {
+    title: 'Acak Kata',
+    description: 'Susun ulang huruf-huruf acak untuk mengungkap kata tersembunyi secepat mungkin. Permainan kosakata yang menguji insting ejaan Anda di bawah tekanan.\n\nTeka-teki kata acak memanfaatkan keunikan otak yang menarik: otak dapat mengenali kata-kata meskipun huruf tengahnya diacak, asalkan huruf pertama dan terakhir tetap di tempatnya.',
+    controls: 'Baca huruf-huruf acak yang ditampilkan di layar. Ketik jawaban Anda di kotak teks dan tekan Enter untuk mengonfirmasi.',
+  },
+  'connect-four': {
+    title: 'Sambungkan Empat',
+    description: 'Jatuhkan keping berwarna ke dalam papan vertikal dan jadilah yang pertama menyusun empat keping sewarna — horizontal, vertikal, atau diagonal. Sederhana di permukaan, mendalam strateginya.\n\nConnect Four dipecahkan secara matematis pada tahun 1988: pemain pertama selalu bisa menjamin kemenangan dengan memulai di kolom tengah.',
+    controls: 'Klik kolom untuk menjatuhkan keping Anda. Keping jatuh ke posisi terendah yang tersedia. Jadilah yang pertama menghubungkan empat keping untuk menang.',
+  },
+  'sliding-puzzle': {
+    title: 'Puzzle Geser',
+    description: 'Geser ubin bernomor di papan 4×4 (dengan satu ruang kosong) untuk menyusunnya dari 1 sampai 15. Pikirkan beberapa langkah ke depan untuk solusi terbaik.\n\nPuzzle 15 memicu kegilaan global pada tahun 1880-an. Secara matematis, tepat separuh dari semua posisi acak tidak bisa diselesaikan.',
+    controls: 'Klik ubin di sebelah ruang kosong untuk menggesernya. Susun ulang sampai semua ubin terurut dari 1 hingga 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Ketuk untuk mengepakkan sayap burung dan menavigasi melalui celah pipa yang tak berujung. Setiap ketukan mengangkat burung sedikit; gravitasi menariknya kembali tanpa henti.\n\nDiciptakan oleh pengembang Vietnam Dong Nguyen pada 2013, Flappy Bird menjadi fenomena global yang menghasilkan $50.000 per hari dari iklan sebelum penciptanya secara sukarela menariknya dari toko.',
+    controls: 'Tekan Spasi atau klik di mana saja untuk mengepakkan sayap. Pandu burung melewati celah antar pipa tanpa menyentuhnya.',
+  },
+  'space-invaders-online': {
+    title: 'Space Invaders',
+    description: 'Pertahankan Bumi dari gelombang penjajah alien yang turun dari atas. Gerakkan meriam laser Anda dan hancurkan alien sebelum mereka mencapai tanah.\n\nDiciptakan oleh Tomohiro Nishikado pada tahun 1978, Space Invaders menyebabkan kekurangan koin 100 yen secara nasional di Jepang karena popularitasnya yang luar biasa.',
+    controls: 'Gunakan ← → untuk menggerakkan meriam. Tekan Spasi untuk menembak. Hancurkan semua alien sebelum mencapai bawah. UFO memberikan poin bonus.',
+  },
+  'asteroids': {
+    title: 'Asteroid',
+    description: 'Kemudikan pesawat luar angkasa Anda melewati ladang asteroid yang berputar dan hancurkan menjadi pecahan yang semakin kecil. Hindari puing dan waspadai piring terbang musuh.\n\nDibuat oleh Atari pada tahun 1979, Asteroids menjadi kabinet arcade terlaris mereka dengan lebih dari 70.000 unit di seluruh dunia.',
+    controls: '← → untuk berputar, ↑ untuk mendorong dan Spasi untuk menembak. Asteroid besar pecah menjadi sedang lalu kecil. Hindari piring terbang.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Bantu katak Anda menyeberangi jalan raya yang ramai dan sungai berbahaya untuk sampai ke rumah dengan selamat. Hindari mobil, truk, dan bus, lalu lompati batang kayu dan kura-kura.\n\nDirancang oleh Konami pada tahun 1981, Frogger terjual lebih dari 20 juta unit dan dianggap sebagai salah satu komentar lingkungan pertama dalam sejarah gaming.',
+    controls: 'Gunakan tombol panah untuk menggerakkan katak selangkah demi selangkah. Seberangi jalan dengan mengatur waktu celah lalu lintas. Gunakan batang kayu dan kura-kura untuk menyeberangi sungai.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Lawan gelombang demi gelombang formasi alien dalam game tembak-tembakan luar angkasa ikonik ini. Musuh menyerang dalam formasi dan sinar traktor bisa menangkap pesawat Anda.\n\nDirilis oleh Namco pada tahun 1981, Galaga dianggap sebagai salah satu game arcade terhebat sepanjang masa dalam sejarah video game.',
+    controls: '← → untuk menggerakkan pesawat. Spasi untuk menembak. Biarkan Boss Galaga menangkap pesawat Anda, lalu tembak untuk mendapatkannya kembali dengan kekuatan ganda.',
+  },
+  'brick-breaker': {
+    title: 'Pemecah Bata',
+    description: 'Hancurkan lapisan-lapisan bata dengan bola pantulan dan dayung. Kumpulkan power-up — dayung lebih panjang, multi-bola, tembakan laser — dan bersihkan semua bata untuk maju.\n\nBrick Breaker adalah penerus spiritual dari Breakout klasik, menjaga genre bola pantulan tetap hidup selama hampir 50 tahun.',
+    controls: 'Gerakkan dayung dengan mouse atau ← →. Jaga bola tetap memantul dan bidik bata. Kumpulkan power-up yang jatuh. Bersihkan semua bata.',
+  },
+  'stack-tower': {
+    title: 'Menara Blok',
+    description: 'Ketuk untuk memotong dan menumpuk balok saat berayun bolak-balik. Setiap bagian yang menonjol dipotong dan mempersempit platform Anda. Seberapa tinggi Anda bisa membangun?\n\nStack Tower memanfaatkan keinginan otak akan presisi dan ritme, menciptakan ketegangan instan dengan loop sederhana: ayunan → ketuk → sejajarkan.',
+    controls: 'Tekan Spasi atau klik untuk memotong balok yang bergerak. Semakin presisi penjajaran, semakin lebar platform tetap. Tumpuk setinggi mungkin.',
+  },
+  'reaction-time': {
+    title: 'Tes Waktu Reaksi',
+    description: 'Saat layar berubah hijau, klik secepat mungkin! Waktu reaksi Anda dicatat dalam milidetik — cara ilmiah untuk menguji refleks Anda.\n\nWaktu reaksi manusia rata-rata sekitar 250 milidetik. Atlet terlatih mencapai sekitar 150 ms. Pembalap Formula 1 bisa bereaksi dalam waktu kurang dari 100 ms.',
+    controls: 'Tunggu layar berubah dari merah ke hijau, lalu klik secepat mungkin. Timer mengukur waktu tepat antara perubahan warna dan klik Anda. Jangan klik sebelum berubah!',
+  },
+  'whack-a-mole': {
+    title: 'Pukul Tikus Tanah',
+    description: 'Tikus tanah terus muncul dari lubangnya — pukul sebanyak mungkin sebelum mereka bersembunyi! Setiap level, mereka semakin cepat dan jendela reaksi semakin sempit.\n\nWhac-A-Mole (awalnya "Mogura Taiji") diciptakan oleh pengembang Jepang TOGO pada tahun 1975 dan tetap menjadi andalan arcade di seluruh dunia.',
+    controls: 'Klik atau ketuk tikus tanah segera saat muncul untuk memukulnya. Setiap pukulan berhasil mendapat satu poin. Pukul sebanyak mungkin dalam 30 detik!',
+  },
+  'dots-and-boxes': {
+    title: 'Titik dan Kotak',
+    description: 'Bergantian menggambar garis antar titik. Lengkapi sisi keempat kotak untuk mengklaimnya dan bermain lagi. Pemain yang mengklaim kotak terbanyak menang.\n\nDots and Boxes diciptakan oleh matematikawan Prancis Édouard Lucas pada tahun 1889. Meski terlihat sederhana, permainan ini memiliki struktur teori permainan kombinatorik yang mendalam.',
+    controls: 'Klik di antara dua titik yang berdekatan untuk menggambar garis. Jika garis Anda melengkapi kotak, Anda mengklaimnya dan bermain lagi. Klaim lebih banyak kotak dari lawan untuk menang.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Letakkan keping di papan dan kelilingi keping lawan untuk membaliknya ke warna Anda. Satu langkah bisa membalik seluruh baris dan kolom — papan bisa berubah drastis dalam beberapa giliran.\n\nReversi diciptakan di Inggris pada tahun 1883. Versi modern Othello (1971) mengusung tagline "semenit untuk dipelajari, seumur hidup untuk dikuasai".',
+    controls: 'Klik kotak yang valid (ditampilkan hijau) untuk meletakkan keping Anda. Langkah valid hanya jika mengapit minimal satu keping lawan. Semua keping yang diapit dibalik. Yang paling banyak keping di akhir menang.',
+  },
+
 };

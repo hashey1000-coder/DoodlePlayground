@@ -17,6 +17,7 @@ const CATEGORY_LINKS = [
   { labelKey: "category.educational", href: "/?category=educational" },
   { labelKey: "category.seasonal", href: "/?category=seasonal" },
   { labelKey: "category.adventure", href: "/?category=adventure" },
+  { labelKey: "category.online", href: "/online-games" },
 ];
 
 const QUICK_LINKS = [

@@ -386,6 +386,7 @@ export const AR: TranslationMap = {
   // Category & Tag
   'category.all': 'جميع الألعاب',
   'category.classic': 'كلاسيكي',
+  'category.online': 'ألعاب أونلاين',
   'tag_ai': 'ذكاء اصطناعي',
   'tag_christmas': 'عيد الميلاد',
   'tag_coding': 'برمجة',

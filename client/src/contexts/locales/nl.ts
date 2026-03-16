@@ -386,6 +386,7 @@ export const NL: TranslationMap = {
   // Category & Tag
   'category.all': 'Alle Spellen',
   'category.classic': 'Klassiek',
+  'category.online': 'Online Spellen',
   'tag_ai': 'AI-aangedreven',
   'tag_christmas': 'Kerst',
   'tag_coding': 'Coderen',

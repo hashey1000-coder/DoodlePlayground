@@ -386,6 +386,7 @@ export const DE: TranslationMap = {
   // Category & Tag
   'category.all': 'Alle Spiele',
   'category.classic': 'Klassisch',
+  'category.online': 'Online-Spiele',
   'tag_ai': 'KI-gestützt',
   'tag_christmas': 'Weihnachten',
   'tag_coding': 'Programmieren',

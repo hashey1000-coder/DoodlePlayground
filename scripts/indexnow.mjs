@@ -72,7 +72,11 @@ const gamesTs   = readFileSync(resolve(ROOT, 'client/src/data/games.ts'), 'utf8'
 const slugs     = [...gamesTs.matchAll(/slug:\s*['"`]([^'"`]+)['"`]/g)].map((m) => m[1]);
 const GAME_PATHS = slugs.map((s) => `/play/${s}`);
 
-const ALL_PATHS = [...STATIC_PATHS, ...GAME_PATHS];
+// ── Category pages (must match generate-sitemap.mjs CATEGORY_IDS) ───────────
+const CATEGORY_IDS = ['classic', 'arcade', 'sports', 'puzzle', 'adventure', 'educational', 'seasonal', 'creative'];
+const CATEGORY_PATHS = CATEGORY_IDS.map((id) => `/category/${id}`);
+
+const ALL_PATHS = [...STATIC_PATHS, ...CATEGORY_PATHS, ...GAME_PATHS];
 
 // ── Build a full URL for locale + path ───────────────────────────────────────
 function buildUrl(locale, path) {

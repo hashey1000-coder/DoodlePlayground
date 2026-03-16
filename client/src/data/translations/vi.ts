@@ -536,4 +536,108 @@ export const VI_GAMES: Record<string, GameTranslation> = {
     description: 'Ghi try và sút chuyển đổi trong Doodle kỷ niệm Giải Vô Địch Rugby Thế Giới 2015. Chơi trò rugby nhanh và dẫn đội của bạn đến chiến thắng.\n\nDoodle này được tạo ra cho lễ khai mạc Giải Vô Địch Rugby Thế Giới 2015 tại Anh. Rugby được chơi tại hơn 120 quốc gia.',
     controls: 'Click để đá bóng và ghi điểm. Thời gian chuyển đổi của bạn và giảm mục tiêu. Chạy với quả bóng và né tránh các hậu vệ để ghi bàn!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Trò chơi xếp khối huyền thoại đã định nghĩa cả một thế hệ. Xoay và trượt các tetromino để tạo thành các hàng ngang hoàn chỉnh.\n\nĐược thiết kế bởi kỹ sư Liên Xô Alexey Pajitnov năm 1984, Tetris là một trong những trò chơi bán chạy nhất mọi thời đại với hơn 520 triệu bản.',
+    controls: 'Phím mũi tên: ← → để trượt, ↑ để xoay, ↓ rơi chậm. Dấu cách để rơi nhanh.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Trò chơi arcade cổ điển gốc đã khởi động cả một ngành công nghiệp.\n\nĐược Atari phát triển năm 1972, Pong là trò chơi điện tử thương mại đầu tiên thành công.',
+    controls: 'Di chuyển vợt bằng chuột hoặc phím W / S. Người đầu tiên đạt 7 điểm thắng cuộc.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Phá vỡ các hàng gạch màu sắc với quả bóng nảy.\n\nĐược thiết kế bởi Nolan Bushnell năm 1976, nguyên mẫu được Steve Jobs và Steve Wozniak xây dựng trong bốn ngày.',
+    controls: 'Di chuyển vợt bằng ← → hoặc chuột. Giữ bóng trong trò chơi.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Trượt các ô được đánh số trên lưới 4×4, kết hợp các số giống nhau.\n\nĐược tạo bởi Gabriele Cirulli vào tháng 3 năm 2014 khi 19 tuổi.',
+    controls: 'Phím mũi tên (← → ↑ ↓) để di chuyển các ô. Các ô giống nhau kết hợp với nhau.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Điền vào lưới 9×9 sao cho mỗi hàng, cột và ô 3×3 chứa các chữ số 1–9 đúng một lần.\n\nMặc dù có tên tiếng Nhật, Sudoku được phát minh ở Mỹ bởi Howard Garns năm 1979.',
+    controls: 'Nhấp vào ô trống và nhập số (1–9). Chọn mức độ khó.',
+  },
+  'word-search': {
+    title: 'Tìm Từ',
+    description: 'Tìm các từ ẩn trong lưới chữ cái — ngang, dọc, chéo và thậm chí ngược. Chạy đua với thời gian để tìm mọi từ trước khi hết giờ.\n\nTrò chơi tìm từ được phát minh bởi Norman E. Gibat vào năm 1968. Ngày nay hàng trăm triệu người trên toàn thế giới giải chúng mỗi ngày.',
+    controls: 'Nhấp vào chữ cái đầu tiên và cuối cùng của từ để tô sáng. Từ có thể chạy theo mọi hướng. Gạch bỏ từng từ trong danh sách.',
+  },
+  'word-scramble': {
+    title: 'Xáo Trộn Từ',
+    description: 'Sắp xếp lại các chữ cái bị xáo trộn để tìm ra từ ẩn nhanh nhất có thể. Một trò chơi từ vựng thử thách bản năng chính tả của bạn dưới áp lực.\n\nTrò chơi xáo trộn chữ khai thác một đặc điểm thú vị của não bộ: não có thể nhận ra từ dù các chữ cái ở giữa bị đảo lộn, miễn là chữ đầu và cuối đúng vị trí.',
+    controls: 'Đọc các chữ cái bị xáo trộn trên màn hình. Gõ câu trả lời vào ô văn bản và nhấn Enter để xác nhận.',
+  },
+  'connect-four': {
+    title: 'Kết Nối Bốn',
+    description: 'Thả đĩa màu vào lưới dọc và trở thành người đầu tiên xếp bốn đĩa cùng màu thành hàng — ngang, dọc hoặc chéo. Đơn giản nhưng chiến thuật sâu sắc.\n\nConnect Four đã được giải bằng toán học vào năm 1988: người chơi đi trước luôn có thể đảm bảo chiến thắng nếu bắt đầu ở cột giữa.',
+    controls: 'Nhấp vào cột để thả đĩa. Đĩa rơi xuống vị trí thấp nhất có sẵn. Người đầu tiên nối được bốn đĩa sẽ thắng.',
+  },
+  'sliding-puzzle': {
+    title: 'Trượt Hình',
+    description: 'Trượt các ô số trên lưới 4×4 (có một ô trống) để sắp xếp chúng từ 1 đến 15. Hãy nghĩ trước nhiều bước để tìm cách giải tối ưu.\n\nTrò chơi xếp 15 đã gây ra cơn sốt toàn cầu vào những năm 1880. Về mặt toán học, đúng một nửa số vị trí xáo trộn là không thể giải được.',
+    controls: 'Nhấp vào ô cạnh chỗ trống để trượt. Sắp xếp tất cả các ô theo thứ tự từ 1 đến 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Chạm để vỗ cánh chim và bay qua chuỗi khe hở giữa các ống nước bất tận. Mỗi lần chạm nâng chim lên một chút; trọng lực kéo nó xuống không thương tiếc.\n\nĐược tạo bởi nhà phát triển Việt Nam Đông Nguyễn vào năm 2013, Flappy Bird trở thành hiện tượng toàn cầu kiếm 50.000 đô la mỗi ngày từ quảng cáo trước khi chính tác giả tự nguyện gỡ bỏ khỏi cửa hàng.',
+    controls: 'Nhấn Phím cách hoặc nhấp bất kỳ đâu để vỗ cánh. Dẫn chim qua các khe hở giữa ống mà không chạm vào.',
+  },
+  'space-invaders-online': {
+    title: 'Kẻ Xâm Lược Vũ Trụ',
+    description: 'Bảo vệ Trái Đất khỏi các đợt quân xâm lược ngoài hành tinh đang hạ xuống. Di chuyển khẩu pháo laser và tiêu diệt chúng trước khi chạm đất.\n\nĐược tạo bởi Tomohiro Nishikado vào năm 1978, Space Invaders đã gây ra tình trạng thiếu hụt đồng xu 100 yên trên toàn nước Nhật do sự phổ biến vượt bậc.',
+    controls: 'Dùng ← → để di chuyển pháo. Nhấn Phím cách để bắn. Tiêu diệt tất cả quân địch trước khi chúng chạm đáy. UFO cho điểm thưởng.',
+  },
+  'asteroids': {
+    title: 'Tiểu Hành Tinh',
+    description: 'Lái tàu vũ trụ xuyên qua cánh đồng thiên thạch đang xoay tròn, phá hủy chúng thành những mảnh nhỏ dần. Né tránh mảnh vỡ và cẩn thận với đĩa bay thù địch.\n\nĐược Atari tạo ra vào năm 1979, Asteroids là tủ arcade bán chạy nhất của họ với hơn 70.000 chiếc trên toàn thế giới.',
+    controls: '← → để xoay, ↑ để đẩy và Phím cách để bắn. Thiên thạch lớn tách thành trung bình rồi nhỏ. Né tránh đĩa bay.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Dẫn con ếch của bạn qua con đường đông đúc và dòng sông nguy hiểm để về nhà an toàn. Tránh ô tô, xe tải và xe buýt, rồi nhảy qua khúc gỗ và rùa.\n\nĐược Konami thiết kế năm 1981, Frogger đã bán hơn 20 triệu bản và được coi là một trong những bình luận môi trường đầu tiên trong lịch sử trò chơi.',
+    controls: 'Dùng phím mũi tên để di chuyển ếch từng bước. Qua đường bằng cách canh khe hở giữa xe cộ. Dùng khúc gỗ và rùa để qua sông.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Chiến đấu với từng đợt đội hình ngoài hành tinh trong trò chơi bắn súng không gian huyền thoại này. Kẻ thù tấn công theo đội hình và tia kéo có thể bắt giữ tàu của bạn.\n\nĐược Namco phát hành năm 1981, Galaga được coi là một trong những trò chơi arcade vĩ đại nhất mọi thời đại trong lịch sử video game.',
+    controls: '← → để di chuyển tàu. Phím cách để bắn. Để Boss Galaga bắt tàu bạn, rồi bắn hạ nó để lấy lại tàu và chiến đấu với sức mạnh gấp đôi.',
+  },
+  'brick-breaker': {
+    title: 'Phá Gạch',
+    description: 'Phá hủy nhiều lớp gạch bằng quả bóng nảy và thanh chắn. Thu thập vật phẩm tăng sức mạnh — thanh chắn dài hơn, đa bóng, bắn laser — và phá hết gạch để tiến lên.\n\nBrick Breaker là người kế thừa tinh thần của Breakout cổ điển, giữ cho thể loại bóng nảy sống động suốt gần 50 năm.',
+    controls: 'Di chuyển thanh chắn bằng chuột hoặc ← →. Giữ bóng nảy và nhắm vào gạch. Thu thập vật phẩm rơi xuống. Phá hết gạch.',
+  },
+  'stack-tower': {
+    title: 'Tháp Xếp',
+    description: 'Chạm để cắt và xếp chồng các khối khi chúng lắc qua lắc lại. Mỗi phần thừa bị cắt bỏ, làm hẹp nền tảng của bạn. Bạn có thể xây cao đến đâu?\n\nStack Tower khai thác khao khát chính xác và nhịp điệu của não bộ, tạo ra sự căng thẳng tức thì với vòng lặp đơn giản: lắc → chạm → căn chỉnh.',
+    controls: 'Nhấn Phím cách hoặc nhấp để cắt khối đang di chuyển. Căn chỉnh càng chính xác, nền tảng càng rộng. Xếp cao nhất có thể.',
+  },
+  'reaction-time': {
+    title: 'Kiểm Tra Phản Xạ',
+    description: 'Khi màn hình chuyển sang xanh lá, hãy nhấp nhanh nhất có thể! Thời gian phản xạ được ghi lại bằng mili giây — cách khoa học để kiểm tra phản xạ của bạn.\n\nThời gian phản xạ trung bình của con người là khoảng 250 mili giây. Vận động viên được đào tạo đạt khoảng 150ms. Tay đua F1 có thể phản ứng trong dưới 100ms.',
+    controls: 'Chờ màn hình chuyển từ đỏ sang xanh rồi nhấp nhanh nhất có thể. Bộ đếm đo thời gian chính xác giữa thay đổi màu và cú nhấp. Đừng nhấp trước khi đổi màu!',
+  },
+  'whack-a-mole': {
+    title: 'Đập Chuột Chũi',
+    description: 'Chuột chũi liên tục nhô ra từ hang — đập càng nhiều càng tốt trước khi chúng trốn! Mỗi màn chuột chũi nhanh hơn và thời gian phản ứng ngắn hơn.\n\nWhac-A-Mole (tên gốc "Mogura Taiji") được nhà sản xuất Nhật Bản TOGO phát minh năm 1975 và vẫn là trò chơi arcade phổ biến trên toàn thế giới.',
+    controls: 'Nhấp hoặc chạm chuột chũi ngay khi nó nhô lên. Mỗi cú đập thành công được một điểm. Đập nhiều nhất có thể trong 30 giây!',
+  },
+  'dots-and-boxes': {
+    title: 'Chấm và Hộp',
+    description: 'Lần lượt vẽ đường giữa các điểm. Hoàn thành cạnh thứ tư của ô vuông để chiếm lấy và được chơi thêm lượt. Người chiếm nhiều ô hơn thắng.\n\nDots and Boxes được nhà toán học Pháp Édouard Lucas phát minh năm 1889. Dù trông đơn giản như trò chơi trẻ em, nó có cấu trúc lý thuyết trò chơi tổ hợp sâu sắc.',
+    controls: 'Nhấp giữa hai điểm liền kề để vẽ đường. Nếu đường của bạn hoàn thành ô vuông, bạn chiếm nó và chơi thêm lượt. Chiếm nhiều ô hơn đối thủ để thắng.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Đặt quân cờ lên bàn và bao vây quân đối thủ để lật chúng sang màu của bạn. Một nước đi có thể lật cả hàng và cột — bàn cờ có thể thay đổi chóng mặt chỉ trong vài lượt.\n\nReversi được phát minh tại Anh năm 1883. Phiên bản hiện đại Othello (1971) mang khẩu hiệu "một phút để học, cả đời để thành thạo".',
+    controls: 'Nhấp vào ô hợp lệ (hiển thị xanh) để đặt quân. Nước đi chỉ hợp lệ khi bao vây ít nhất một quân đối thủ. Tất cả quân bị bao vây sẽ bị lật. Ai có nhiều quân hơn khi kết thúc sẽ thắng.',
+  },
+
 };

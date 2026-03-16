@@ -386,6 +386,7 @@ export const HI: TranslationMap = {
   // Category & Tag
   'category.all': 'सभी खेल',
   'category.classic': 'क्लासिक',
+  'category.online': 'ऑनलाइन गेम्स',
   'tag_ai': 'AI-संचालित',
   'tag_christmas': 'क्रिसमस',
   'tag_coding': 'कोडिंग',

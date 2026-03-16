@@ -536,4 +536,108 @@ export const DE_GAMES: Record<string, GameTranslation> = {
     description: 'Erzielen Sie Versuche und verwandeln Sie Kicks in diesem Doodle zur Rugby-WM 2015. Spielen Sie schnelle Rugby-Aktionen.\n\nDieses Doodle wurde zur Eröffnung der Rugby-Weltmeisterschaft 2015 in England erstellt. Rugby wird in über 120 Ländern gespielt.',
     controls: 'Klicken Sie, um den Ball zu treten und Punkte zu erzielen. Planen Sie Ihre Conversions und Drop-Ziele. Laufen Sie mit dem Ball und weichen Sie den Verteidigern aus, um Versuche zu erzielen!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Das legendäre Fallblock-Spiel, das eine Generation geprägt hat. Drehe und schiebe Tetrominos, um vollständige Reihen zu bilden.\n\nEntworfen von Alexey Pajitnov 1984, ist Tetris eines der meistverkauften Spiele aller Zeiten mit über 520 Millionen Exemplaren.',
+    controls: 'Pfeiltasten: ← → zum Schieben, ↑ zum Drehen, ↓ für langsamen Fall. Leertaste für schnellen Fall.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Der originale Arcade-Klassiker, der eine ganze Industrie ins Leben gerufen hat.\n\nVon Atari 1972 entwickelt, war Pong das erste kommerziell erfolgreiche Videospiel.',
+    controls: 'Bewege den Schläger mit der Maus oder W / S. Der erste Spieler mit 7 Punkten gewinnt.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Zerschlage Reihen bunter Steine mit einem Ball und einem Schläger.\n\n1976 von Nolan Bushnell entworfen, wurde der Prototyp von Steve Jobs und Steve Wozniak in vier Tagen gebaut.',
+    controls: 'Bewege den Schläger mit ← → oder der Maus. Halte den Ball im Spiel.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Schiebe nummerierte Kacheln auf einem 4×4-Gitter und verschmelze gleiche Zahlen.\n\nErstellt von dem 19-jährigen Gabriele Cirulli an einem Wochenende im März 2014.',
+    controls: 'Pfeiltasten (← → ↑ ↓), um alle Kacheln zu schieben. Gleiche Kacheln verschmelzen.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Fülle das 9×9-Gitter aus, damit jede Zeile, Spalte und 3×3-Box die Ziffern 1–9 genau einmal enthält.\n\nTrotz seines japanischen Namens wurde Sudoku 1979 in den USA von Howard Garns erfunden.',
+    controls: 'Klicke auf eine leere Zelle und tippe eine Zahl (1–9). Wähle den Schwierigkeitsgrad.',
+  },
+  'word-search': {
+    title: 'Buchstabensuppe',
+    description: 'Finde versteckte Wörter in einem Buchstabengitter — horizontal, vertikal, diagonal und sogar rückwärts. Schlage die Uhr und finde jedes Wort, bevor die Zeit abläuft.\n\nWortsuchrätsel wurden 1968 von Norman E. Gibat erfunden. Heute lösen Hunderte Millionen Menschen weltweit sie täglich.',
+    controls: 'Klicke auf den ersten und letzten Buchstaben eines Wortes, um es zu markieren. Wörter können in jede Richtung verlaufen. Streiche jedes gefundene Wort von der Liste.',
+  },
+  'word-scramble': {
+    title: 'Buchstaben-Mix',
+    description: 'Entwirre durcheinander gewürfelte Buchstaben, um das versteckte Wort so schnell wie möglich zu finden. Ein Wortschatzspiel, das deinen Rechtschreibinstinkt unter Druck testet.\n\nBuchstabenrätsel nutzen eine faszinierende Eigenschaft des Gehirns: Es kann Wörter erkennen, deren mittlere Buchstaben vertauscht sind, solange der erste und letzte stimmen.',
+    controls: 'Lies die angezeigten Buchstaben auf dem Bildschirm. Tippe deine Antwort in das Textfeld und drücke Enter zur Bestätigung.',
+  },
+  'connect-four': {
+    title: 'Vier Gewinnt',
+    description: 'Wirf farbige Scheiben in ein vertikales Gitter und sei der Erste, der vier seiner Farbe in einer Reihe hat — horizontal, vertikal oder diagonal. Einfach zu lernen, schwer zu meistern.\n\nVier Gewinnt wurde 1988 mathematisch gelöst: Der erste Spieler kann stets gewinnen, wenn er in der Mittelspalte beginnt.',
+    controls: 'Klicke auf eine Spalte, um deine Scheibe einzuwerfen. Die Scheibe fällt auf die niedrigste freie Position. Verbinde als Erster vier Scheiben deiner Farbe.',
+  },
+  'sliding-puzzle': {
+    title: 'Schiebepuzzle',
+    description: 'Schiebe nummerierte Kacheln in einem 4×4-Gitter (mit einem Leerfeld) und ordne sie von 1 bis 15. Denke mehrere Züge voraus für die beste Lösung.\n\nDas 15-Puzzle löste in den 1880er-Jahren weltweit eine Begeisterung aus. Mathematisch ist genau die Hälfte aller gemischten Positionen unlösbar.',
+    controls: 'Klicke auf eine Kachel neben dem leeren Feld, um sie zu verschieben. Ordne alle Kacheln von 1 bis 15 an.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Tippe, um mit den Flügeln zu flattern und durch eine endlose Reihe von Röhrenlücken zu navigieren. Jeder Tipp hebt den Vogel leicht an, die Schwerkraft zieht ihn unerbittlich zurück.\n\nEntwickelt vom vietnamesischen Entwickler Dong Nguyen im Jahr 2013, wurde Flappy Bird zu einem weltweiten Phänomen mit Werbeeinnahmen von 50.000 Dollar pro Tag, bevor der Erfinder es freiwillig aus den Stores nahm.',
+    controls: 'Drücke Leertaste oder klicke irgendwo, um zu flattern. Führe den Vogel durch die Lücken zwischen den Röhren, ohne sie zu berühren.',
+  },
+  'space-invaders-online': {
+    title: 'Space Invaders',
+    description: 'Verteidige die Erde gegen Wellen herabsteigender Alien-Invasoren. Bewege deine Laserkanone und zerstöre die Aliens, bevor sie den Boden erreichen.\n\nEntwickelt von Tomohiro Nishikado im Jahr 1978, verursachte Space Invaders in Japan einen landesweiten Mangel an 100-Yen-Münzen wegen seiner enormen Popularität.',
+    controls: 'Benutze ← → um deine Kanone zu bewegen. Drücke Leertaste zum Schießen. Zerstöre alle Aliens, bevor sie unten ankommen. UFOs bringen Bonuspunkte.',
+  },
+  'asteroids': {
+    title: 'Asteroiden',
+    description: 'Steuere dein Raumschiff durch ein Feld taumelnder Asteroiden und zerstöre sie in immer kleinere Fragmente. Weiche den Trümmern aus und achte auf feindliche Untertassen.\n\nEntwickelt von Atari im Jahr 1979, war Asteroids mit über 70.000 verkauften Einheiten deren meistverkaufter Spielautomat weltweit.',
+    controls: '← → zum Drehen, ↑ zum Beschleunigen und Leertaste zum Schießen. Große Asteroiden teilen sich in mittlere, dann kleine. Weiche fliegenden Untertassen aus.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Führe deinen Frosch sicher über eine belebte Straße und einen gefährlichen Fluss nach Hause. Weiche Autos, Lastwagen und Bussen aus und hüpfe über Baumstämme und Schildkröten.\n\nEntwickelt von Konami im Jahr 1981, verkaufte sich Frogger über 20 Millionen Mal und gilt als einer der ersten Umweltkommentare in der Spielegeschichte.',
+    controls: 'Benutze die Pfeiltasten, um den Frosch schrittweise zu bewegen. Überquere die Straße durch Timing der Verkehrslücken. Nutze Baumstämme und Schildkröten, um den Fluss zu überqueren.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Bekämpfe Welle um Welle von Alien-Formationen in diesem ikonischen Weltraum-Shooter. Feinde fliegen in Formation an und ein Traktorstrahl kann dein Schiff einfangen.\n\nVeröffentlicht von Namco im Jahr 1981, gilt Galaga als eines der größten Arcade-Spiele aller Zeiten in der Geschichte der Videospiele.',
+    controls: '← → zum Bewegen des Schiffs. Leertaste zum Schießen. Lass den Boss-Galaga dein Schiff fangen, schieße ihn dann ab, um mit doppelter Feuerkraft zu kämpfen.',
+  },
+  'brick-breaker': {
+    title: 'Brick Breaker',
+    description: 'Zerschlage mehrere Schichten von Steinen mit einem springenden Ball und einem Schläger. Sammle Power-ups — längere Schläger, Multibälle, Laserschüsse — und räume alle Steine ab.\n\nBrick Breaker ist der geistige Nachfolger des klassischen Breakout und hält das Bouncing-Ball-Genre seit fast 50 Jahren am Leben.',
+    controls: 'Bewege den Schläger mit der Maus oder ← →. Halte den Ball im Spiel und ziele auf die Steine. Sammle fallende Power-ups. Räume alle Steine ab.',
+  },
+  'stack-tower': {
+    title: 'Stapelturm',
+    description: 'Tippe, um die schwingenden Blöcke zu schneiden und zu stapeln. Jeder überstehende Teil wird abgeschnitten und verengt deine Plattform. Wie hoch kannst du bauen?\n\nStack Tower nutzt das Verlangen des Gehirns nach Präzision und Rhythmus und erzeugt sofortige Spannung mit einer einfachen Schleife: schwingen → tippen → ausrichten.',
+    controls: 'Drücke Leertaste oder klicke, um den Block zu schneiden. Je genauer du ausrichtest, desto breiter bleibt die Plattform. Stapel so hoch wie möglich.',
+  },
+  'reaction-time': {
+    title: 'Reaktionszeittest',
+    description: 'Wenn der Bildschirm grün wird, klicke so schnell du kannst! Deine Reaktionszeit wird in Millisekunden gemessen — ein wissenschaftlicher Weg, deine Reflexe zu testen.\n\nDie durchschnittliche menschliche Reaktionszeit beträgt etwa 250 Millisekunden. Trainierte Sportler erreichen rund 150 ms. Formel-1-Fahrer können in unter 100 ms reagieren.',
+    controls: 'Warte, bis der Bildschirm von Rot auf Grün wechselt, und klicke dann so schnell wie möglich. Der Timer misst die exakte Zeit zwischen dem Farbwechsel und deinem Klick. Klicke nicht zu früh!',
+  },
+  'whack-a-mole': {
+    title: 'Maulwurf Hauen',
+    description: 'Maulwürfe tauchen aus ihren Löchern auf — schlage so viele wie möglich, bevor sie sich verstecken! Mit jedem Level werden die Maulwürfe schneller und die Reaktionsfenster kleiner.\n\nWhac-A-Mole (ursprünglich „Mogura Taiji") wurde 1975 vom japanischen Entwickler TOGO erfunden und ist bis heute weltweit ein Arcade-Klassiker.',
+    controls: 'Klicke oder tippe auf einen Maulwurf, sobald er auftaucht. Jeder Treffer gibt einen Punkt. Schlage so viele wie möglich in 30 Sekunden!',
+  },
+  'dots-and-boxes': {
+    title: 'Punkte und Kästchen',
+    description: 'Zeichne abwechselnd Linien zwischen Punkten. Vervollständige die vierte Seite einer Box, um sie zu beanspruchen und erneut zu ziehen. Der Spieler mit den meisten Boxen gewinnt.\n\nKäsekästchen wurde 1889 vom französischen Mathematiker Édouard Lucas erfunden. Trotz seines kindlichen Aussehens besitzt es eine tiefe kombinatorische Spieltheoretische Struktur.',
+    controls: 'Klicke zwischen zwei benachbarte Punkte, um eine Linie zu zeichnen. Wenn deine Linie eine Box vervollständigt, gehört sie dir und du darfst erneut ziehen. Erobere mehr Boxen als dein Gegner.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Setzt Steine auf das Brett und umzingelt die Steine eures Gegners, um sie in eure Farbe umzudrehen. Ein einziger Zug kann ganze Reihen und Spalten umdrehen — das Brett kann sich in wenigen Zügen völlig verändern.\n\nReversi wurde 1883 in England erfunden. Die moderne Othello-Version (1971) trägt den Slogan „Eine Minute zum Lernen, ein Leben zum Meistern".',
+    controls: 'Klicke auf ein gültiges Feld (grün markiert), um deinen Stein zu setzen. Ein Zug ist nur gültig, wenn er mindestens einen gegnerischen Stein einschließt. Alle eingeschlossenen Steine werden umgedreht. Wer am Ende die meisten hat, gewinnt.',
+  },
+
 };

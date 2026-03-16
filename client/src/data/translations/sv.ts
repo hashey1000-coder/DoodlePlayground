@@ -536,4 +536,108 @@ export const SV_GAMES: Record<string, GameTranslation> = {
     description: 'Gör försök och sparkpoäng i denna Doodle som firar Rugby-VM 2015. Spela snabb rugbyaction och led ditt lag till seger.\n\nDenna Doodle skapades för invigningen av Rugby-VM 2015 i England. Rugby spelas i över 120 länder.',
     controls: 'Klicka för att sparka bollen och få poäng. Tajma dina omvandlingar och släpp mål. Spring med bollen och undvik försvarare för att göra försök!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Det legendariska fallande-block-spelet som definierade en generation. Rotera och skjut tetrominos för att skapa kompletta horisontella rader.\n\nDesignat av Alexey Pajitnov 1984, är Tetris ett av de mest sålda spelen någonsin med över 520 miljoner exemplar.',
+    controls: 'Piltangenter: ← → för att glida, ↑ för att rotera, ↓ för långsam nedgång. Mellanslag för snabb nedgång.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Den originala arcade-klassikern som startade en hel industri.\n\nUtvecklat av Atari 1972, var Pong det första kommersiellt framgångsrika videospelet.',
+    controls: 'Flytta bollen med musen eller W / S. Den som först når 7 poäng vinner.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Förstör rader av färgglada tegel med en studsande boll.\n\nDesignat av Nolan Bushnell 1976, byggdes prototypen av Steve Jobs och Steve Wozniak på fyra dagar.',
+    controls: 'Flytta bollen med ← → eller musen. Håll bollen i spel.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Skjut numrerade brickor på ett 4×4-rutnät och slå ihop lika nummer.\n\nSkapad av Gabriele Cirulli i mars 2014, vid 19 års ålder.',
+    controls: 'Piltangenter (← → ↑ ↓) för att flytta brickor. Lika brickor slås ihop.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Fyll i 9×9-rutnätet så att varje rad, kolumn och 3×3-ruta innehåller siffrorna 1–9 exakt en gång.\n\nTrots det japanska namnet uppfanns Sudoku i USA av Howard Garns 1979.',
+    controls: 'Klicka på en tom cell och ange ett nummer (1–9). Välj svårighetsnivå.',
+  },
+  'word-search': {
+    title: 'Ordletning',
+    description: 'Hitta dolda ord i ett rutnät av bokstäver — horisontellt, vertikalt, diagonalt och till och med baklänges. Tävla mot klockan för att hitta alla ord innan tiden tar slut.\n\nOrdletningspussel uppfanns av Norman E. Gibat 1968. Idag löser hundratals miljoner människor världen över dem dagligen.',
+    controls: 'Klicka på den första och sista bokstaven i ett ord för att markera det. Ord kan löpa i valfri riktning. Stryk varje ord från listan.',
+  },
+  'word-scramble': {
+    title: 'Ordpussel',
+    description: 'Ordna om blandade bokstäver för att avslöja det dolda ordet så snabbt som möjligt. Ett ordförrådstest som prövar din stavningsinstinkt under press.\n\nOrdpussel utnyttjar en fascinerande egenskap hos hjärnan: den kan känna igen ord med omsorterade bokstäver i mitten, så länge den första och sista bokstaven sitter rätt.',
+    controls: 'Läs de blandade bokstäverna på skärmen. Skriv ditt svar i textfältet och tryck Enter för att bekräfta.',
+  },
+  'connect-four': {
+    title: 'Fyra i rad',
+    description: 'Släpp färgade brickor i ett vertikalt rutnät och bli först med att rada upp fyra i din färg — horisontellt, vertikalt eller diagonalt. Enkelt att lära sig, svårt att bemästra.\n\nFyra i rad löstes matematiskt 1988: den första spelaren kan alltid vinna genom att börja i mittkolumnen.',
+    controls: 'Klicka på en kolumn för att släppa din bricka. Brickor faller till den lägsta lediga platsen. Rada upp fyra av din färg först för att vinna.',
+  },
+  'sliding-puzzle': {
+    title: 'Glidpussel',
+    description: 'Skjut numrerade brickor i ett 4×4-rutnät (med en tom plats) för att ordna dem från 1 till 15. Tänk flera drag framåt för bästa lösning.\n\n15-pusslet utlöste en världsomspännande mani på 1880-talet. Matematiskt sett är exakt hälften av alla blandade positioner olösliga.',
+    controls: 'Klicka på en bricka bredvid den tomma platsen för att flytta den. Ordna alla brickor från 1 till 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Tryck för att flaxa med fågelns vingar och navigera genom en oändlig serie av rörmellanrum. Varje tryck lyfter fågeln något; gravitationen drar den obönhörligen tillbaka.\n\nSkapad av den vietnamesiske utvecklaren Dong Nguyen 2013, blev Flappy Bird ett globalt fenomen som tjänade 50 000 dollar om dagen på reklam innan skaparen frivilligt tog bort det.',
+    controls: 'Tryck på Mellanslag eller klicka var som helst för att flaxa. Vägled fågeln genom öppningarna utan att röra rören.',
+  },
+  'space-invaders-online': {
+    title: 'Rymdinkräktarna',
+    description: 'Försvara jorden mot vågor av utomjordiska invasörer som stiger ned. Flytta din laserkanon och förstör utomjordingarna innan de når marken.\n\nSkapad av Tomohiro Nishikado 1978, orsakade Space Invaders en nationell brist på 100-yenmynt i Japan på grund av sin enorma popularitet.',
+    controls: 'Använd ← → för att flytta kanonen. Tryck Mellanslag för att skjuta. Förstör alla utomjordingar innan de når botten. UFO:n ger bonuspoäng.',
+  },
+  'asteroids': {
+    title: 'Asteroider',
+    description: 'Styr ditt rymdskepp genom ett fält av snurrande asteroider och förstör dem till allt mindre bitar. Undvik skräp och se upp för fientliga flygande tefat.\n\nSkapat av Atari 1979, var Asteroids deras bästsäljande arkadmaskin med över 70 000 sålda enheter världen över.',
+    controls: '← → för att rotera, ↑ för att gasa och Mellanslag för att skjuta. Stora asteroider delas i medelstora sedan små. Undvik flygande tefat.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Led din groda säkert över en trafikerad väg och en farlig flod hem. Undvik bilar, lastbilar och bussar, hoppa sedan på stockar och sköldpaddor.\n\nDesignad av Konami 1981, sålde Frogger över 20 miljoner exemplar och anses vara en av spelets första miljökommentarer.',
+    controls: 'Använd piltangenterna för att flytta grodan steg för steg. Korsa vägen genom att tajma luckorna i trafiken. Använd stockar och sköldpaddor för att korsa floden.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Bekämpa våg efter våg av utomjordiska formationer i detta ikoniska rymdskjutarspel. Fiender dyker i formation och en fångststråle kan fånga ditt skepp.\n\nUtgiven av Namco 1981, anses Galaga vara ett av de största arkadspelen genom tiderna i videospelens historia.',
+    controls: '← → för att flytta skeppet. Mellanslag för att skjuta. Låt Boss Galaga fånga ditt skepp, skjut sedan ner det för att slåss med dubbel eldkraft.',
+  },
+  'brick-breaker': {
+    title: 'Stenbrytaren',
+    description: 'Krossa lager av stenar med en studsande boll och ett racket. Samla power-ups — längre racket, multibollar, laserskott — och rensa alla stenar för att avancera.\n\nBrick Breaker är den andliga efterföljaren till klassiska Breakout och har hållit studs-boll-genren vid liv i nästan 50 år.',
+    controls: 'Flytta racketet med musen eller ← →. Håll bollen studsande och sikta på stenarna. Samla fallande power-ups. Rensa alla stenar.',
+  },
+  'stack-tower': {
+    title: 'Blocktorn',
+    description: 'Tryck för att klippa och stapla block medan de svänger fram och tillbaka. Varje överhäng skärs av och gör din plattform smalare. Hur högt kan du bygga?\n\nStack Tower utnyttjar hjärnans behov av precision och rytm och skapar omedelbar spänning med en enkel loop: sväng → tryck → rikta.',
+    controls: 'Tryck Mellanslag eller klicka för att klippa det rörliga blocket. Ju mer precist du riktar, desto bredare förblir plattformen. Stapla så högt som möjligt.',
+  },
+  'reaction-time': {
+    title: 'Reaktionstidstest',
+    description: 'När skärmen blir grön, klicka så snabbt du kan! Din reaktionstid mäts i millisekunder — ett vetenskapligt sätt att testa dina reflexer.\n\nDen genomsnittliga mänskliga reaktionstiden är ungefär 250 millisekunder. Tränade idrottare når omkring 150 ms. Formel 1-förare kan reagera på under 100 ms.',
+    controls: 'Vänta tills skärmen ändras från röd till grön och klicka sedan så snabbt som möjligt. Timern mäter den exakta tiden mellan färgbytet och ditt klick. Klicka inte för tidigt!',
+  },
+  'whack-a-mole': {
+    title: 'Slå Mullvaden',
+    description: 'Mullvadar poppar upp ur sina hål — slå så många du kan innan de gömmer sig! Med varje nivå blir mullvadarna snabbare och reaktionstiden kortare.\n\nWhac-A-Mole (ursprungligen "Mogura Taiji") uppfanns av den japanska tillverkaren TOGO 1975 och är fortfarande en arkadklassiker världen över.',
+    controls: 'Klicka eller tryck på en mullvad så fort den dyker upp. Varje lyckad träff ger en poäng. Slå så många som möjligt på 30 sekunder!',
+  },
+  'dots-and-boxes': {
+    title: 'Prickar och Lådor',
+    description: 'Dra turvis linjer mellan punkter. Slutför den fjärde sidan av en ruta för att ta den och spela igen. Spelaren med flest rutor vinner.\n\nDots and Boxes uppfanns av den franske matematikern Édouard Lucas 1889. Trots sitt barnlika utseende har det en djup kombinatorisk spelteoristruktur.',
+    controls: 'Klicka mellan två intilliggande punkter för att rita en linje. Om din linje avslutar en ruta tar du den och spelar igen. Ta fler rutor än din motståndare.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Placera brickor på brädet och omringa motståndarens pjäser för att vända dem till din färg. Ett drag kan vända hela rader och kolumner — brädet kan förändras dramatiskt på bara några drag.\n\nReversi uppfanns i England 1883. Den moderna Othello-versionen (1971) bär sloganen "en minut att lära sig, ett liv att bemästra".',
+    controls: 'Klicka på en giltig ruta (visas i grönt) för att placera din bricka. Ett drag är bara giltigt om det omringar minst en motståndarbricka. Alla omringade brickor vänds. Den med flest brickor i slutet vinner.',
+  },
+
 };

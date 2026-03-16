@@ -536,4 +536,108 @@ export const IT_GAMES: Record<string, GameTranslation> = {
     description: 'Segna mete e trasforma calci in questo Doodle per la Coppa del Mondo di Rugby 2015. Gioca azioni rapide di rugby.\n\nQuesto Doodle è stato creato per l\'apertura della Coppa del Mondo di Rugby 2015 in Inghilterra. Il rugby è praticato in oltre 120 paesi.',
     controls: 'Fare clic per calciare la palla e segnare punti. Cronometra le tue conversioni e abbandona gli obiettivi. Corri con la palla e schiva i difensori per segnare mete!',
   },
+
+
+  // Online Games Collection
+  'tetris': {
+    title: 'Tetris',
+    description: 'Il leggendario gioco a blocchi che ha definito una generazione. Ruota e fai scorrere i tetromini per creare linee orizzontali complete.\n\nProgettato da Alexey Pajitnov nel 1984, Tetris è uno dei giochi più venduti di tutti i tempi con oltre 520 milioni di copie.',
+    controls: 'Tasti freccia: ← → per scorrere, ↑ per ruotare, ↓ per caduta lenta. Spazio per caduta rapida.',
+  },
+  'pong': {
+    title: 'Pong',
+    description: 'Il classico arcade originale che ha lanciato un\'intera industria.\n\nSviluppato da Atari nel 1972, Pong è stato il primo videogioco commercialmente di successo.',
+    controls: 'Muovi la racchetta con il mouse o i tasti W / S. Il primo a 7 punti vince.',
+  },
+  'breakout': {
+    title: 'Breakout',
+    description: 'Distruggi file di mattoni colorati con una palla rimbalzante.\n\nProgettato nel 1976 da Nolan Bushnell, il prototipo fu costruito da Steve Jobs e Steve Wozniak in quattro giorni.',
+    controls: 'Muovi la racchetta con ← → o il mouse. Tieni in gioco la palla e mira ai mattoni.',
+  },
+  '2048': {
+    title: '2048',
+    description: 'Fai scorrere le tessere numerate su una griglia 4×4 fondendo i numeri identici.\n\nCreato da Gabriele Cirulli in un week-end del marzo 2014, all\'età di 19 anni.',
+    controls: 'Usa i tasti freccia (← → ↑ ↓) per scorrere le tessere. Le tessere identiche si fondono.',
+  },
+  'sudoku': {
+    title: 'Sudoku',
+    description: 'Riempi la griglia 9×9 in modo che ogni riga, colonna e riquadro 3×3 contenga le cifre 1–9 esattamente una volta.\n\nNonostante il nome giapponese, il Sudoku è stato inventato negli USA da Howard Garns nel 1979.',
+    controls: 'Clicca su una cella vuota e digita un numero (1–9). Scegli il livello di difficoltà.',
+  },
+  'word-search': {
+    title: 'Ricerca Parole',
+    description: 'Trova le parole nascoste in una griglia di lettere — in orizzontale, verticale, diagonale e persino al contrario. Batti il tempo per trovare ogni parola prima dello scadere.\n\nI puzzle di ricerca parole furono inventati da Norman E. Gibat nel 1968. Oggi centinaia di milioni di persone in tutto il mondo li risolvono ogni giorno.',
+    controls: 'Clicca sulla prima e ultima lettera di una parola per evidenziarla. Le parole possono andare in qualsiasi direzione. Barra ogni parola dalla lista per completare il puzzle.',
+  },
+  'word-scramble': {
+    title: 'Anagramma',
+    description: 'Riordina le lettere mescolate per rivelare la parola nascosta il più velocemente possibile. Un gioco di vocabolario che mette alla prova il tuo istinto ortografico sotto pressione.\n\nI giochi di parole mescolate sfruttano un affascinante meccanismo cerebrale: il cervello può riconoscere parole con le lettere centrali scambiate, purché la prima e l\'ultima siano al posto giusto.',
+    controls: 'Leggi le lettere mescolate sullo schermo. Digita la tua risposta nella casella di testo e premi Invio per confermare.',
+  },
+  'connect-four': {
+    title: 'Forza 4',
+    description: 'Lascia cadere dischi colorati in una griglia verticale e sii il primo ad allinearne quattro del tuo colore — in orizzontale, verticale o diagonale. Semplice da imparare, profondo nella strategia.\n\nForza 4 è stato risolto matematicamente nel 1988: il primo giocatore può sempre vincere iniziando dalla colonna centrale.',
+    controls: 'Clicca su una colonna per far cadere il tuo disco. I dischi cadono nella posizione più bassa disponibile. Allinea quattro dischi del tuo colore per vincere.',
+  },
+  'sliding-puzzle': {
+    title: 'Puzzle Scorrevole',
+    description: 'Fai scorrere le tessere numerate in una griglia 4×4 (con uno spazio vuoto) per ordinarle da 1 a 15. Pensa diverse mosse avanti per trovare la soluzione ottimale.\n\nIl Gioco del 15 scatenò una mania mondiale negli anni 1880. Matematicamente, esattamente metà di tutte le posizioni mescolate sono irrisolvibili.',
+    controls: 'Clicca su una tessera adiacente allo spazio vuoto per farla scorrere. Riordina tutte le tessere da 1 a 15.',
+  },
+  'flappy-bird': {
+    title: 'Flappy Bird',
+    description: 'Tocca per far battere le ali al tuo uccello e navigare attraverso una serie infinita di aperture tra i tubi. Ogni tocco solleva l\'uccello leggermente; la gravità lo tira giù senza sosta.\n\nCreato dallo sviluppatore vietnamita Dong Nguyen nel 2013, Flappy Bird divenne un fenomeno globale che guadagnava 50.000 dollari al giorno in pubblicità prima che il suo creatore lo ritirasse volontariamente.',
+    controls: 'Premi Spazio o clicca ovunque per battere le ali. Guida l\'uccello attraverso le aperture tra i tubi senza toccarli.',
+  },
+  'space-invaders-online': {
+    title: 'Space Invaders',
+    description: 'Difendi la Terra dalle ondate di invasori alieni in discesa. Muovi il tuo cannone laser e distruggi gli alieni prima che raggiungano il suolo.\n\nCreato da Tomohiro Nishikado nel 1978, Space Invaders provocò una carenza nazionale di monete da 100 yen in Giappone per la sua enorme popolarità.',
+    controls: 'Usa ← → per muovere il cannone. Premi Spazio per sparare. Distruggi tutti gli alieni prima che raggiungano il fondo. Gli UFO danno punti bonus.',
+  },
+  'asteroids': {
+    title: 'Asteroidi',
+    description: 'Pilota la tua astronave attraverso un campo di asteroidi rotanti, distruggendoli in frammenti sempre più piccoli. Schiva i detriti e fai attenzione ai dischi volanti nemici.\n\nCreato da Atari nel 1979, Asteroids fu il loro cabinet arcade più venduto con oltre 70.000 unità in tutto il mondo.',
+    controls: '← → per ruotare, ↑ per accelerare e Spazio per sparare. Gli asteroidi grandi si dividono in medi e poi piccoli. Schiva i dischi volanti.',
+  },
+  'frogger': {
+    title: 'Frogger',
+    description: 'Guida la tua rana attraverso una strada trafficata e un fiume pericoloso per tornare a casa sana e salva. Evita auto, camion e autobus, poi salta su tronchi e tartarughe.\n\nProgettato da Konami nel 1981, Frogger ha venduto oltre 20 milioni di copie ed è considerato uno dei primi commenti ambientali nella storia dei videogiochi.',
+    controls: 'Usa le frecce per muovere la rana un passo alla volta. Attraversa la strada calcolando i varchi nel traffico. Usa tronchi e tartarughe per attraversare il fiume.',
+  },
+  'galaga': {
+    title: 'Galaga',
+    description: 'Combatti ondata dopo ondata di formazioni aliene in questo iconico sparatutto spaziale. I nemici attaccano in formazione e un raggio traente può catturare la tua nave.\n\nRilasciato da Namco nel 1981, Galaga è considerato uno dei più grandi giochi arcade mai creati nella storia dei videogiochi.',
+    controls: '← → per muovere la nave. Spazio per sparare. Lascia che il Boss Galaga catturi la tua nave, poi abbattilo per recuperarla e combattere con potenza doppia.',
+  },
+  'brick-breaker': {
+    title: 'Rompiblocchi',
+    description: 'Distruggi strati di mattoni con una palla rimbalzante e una racchetta. Raccogli potenziamenti — racchette più lunghe, multi-palla, colpi laser — e elimina tutti i mattoni per avanzare.\n\nBrick Breaker è il successore spirituale del classico Breakout, mantenendo vivo il genere della palla rimbalzante da quasi 50 anni.',
+    controls: 'Muovi la racchetta con il mouse o ← →. Tieni la palla in gioco e mira ai mattoni. Raccogli i potenziamenti che cadono. Elimina tutti i mattoni.',
+  },
+  'stack-tower': {
+    title: 'Torre di Blocchi',
+    description: 'Tocca per tagliare e impilare i blocchi mentre oscillano avanti e indietro. Ogni parte sporgente viene tagliata, restringendo la tua piattaforma. Quanto in alto puoi costruire?\n\nStack Tower sfrutta il desiderio del cervello di precisione e ritmo, creando tensione istantanea con un ciclo semplice: oscillazione → tocco → allineamento.',
+    controls: 'Premi Spazio o clicca per tagliare il blocco in movimento. Più preciso l\'allineamento, più larga resta la piattaforma. Impila il più in alto possibile.',
+  },
+  'reaction-time': {
+    title: 'Test di Reazione',
+    description: 'Quando lo schermo diventa verde, clicca il più velocemente possibile! Il tuo tempo di reazione viene registrato in millisecondi — un modo scientifico per testare i tuoi riflessi.\n\nIl tempo di reazione umano medio è di circa 250 millisecondi. Gli atleti allenati raggiungono circa 150 ms. I piloti di Formula 1 possono reagire in meno di 100 ms.',
+    controls: 'Aspetta che lo schermo passi dal rosso al verde, poi clicca il più velocemente possibile. Il timer misura il tempo esatto tra il cambio di colore e il tuo clic. Non cliccare prima!',
+  },
+  'whack-a-mole': {
+    title: 'Acchiappa la Talpa',
+    description: 'Le talpe continuano a spuntare dalle loro buche — colpiscine quante più puoi prima che si nascondano! Con ogni livello le talpe diventano più veloci e le finestre di reazione si riducono.\n\nWhac-A-Mole (originariamente "Mogura Taiji") fu inventato dallo sviluppatore giapponese TOGO nel 1975 e rimane un classico delle sale giochi in tutto il mondo.',
+    controls: 'Clicca o tocca una talpa appena spunta per colpirla. Ogni colpo riuscito vale un punto. Colpisci quante più talpe possibili in 30 secondi!',
+  },
+  'dots-and-boxes': {
+    title: 'Punti e Quadrati',
+    description: 'A turno, disegnate linee tra i punti. Completate il quarto lato di una casella per conquistarla e giocare ancora. Il giocatore che conquista più caselle vince.\n\nDots and Boxes fu inventato dal matematico francese Édouard Lucas nel 1889. Nonostante l\'aspetto infantile, possiede una profonda struttura di teoria dei giochi combinatoria.',
+    controls: 'Cliccate tra due punti adiacenti per disegnare una linea. Se la linea completa una casella, la conquistate e giocate ancora. Conquistate più caselle dell\'avversario.',
+  },
+  'reversi': {
+    title: 'Reversi (Othello)',
+    description: 'Piazzate dischi sulla scacchiera e circondare le pedine avversarie per ribaltarle al vostro colore. Una sola mossa può ribaltare intere righe e colonne — il tabellone può cambiare radicalmente in poche mosse.\n\nReversi fu inventato in Inghilterra nel 1883. La versione moderna Othello (1971) porta lo slogan "un minuto per imparare, una vita per padroneggiare".',
+    controls: 'Cliccate su una casella valida (in verde) per piazzare il disco. Una mossa è valida solo se circonda almeno un disco avversario. Tutti i dischi circondati si ribaltano. Chi ha più dischi alla fine vince.',
+  },
+
 };
