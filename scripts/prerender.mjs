@@ -35,6 +35,11 @@ const gamesTs = readFileSync(resolve(ROOT, 'client/src/data/games.ts'), 'utf8');
 const slugMatches = [...gamesTs.matchAll(/slug:\s*['"`]([^'"`]+)['"`]/g)];
 const gameSlugs = slugMatches.map((m) => m[1]);
 
+// Category slugs from CATEGORIES export
+const catMatches = [...gamesTs.matchAll(/\{\s*id:\s*['"`]([^'"`]+)['"`]/g)];
+// Only unique category ids (not game ids)
+const CATEGORY_IDS = ['classic', 'arcade', 'sports', 'puzzle', 'adventure', 'educational', 'seasonal', 'creative'];
+
 // Static paths (must match App.tsx routes)
 const STATIC_PATHS = [
   '/',
@@ -54,8 +59,10 @@ const STATIC_PATHS = [
 
 // Game paths
 const GAME_PATHS = gameSlugs.map((slug) => `/play/${slug}`);
+// Category paths
+const CATEGORY_PATHS = CATEGORY_IDS.map((id) => `/category/${id}`);
 
-const ALL_PATHS = [...STATIC_PATHS, ...GAME_PATHS];
+const ALL_PATHS = [...STATIC_PATHS, ...GAME_PATHS, ...CATEGORY_PATHS];
 
 /** Build the full URL path for a locale + route */
 function localeUrl(locale, routePath) {

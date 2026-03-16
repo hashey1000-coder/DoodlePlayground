@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { Link, useLocation, useSearch } from "wouter";
-import { Search, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, ArrowUpDown } from "lucide-react";
+import { Search, Clock, Play, Heart, ThumbsUp, Baby, X, Tag, ChevronDown, ChevronUp, ArrowUpDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { GAMES, CATEGORIES, ALL_TAGS } from "@/data/games";
 import { useRecentlyPlayed } from "@/hooks/useRecentlyPlayed";
 import { useFavourites } from "@/hooks/useFavourites";
@@ -15,26 +15,12 @@ import { CATEGORY_COLORS } from '@/data/categoryColors';
 import { prefetchGameUrl } from '@/lib/utils';
 import { useHead } from '@/hooks/useHead';
 
-function formatPlayCount(n: number): string {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
-  return String(n);
-}
-
 function getLikeCount(slug: string): number {
   try {
     const stored = localStorage.getItem(`game-votes-${slug}`);
     if (stored) {
       const parsed = JSON.parse(stored);
       return parsed.likes || 0;
-    }
-    // Seed from game data when no user votes exist (matches PlayGame formula)
-    const game = GAMES.find((g) => g.slug === slug);
-    if (game) {
-      let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
-      const jitter = (Math.abs(h) % 30) - 15;
-      const baseLikes = Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
-      return baseLikes;
     }
     return 0;
   } catch {
@@ -68,6 +54,8 @@ export default function Home() {
   const categoryFilterRef = useRef<HTMLDivElement>(null);
   const [showTagPanel, setShowTagPanel] = useState(false);
   const pulseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const GAMES_PER_PAGE = 24;
   const { recentGames } = useRecentlyPlayed(GAMES);
   const { favourites, toggleFavourite, isFavourite } = useFavourites();
   const { kidsMode, toggleKidsMode } = useKidsMode();
@@ -195,6 +183,17 @@ export default function Home() {
 
     return games;
   }, [activeCategory, searchQuery, favourites, kidsMode, activeTags, sortBy, gt]);
+
+  // Reset to page 1 whenever the filter/search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery, favourites, kidsMode, activeTags, sortBy]);
+
+  const totalPages = Math.ceil(filteredGames.length / GAMES_PER_PAGE);
+  const paginatedGames = filteredGames.slice(
+    (currentPage - 1) * GAMES_PER_PAGE,
+    currentPage * GAMES_PER_PAGE,
+  );
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950">
@@ -339,9 +338,6 @@ export default function Home() {
                         <span className={`inline-block w-fit text-[10px] font-medium px-2 py-0.5 rounded-full capitalize mb-1.5 ${CATEGORY_COLORS[game.category] || "text-teal-600 bg-teal-50"}`}>
                           {t(`category.${game.category}` as any)}
                         </span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] text-slate-500 dark:text-slate-400">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
-                        </div>
                       </div>
                     </div>
                   </Link>
@@ -455,21 +451,16 @@ export default function Home() {
               {t('category.all' as any)}
             </button>
 
-            {/* Category tabs */}
+            {/* Category tabs — navigate to dedicated category pages */}
             {CATEGORIES.filter(cat => cat.id !== 'all').map((cat) => (
-              <button
+              <Link
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                data-category-active={activeCategory === cat.id ? "true" : undefined}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                  activeCategory === cat.id
-                    ? "bg-teal-600 text-white shadow-md shadow-teal-200 dark:shadow-teal-900"
-                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-300"
-                }`}
+                href={`/category/${cat.id}/`}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 border border-slate-200 dark:border-slate-700 hover:border-teal-300"
               >
                 <span className="text-base">{cat.emoji}</span>
                 {t(cat.labelKey as any)}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
@@ -631,17 +622,17 @@ export default function Home() {
         </div>
 
         {/* Game Grid — Bento magazine layout */}
-        {filteredGames.length > 0 ? (
+        {paginatedGames.length > 0 ? (
           <div className="space-y-5">
             {/* ── Hero spotlight: first game ── */}
             {(() => {
-              const game = filteredGames[0];
+              const game = paginatedGames[0];
               const likeCount = getLikeCount(game.slug);
               return (
                 <AnimatedCard key={`hero-${game.slug}`} index={0}>
                   <TiltCard className="group relative" maxTilt={4} scale={1.01} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                     <Link href={`/play/${game.slug}/`} className="block">
-                      <div className="relative overflow-hidden rounded-3xl h-[260px] sm:h-[320px] lg:h-[380px] bg-slate-900 ring-1 ring-white/10">
+                      <div className="relative overflow-hidden rounded-3xl h-[200px] sm:h-[320px] lg:h-[380px] bg-slate-900 ring-1 ring-white/10">
                         <BlurImage
                           src={game.thumbnail}
                           alt={gt(game).title}
@@ -688,8 +679,6 @@ export default function Home() {
                                 {t(`difficulty.${game.difficulty}` as any)}
                               </span>
                             )}
-                            <span className="text-white/30">|</span>
-                            <span className="text-xs text-white/60">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                             {activeCategory === "top-rated" && likeCount > 0 && (
                               <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 border border-white/10">
                                 <ThumbsUp className="w-2.5 h-2.5" /> {likeCount}
@@ -720,14 +709,14 @@ export default function Home() {
             })()}
 
             {/* ── Bento section: games 2–6, asymmetric grid ── */}
-            {filteredGames.length > 1 && (
+            {paginatedGames.length > 1 && (
               <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[200px]">
-                {filteredGames.slice(1, 6).map((game, i) => {
+                {paginatedGames.slice(1, 6).map((game, i) => {
                   const globalIndex = i + 1;
                   const likeCount = getLikeCount(game.slug);
                   const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
                   return (
-                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'col-span-2 row-span-2' : ''}`}>
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`${isLarge ? 'sm:col-span-2 sm:row-span-2' : ''}`}>
                       <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                         <Link href={`/play/${game.slug}/`} className="block h-full">
                           <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">
@@ -799,9 +788,9 @@ export default function Home() {
             )}
 
             {/* ── Main grid: games 7+ — uniform overlay cards ── */}
-            {filteredGames.length > 6 && (
+            {paginatedGames.length > 6 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
-                {filteredGames.slice(6).map((game, i) => {
+                {paginatedGames.slice(6).map((game, i) => {
                   const globalIndex = i + 6;
                   const likeCount = getLikeCount(game.slug);
                   const isAboveFold = globalIndex < 14;
@@ -854,7 +843,6 @@ export default function Home() {
                                     {t(`difficulty.${game.difficulty}` as any)}
                                   </span>
                                 )}
-                                <span className="text-[9px] text-white/40 ml-auto">{formatPlayCount(game.playCount)} {t('common.plays')}</span>
                               </div>
                               {activeTags.length > 0 && (
                                 <div className="flex flex-wrap gap-1 mt-1.5">
@@ -890,6 +878,56 @@ export default function Home() {
                     </AnimatedCard>
                   );
                 })}
+              </div>
+            )}
+
+            {/* Pagination controls */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 pt-6">
+                <button
+                  onClick={() => { setCurrentPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  disabled={currentPage === 1}
+                  className="flex items-center gap-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Prev</span>
+                </button>
+
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
+                    .reduce<(number | '…')[]>((acc, p, idx, arr) => {
+                      if (idx > 0 && p - (arr[idx - 1] as number) > 1) acc.push('…');
+                      acc.push(p);
+                      return acc;
+                    }, [])
+                    .map((item, idx) =>
+                      item === '…' ? (
+                        <span key={`ellipsis-${idx}`} className="px-2 text-slate-400">…</span>
+                      ) : (
+                        <button
+                          key={item}
+                          onClick={() => { setCurrentPage(item as number); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          className={`w-9 h-9 rounded-xl text-sm font-semibold transition-all ${
+                            currentPage === item
+                              ? 'bg-teal-600 text-white shadow-sm'
+                              : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600'
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      ),
+                    )}
+                </div>
+
+                <button
+                  onClick={() => { setCurrentPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  disabled={currentPage === totalPages}
+                  className="flex items-center gap-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-teal-300 hover:text-teal-600 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             )}
           </div>

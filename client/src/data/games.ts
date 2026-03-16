@@ -26,7 +26,7 @@ export const GAMES: Game[] = [
     
     category: 'classic',
     thumbnail: '/thumbnails/snake.png',
-    iframeUrl: 'https://elgoog.im/snake/',
+    iframeUrl: 'https://23azostore.github.io/s8/google-snake/',
     controls: 'Use arrow keys to change direction. Eat the apples to grow longer. Avoid hitting the walls or your own body!',
     difficulty: 'easy',
     tags: ['classic', 'arcade', 'keyboard', 'endless'],
@@ -196,7 +196,7 @@ export const GAMES: Game[] = [
     
     category: 'puzzle',
     thumbnail: '/thumbnails/doodle-crossword.jpg',
-    iframeUrl: '/google-doodle/2013/crossword/crossword13.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25789/',
     controls: 'Click on a clue to highlight its row or column. Type letters to fill in answers. Click between across and down clues. Complete the grid to win!',
     difficulty: 'medium',
     tags: ['puzzle', 'words', 'brain', 'keyboard'],
@@ -224,7 +224,7 @@ export const GAMES: Game[] = [
     
     category: 'seasonal',
     thumbnail: '/thumbnails/mothers-day-2013.jpg',
-    iframeUrl: '/google-doodle/2013/mom/mom13.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25795/',
     controls: 'Click on different craft supplies to decorate your card. Choose stickers, drawings, and messages. Print or share your finished card!',
     difficulty: 'easy',
     tags: ['seasonal', 'creative', 'kids-friendly'],
@@ -268,7 +268,7 @@ export const GAMES: Game[] = [
     
     category: 'creative',
     thumbnail: '/thumbnails/doodle-beethoven.jpg',
-    iframeUrl: '/google-doodle/2015/beethoven15/beethoven15.html',
+    iframeUrl: 'https://game3.glov3.me/uploads/game/html5/25836/',
     controls: 'Drag and drop the musical bars into the correct order. Listen to each piece play back when you get it right. Complete all the compositions!',
     difficulty: 'medium',
     tags: ['music', 'puzzle', 'educational', 'history'],
@@ -326,25 +326,11 @@ export const GAMES: Game[] = [
     
     category: 'seasonal',
     thumbnail: '/thumbnails/magic-cat-academy.gif',
-    iframeUrl: '/google-doodle/2016/halloween16/halloween16.html',
+    iframeUrl: 'https://html5-games.io/game/magic_cat/',
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. Match the shape accurately to cast the spell and defeat the ghost. Clear all ghosts in each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
     playCount: 425000,
-  },
-  {
-    id: 'g23',
-    slug: 'google-cat-game',
-    title: 'Google Cat Wizard Game',
-    description: 'The beloved Magic Cat Academy game starring Momo the cat wizard — swipe and draw spell symbols to defend your school from hordes of invading ghosts! Match the shapes shown above each ghost accurately and quickly to cast the right spell and banish them.\n\nAlso known as the "Google Halloween Cat Game," this is one of the most searched-for Google games year after year. Momo the cat has become an unofficial Google mascot for Halloween, starring in three sequel games. The original 2016 version remains a fan favourite thanks to its charming animation, accessible gameplay, and the pure joy of drawing magic spells.',
-    
-    category: 'seasonal',
-    thumbnail: '/thumbnails/google-cat-game.gif',
-    iframeUrl: '/google-doodle/2016/halloween16/halloween16.html',
-    controls: 'Draw the symbol shown above each ghost using your mouse or finger. Match the shape accurately to cast the spell and defeat the ghost. Clear all ghosts in each level!',
-    difficulty: 'medium',
-    tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
-    playCount: 380000,
   },
   {
     id: 'g24',
@@ -721,7 +707,7 @@ export const GAMES: Game[] = [
     
     category: 'seasonal',
     thumbnail: '/thumbnails/magic-cat-academy-3.gif',
-    iframeUrl: '/google-doodle/2024/halloween24/rc3/halloween24.html',
+    iframeUrl: 'https://hg1.onga.io/magic-cat-academy-3/',
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. New ghost types require new spell patterns. Defeat all ghosts to clear each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
@@ -779,7 +765,7 @@ export const GAMES: Game[] = [
     
     category: 'arcade',
     thumbnail: '/thumbnails/chrome-dino.gif',
-    iframeUrl: 'https://elgoog.im/dinosaur-game/birthday/',
+    iframeUrl: 'https://dinosaur-game.io/game/dino/',
     controls: 'Press spacebar or tap to jump over cacti. Press down arrow to duck under pterodactyls. The game gets faster as your score increases!',
     difficulty: 'easy',
     tags: ['arcade', 'runner', 'endless', 'keyboard', 'one-button'],
@@ -1315,22 +1301,6 @@ export const GAMES: Game[] = [
     tags: ['educational', 'ai', 'creative', 'kids-friendly'],
     playCount: 145000,
   },
-
-  // ===== Missing Google Doodle Games =====
-  {
-    id: 'g99',
-    slug: 'great-ghoul-duel-2',
-    title: 'Great Ghoul Duel 2 (Halloween 2022)',
-    description: 'Team up with players worldwide in this spooky sequel to the beloved Great Ghoul Duel! Compete as adorable ghosts to collect wandering spirit flames across new haunted maps, use fresh power-ups to gain advantages, and race to return the most flames to your team\'s base.\n\nThe 2022 Halloween Doodle built upon the success of the original 2018 multiplayer game with enhanced graphics, new haunted environments, and exciting power-up mechanics. The real-time multiplayer matchmaking connects players across the globe for fast-paced team competitions. The Great Ghoul Duel series has become one of Google\'s most anticipated annual events, with millions of players logging in each Halloween.',
-    
-    category: 'seasonal',
-    thumbnail: '/thumbnails/halloween.gif',
-    iframeUrl: '/google-doodle/2021/halloween21/v81123/halloween21.html',
-    controls: 'Use arrow keys or swipe to move your ghost. Collect spirit flames and return them to your base. Use new power-ups to gain an advantage over the opposing team!',
-    difficulty: 'medium',
-    tags: ['halloween', 'seasonal', 'multiplayer', 'action', 'arcade'],
-    playCount: 380000,
-  },
   {
     id: 'g101',
     slug: 'gerald-lawson-game-maker',
@@ -1368,7 +1338,8 @@ export const GAMES: Game[] = [
     
     category: 'adventure',
     thumbnail: '/thumbnails/rise-of-the-half-moon.svg',
-    iframeUrl: '/google-doodle/2024/moon/novr2/moon.html',
+    iframeUrl: 'https://doodles.google/doodle/rise-of-the-half-moon-november/',
+    externalOnly: true,
     controls: 'Click and drag to interact with the moon phases. Solve puzzles by aligning celestial objects. Progress through the story by completing each challenge.',
     difficulty: 'medium',
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
@@ -1382,7 +1353,8 @@ export const GAMES: Game[] = [
     
     category: 'adventure',
     thumbnail: '/thumbnails/rise-of-the-half-moon.svg',
-    iframeUrl: '/google-doodle/2024/moon/december-r4/december.html',
+    iframeUrl: 'https://doodles.google/doodle/rise-of-the-half-moon-december/',
+    externalOnly: true,
     controls: 'Click and drag to interact with the moon phases. Solve puzzles by aligning celestial objects. Progress through the story by completing each challenge.',
     difficulty: 'medium',
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
@@ -1396,9 +1368,10 @@ export const GAMES: Game[] = [
     
     category: 'adventure',
     thumbnail: '/thumbnails/rise-of-the-half-moon.svg',
-    iframeUrl: '/google-doodle/2024/moon/moon_january-r1/moon_january.html',
+    iframeUrl: 'https://doodles.google/doodle/rise-of-the-half-moon-january/',
     controls: 'Click and drag to interact with the moon phases. Solve the final puzzles by aligning celestial objects. Complete the saga!',
     difficulty: 'medium',
+    externalOnly: true,
     tags: ['adventure', 'puzzle', 'story', 'point-and-click'],
     playCount: 132000,
   },

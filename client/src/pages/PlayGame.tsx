@@ -16,76 +16,7 @@ import { useStreakContext } from "@/contexts/StreakContext";
 import { CATEGORY_COLORS, CATEGORY_COLORS_BORDERED, CATEGORY_ACCENT, CATEGORY_FALLBACK } from '@/data/categoryColors';
 import { prefetchGameUrl } from '@/lib/utils';
 import { useHead } from '@/hooks/useHead';
-
-// Persist likes/dislikes in localStorage — seeded from playCount
-function useLikeDislike(slug: string) {
-  const storageKey = `game-votes-${slug}`;
-  const userVoteKey = `game-uservote-${slug}`;
-
-  const getSeededVotes = () => {
-    // Seed realistic initial vote counts from the game's playCount
-    const game = GAMES.find((g) => g.slug === slug);
-    if (!game) return { likes: 0, dislikes: 0 };
-    // Deterministic hash from slug for slight variation between games
-    let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
-    const jitter = (Math.abs(h) % 30) - 15; // ±15
-    // sqrt scale keeps numbers in a realistic 50-300 range
-    const baseLikes = Math.round(40 + Math.sqrt(game.playCount / 100) + jitter);
-    // Vary dislike ratio (3-25%) based on hash for realistic spread (80-97%)
-    const dislikeRatio = 0.03 + (Math.abs(h >> 4) % 23) / 100;
-    const baseDislikes = Math.round(baseLikes * dislikeRatio);
-    return { likes: Math.max(baseLikes, 5), dislikes: Math.max(baseDislikes, 1) };
-  };
-
-  const getVotes = () => {
-    try {
-      const stored = localStorage.getItem(storageKey);
-      return stored ? JSON.parse(stored) : getSeededVotes();
-    } catch {
-      return getSeededVotes();
-    }
-  };
-
-  const getUserVote = (): "like" | "dislike" | null => {
-    try {
-      return (localStorage.getItem(userVoteKey) as "like" | "dislike" | null);
-    } catch {
-      return null;
-    }
-  };
-
-  const [votes, setVotes] = useState(getVotes);
-  const [userVote, setUserVote] = useState<"like" | "dislike" | null>(getUserVote);
-
-  useEffect(() => {
-    setVotes(getVotes());
-    setUserVote(getUserVote());
-  }, [slug]);
-
-  const vote = (type: "like" | "dislike") => {
-    const current = getVotes();
-    const currentUserVote = getUserVote();
-    let newVotes = { ...current };
-
-    if (currentUserVote === type) {
-      newVotes[type === "like" ? "likes" : "dislikes"] = Math.max(0, newVotes[type === "like" ? "likes" : "dislikes"] - 1);
-      localStorage.removeItem(userVoteKey);
-      setUserVote(null);
-    } else {
-      if (currentUserVote === "like") newVotes.likes = Math.max(0, newVotes.likes - 1);
-      if (currentUserVote === "dislike") newVotes.dislikes = Math.max(0, newVotes.dislikes - 1);
-      if (type === "like") newVotes.likes += 1;
-      else newVotes.dislikes += 1;
-      localStorage.setItem(userVoteKey, type);
-      setUserVote(type);
-    }
-
-    localStorage.setItem(storageKey, JSON.stringify(newVotes));
-    setVotes(newVotes);
-  };
-
-  return { votes, userVote, vote };
-}
+import { useFirebaseVotes } from '@/hooks/useFirebaseVotes';
 
 // Get related games: same category first, then random
 function getRelatedGames(game: Game, count = 20): Game[] {
@@ -466,7 +397,7 @@ export default function PlayGame() {
   }, []);
 
   const gameSlug = routeSlug ?? game?.slug ?? "";
-  const { votes, userVote, vote } = useLikeDislike(gameSlug);
+  const { votes, userVote, vote } = useFirebaseVotes(gameSlug);
   const [copied, setCopied] = useState(false);
 
   // SEO — useHead manages title, meta, OG, twitter, hreflang, canonical
@@ -701,7 +632,7 @@ export default function PlayGame() {
             {gameStarted && !game.externalOnly && (
               <button
                 onClick={isFullscreen ? exitFullscreen : enterFullscreen}
-                className="absolute top-3 right-3 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-colors backdrop-blur-sm"
+                className="absolute top-3 right-3 z-20 w-8 h-8 bg-slate-800/70 hover:bg-slate-800 text-white rounded-lg flex items-center justify-center transition-all backdrop-blur-sm opacity-20 hover:opacity-100"
                 title={t('game.fullscreen' as any)}
                 aria-label={t('game.fullscreen' as any)}
               >
@@ -905,13 +836,6 @@ export default function PlayGame() {
                   CATEGORY_COLORS[game.category] || "text-teal-600 bg-teal-50"
                 }`}>
                   {t(`category.${game.category}` as any)}
-                </span>
-                <span className="text-xs text-slate-500 dark:text-slate-300">
-                  {game.playCount >= 1_000_000
-                    ? `${(game.playCount / 1_000_000).toFixed(1)}M ${t('common.plays')}`
-                    : game.playCount >= 1_000
-                    ? `${(game.playCount / 1_000).toFixed(0)}K ${t('common.plays')}`
-                    : `${game.playCount} ${t('common.plays')}`}
                 </span>
               </div>
             </div>

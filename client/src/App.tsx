@@ -24,6 +24,7 @@ import Privacy from "./pages/Privacy";
 import Sitemap from "./pages/Sitemap";
 import Redirect from "./pages/Redirect";
 import NotFound from "./pages/NotFound";
+import Category from "./pages/Category";
 
 /**
  * The inner routes — rendered inside a WouterRouter whose `base` is already
@@ -42,6 +43,7 @@ function AppRoutes() {
           <Route path="/" component={Home} />
           <Route path="/play/:slug" component={PlayGame} />
           <Route path="/games" component={AllGames} />
+          <Route path="/category/:slug" component={Category} />
           <Route path="/search" component={SearchResults} />
           <Route path="/top-rated" component={TopRated} />
           <Route path="/daily" component={Daily} />

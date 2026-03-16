@@ -87,6 +87,14 @@ const STATIC_PATHS = [
   { path: '/privacy',   priority: '0.4', changefreq: 'monthly' },
 ];
 
+/** Category pages */
+const CATEGORY_IDS = ['classic', 'arcade', 'sports', 'puzzle', 'adventure', 'educational', 'seasonal', 'creative'];
+const CATEGORY_PATHS = CATEGORY_IDS.map((id) => ({
+  path: `/category/${id}`,
+  priority: '0.8',
+  changefreq: 'weekly',
+}));
+
 /** Per-game routes */
 const GAME_PATHS = slugs.map((slug) => ({
   path: `/play/${slug}`,
@@ -94,7 +102,7 @@ const GAME_PATHS = slugs.map((slug) => ({
   changefreq: 'monthly',
 }));
 
-const ALL_PATHS = [...STATIC_PATHS, ...GAME_PATHS];
+const ALL_PATHS = [...STATIC_PATHS, ...CATEGORY_PATHS, ...GAME_PATHS];
 
 // ---------------------------------------------------------------------------
 // Helpers

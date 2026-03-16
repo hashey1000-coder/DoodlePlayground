@@ -18,22 +18,10 @@ function readAllVotes(): Record<string, { likes: number; dislikes: number }> {
         const parsed = JSON.parse(stored);
         result[game.slug] = { likes: parsed.likes || 0, dislikes: parsed.dislikes || 0 };
       } else {
-        // Seed from playCount when no user votes exist (matches PlayGame formula)
-        let h = 0; for (let i = 0; i < game.slug.length; i++) h = ((h << 5) - h + game.slug.charCodeAt(i)) | 0;
-        const jitter = (Math.abs(h) % 30) - 15;
-        const baseLikes = Math.max(Math.round(40 + Math.sqrt((game.playCount || 50) / 100) + jitter), 5);
-        // Vary dislike ratio (3-25%) based on hash for realistic spread (80-97%)
-        const dislikeRatio = 0.03 + (Math.abs(h >> 4) % 23) / 100;
-        const baseDislikes = Math.max(Math.round(baseLikes * dislikeRatio), 1);
-        result[game.slug] = { likes: baseLikes, dislikes: baseDislikes };
+        result[game.slug] = { likes: 0, dislikes: 0 };
       }
     } catch {
-      let h = 0; for (let i = 0; i < game.slug.length; i++) h = ((h << 5) - h + game.slug.charCodeAt(i)) | 0;
-      const jitter = (Math.abs(h) % 30) - 15;
-      const baseLikes = Math.max(Math.round(40 + Math.sqrt((game.playCount || 50) / 100) + jitter), 5);
-      const dislikeRatio = 0.03 + (Math.abs(h >> 4) % 23) / 100;
-      const baseDislikes = Math.max(Math.round(baseLikes * dislikeRatio), 1);
-      result[game.slug] = { likes: baseLikes, dislikes: baseDislikes };
+      result[game.slug] = { likes: 0, dislikes: 0 };
     }
   }
   return result;

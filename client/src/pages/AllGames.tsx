@@ -17,12 +17,6 @@ function getLikeCount(slug: string): number {
       const parsed = JSON.parse(stored);
       return parsed.likes || 0;
     }
-    const game = GAMES.find((g) => g.slug === slug);
-    if (game) {
-      let h = 0; for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
-      const jitter = (Math.abs(h) % 30) - 15;
-      return Math.max(Math.round(40 + Math.sqrt(game.playCount / 100) + jitter), 5);
-    }
     return 0;
   } catch {
     return 0;
