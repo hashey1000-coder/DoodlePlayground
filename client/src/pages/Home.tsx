@@ -56,7 +56,7 @@ export default function Home() {
   const [showTagPanel, setShowTagPanel] = useState(false);
   const pulseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const GAMES_PER_PAGE = 24;
+  const GAMES_PER_PAGE = 26;
   const { recentGames } = useRecentlyPlayed(GAMES);
   const { favourites, toggleFavourite, isFavourite } = useFavourites();
   const { kidsMode, toggleKidsMode } = useKidsMode();
@@ -723,13 +723,13 @@ export default function Home() {
 
             {/* ── Bento section: games 2–6, asymmetric grid ── */}
             {paginatedGames.length > 1 && (
-              <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 sm:auto-rows-[200px]">
+              <div className="bento-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" style={{ gridTemplateRows: 'repeat(2, 200px)' }}>
                 {paginatedGames.slice(1, 6).map((game, i) => {
                   const globalIndex = i + 1;
                   const likeCount = getLikeCount(game.slug);
                   const isLarge = i === 0; // First card in bento spans 2 cols + 2 rows on lg
                   return (
-                    <AnimatedCard key={game.slug} index={globalIndex} className={`h-[180px] sm:h-full${isLarge ? ' sm:col-span-2 sm:row-span-2' : ''}${i === 4 ? ' col-span-2 sm:col-span-1' : ''}`}>
+                    <AnimatedCard key={game.slug} index={globalIndex} className={`h-[180px]${isLarge ? ' sm:h-[416px] sm:col-span-2 sm:row-span-2' : ' sm:h-[200px]'}${i === 4 ? ' col-span-2 sm:col-span-1' : ''}`}>
                       <TiltCard className="group relative h-full" maxTilt={6} onMouseEnter={() => prefetchGameUrl(game.iframeUrl)}>
                         <Link href={`/play/${game.slug}/`} className="block h-full">
                           <div className="relative overflow-hidden rounded-2xl h-full bg-slate-900 ring-1 ring-white/10">
