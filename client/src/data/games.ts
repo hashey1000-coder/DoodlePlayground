@@ -544,7 +544,7 @@ export const GAMES: Game[] = [
     
     category: 'seasonal',
     thumbnail: '/thumbnails/magic-cat-academy-2.gif',
-    iframeUrl: '/google-doodle/2020/halloween20/rc1/halloween20.html',
+    iframeUrl: 'https://hg1.onga.io/magic-cat-academy-2/',
     controls: 'Draw the symbol shown above each ghost using your mouse or finger. New underwater enemies require different spell patterns. Defeat all ghosts to clear each level!',
     difficulty: 'medium',
     tags: ['halloween', 'seasonal', 'drawing', 'action', 'cute', 'mouse'],
