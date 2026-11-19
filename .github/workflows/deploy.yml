@@ -38,12 +38,12 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          for i in 1 2 3; do
+          for i in 1 2 3 4 5; do
             ssh-keyscan -p 22 ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null && break
-            echo "ssh-keyscan attempt $i/3 failed; retrying in 10s..." >&2
-            sleep 10
+            echo "ssh-keyscan attempt $i/5 failed; retrying in 30s..." >&2
+            sleep 30
           done
-          grep -q . ~/.ssh/known_hosts || { echo "ssh-keyscan failed after 3 attempts" >&2; exit 1; }
+          grep -q . ~/.ssh/known_hosts || { echo "ssh-keyscan failed after 5 attempts" >&2; exit 1; }
 
       - name: Deploy site
         run: |
